@@ -1,4 +1,4 @@
-# Gemini <img src="https://travis-ci.org/revam/Gemini.svg" title="Build Status Images">
+# Gemini [![Build Status](https://travis-ci.org/revam/Gemini.svg)](https://travis-ci.org/revam/Gemini)
 Original source code by ForeverZer0 and Zeus81 found at http://www.gdunlimited.net/forums/topic/7724-gemini-script-editor/.
 
 Terms of use of source-code set by ForeverZer0 (found under Download at post-link above)
