@@ -1,6 +1,5 @@
 # Gemini
 Original source code by ForeverZer0 and Zeus81 found at http://www.gdunlimited.net/forums/topic/7724-gemini-script-editor/.
-Cached version of the site included as `post.htm` in the project
 
 Terms of use of source-code set by ForeverZer0 (found under Download at post-link above)
 > Do to a lack of time to fix bugs, and for the benefit of others, I am open-sourcing Gemini, and I welcome anyone with knowledge of .NET to fix/add anything they wish, under the following conditions, which I respectfully ask be followed:
