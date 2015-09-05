@@ -8,7 +8,6 @@ namespace Gemini
 {
   public static class Settings
   {
-    private static bool _saving = false;
     public static bool WindowMaximized { get; set; }
     public static Rectangle WindowBounds { get; set; }
     public static bool MenuVisible { get; set; }
@@ -215,4 +214,3 @@ namespace Gemini
   }
 
 }
-
