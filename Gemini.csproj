@@ -406,7 +406,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="VersionHistory.html" />
     <EmbeddedResource Include="files\RMVX\RGSS202E.dll" />
     <None Include="resources\Add.png" />
     <None Include="resources\changelog.png" />
@@ -464,6 +463,7 @@
     <EmbeddedResource Include="files\default.xml" />
     <None Include="resources\find3.png" />
     <EmbeddedResource Include="files\RMVXAce\RGSS301.dll" />
+    <EmbeddedResource Include="Changelog.html" />
     <Content Include="files\RMXP\RGSS104E.dll" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="gemini.ico" />
