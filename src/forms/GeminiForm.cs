@@ -1266,7 +1266,7 @@ namespace Gemini {
           Settings.LoadLocalSettings(_projectDirectory + "GeminiLocal.xml");
           if (Settings.OpenScripts.Count > 0)
             foreach (Serializable.Script s in Settings.OpenScripts)
-              if(ScriptExistBySection(s.Section))
+              if (ScriptExistBySection(s.Section))
                 OpenScript(s.Section, s.Position);
           if (ScriptExistBySection(Settings.ActiveScript.Section))
             scriptsEditor_tabs.SelectedTab = GetScriptBySection(Settings.ActiveScript.Section).TabPage;
@@ -1330,17 +1330,7 @@ namespace Gemini {
       scriptName.TextChanged -= scriptName_TextChanged;
       scriptsFileWatcher.EnableRaisingEvents = false;
 
-      if (!string.IsNullOrEmpty(_projectGamePath))
-      {
-        if (GetActiveScript() != null)
-          Settings.ActiveScript = new Serializable.Script(GetActiveScript().Section, GetActiveScript().Scintilla.CurrentPos);
-        Script s;
-        for (int i = 0; i < scriptsEditor_tabs.TabCount; i++)
-          Settings.OpenScripts.Add(new Serializable.Script((s = _scripts.Find(delegate (Script t)
-          { return t.Opened && t.TabPage == scriptsEditor_tabs.TabPages[i]; })).Section, s.Scintilla.CurrentPos));
-        Settings.SaveLocalSettings(_projectDirectory + "GeminiLocal.xml");
-      }
-
+      SaveLocalConfiguration();
 
       foreach (Script script in _scripts)
         script.Dispose();
@@ -1374,17 +1364,7 @@ namespace Gemini {
       try
       {
         Settings.SaveSettings();
-
-        if (!string.IsNullOrEmpty(_projectGamePath))
-        {
-          if (GetActiveScript() != null)
-            Settings.ActiveScript = new Serializable.Script(GetActiveScript().Section, GetActiveScript().Scintilla.CurrentPos);
-          Script s;
-          for (int i = 0; i < scriptsEditor_tabs.TabCount; i++)
-            Settings.OpenScripts.Add(new Serializable.Script((s = _scripts.Find(delegate (Script t)
-            { return t.Opened && t.TabPage == scriptsEditor_tabs.TabPages[i]; })).Section, s.Scintilla.CurrentPos));
-          Settings.SaveLocalSettings(_projectDirectory + "GeminiLocal.xml");
-        }
+        SaveLocalConfiguration();
         if (showMessage)
           MessageBox.Show("Configuration was successfully saved.", "Message");
       }
@@ -1393,6 +1373,21 @@ namespace Gemini {
         if (showMessage)
           MessageBox.Show("An error occurred attempting to save the configuration.\nPlease ensure that you have write access to:\n\t" +
             Application.StartupPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+    }
+
+    private void SaveLocalConfiguration()
+    {
+      if (!string.IsNullOrEmpty(_projectGamePath))
+      {
+        Script s;
+        if (GetActiveScript() != null)
+          Settings.ActiveScript = new Serializable.Script((s = GetActiveScript()).Section, s.Scintilla.CurrentPos);
+        for (int i = 0; i < scriptsEditor_tabs.TabCount; i++)
+          Settings.OpenScripts.Add(new Serializable.Script((s =
+            _scripts.Find(delegate (Script t) { return t.Opened && t.TabPage == scriptsEditor_tabs.TabPages[i]; })).Section,
+            s.Scintilla.CurrentPos));
+        Settings.SaveLocalSettings(_projectDirectory + "GeminiLocal.xml");
       }
     }
 
@@ -1504,6 +1499,7 @@ namespace Gemini {
     /// </summary>
     /// <param name="section">The script that will be loaded into the page</param>
     /// <param name="position">The cursor position in the script</param>
+    /// <param name="anchor">The selection anchor</param>
     private void OpenScript(int section, int position)
     {
       int index = _scripts.IndexOf(GetScriptBySection(section));
