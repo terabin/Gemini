@@ -1,0 +1,720 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5F9173E8-B9AD-48AC-935A-1A4D284FD3E4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gemini</RootNamespace>
+    <AssemblyName>Gemini</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>SecurityRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Gemini.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gemini.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IronRuby, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\IronRuby.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="IronRuby.Libraries, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\IronRuby.Libraries.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Dynamic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Microsoft.Dynamic.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Microsoft.Scripting.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zlib.net">
+      <HintPath>References\zlib.net.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="classes\ColorSerializeHelper.cs" />
+    <Compile Include="classes\FontSerializeHelper.cs" />
+    <Compile Include="classes\RubyMethods.cs" />
+    <Compile Include="classes\SearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="classes\SearchControl.Designer.cs">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\AdvancedTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="classes\AdvancedTabControl.Designer.cs">
+      <DependentUpon>AdvancedTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\AutoCompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\AutoCompleteForm.Designer.cs">
+      <DependentUpon>AutoCompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\ColorChooserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ColorChooserForm.Designer.cs">
+      <DependentUpon>ColorChooserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Settings.cs" />
+    <Compile Include="forms\RunVarsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\RunVarsForm.designer.cs">
+      <DependentUpon>RunVarsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\InsertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\InsertForm.designer.cs">
+      <DependentUpon>InsertForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\NewProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\NewProjectForm.Designer.cs">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\UpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\UpdateForm.designer.cs">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ScintillaNET\AutoComplete.cs" />
+    <Compile Include="ScintillaNET\CallTip.cs" />
+    <Compile Include="ScintillaNET\Caret.cs" />
+    <Compile Include="ScintillaNET\Clipboard.cs" />
+    <Compile Include="ScintillaNET\Commands.cs" />
+    <Compile Include="ScintillaNET\Configuration\CommandConfig.cs" />
+    <Compile Include="ScintillaNET\Configuration\Configuration.cs" />
+    <Compile Include="ScintillaNET\Configuration\ConfigurationManager.cs" />
+    <Compile Include="ScintillaNET\Configuration\IndicatorsConfig.cs" />
+    <Compile Include="ScintillaNET\Configuration\KeyWordConfigList.cs" />
+    <Compile Include="ScintillaNET\Configuration\LexerProperties.cs" />
+    <Compile Include="ScintillaNET\Configuration\MarginConfig.cs" />
+    <Compile Include="ScintillaNET\Configuration\MarkersConfig.cs" />
+    <Compile Include="ScintillaNET\Configuration\SnippetsConfig.cs" />
+    <Compile Include="ScintillaNET\Configuration\StyleConfig.cs" />
+    <Compile Include="ScintillaNET\Constants.cs" />
+    <Compile Include="ScintillaNET\Document.cs" />
+    <Compile Include="ScintillaNET\DocumentNavigation.cs" />
+    <Compile Include="ScintillaNET\DropMarker.cs" />
+    <Compile Include="ScintillaNET\EndOfLine.cs" />
+    <Compile Include="ScintillaNET\Enums.cs" />
+    <Compile Include="ScintillaNET\EventArgs.cs" />
+    <Compile Include="ScintillaNET\FindReplace\FindReplace.cs" />
+    <Compile Include="ScintillaNET\FindReplace\FindReplaceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\FindReplace\FindReplaceDialog.Designer.cs">
+      <DependentUpon>FindReplaceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScintillaNET\FindReplace\IncrementalSearcher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\FindReplace\IncrementalSearcher.Designer.cs">
+      <DependentUpon>IncrementalSearcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScintillaNET\FlagsDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\Folding.cs" />
+    <Compile Include="ScintillaNET\GoTo.cs" />
+    <Compile Include="ScintillaNET\GoToDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\GoToDialog.Designer.cs">
+      <DependentUpon>GoToDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScintillaNET\HotspotStyle.cs" />
+    <Compile Include="ScintillaNET\INativeScintilla.cs" />
+    <Compile Include="ScintillaNET\Indentation.cs" />
+    <Compile Include="ScintillaNET\Indicator.cs" />
+    <Compile Include="ScintillaNET\Lexing.cs" />
+    <Compile Include="ScintillaNET\Line.cs" />
+    <Compile Include="ScintillaNET\LinesCollection.cs" />
+    <Compile Include="ScintillaNET\LineWrap.cs" />
+    <Compile Include="ScintillaNET\LongLines.cs" />
+    <Compile Include="ScintillaNET\Margins.cs" />
+    <Compile Include="ScintillaNET\Markers.cs" />
+    <Compile Include="ScintillaNET\NativeMethods.cs" />
+    <Compile Include="ScintillaNET\NativeStructs.cs" />
+    <Compile Include="ScintillaNET\Printing\PageInformation.cs" />
+    <Compile Include="ScintillaNET\Printing\PageSettings.cs" />
+    <Compile Include="ScintillaNET\Printing\PrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\Printing\Printing.cs" />
+    <Compile Include="ScintillaNET\Range.cs" />
+    <Compile Include="ScintillaNET\Scintilla.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\Scintilla.INativeScintilla.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\ScintillaDesigner.cs" />
+    <Compile Include="ScintillaNET\ScintillaHelperBase.cs" />
+    <Compile Include="ScintillaNET\Scrolling.cs" />
+    <Compile Include="ScintillaNET\SearchFlags.cs" />
+    <Compile Include="ScintillaNET\Selection.cs" />
+    <Compile Include="ScintillaNET\Snippets\Snippet.cs" />
+    <Compile Include="ScintillaNET\Snippets\SnippetChooser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScintillaNET\Snippets\SnippetChooser.Designer.cs">
+      <DependentUpon>SnippetChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScintillaNET\Snippets\SnippetLinkEnd.cs" />
+    <Compile Include="ScintillaNET\Snippets\SnippetLinks.cs" />
+    <Compile Include="ScintillaNET\Snippets\SnippetList.cs" />
+    <Compile Include="ScintillaNET\Snippets\SnippetManager.cs" />
+    <Compile Include="ScintillaNET\Style.cs" />
+    <Compile Include="ScintillaNET\UndoRedo.cs" />
+    <Compile Include="ScintillaNET\Utils.cs" />
+    <Compile Include="ScintillaNET\Whitespace.cs" />
+    <Compile Include="ScintillaNET\WhitespaceStringConverter.cs" />
+    <Compile Include="ScintillaNET\XpmAdapter.cs" />
+    <Compile Include="classes\ScriptStyle.cs" />
+    <Compile Include="classes\Script.cs" />
+    <Compile Include="forms\GeminiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\GeminiForm.Designer.cs">
+      <DependentUpon>GeminiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="classes\SearchResult.cs" />
+    <Compile Include="forms\StyleEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\StyleEditorForm.Designer.cs">
+      <DependentUpon>StyleEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="serializable\Objects.cs" />
+    <EmbeddedResource Include="classes\SearchControl.resx">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="classes\AdvancedTabControl.resx">
+      <DependentUpon>AdvancedTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="costura32\SciLexer.dll" />
+    <EmbeddedResource Include="forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\AutoCompleteForm.resx">
+      <DependentUpon>AutoCompleteForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ColorChooserForm.resx">
+      <DependentUpon>ColorChooserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\RunVarsForm.resx">
+      <DependentUpon>RunVarsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\InsertForm.resx">
+      <DependentUpon>InsertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\NewProjectForm.resx">
+      <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\UpdateForm.resx">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScintillaNET\FindReplace\FindReplaceDialog.resx">
+      <DependentUpon>FindReplaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScintillaNET\FindReplace\IncrementalSearcher.resx">
+      <DependentUpon>IncrementalSearcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScintillaNET\GoToDialog.resx">
+      <DependentUpon>GoToDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScintillaNET\Snippets\SnippetChooser.resx">
+      <DependentUpon>SnippetChooser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\GeminiForm.resx">
+      <DependentUpon>GeminiForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\StyleEditorForm.resx">
+      <DependentUpon>StyleEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="files\RMVX\Data\Actors.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Animations.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Areas.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Armors.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Classes.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\CommonEvents.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Enemies.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Items.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Map001.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\MapInfos.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Scripts.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Skills.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\States.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\System.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Troops.rvdata" />
+    <EmbeddedResource Include="files\RMVX\Data\Weapons.rvdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Actors.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Animations.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Armors.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Classes.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\CommonEvents.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Enemies.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Items.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Map001.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\MapInfos.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Scripts.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Skills.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\States.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\System.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Tilesets.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Troops.rxdata" />
+    <EmbeddedResource Include="files\RMXP\Data\Weapons.rxdata" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Actors.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Animations.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Armors.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Classes.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\CommonEvents.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Enemies.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Items.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Map001.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\MapInfos.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Scripts.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Skills.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\States.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\System.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Tilesets.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Troops.rvdata2" />
+    <EmbeddedResource Include="files\RMVXAce\Data\Weapons.rvdata2" />
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="resources\folder_export.png" />
+    <None Include="resources\OpenFile.png" />
+    <None Include="resources\History.png" />
+    <None Include="resources\exit.png" />
+    <None Include="resources\gemini ico.png" />
+    <EmbeddedResource Include="files\help\RPGVXAce.chm" />
+    <EmbeddedResource Include="files\help\RPGVX.chm" />
+    <EmbeddedResource Include="files\help\RPGXP.chm" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="files\RMVX\RGSS202E.dll" />
+    <None Include="resources\Add.png" />
+    <None Include="resources\changelog.png" />
+    <None Include="resources\charmap.png" />
+    <None Include="resources\CloseProject.png" />
+    <None Include="resources\CloseTab0.png" />
+    <None Include="resources\CloseTab1.png" />
+    <None Include="resources\CloseTab2.png" />
+    <None Include="resources\Color wheel.png" />
+    <None Include="resources\comment.png" />
+    <None Include="resources\copy.png" />
+    <None Include="resources\cut.png" />
+    <None Include="resources\Delete.png" />
+    <None Include="resources\delete2.png" />
+    <None Include="resources\DeleteHS.png" />
+    <None Include="resources\Document.png" />
+    <None Include="resources\emptyspace.png" />
+    <None Include="resources\find.png" />
+    <None Include="resources\find2.png" />
+    <None Include="resources\fold.png" />
+    <None Include="resources\Folder_Open.png" />
+    <None Include="resources\folder_up.png" />
+    <None Include="resources\gemini.png" />
+    <None Include="resources\go_to.png" />
+    <None Include="resources\GoToNextMessage.png" />
+    <None Include="resources\GoToPreviousMessage.png" />
+    <None Include="resources\highlight.png" />
+    <None Include="resources\indent.png" />
+    <None Include="resources\next.png" />
+    <None Include="resources\Open file.png" />
+    <None Include="resources\outline.png" />
+    <None Include="resources\paste.png" />
+    <None Include="resources\play.png" />
+    <None Include="resources\previous.png" />
+    <None Include="resources\redo.png" />
+    <None Include="resources\replace.png" />
+    <None Include="resources\rmvx_icon.png" />
+    <None Include="resources\rmvxace_icon.png" />
+    <None Include="resources\rmxp_icon.png" />
+    <None Include="resources\ruby_icon.png" />
+    <None Include="resources\ruler.png" />
+    <None Include="resources\Save.png" />
+    <None Include="resources\select_all.png" />
+    <None Include="resources\text_complete.png" />
+    <None Include="resources\text_icon.png" />
+    <None Include="resources\theme.png" />
+    <None Include="resources\tool.png" />
+    <None Include="resources\Transparent_Background.png" />
+    <None Include="resources\undo.png" />
+    <None Include="resources\update.png" />
+    <None Include="resources\LineColorHS.png" />
+    <EmbeddedResource Include="files\RMVXAce\Game.exe" />
+    <EmbeddedResource Include="files\VersionHistory.html" />
+    <None Include="resources\Help.png" />
+    <None Include="resources\Debug.png" />
+    <EmbeddedResource Include="files\default.xml" />
+    <None Include="resources\find3.png" />
+    <EmbeddedResource Include="files\RMVXAce\RGSS301.dll" />
+    <Content Include="files\RMXP\RGSS104E.dll" />
+    <Content Include="FodyWeavers.xml" />
+    <Content Include="gemini.ico" />
+    <Content Include="resources\Folder_Closed.png" />
+    <Content Include="resources\rmvxace_script.png" />
+    <Content Include="resources\rmvx_script.png" />
+    <Content Include="resources\rmxp_script.png" />
+    <Content Include="ScintillaNET\Configuration\Builtin\cs.xml" />
+    <EmbeddedResource Include="ScintillaNET\Configuration\Builtin\default.xml" />
+    <Content Include="ScintillaNET\Configuration\Builtin\html.xml" />
+    <Content Include="ScintillaNET\Configuration\Builtin\js.xml" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\ada.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\apdl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\asm.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\asn1.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\au3.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\ave.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\baan.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\bash.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\batch.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\blitsbasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\bullant.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\caml.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\clw.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\clwnocase.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\cmake.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\conf.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\cpp.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\cppnocase.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\csound.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\css.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\d.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\diff.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\eiffel.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\eiffelkw.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\erlang.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\errorlist.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\escript.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\f77.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\flagship.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\forth.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\fortran.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\freebasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\gap.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\gui4cli.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\haskell.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\hypertext.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\innosetup.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\kix.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\latex.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\lisp.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\lot.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\lout.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\lua.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\make.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\matlab.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\metapost.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\mmixal.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\mssql.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\nncrontab.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\nsis.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\null.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\octave.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\opal.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\pascal.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\perl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\phpscript.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\plm.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\pov.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\powerbasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\progress.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\props.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\ps.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\purebasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\python.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\rebol.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\ruby.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\scriptol.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\smalltalk.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\specman.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\spice.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\sql.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\tads3.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\tcl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\tex.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\vb.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\vbscript.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\verilog.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\vhdl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\xml.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerKeywordListNames\yaml.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\ada.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\apdl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\asm.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\asn1.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\au3.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\ave.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\baan.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\bash.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\batch.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\blitsbasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\bullant.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\caml.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\clw.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\clwnocase.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\cmake.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\conf.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\cpp.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\cppnocase.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\csound.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\css.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\d.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\diff.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\eiffel.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\eiffelkw.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\erlang.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\errorlist.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\escript.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\f77.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\flagship.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\forth.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\fortran.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\freebasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\gap.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\gui4cli.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\haskell.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\hypertext.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\innosetup.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\kix.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\latext.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\lisp.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\lot.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\lout.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\lua.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\make.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\matlab.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\metapost.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\mmixal.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\mssql.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\nncrontab.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\nsis.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\null.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\octave.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\opal.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\pascal.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\perl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\phpscript.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\plm.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\pov.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\powerbasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\progress.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\props.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\ps.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\purebasic.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\python.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\rebol.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\ruby.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\scriptol.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\smalltalk.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\specman.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\spice.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\sql.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\tads3.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\tcl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\tex.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\vb.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\vbscript.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\verilog.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\vhdl.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\xml.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\LexerStyleNames\yaml.txt" />
+    <Content Include="ScintillaNET\Configuration\Builtin\mssql.xml" />
+    <Content Include="ScintillaNET\Configuration\Builtin\pgsql.xml" />
+    <Content Include="ScintillaNET\Configuration\Builtin\python.xml" />
+    <Content Include="ScintillaNET\Configuration\Builtin\vbscript.xml" />
+    <Content Include="ScintillaNET\Configuration\Builtin\xml.xml" />
+    <EmbeddedResource Include="files\RMVX\Game.exe" />
+    <EmbeddedResource Include="files\RMXP\Game.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('packages\Fody.1.28.3\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Fody.1.28.3\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.1.28.3\build\Fody.targets'))" />
+  </Target>
+  <UsingTask TaskName="CosturaCleanup" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
+    <ParameterGroup>
+      <Config Output="false" Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem" />
+      <Files Output="false" Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+    </ParameterGroup>
+    <Task Evaluate="true">
+      <Reference xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Include="System.Xml" />
+      <Reference xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Include="System.Xml.Linq" />
+      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System" />
+      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.IO" />
+      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.Xml.Linq" />
+      <Code xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Type="Fragment" Language="cs"><![CDATA[
+var config = XElement.Load(Config.ItemSpec).Elements("Costura").FirstOrDefault();
+
+if (config == null) return true;
+
+var excludedAssemblies = new List<string>();
+var attribute = config.Attribute("ExcludeAssemblies");
+if (attribute != null)
+    foreach (var item in attribute.Value.Split('|').Select(x => x.Trim()).Where(x => x != string.Empty))
+        excludedAssemblies.Add(item);
+var element = config.Element("ExcludeAssemblies");
+if (element != null)
+    foreach (var item in element.Value.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Where(x => x != string.Empty))
+        excludedAssemblies.Add(item);
+
+var filesToCleanup = Files.Select(f => f.ItemSpec).Where(f => !excludedAssemblies.Contains(Path.GetFileNameWithoutExtension(f), StringComparer.InvariantCultureIgnoreCase));
+
+foreach (var item in filesToCleanup)
+  File.Delete(item);
+]]></Code>
+    </Task>
+  </UsingTask>
+  <Target Name="CleanReferenceCopyLocalPaths" AfterTargets="AfterBuild;NonWinFodyTarget">
+    <CosturaCleanup Config="FodyWeavers.xml" Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

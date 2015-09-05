@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="CloseTab1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CloseTab1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="indent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\indent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rmvx_script" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rmvx_script.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CloseProject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lineColorHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LineColorHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smallArrow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoToNextMessage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpenFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\paste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smallArrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoToPreviousMessage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="find2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gemini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gemini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="select_all" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\select_all.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CloseTab0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CloseTab0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tool" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tool.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Folder_Open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\update.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="replace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\replace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CloseTab2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CloseTab2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="open_file" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Open file.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="debug" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Debug.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="next" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\comment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rmvxace_script" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rmvxace_script.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="charmap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\charmap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rmvx_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rmvx_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ruby_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruby_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_hs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteHS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rmxp_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rmxp_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="color_wheel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Color wheel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rmvxace_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rmvxace_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\theme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="go_to" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\go_to.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_alt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text_complete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text_complete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rmxp_script" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rmxp_script.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="emptyspace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\emptyspace.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="history" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\History.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="file" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Document.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="outline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\outline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ruler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruler.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="find" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gemini_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gemini ico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="changelog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\changelog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\highlight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Transparent_Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="find3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RMVXAce_Constants" xml:space="preserve">
+    <value>Audio BattleManager Bitmap Cache Color DataManager Font Game_Action Game_ActionResult Game_Actor Game_Actors Game_BaseItem Game_Battler Game_BattlerBase Game_Character Game_CharacterBase Game_CommonEvent Game_Enemy Game_Event Game_Follower Game_Followers Game_Interpreter Game_Map Game_Message Game_Party Game_Picture Game_Pictures Game_Player Game_Screen Game_SelfSwitches Game_Switches Game_System Game_Temp Game_Timer Game_Troop Game_Unit Game_Variables Game_Vehicle Graphics Input Plane RGSSError RGSSReset RGSS_VERSION RPG Rect SceneManager Scene_Base Scene_Battle Scene_Debug Scene_End Scene_Equip Scene_File Scene_Gameover Scene_Item Scene_ItemBase Scene_Load Scene_Map Scene_Menu Scene_MenuBase Scene_Name Scene_Save Scene_Shop Scene_Skill Scene_Status Scene_Title Sound Sprite Sprite_Base Sprite_Battler Sprite_Character Sprite_Picture Sprite_Timer Spriteset_Battle Spriteset_Map Spriteset_Weather Table Tilemap Tone Viewport Vocab Window Window_ActorCommand Window_Base Window_BattleActor Window_BattleEnemy Window_BattleItem Window_BattleLog Window_BattleSkill Window_BattleStatus Window_ChoiceList Window_Command Window_DebugLeft Window_DebugRight Window_EquipCommand Window_EquipItem Window_EquipSlot Window_EquipStatus Window_GameEnd Window_Gold Window_Help Window_HorzCommand Window_ItemCategory Window_ItemList Window_KeyItem Window_MapName Window_MenuActor Window_MenuCommand Window_MenuStatus Window_Message Window_NameEdit Window_NameInput Window_NumberInput Window_PartyCommand Window_SaveFile Window_ScrollText Window_Selectable Window_ShopBuy Window_ShopCommand Window_ShopNumber Window_ShopSell Window_ShopStatus Window_SkillCommand Window_SkillList Window_SkillStatus Window_Status Window_TitleCommand Audio.bgm_fade Audio.bgm_play Audio.bgm_pos Audio.bgm_stop Audio.bgs_fade Audio.bgs_play Audio.bgs_pos Audio.bgs_stop Audio.me_fade Audio.me_play Audio.me_stop Audio.se_play Audio.se_stop Audio.setup_midi DataManager.check_player_location DataManager.create_game_objects DataManager.delete_save_file DataManager.extract_save_contents DataManager.init DataManager.last_savefile_index DataManager.latest_savefile_index DataManager.load_battle_test_database DataManager.load_database DataManager.load_game DataManager.load_game_without_rescue DataManager.load_header DataManager.load_header_without_rescue DataManager.load_normal_database DataManager.make_filename DataManager.make_save_contents DataManager.make_save_header DataManager.reload_map_if_updated DataManager.save_file_exists? DataManager.save_game DataManager.save_game_without_rescue DataManager.savefile_max DataManager.savefile_time_stamp DataManager.setup_battle_test DataManager.setup_new_game Font.default_bold Font.default_color Font.default_italic Font.default_name Font.default_out_color Font.default_outline Font.default_shadow Font.default_size Font.exists? Graphics.brightness Graphics.fadein Graphics.fadeout Graphics.frame_count Graphics.frame_rate Graphics.frame_reset Graphics.freeze Graphics.height Graphics.play_movie Graphics.resize_screen Graphics.snap_to_bitmap Graphics.transition Graphics.update Graphics.visible Graphics.wait Graphics.width Input.dir4 Input.dir8 Input.press? Input.repeat? Input.trigger? Input.update RPG::Actor RPG::Animation RPG::Animation::Frame RPG::Animation::Timing RPG::Armor RPG::AudioFile RPG::BaseItem RPG::BaseItem::Feature RPG::BGM RPG::BGS RPG::Class RPG::Class::Learning RPG::CommonEvent RPG::Enemy RPG::Enemy::Action RPG::Enemy::DropItem RPG::EquipItem RPG::Event RPG::Event::Page RPG::Event::Page::Condition RPG::Event::Page::Graphic RPG::EventCommand RPG::Item RPG::Map RPG::Map::Encounter RPG::MapInfo RPG::ME RPG::MoveCommand RPG::MoveRoute RPG::SE RPG::Skill RPG::State RPG::System RPG::System::Terms RPG::System::TestBattler RPG::System::Vehicle RPG::Tileset RPG::Troop RPG::Troop::Member RPG::Troop::Page RPG::Troop::Page::Condition RPG::UsableItem RPG::UsableItem::Damage RPG::UsableItem::Effect RPG::Weapon SceneManager.background_bitmap SceneManager.call SceneManager.clear SceneManager.exit SceneManager.first_scene_class SceneManager.goto SceneManager.return SceneManager.run SceneManager.scene SceneManager.scene_is? SceneManager.snapshot_for_background SceneManager.use_midi? Sound.play_actor_collapse Sound.play_actor_damage Sound.play_battle_start Sound.play_boss_collapse1 Sound.play_boss_collapse2 Sound.play_buzzer Sound.play_cancel Sound.play_cursor Sound.play_enemy_attack Sound.play_enemy_collapse Sound.play_enemy_damage Sound.play_equip Sound.play_escape Sound.play_evasion Sound.play_load Sound.play_magic_evasion Sound.play_miss Sound.play_ok Sound.play_recovery Sound.play_reflection Sound.play_save Sound.play_shop Sound.play_system_sound Sound.play_use_item Sound.play_use_skill Vocab::ActionFailure Vocab::ActorDamage Vocab::ActorDrain Vocab::ActorGain Vocab::ActorLoss Vocab::ActorNoDamage Vocab::ActorNoHit Vocab::ActorRecovery Vocab::BuffAdd Vocab::BuffRemove Vocab::CounterAttack Vocab::CriticalToActor Vocab::CriticalToEnemy Vocab::DebuffAdd Vocab::Defeat Vocab::Emerge Vocab::EnemyDamage Vocab::EnemyDrain Vocab::EnemyGain Vocab::EnemyLoss Vocab::EnemyNoDamage Vocab::EnemyNoHit Vocab::EnemyRecovery Vocab::EscapeFailure Vocab::EscapeStart Vocab::Evasion Vocab::EventOverflow Vocab::ExpNext Vocab::ExpTotal Vocab::File Vocab::LevelUp Vocab::LoadMessage Vocab::MagicEvasion Vocab::MagicReflection Vocab::ObtainExp Vocab::ObtainGold Vocab::ObtainItem Vocab::ObtainSkill Vocab::PartyName Vocab::PlayerPosError Vocab::Possession Vocab::Preemptive Vocab::SaveMessage Vocab::ShopBuy Vocab::ShopCancel Vocab::ShopSell Vocab::Substitute Vocab::Surprise Vocab::UseItem Vocab::Victory</value>
+  </data>
+  <data name="RMVXAce_Directories" xml:space="preserve">
+    <value>Audio\BGM Audio\BGS Audio\ME Audio\SE Data Fonts Graphics\Animations Graphics\Battlebacks1 Graphics\Battlebacks2 Graphics\Battlers Graphics\Characters Graphics\Faces Graphics\Parallaxes Graphics\Pictures Graphics\System Graphics\Tilesets Graphics\Titles1 Graphics\Titles2 Movies System</value>
+  </data>
+  <data name="RMVXAce_Globals" xml:space="preserve">
+    <value>BTEST RGSS_SCRIPTS TEST data_actors data_animations data_armors data_classes data_common_events data_enemies data_items data_mapinfos data_skills data_states data_system data_tilesets data_troops data_weapons game_actors game_map game_message game_party game_player game_self_switches game_switches game_system game_temp game_timer game_troop game_variables</value>
+  </data>
+  <data name="RMVX_Constants" xml:space="preserve">
+    <value>Audio Bitmap Cache Color Font Game_Actor Game_Actors Game_BattleAction Game_Battler Game_Character Game_CommonEvent Game_Enemy Game_Event Game_Interpreter Game_Map Game_Message Game_Party Game_Picture Game_Player Game_Screen Game_SelfSwitches Game_Switches Game_System Game_Temp Game_Troop Game_Unit Game_Variables Game_Vehicle Graphics Input NKF Plane RGSSError RPG Rect Scene_Base Scene_Battle Scene_Debug Scene_End Scene_Equip Scene_File Scene_Gameover Scene_Item Scene_Map Scene_Menu Scene_Name Scene_Shop Scene_Skill Scene_Status Scene_Title Sound Sprite Sprite_Base Sprite_Battler Sprite_Character Sprite_Picture Sprite_Timer Spriteset_Battle Spriteset_Map Spriteset_Weather Table Tilemap Tone Viewport Vocab Window Window_ActorCommand Window_Base Window_BattleMessage Window_BattleStatus Window_Command Window_DebugLeft Window_DebugRight Window_Equip Window_EquipItem Window_EquipStatus Window_Gold Window_Help Window_Item Window_MenuStatus Window_Message Window_NameEdit Window_NameInput Window_NumberInput Window_PartyCommand Window_SaveFile Window_Selectable Window_ShopBuy Window_ShopNumber Window_ShopSell Window_ShopStatus Window_Skill Window_SkillStatus Window_Status Window_TargetEnemy Audio.bgm_fade Audio.bgm_play Audio.bgm_stop Audio.bgs_fade Audio.bgs_play Audio.bgs_stop Audio.me_fade Audio.me_play Audio.me_stop Audio.se_play Audio.se_stop Cache.animation Cache.battler Cache.character Cache.clear Cache.face Cache.load_bitmap Cache.parallax Cache.picture Cache.system Font.default_bold Font.default_color Font.default_italic Font.default_name Font.default_shadow Font.default_size Font.exists? Graphics.brightness Graphics.fadein Graphics.fadeout Graphics.frame_count Graphics.frame_rate Graphics.frame_reset Graphics.freeze Graphics.height Graphics.resize_screen Graphics.snap_to_bitmap Graphics.transition Graphics.update Graphics.visible Graphics.wait Graphics.width Input.dir4 Input.dir8 Input.press? Input.repeat? Input.trigger? Input.update RPG::Actor RPG::Animation RPG::Animation::Frame RPG::Animation::Timing RPG::Area RPG::Armor RPG::AudioFile RPG::BGM RPG::BGS RPG::BaseItem RPG::Class RPG::Class::Learning RPG::CommonEvent RPG::Enemy RPG::Enemy::Action RPG::Enemy::DropItem RPG::Event RPG::Event::Page RPG::Event::Page::Condition RPG::Event::Page::Graphic RPG::EventCommand RPG::Item RPG::ME RPG::Map RPG::MapInfo RPG::MoveCommand RPG::MoveRoute RPG::SE RPG::Skill RPG::State RPG::System RPG::System::Terms RPG::System::TestBattler RPG::System::Vehicle RPG::Troop RPG::Troop::Member RPG::Troop::Page RPG::Troop::Page::Condition RPG::UsableItem RPG::Weapon Sound.play_actor_collapse Sound.play_actor_damage Sound.play_battle_start Sound.play_buzzer Sound.play_cancel Sound.play_cursor Sound.play_decision Sound.play_enemy_attack Sound.play_enemy_collapse Sound.play_enemy_damage Sound.play_equip Sound.play_escape Sound.play_evasion Sound.play_load Sound.play_miss Sound.play_recovery Sound.play_save Sound.play_shop Sound.play_use_item Sound.play_use_skill Vocab.ActionFailure Vocab.ActorDamage Vocab.ActorDrain Vocab.ActorEvasion Vocab.ActorLoss Vocab.ActorNoDamage Vocab.ActorNoHit Vocab.ActorRecovery Vocab.CriticalToActor Vocab.CriticalToEnemy Vocab.Defeat Vocab.DoAttack Vocab.DoEscape Vocab.DoGuard Vocab.DoWait Vocab.Emerge Vocab.EnemyDamage Vocab.EnemyDrain Vocab.EnemyEvasion Vocab.EnemyLoss Vocab.EnemyNoDamage Vocab.EnemyNoHit Vocab.EnemyRecovery Vocab.EscapeFailure Vocab.EscapeStart Vocab.ExpNext Vocab.ExpTotal Vocab.File Vocab.LevelUp Vocab.LoadMessage Vocab.ObtainExp Vocab.ObtainGold Vocab.ObtainItem Vocab.ObtainSkill Vocab.PartyName Vocab.Possession Vocab.Preemptive Vocab.SaveMessage Vocab.ShopBuy Vocab.ShopCancel Vocab.ShopSell Vocab.Surprise Vocab.UseItem Vocab.Victory</value>
+  </data>
+  <data name="RMVX_Directories" xml:space="preserve">
+    <value>Audio\BGM Audio\BGS Audio\ME Audio\SE Data Fonts Graphics\Animations Graphics\Battlers Graphics\Characters Graphics\Faces Graphics\Parallaxes Graphics\Pictures Graphics\System</value>
+  </data>
+  <data name="RMVX_Globals" xml:space="preserve">
+    <value>BTEST RGSS_SCRIPTS TEST data_actors data_animations data_areas data_armors data_classes data_common_events data_enemies data_items data_skills data_states data_system data_troops data_weapons game_actors game_map game_message game_party game_player game_self_switches game_switches game_system game_temp game_troop game_variables scene</value>
+  </data>
+  <data name="RMXP_Constants" xml:space="preserve">
+    <value>Arrow_Actor Arrow_Base Arrow_Enemy Audio Bitmap Color Font Game_Actor Game_Actors Game_BattleAction Game_Battler Game_Character Game_CommonEvent Game_Enemy Game_Event Game_Map Game_Party Game_Picture Game_Player Game_Screen Game_SelfSwitches Game_Switches Game_System Game_Temp Game_Troop Game_Variables Graphics Hangup Input Interpreter Plane Rect RGSSError RPG Scene_Battle Scene_Debug Scene_End Scene_Equip Scene_File Scene_Gameover Scene_Item Scene_Load Scene_Map Scene_Menu Scene_Name Scene_Save Scene_Shop Scene_Skill Scene_Status Scene_Title Sprite Sprite_Battler Sprite_Character Sprite_Picture Sprite_Timer Spriteset_Battle Spriteset_Map Table Tilemap TilemapAutotiles Tone Viewport Window Window_Base Window_BattleResult Window_BattleStatus Window_Command Window_DebugLeft Window_DebugRight Window_EquipItem Window_EquipLeft Window_EquipRight Window_Gold Window_Help Window_InputNumber Window_Item Window_MenuStatus Window_Message Window_NameEdit Window_NameInput Window_PartyCommand Window_PlayTime Window_SaveFile Window_Selectable Window_ShopBuy Window_ShopCommand Window_ShopNumber Window_ShopSell Window_ShopStatus Window_Skill Window_SkillStatus Window_Status Window_Steps Window_Target Audio.bgm_fade Audio.bgm_play Audio.bgm_stop Audio.bgs_fade Audio.bgs_play Audio.bgs_stop Audio.me_fade Audio.me_play Audio.me_stop Audio.se_play Audio.se_stop Font.default_bold Font.default_color Font.default_italic Font.default_name Font.default_size Font.exists? Graphics.frame_count Graphics.frame_rate Graphics.frame_reset Graphics.freeze Graphics.transition Graphics.update Graphics.visible Input.dir4 Input.dir8 Input.press? Input::R Input.repeat? Input.trigger? Input.update RPG::Actor RPG::Animation RPG::Animation::Frame RPG::Animation::Timing RPG::Armor RPG::AudioFile RPG::Cache RPG::Cache.animation RPG::Cache.autotile RPG::Cache.battleback RPG::Cache.battler RPG::Cache.character RPG::Cache.clear RPG::Cache.fog RPG::Cache.gameover RPG::Cache.icon RPG::Cache.load_bitmap RPG::Cache.panorama RPG::Cache.picture RPG::Cache.tile RPG::Cache.tileset RPG::Cache.title RPG::Cache.windowskin RPG::Class RPG::Class::Learning RPG::CommonEvent RPG::Enemy RPG::Enemy::Action RPG::Event RPG::Event::Page RPG::Event::Page::Condition RPG::Event::Page::Graphic RPG::EventCommand RPG::Item RPG::Map RPG::MapInfo RPG::MoveCommand RPG::MoveRoute RPG::Skill RPG::Sprite RPG::State RPG::System RPG::System::Words RPG::Tileset RPG::Troop RPG::Troop::Member RPG::Troop::Page RPG::Troop::Page::Condition RPG::Weapon RPG::Weather</value>
+  </data>
+  <data name="RMXP_Directories" xml:space="preserve">
+    <value>Audio\BGM Audio\BGS Audio\ME Audio\SE Data Graphics\Animations Graphics\Autotiles Graphics\Battlebacks Graphics\Battlers Graphics\Characters Graphics\Fogs Graphics\Gameovers Graphics\Icons Graphics\Panoramas Graphics\Pictures Graphics\Tilesets Graphics\Titles Graphics\Transitions Graphics\Windowskins</value>
+  </data>
+  <data name="RMXP_Globals" xml:space="preserve">
+    <value>BTEST DEBUG RGSS_SCRIPTS data_actors data_animations data_armors data_classes data_common_events data_enemies data_items data_skills data_states data_system data_tilesets data_troops data_weapons game_actors game_map game_party game_player game_screen game_self_switches game_switches game_system game_temp game_troop game_variables scene</value>
+  </data>
+  <data name="Ruby181_Constants" xml:space="preserve">
+    <value>ARGF ARGV ArgumentError Array Bignum Binding Class Comparable Continuation Data Dir ENV EOFError Enumerable Errno Exception FALSE FalseClass File FileTest Fixnum Float FloatDomainError GC Hash IO IOError IndexError Integer Interrupt Kernel LoadError LocalJumpError Marshal MatchData MatchingData Math Method Module NIL NameError NilClass NoMemoryError NoMethodError NotImplementedError Numeric Object ObjectSpace PLATFORM Precision Proc Process RELEASE_DATE RUBY_PLATFORM RUBY_RELEASE_DATE RUBY_VERSION Range RangeError Regexp RegexpError RuntimeError STDERR STDIN STDOUT ScriptError SecurityError Signal SignalException StandardError String Struct Symbol SyntaxError SystemCallError SystemExit SystemStackError TOPLEVEL_BINDING TRUE Thread ThreadError ThreadGroup Time TrueClass TypeError UnboundMethod VERSION Win32API ZeroDivisionError Zlib</value>
+  </data>
+  <data name="Ruby181_KernelFunctions" xml:space="preserve">
+    <value>&lt; &lt;= &lt;=&gt; == === =~ &gt; &gt;= Array Float Integer String __id__ __send__ ` abort ancestors at_exit autoload autoload? binding block_given? callcc caller catch chomp chomp! chop chop! class class_eval class_variables clone const_defined? const_get const_missing const_set constants display dup eql? equal? eval exec exit exit! extend fail fork format freeze frozen? getc gets global_variables gsub gsub! hash id include? included_modules inspect instance_eval instance_method instance_methods instance_of? instance_variable_get instance_variable_set instance_variables is_a? iterator? kind_of? lambda load load_data local_variables loop method method_defined? method_missing methods module_eval name nil? object_id open p print printf private_class_method private_instance_methods private_method_defined? private_methods proc protected_instance_methods protected_method_defined? protected_methods public_class_method public_instance_methods public_method_defined? public_methods putc puts raise rand readline readlines require respond_to? save_data scan select send set_trace_func singleton_methods sleep split sprintf srand sub sub! syscall system taint tainted? test throw to_a to_s trace_var trap type untaint untrace_var warn</value>
+  </data>
+  <data name="Ruby192_Constants" xml:space="preserve">
+    <value>ARGF ARGV ArgumentError Array BasicObject Bignum Binding Class Comparable Complex DL Data Dir ENV EOFError Encoding EncodingError Enumerable Enumerator Errno Exception FALSE FalseClass Fiber FiberError File FileTest Fixnum Float FloatDomainError GC Hash IO IOError IndexError Integer Interrupt Kernel KeyError LoadError LocalJumpError Marshal MatchData Math Method Module Mutex NIL NameError NilClass NoMemoryError NoMethodError NotImplementedError Numeric Object ObjectSpace Proc Process RUBY_COPYRIGHT RUBY_DESCRIPTION RUBY_ENGINE RUBY_PATCHLEVEL RUBY_PLATFORM RUBY_RELEASE_DATE RUBY_REVISION RUBY_VERSION Random Range RangeError Rational Regexp RegexpError RubyVM RuntimeError STDERR STDIN STDOUT ScriptError SecurityError Signal SignalException StandardError StopIteration String Struct Symbol SyntaxError SystemCallError SystemExit SystemStackError TOPLEVEL_BINDING TRUE Thread ThreadError ThreadGroup Time TrueClass TypeError UnboundMethod Win32API ZeroDivisionError Zlib</value>
+  </data>
+  <data name="Ruby192_KernelFunctions" xml:space="preserve">
+    <value>! != !~ &lt; &lt;= &lt;=&gt; == === =~ &gt; &gt;= Array Complex Float Integer Rational String __callee__ __id__ __method__ __send__ ` abort ancestors at_exit autoload autoload? binding block_given? caller catch class class_eval class_exec class_variable_defined? class_variable_get class_variable_set class_variables clone const_defined? const_get const_missing const_set constants define_singleton_method display dup enum_for eql? equal? eval exec exit exit! extend fail fork format freeze frozen? gets global_variables hash include? included_modules initialize_clone initialize_dup inspect instance_eval instance_exec instance_method instance_methods instance_of? instance_variable_defined? instance_variable_get instance_variable_set instance_variables is_a? iterator? kind_of? lambda load load_data local_variables loop method method_defined? methods module_eval module_exec msgbox msgbox_p name nil? object_id open p print printf private_class_method private_instance_methods private_method_defined? private_methods proc protected_instance_methods protected_method_defined? protected_methods public_class_method public_instance_method public_instance_methods public_method public_method_defined? public_methods public_send putc puts raise rand readline readlines remove_class_variable require require_relative respond_to? respond_to_missing? save_data select send set_trace_func singleton_class singleton_methods sleep spawn sprintf srand syscall system taint tainted? tap test throw to_enum to_s trace_var trap trust untaint untrace_var untrust untrusted? warn</value>
+  </data>
+  <data name="Ruby_Keywords" xml:space="preserve">
+    <value>BEGIN END __ENCODING__ __END__ __FILE__ __LINE__ alias and begin break case class def defined? do else elsif end ensure false for if in module next nil not or redo rescue retry return self super then true undef unless until when while yield</value>
+  </data>
+  <data name="folder_closed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\Folder_Closed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

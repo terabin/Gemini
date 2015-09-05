@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Gemini Version History</title>
+	</head>
+	<body>
+		<h1><strong>Gemini Version History</strong></h1>
+		<hr/>
+		<h2>&nbsp;v.3.0.0</h2>
+		<ul>
+			<li>Removed the Splash screen</li>
+			<li>Moved to .Net 4.6</li>
+			<li>Integrated Fody Cortana</li>
+			<li>Compressed and integrated and all dll-libraries into assembly</li>
+			<li>Changed settings save format to <code>xml</code></li>
+			<li>Implemented project-based settings (does not work on r*data)
+				<ul>
+					<li>Stores last opened scripts, debug at runtime and custom runtime parameters</li>
+				</ul>
+			</li>
+			<li>Rewrite of the <code>script-handeling API</code> and related methods
+				<ul>
+					<li>Removed the list-view and related methods</li>
+					<li>Added a new tree-view and related methods</li>
+					<li>Faster save and load time</li>
+				</ul>
+			</li>
+			<li>Improved import - will now import under currently selected script or group or in the &apos;Materials&apos; group if present</li>
+			<li>Added a project scripts folder and related methods</li>
+			<li>Added quick import from/export to project scripts folder</li>
+			<li>Added customization to game-runtime</li>
+			<li>Updated the help-files, data- and dll-library for XP and VXAce to the latest english ones</li>
+			<li>Updated folder icons</li>
+			<li>Updated UI to be more flexible</li>
+			<li>Temporarily disabled update functionality</li>
+			<li>Minor changes not stated above</li>
+			<li>Todo : adapt the update methods to work with the new to-be GitHub-Repo and learn to use Github. &apos;~&apos;</li>
+		</ul>
+
+		<h2>&nbsp;v.2.0.0</h2>
+		<ul>
+			<li>New logo</li>
+			<li>Moved to IronRuby 1.1.3 and .Net 4</li>
+			<li>Moved to Scintilla 2.2.2, the RMVXAce one, which have received some fix</li>
+			<li>Fixed "New Project" title bug</li>
+			<li>Added RPG Maker VX Ace projects support</li>
+			<li>Improved loading and saving speed drastically</li>
+			<li>Added ability to open r*data scripts files directly</li>
+			<li>Changed "Recently Open Projects" order, now most recents are on top of the list</li>
+			<li>Added "Auto-Open Most Recent on Start" option</li>
+			<li>Added interoperability with RPG Maker, we can now use both at the same time, the scripts from Gemini are kept</li>
+			<li>Added "Close Project" button</li>
+			<li>Improved Import functions to support multiple files at once</li>
+			<li>Added Export as r*data script file, it can be use as backup</li>
+			<li>Changed Settings format and save location, since Gemini is a portable application I though it would be better to have it in the same folder</li>
+			<li>Added save confirmation dialog before running game or closing Gemini</li>
+			<li>Added new style for line number margin in the style configurator</li>
+			<li>Changed Auto Complete list to display words that 'contains' tapped text (instead of 'start with') + alphabetically sorted</li>
+			<li>Removed Auto Complete validation chars "([.{:" that could validate unwanted words due to non case sensitiveness</li>
+			<li>Changed "Auto Complete Configuration" behavior, now we activate word groups by selecting them and it's smart (aka we have RMXP constants if an RMXP project is open, etc...)</li>
+			<li>Added RPG Maker help files to open with F1</li>
+			<li>Added F12 shortcut for running game</li>
+			<li>Added button to open current project folder</li>
+			<li>Merged update process into Gemini</li>
+			<li>Added "Auto Check Updates" option</li>
+			<li>Added possibility to copy/paste scripts between different Gemini's instances and/or RPG Maker</li>
+			<li>Added drag drop to reorder scripts list</li>
+			<li>Added drag drop to reorder open scripts tabs</li>
+			<li>Added display of the altered state of scripts in tabs and script list with a *</li>
+			<li>Added close button on tabs and middle click to close them too</li>
+			<li>Added new tabbed interface for searches with Ctrl+Maj+F</li>
+			<li>Fixed find/replace window bugs</li>
+			<li>Added Ctrl+0 to reset the text zoom</li>
+			<li>Fixed coloring bugs</li>
+			<li>Fixed encoding bug</li>
+			<li>Improved "Auto-Indent" and "Stucture Script" algorythms</li>
+			<li>Minor changes and others bug fix that I don't remember</li>
+			<li>Todo : replace RMVXAce project japanese data and help files by the english ones when they'll come out</li>
+		</ul>
+
+		<h2>&nbsp;v.1.1.6</h2>
+		<ul>
+			<li>Removed dubugging code that was left in from last build</li>
+		</ul>
+
+		<h2>&nbsp;v.1.1.5</h2>
+		<ul>
+			<li>Added option to toggle code-folding ON/OFF under Settings menu item</li>
+			<li>Added Empty Line Remove function under Edit menu item</li>
+			<li>Added a "Sort" button in the Auto-Complete configuration for sorting all items alphabetically</li>
+			<li>Added an internal function to automatically remove any duplicate words in the auto-complete list</li>
+			<li>Embedded the RMXP and RMVX libraries into the application, and the option to copy them to the game's directory when creating new projects, which will allow projects to be run without having the RPG Maker installed on the system</li>
+			<li>Added the ability to have newly created projects be automatically loaded into the editor</li>
+			<li>Fixed bug that would prevent projects from being ran if they were opened a certain way</li>
+		</ul>
+
+		<h2>&nbsp;v.1.0.8</h2>
+		<ul>
+			<li>Fixed Ctrl+Q  to allow for multi-line commenting</li>
+			<li>Fixed issue with Converter requiring the RPG Maker XP run-time package to be installed</li>
+			<li>Added an "Add to Auto-Complete" function to context menu</li>
+			<li>Fixed existing batch comment/uncomment function from adding newlines and improved coding by eliminating unnecessary iterations</li>
+			<li>Added "Version History" menu item under the "About" tab for viewing changes between updates</li>
+			<li>Added functionality to have New Project directories sync with the game title unless explicitly changed</li>
+		</ul>
+
+		<h2>&nbsp;v.1.0.2</h2>
+		<ul>
+			<li>Fixed browse issue with New Project creation</li>
+			<li>Fixed typo that would be created in Game.ini file for RMVX projects</li>
+			<li>Added Ctrl+Q functionality for add/removing line comments</li>
+		</ul>
+		<h2>&nbsp;v.1.0.0</h2>
+		<ul>
+			<li>Initial Release</li>
+		</ul>
+	</body>
+</html>
