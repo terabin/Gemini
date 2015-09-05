@@ -1,4 +1,4 @@
-# Gemini [![Build status](https://ci.appveyor.com/api/projects/status/slt527oxp8ey995f?svg=true)](https://ci.appveyor.com/project/revam/gemini)
+# Gemini [![Build status](https://ci.appveyor.com/api/projects/status/slt527oxp8ey995f/branch/master?svg=true)](https://ci.appveyor.com/project/revam/gemini/branch/master)
 Original source code by ForeverZer0 and Zeus81 found at http://www.gdunlimited.net/forums/topic/7724-gemini-script-editor/.
 
 Terms of use set by ForeverZer0 (found under Download at link above)
