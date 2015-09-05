@@ -406,6 +406,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="VersionHistory.html" />
     <EmbeddedResource Include="files\RMVX\RGSS202E.dll" />
     <None Include="resources\Add.png" />
     <None Include="resources\changelog.png" />
@@ -458,7 +459,6 @@
     <None Include="resources\update.png" />
     <None Include="resources\LineColorHS.png" />
     <EmbeddedResource Include="files\RMVXAce\Game.exe" />
-    <EmbeddedResource Include="files\VersionHistory.html" />
     <None Include="resources\Help.png" />
     <None Include="resources\Debug.png" />
     <EmbeddedResource Include="files\default.xml" />

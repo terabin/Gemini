@@ -96,7 +96,7 @@ namespace Gemini {
       if (Settings.WindowMaximized)
         WindowState = FormWindowState.Maximized;
     }
-    
+
     #endregion
 
     #region Main Form Events
@@ -771,9 +771,9 @@ namespace Gemini {
 
     private void mainMenu_ToolStripMenuItem_VersionHistory_Click(object sender, EventArgs e)
     {
-      if (!File.Exists("VersionHistory.html"))
-        CopyResource("Gemini.files.VersionHistory.html", "VersionHistory.html");
-      Process.Start("VersionHistory.html");
+      if (!File.Exists("Changelog.html"))
+        CopyResource("Gemini.Changelog.html", "Changelog.html");
+      Process.Start("Changelog.html");
     }
 
     private void mainMenu_ToolStripMenuItem_AboutGemini_Click(object sender, EventArgs e)
@@ -1340,7 +1340,7 @@ namespace Gemini {
           { return t.Opened && t.TabPage == scriptsEditor_tabs.TabPages[i]; })).Section, s.Scintilla.CurrentPos));
         Settings.SaveLocalSettings(_projectDirectory + "GeminiLocal.xml");
       }
-      
+
 
       foreach (Script script in _scripts)
         script.Dispose();
@@ -1558,7 +1558,7 @@ namespace Gemini {
 
     /// <summary>
     /// Exports the scripts using the passed filed extension to determine the file type
-    /// </summary> 
+    /// </summary>
     /// <param name="extension">The extension to save the files as</param>
     private void ExportScriptsTo(string extenction) {
       using (FolderBrowserDialog dialog = new FolderBrowserDialog()) {
@@ -1635,7 +1635,7 @@ namespace Gemini {
 
     /// <summary>
     /// Exports all the Scripts to the Project Scripts Folder
-    /// </summary> 
+    /// </summary>
     private void ExportScripts() {
       foreach (TreeNode rootNode in scriptsView.Nodes)
         foreach (TreeNode node in rootNode.Nodes)
