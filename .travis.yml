@@ -7,5 +7,5 @@ addons:
       - mono-gmcs
       - nunit-console
 script:
-  - xbuild CI.proj
-  - nunit-console ./src/Gemini.Tests/bin/Debug/Gemini.Tests.dll -exclude Integration,NotWorkingOnMono
+  - xbuild ./src/Gemini.csproj
+  - nunit-console ./src/bin/Debug/Gemini.exe -exclude Integration,NotWorkingOnMono
