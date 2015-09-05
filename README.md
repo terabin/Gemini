@@ -34,17 +34,17 @@ Gemini, named after the Zodiac Twins (RMXP/RMVX)(and now VX Ace!), is a feature-
 
 ## TODO
 - Move to ScintillaNet 3.5
-- Adapt the update methods to work with the new GitHub-Repo. '~'
+- Adapt the update methods to work with the new GitHub-Repo.
 
 ## Changelog
 ### Changes from 2.0.0 to 3.0.0
 - Removed the Splash screen
 - Added Fody and Fody Cortana
 - Compressed and integrated and all dll-libraries into assembly
-- Changed settings save format to `xml`
+- Changed settings save format to xml
 - Implemented project-based settings (does not work on r*data)
   - Stores last opened scripts, debug mode and custom runtime parameters
-- Rewrite of the `script-handeling API` and related methods
+- Rewrite of the script-handeling API and related methods
   - Removed the list-view and related methods
   - Added a new tree-view and related methods
   - Faster save and load time
