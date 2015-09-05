@@ -2,7 +2,7 @@
 Original source code by ForeverZer0 and Zeus81 found at http://www.gdunlimited.net/forums/topic/7724-gemini-script-editor/.
 Cached version of the site included as `post.htm` in the project
 
-Terms of use for developers by ForeverZer0 (found under Download at post-link above)
+Terms of use of source-code set by ForeverZer0 (found under Download at post-link above)
 > Do to a lack of time to fix bugs, and for the benefit of others, I am open-sourcing Gemini, and I welcome anyone with knowledge of .NET to fix/add anything they wish, under the following conditions, which I respectfully ask be followed:
 > - Gemini is to remain non-commercial
 > - Original credit is to be given, although feel free to add yourself for any changes that are made
@@ -44,7 +44,7 @@ Gemini, named after the Zodiac Twins (RMXP/RMVX)(and now VX Ace!), is a feature-
 - Changed settings save format to xml
 - Implemented project-based settings (does not work on r*data)
   - Stores last opened scripts, debug mode and custom runtime parameters
-- Rewrite of the script-handeling API and related methods
+- Rewrite the script-handeling API and related methods
   - Removed the list-view and related methods
   - Added a new tree-view and related methods
   - Faster save and load time
@@ -64,4 +64,4 @@ See `Changelog.html` for full list of changes.
 Requires Microsoft [.NET Framework 4 (Web Installer)](http://www.microsoft.com/en-us/download/details.aspx?id=17851).
 
 ## Licence
-This project is licenced under the GNU General Public Licence v3 (or later) found either in `licence.txt` or at http://www.gnu.org/licenses/gpl-3.0.txt
+This project is licenced under the GNU General Public Licence v.3.0 (or later) found either in `licence.txt` or at http://www.gnu.org/licenses/gpl-3.0.txt
