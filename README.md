@@ -57,10 +57,10 @@ Gemini, named after the Zodiac Twins (RMXP/RMVX)(and now VX Ace!), is a feature-
 - Temporarily disabled update functionality
 - Minor changes not stated above
 
-See `Changelog.html` for full list of changes.
+See `Changelog.html` for a more detailed list of changes.
 
 ## Compatibility
 Requires Microsoft [.NET Framework 4 (Web Installer)](http://www.microsoft.com/en-us/download/details.aspx?id=17851).
 
 ## Licence
-This project is licenced under the GNU General Public Licence v.3.0 (or later) found either in `licence.txt` or at http://www.gnu.org/licenses/gpl-3.0.txt
+This project is licenced under the GNU General Public Licence v.3.0 found both in `licence.txt` and at http://www.gnu.org/licenses/gpl-3.0.txt
