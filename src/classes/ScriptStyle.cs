@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Xml.Serialization;
+using Gemini.Serializable;
 
 namespace Gemini
 {

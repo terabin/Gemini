@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 
-namespace Gemini
+namespace Gemini.Serializable
 {
   [TypeConverter(typeof(ColorConverter))]
   internal class ColorSerializetionHelper

@@ -116,7 +116,7 @@ namespace Gemini
       saveData.UseAutoIndent = AutoIndent;
       saveData.UseGuideLines = GuideLines;
       saveData.UseLineHighLight = LineHighLight;
-      saveData.LineHighLightColor = ColorSerializetionHelper.Serialize(LineHighLightColor);
+      saveData.LineHighLightColor = Serializable.ColorSerializetionHelper.Serialize(LineHighLightColor);
       saveData.UseCodeFolding = CodeFolding;
       saveData.RecentPriority = RecentPriority;
       saveData.AutoSaveConfig = AutoSaveConfig;
@@ -165,7 +165,7 @@ namespace Gemini
           AutoIndent = saveData.UseAutoIndent;
           GuideLines = saveData.UseGuideLines;
           LineHighLight = saveData.UseLineHighLight;
-          LineHighLightColor = ColorSerializetionHelper.Deserialize(saveData.LineHighLightColor);
+          LineHighLightColor = Serializable.ColorSerializetionHelper.Deserialize(saveData.LineHighLightColor);
           CodeFolding = saveData.UseCodeFolding;
           RecentPriority = saveData.RecentPriority;
           AutoSaveConfig = saveData.AutoSaveConfig;

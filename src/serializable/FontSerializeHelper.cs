@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Text.RegularExpressions;
 
-namespace Gemini
+namespace Gemini.Serializable
 {
   [TypeConverter(typeof(FontConverter))]
   internal class FontSerializetionHelper
