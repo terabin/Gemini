@@ -108,19 +108,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\ColorSerializeHelper.cs" />
-    <Compile Include="classes\FontSerializeHelper.cs" />
-    <Compile Include="classes\RubyMethods.cs" />
-    <Compile Include="classes\SearchControl.cs">
+    <Compile Include="serializable\ColorSerializeHelper.cs" />
+    <Compile Include="serializable\FontSerializeHelper.cs" />
+    <Compile Include="classes\Ruby.cs" />
+    <Compile Include="controls\SearchControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="classes\SearchControl.Designer.cs">
+    <Compile Include="controls\SearchControl.Designer.cs">
       <DependentUpon>SearchControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="classes\AdvancedTabControl.cs">
+    <Compile Include="controls\AdvancedTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="classes\AdvancedTabControl.Designer.cs">
+    <Compile Include="controls\AdvancedTabControl.Designer.cs">
       <DependentUpon>AdvancedTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\AboutForm.cs">
@@ -283,10 +283,10 @@
       <DependentUpon>StyleEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="serializable\Objects.cs" />
-    <EmbeddedResource Include="classes\SearchControl.resx">
+    <EmbeddedResource Include="controls\SearchControl.resx">
       <DependentUpon>SearchControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="classes\AdvancedTabControl.resx">
+    <EmbeddedResource Include="controls\AdvancedTabControl.resx">
       <DependentUpon>AdvancedTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="costura32\SciLexer.dll" />
