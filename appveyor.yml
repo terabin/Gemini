@@ -9,8 +9,7 @@ platform: x86
 clone_depth: 6
 environment:
   access_token:
-    secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
-  assembly_version: 3.0.0
+    secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=s
 cache:
   - packages -> **\packages.config
 before_build:
@@ -22,9 +21,9 @@ build:
   project: Gemini.sln
   verbosity: minimal
 after_build:
-- ps: $env:assembly_version=[System.Diagnostics.FileVersionInfo]::GetVersionInfo("src\bin\${$env:configuration}\Gemini.exe").FileVersion
-- ps: copy-item -path "src\bin\${$env:configuration}\Gemini.exe" -container -destination "builds\$configuration\"
-- ps: add-content "builds\${$env:configuration}\VersionInfo.dat" "${$env:assembly_version}"
+- ps: $f = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("src\bin\${env:configuration}\Gemini.exe").FileVersion
+- ps: copy-item -path "src\bin\${env:configuration}\Gemini.exe" -container -destination "builds\${env:configuration}\"
+- ps: add-content "builds\${env:configuration}\VersionInfo.dat" "${f}"
 - git config --global credential.helper store
 - ps: add-content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 - git add builds
