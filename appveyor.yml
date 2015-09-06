@@ -22,9 +22,9 @@ build:
   project: Gemini.sln
   verbosity: minimal
 after_build:
-- ps: $env:assembly_version=[System.Diagnostics.FileVersionInfo]::GetVersionInfo("src\bin\$($env:configuration)\Gemini.exe").FileVersion
-- ps: copy-item -path "src\bin\$env:configuration\Gemini.exe" -container -destination "builds\$configuration\"
-- ps: add-content "builds\$($env:configuration)\VersionInfo.dat" "$($env:configuration)"
+- ps: $env:assembly_version=[System.Diagnostics.FileVersionInfo]::GetVersionInfo("src\bin\${$env:configuration}\Gemini.exe").FileVersion
+- ps: copy-item -path "src\bin\${$env:configuration}\Gemini.exe" -container -destination "builds\$configuration\"
+- ps: add-content "builds\${$env:configuration}\VersionInfo.dat" "${$env:assembly_version}"
 - git config --global credential.helper store
 - ps: add-content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 - git add builds
