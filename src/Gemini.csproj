@@ -32,12 +32,12 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\debug\</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,11 +45,11 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -710,7 +710,7 @@ foreach (var item in filesToCleanup)
   <Target Name="CleanReferenceCopyLocalPaths" AfterTargets="AfterBuild;NonWinFodyTarget">
     <CosturaCleanup Config="FodyWeavers.xml" Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

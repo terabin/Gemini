@@ -1,0 +1,32 @@
+version: 3.0.0.{build}
+branches:
+  only:
+  - master
+skip_tags: true
+os: Visual Studio 2015
+configuration: release
+platform: x86
+clone_depth: 6
+environment:
+  access_token:
+    secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
+  assembly_version: 3.0.0
+cache:
+  - packages -> **\packages.config
+before_build:
+- ps: >-
+    nuget restore
+
+    copy-item -path packages -destination src -recurse
+build:
+  project: Gemini.sln
+  verbosity: minimal
+after_build:
+- ps: $env:assembly_version=[System.Diagnostics.FileVersionInfo]::GetVersionInfo("src\bin\$(configuration)\Gemini.exe").FileVersion
+- ps: copy-item -path src\bin\$(configuration)\Gemini.exe -container -destination builds\$(configuration)\
+- ps: add-content "builds\$(configuration)\VersionInfo.dat" "$($env:assembly_version)"
+- git config --global credential.helper store
+- ps: add-content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+- git add builds
+- git commit -m "Add latest build"
+- git push origin/master master
