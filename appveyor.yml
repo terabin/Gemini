@@ -21,7 +21,7 @@ build:
   project: Gemini.sln
   verbosity: minimal
 after_build:
-- ps: $f = Get-ChildItem "C:\projects\gemini\src\bin\" + $(configuration) "\Gemini.exe" | fl VersionInfo
+- ps: $f = Get-ChildItem "C:\projects\gemini\src\bin\" + $(configuration) + "\Gemini.exe" | fl VersionInfo
 - ps: copy-item -path "src\bin\" + $(configuration) + "\Gemini.exe" -container -destination "builds\" + $(configuration)
 - ps: add-content "builds\"+$(configuration)+"\VersionInfo.dat" $f.FileVersion
 - git config --global credential.helper store
