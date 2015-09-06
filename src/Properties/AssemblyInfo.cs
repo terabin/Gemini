@@ -6,11 +6,10 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Gemini")]
-[assembly: AssemblyDescription("Lightweight IDE used for directly editing archived script files created by RPG Maker XP, RPG Maker VX and RPG Maker VX Ace. Original (v2&1) by Eric \"ForeverZer0\" Freed and Zeus81")]
+[assembly: AssemblyDescription("Lightweight IDE used for directly editing archived script files created by RPG Maker XP, RPG Maker VX and RPG Maker VX Ace. Older versions from version 2 and below by Eric \"ForeverZer0\" Freed and Zeus81")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Revam at GitHub")]
-//[assembly: AssemblyCompany("Eric \"ForeverZer0\" Freed, Zeus81")]
-[assembly: AssemblyProduct("RGSS Script Editor")]
+[assembly: AssemblyProduct("Gemini Script Editor")]
 [assembly: AssemblyCopyright("General Public Licence v3.0")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -38,7 +38,7 @@ Gemini, named after the Zodiac Twins (RMXP/RMVX)(and now VX Ace!), is a feature-
 ## Changelog
 ### Changes from 2.0.0 to 3.0.0
 - Removed the Splash screen
-- Added Fody and Fody Cortana
+- Added Fody and Fody Costura
 - Compressed and integrated and all dll-libraries into assembly
 - Changed settings save format to xml
 - Implemented project-based settings (does not work on r*data)
