@@ -19,9 +19,11 @@ echo Packing files...
 7z a build\%configuration%\Gemini.zip %APPVEYOR_BUILD_FOLDER%\src\bin\*.exe
 
 echo Adding files to Git
+git config user.email "revam@users.noreply.github.com"
+git config user.name "revam@users.noreply.github.com"
 git config credential.helper store
 rem "https://$($env:access_token):x-oauth-basic@github.com" > "%USERPROFILE%\.git-credentials"
 @echo on
 git add -f build
 git commit -m "Add latest build from AppVeyor"
-git -c push.default=simple push origin HEAD:%appveyor_repo_branch% --porcelain
+git -c push.default=simple push origin %appveyor_repo_branch% --porcelain
