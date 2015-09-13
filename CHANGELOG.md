@@ -1,6 +1,4 @@
-# Changelog
-
-## Changes made in Git project
+# Changes made in Git project
 
 ### v.3.1.0
 - New icons and logo
@@ -34,7 +32,7 @@
 - Temporarily disabled update functionality
 - Some more minor fixes and things I can't remember
 
-## Older versions by ForeverZer0 and Zeus81 listed below
+# Older versions by ForeverZer0 and Zeus81 listed below
 
 ### v.2.0.0
 - New logo
