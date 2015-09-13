@@ -46,6 +46,7 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 
 ## Versions
 Here version numbers are defined as `MAJOR.MINOR.PATCH` where:
+
 1. `MAJOR` is increased when there is incompatible API changes,
 2. `MINOR` is increased when backwards-compatible functionality is added, and
 3. `PATCH` is increased when backwards-compatible bug fixes is added.
