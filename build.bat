@@ -1,6 +1,4 @@
 @echo off
-:: Print path
-pwd
 
 :: Restore and comy packages
 echo Restoring packages
@@ -20,9 +18,9 @@ echo %appveyor_build_version% > build\%configuration%\VersionInfo.dat
 echo Packing files...
 7z a build\%configuration%\Gemini.zip %APPVEYOR_BUILD_FOLDER%\src\bin\*.exe
 
-echo Adding built files to Git
+echo Adding files to Git
 git config credential.helper store
 rem "https://$($env:access_token):x-oauth-basic@github.com" > "%USERPROFILE%\.git-credentials"
 git add -f build
 git commit -m "Add latest build from AppVeyor"
-git push origin/%APPVEYOR_REPO_BRANCH% %APPVEYOR_REPO_BRANCH%
+git -c push.default=simple push origin %appveyor_build_branch% --porcelain
