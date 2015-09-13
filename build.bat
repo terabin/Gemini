@@ -21,7 +21,7 @@ echo Packing files...
 echo Adding files to Git
 git config credential.helper store
 rem "https://$($env:access_token):x-oauth-basic@github.com" > "%USERPROFILE%\.git-credentials"
+@echo on
 git add -f build
 git commit -m "Add latest build from AppVeyor"
-echo
 git -c push.default=simple push origin HEAD:%appveyor_repo_branch% --porcelain
