@@ -469,7 +469,7 @@
       // 
       this.defaultFolderToolStripMenuItem.Image = global::Gemini.Properties.Resources.folder;
       this.defaultFolderToolStripMenuItem.Name = "defaultFolderToolStripMenuItem";
-      this.defaultFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.defaultFolderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
       this.defaultFolderToolStripMenuItem.Text = "Script folder";
       this.defaultFolderToolStripMenuItem.Click += new System.EventHandler(this.menuMain_dropFile_itemImportScripts_Click);
       // 
@@ -477,7 +477,7 @@
       // 
       this.browseToolStripMenuItem.Image = global::Gemini.Properties.Resources.folder_import;
       this.browseToolStripMenuItem.Name = "browseToolStripMenuItem";
-      this.browseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.browseToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
       this.browseToolStripMenuItem.Text = "Browse";
       this.browseToolStripMenuItem.Click += new System.EventHandler(this.menuMain_dropFile_itemImportScriptsFrom_Click);
       // 
@@ -1177,10 +1177,10 @@
       this.scriptsView.ContextMenuStrip = this.scriptsView_contextMenu;
       this.scriptsView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.scriptsView.ItemHeight = 17;
-      this.scriptsView.Location = new System.Drawing.Point(3, 19);
+      this.scriptsView.Location = new System.Drawing.Point(6, 16);
       this.scriptsView.Name = "scriptsView";
       this.scriptsView.ShowNodeToolTips = true;
-      this.scriptsView.Size = new System.Drawing.Size(174, 468);
+      this.scriptsView.Size = new System.Drawing.Size(168, 471);
       this.scriptsView.TabIndex = 0;
       this.scriptsView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.scriptsView_AfterSelect);
       this.scriptsView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scriptsView_KeyDown);
@@ -1379,10 +1379,10 @@
       // 
       this.scriptName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.scriptName.Location = new System.Drawing.Point(4, 490);
+      this.scriptName.Location = new System.Drawing.Point(6, 490);
       this.scriptName.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
       this.scriptName.Name = "scriptName";
-      this.scriptName.Size = new System.Drawing.Size(174, 20);
+      this.scriptName.Size = new System.Drawing.Size(168, 20);
       this.scriptName.TabIndex = 1;
       this.toolTip.SetToolTip(this.scriptName, "Edit title of script");
       // 
