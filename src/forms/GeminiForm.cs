@@ -43,7 +43,6 @@ namespace Gemini
     private string _projectDirectory = "";
     private string _projectScriptPath = "";
     private string _projectScriptsFolderPath = "";
-    private string _projectGamePath = "";
     private string _projectEngine = "";
 
     private Regex _invalidRegex = new Regex(@"[^A-Za-z0-9 +\-_=.,!@#$%^&();'(){}[\]]+",
@@ -825,7 +824,7 @@ namespace Gemini
     /// </summary>
     private void menuMain_dropGame_itemRun_Click(object sender, EventArgs e)
     {
-      if (_projectGamePath == "")
+      if (string.IsNullOrEmpty(_projectScriptsFolderPath))
       {
         MessageBox.Show("You cannot test the game when editing a '.r*data' file.\nTo do so you must open the project's '.r*proj' file.",
             "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -839,15 +838,13 @@ namespace Gemini
         else if (result == DialogResult.Yes)
           SaveScripts();
       }
-      string
-        game = Settings.CustomRuntime ? _projectDirectory + Settings.RuntimeExecutable : _projectGamePath,
-        arguments = "";
+      string arguments = "";
       if (!Settings.DebugMode) arguments = "";
-      else if (Settings.CustomRuntime) arguments = Settings.RuntimeArguments;
+      else if (!string.IsNullOrEmpty(Settings.RuntimeArguments)) arguments = Settings.RuntimeArguments;
       else if (_projectEngine == "RMXP") arguments = "debug";
       else if (_projectEngine == "RMVX") arguments = "test";
       else if (_projectEngine == "RMVXAce") arguments = "console test";
-      try { Process.Start(game, arguments); }
+      try { Process.Start(_projectDirectory + Settings.RuntimeExecutable, arguments); }
       catch { MessageBox.Show("Cannot run game.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
     }
 
@@ -1382,19 +1379,16 @@ namespace Gemini
           _projectEngine = "RMXP";
           _projectScriptPath = GetScriptsPath();
           _projectScriptsFolderPath = _projectDirectory + @"Scripts\";
-          _projectGamePath = _projectDirectory + "Game.exe";
           break;
         case ".rvproj":
           _projectEngine = "RMVX";
           _projectScriptPath = GetScriptsPath();
           _projectScriptsFolderPath = _projectDirectory + @"Scripts\";
-          _projectGamePath = _projectDirectory + "Game.exe";
           break;
         case ".rvproj2":
           _projectEngine = "RMVXAce";
           _projectScriptPath = GetScriptsPath();
           _projectScriptsFolderPath = _projectDirectory + @"Scripts\";
-          _projectGamePath = _projectDirectory + "Game.exe";
           break;
         case ".rxdata":
           _projectEngine = "RMXP";
@@ -1480,7 +1474,7 @@ namespace Gemini
       scriptsEditor_tabs.TabPages.Clear();
       scriptsView.Nodes.Clear();
       scriptName.ResetText();
-      _projectDirectory = _projectScriptPath = _projectScriptsFolderPath = _projectGamePath = _projectEngine = "";
+      _projectDirectory = _projectScriptPath = _projectScriptsFolderPath = _projectEngine = "";
       _projectNeedSave = false;
       _projectLastSave = null;
       UpdateTitle();
@@ -1519,7 +1513,7 @@ namespace Gemini
 
     private void SaveLocalConfiguration()
     {
-      if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectGamePath))
+      if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectScriptsFolderPath))
       {
         Script s;
         if (GetActiveScript() != null)
@@ -1534,8 +1528,9 @@ namespace Gemini
 
     private void LoadLocalConfiguration()
     {
-      if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectGamePath))
+      if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectScriptsFolderPath))
       {
+        Settings.SetLocalDefaults();
         Settings.LoadLocalSettings(_projectDirectory + "GeminiLocal.xml");
         if (Settings.OpenScripts.Count > 0)
           foreach (Serializable.Script s in Settings.OpenScripts)
@@ -2373,7 +2368,7 @@ namespace Gemini
     {
       if (_projectEngine == "")
         Text = "Gemini";
-      else if (_projectGamePath == "")
+      else if (_projectScriptsFolderPath == "")
         Text = _projectEngine + " - " + projectPath;
       else
         Text = _projectEngine + " - " + GetGameTitle() + " - " + projectPath;

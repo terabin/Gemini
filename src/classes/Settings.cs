@@ -31,7 +31,6 @@ namespace Gemini
     public static Color LineHighLightColor { get; set; }
     public static bool CodeFolding { get; set; }
     public static bool DebugMode { get; set; }
-    public static bool CustomRuntime { get; set; }
     public static string RuntimeExecutable { get; set; }
     public static string RuntimeArguments { get; set; }
     public static bool AutoCheckUpdates { get; set; }
@@ -54,8 +53,6 @@ namespace Gemini
       AutoSaveConfig = true;
       ProjectConfig = false;
       DistractionMode = new Serializable.DistracionMode(false, false);
-      OpenScripts = new List<Serializable.Script>();
-      ActiveScript = new Serializable.Script();
       ScriptStyles = GetScriptStyles();
       AutoComplete = false;
       AutoCompleteLength = 2;
@@ -67,11 +64,16 @@ namespace Gemini
       LineHighLight = false;
       LineHighLightColor = Color.FromArgb(50, 195, 216, 255);
       CodeFolding = true;
+      AutoCheckUpdates = false;
+    }
+
+    public static void SetLocalDefaults()
+    {
       DebugMode = false;
-      CustomRuntime = false;
+      OpenScripts = new List<Serializable.Script>();
+      ActiveScript = new Serializable.Script();
       RuntimeExecutable = "Game.exe";
       RuntimeArguments = "";
-      AutoCheckUpdates = false;
     }
 
     private static ScriptStyle[] GetScriptStyles()
@@ -178,12 +180,11 @@ namespace Gemini
         }
         catch (Exception)
         {
-          DialogResult f = MessageBox.Show("Error accessing settings file.\nDo you want to continue?",
-              "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-          if (f == DialogResult.Yes)
+          SetDefaults();
+          DialogResult f = MessageBox.Show("Error accessing local settings file.\nDo you want to continue?",
+            "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+          if (f == DialogResult.No)
             Application.Exit();
-          else
-            SetDefaults();
         }
     }
 
@@ -204,7 +205,7 @@ namespace Gemini
         }
         catch (Exception)
         {
-          SetDefaults();
+          SetLocalDefaults();
           DialogResult f = MessageBox.Show("Error accessing local settings file.\nDo you want to continue?",
             "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
           if (f == DialogResult.No)

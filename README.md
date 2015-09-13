@@ -60,6 +60,7 @@ Here version numbers are defined as `MAJOR.MINOR.PATCH` where:
 - Made it optional to use project-based configuration
 - Removed 'Highlight Color' from editor toolbar
 - Pre-enabled update functionality
+- Game start fixes
 - Some fixes here and there
 
 See `CHANGELOG.md` for a more detailed list of changes.

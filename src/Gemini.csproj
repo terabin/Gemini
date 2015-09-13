@@ -61,6 +61,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <NoWarn>CS0108</NoWarn>
     <LangVersion>4</LangVersion>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Gemini.Program</StartupObject>

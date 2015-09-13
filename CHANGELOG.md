@@ -1,13 +1,14 @@
 # Changes made in Git project
 
 ### v.3.1.0
-- New icons and logo
+- Updated icons
 - Updated Settings menu
 - Changed some defaults in the configuration
 - Made it optional to use project-based configuration
-- Fixed some paddings
 - Removed 'Highlight Color' from editor toolbar
-- Configured and enabled update functionality
+- Pre-enabled update functionality
+- Game start fixes
+- Some fixes here and there
 
 ### v.3.0.0
 - Removed the splash screen
