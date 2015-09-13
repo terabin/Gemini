@@ -206,3 +206,7 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+# Photoshop and Illustrator (used)
+*.psd
+*.ai

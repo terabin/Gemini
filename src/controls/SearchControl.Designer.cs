@@ -167,7 +167,7 @@
             // 
             // toolStripButton_Search
             // 
-            this.toolStripButton_Search.Image = global::Gemini.Properties.Resources.find3;
+            this.toolStripButton_Search.Image = global::Gemini.Properties.Resources.batch;
             this.toolStripButton_Search.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_Search.Margin = new System.Windows.Forms.Padding(16, 1, 0, 2);
             this.toolStripButton_Search.Name = "toolStripButton_Search";

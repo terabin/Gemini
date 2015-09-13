@@ -3,6 +3,15 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+/*\
+ *  ######  ###### ##     ## ###### ##    ## ######
+ * ##    ## ##     ###   ###   ##   ###   ##   ##
+ * ##       ##     #### ####   ##   ####  ##   ##
+ * ##  ###  ####   ## ### ##   ##   ## ## ##   ##
+ * ##    ## ##     ##     ##   ##   ##  ####   ##
+ * ##    ## ##     ##     ##   ##   ##   ###   ##
+ *  ######  ###### ##     ## ###### ##    ## ######
+\*/
 namespace Gemini
 {
 	public partial class NewProjectForm : Form
@@ -47,7 +56,7 @@ namespace Gemini
 		{
 			if (Directory.Exists(ProjectDirectory))
 			{
-				MessageBox.Show("Directory already exists!\nPlease choose another path.", 
+				MessageBox.Show("Directory already exists!\nPlease choose another path.",
 					"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}

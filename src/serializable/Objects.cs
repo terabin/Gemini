@@ -8,12 +8,12 @@ namespace Gemini.Serializable
   {
     public bool AutoCheckUpdates;
     public bool AutoSaveConfig;
+    public bool UseProjectConfig;
     public WindowBounds WindowBounds;
     public bool WindowMaximized;
     public Files Files;
-    public bool ShowMenu;
-    public bool MinimalisticView;
-    public bool OnlyHideScripts;
+    public bool AutoHideMenuBar;
+    public DistracionMode DistracionMode;
     public AutoComplete AutoComplete;
     public bool UseAutoIndent;
     public bool UseGuideLines;
@@ -60,6 +60,18 @@ namespace Gemini.Serializable
       Path = path;
     }
     public string Path;
+  }
+
+  [Serializable]
+  public struct DistracionMode
+  {
+    public DistracionMode(bool use, bool ht)
+    {
+      Use = use;
+      HideToolbar = ht;
+    }
+    public bool Use;
+    public bool HideToolbar;
   }
 
   [Serializable]

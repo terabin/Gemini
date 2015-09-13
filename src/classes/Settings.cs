@@ -10,13 +10,13 @@ namespace Gemini
   {
     public static bool WindowMaximized { get; set; }
     public static Rectangle WindowBounds { get; set; }
-    public static bool MenuVisible { get; set; }
+    public static bool AutoHideMenuBar { get; set; }
     public static bool AutoOpen { get; set; }
     public static List<string> RecentlyOpened { get; set; }
     public static bool RecentPriority { get; set; }
     public static bool AutoSaveConfig { get; set; }
-    public static bool MinimalView { get; set; }
-    public static bool OnlyHideScripts { get; set; }
+    public static bool ProjectConfig { get; set; }
+    public static Serializable.DistracionMode DistractionMode { get; set; }
     public static List<Serializable.Script> OpenScripts { get; set; }
     public static Serializable.Script ActiveScript { get; set; }
     public static ScriptStyle[] ScriptStyles { get; set; }
@@ -38,7 +38,7 @@ namespace Gemini
 
     public static void SetDefaults()
     {
-      MenuVisible = true;
+      AutoHideMenuBar = true;
       WindowMaximized = false;
       if (Application.OpenForms.Count > 0)
         WindowBounds = Application.OpenForms[0].Bounds;
@@ -52,8 +52,8 @@ namespace Gemini
       RecentlyOpened = new List<string>();
       RecentPriority = false;
       AutoSaveConfig = true;
-      MinimalView = false;
-      OnlyHideScripts = false;
+      ProjectConfig = false;
+      DistractionMode = new Serializable.DistracionMode(false, false);
       OpenScripts = new List<Serializable.Script>();
       ActiveScript = new Serializable.Script();
       ScriptStyles = GetScriptStyles();
@@ -65,9 +65,9 @@ namespace Gemini
       AutoIndent = true;
       GuideLines = true;
       LineHighLight = false;
-      LineHighLightColor = Color.FromArgb(32, 0, 0, 0);
+      LineHighLightColor = Color.FromArgb(50, 195, 216, 255);
       CodeFolding = true;
-      DebugMode = true;
+      DebugMode = false;
       CustomRuntime = false;
       RuntimeExecutable = "Game.exe";
       RuntimeArguments = "";
@@ -107,9 +107,8 @@ namespace Gemini
       saveData.WindowMaximized = Application.OpenForms.Count == 0 ? false :
         Application.OpenForms[0].WindowState == FormWindowState.Maximized;
       saveData.WindowBounds = new Serializable.WindowBounds(saveData.WindowMaximized ? WindowBounds : Application.OpenForms[0].Bounds);
-      saveData.ShowMenu = MenuVisible;
-      saveData.MinimalisticView = MinimalView;
-      saveData.OnlyHideScripts = OnlyHideScripts;
+      saveData.AutoHideMenuBar = AutoHideMenuBar;
+      saveData.DistracionMode = DistractionMode;
       List<Serializable.File> f = new List<Serializable.File>();
       foreach (string s in RecentlyOpened) f.Add(new Serializable.File(s));
       saveData.Files = new Serializable.Files(AutoOpen, f.ToArray());
@@ -120,6 +119,7 @@ namespace Gemini
       saveData.UseCodeFolding = CodeFolding;
       saveData.RecentPriority = RecentPriority;
       saveData.AutoSaveConfig = AutoSaveConfig;
+      saveData.UseProjectConfig = ProjectConfig;
       saveData.ScriptStyles = ScriptStyles;
       saveData.AutoComplete = new Serializable.AutoComplete(AutoComplete, AutoCompleteLength, AutoCompleteFlag, AutoCompleteCustomWords);
       saveData.AutoCheckUpdates = AutoCheckUpdates;
@@ -155,9 +155,8 @@ namespace Gemini
             saveData = (Serializable.Gemini)new System.Xml.Serialization.XmlSerializer(typeof(Serializable.Gemini)).Deserialize(stream);
           WindowMaximized = saveData.WindowMaximized;
           WindowBounds = saveData.WindowBounds.Bounds;
-          MenuVisible = saveData.ShowMenu;
-          MinimalView = saveData.MinimalisticView;
-          OnlyHideScripts = saveData.OnlyHideScripts;
+          AutoHideMenuBar = saveData.AutoHideMenuBar;
+          DistractionMode = saveData.DistracionMode;
           AutoOpen = saveData.Files.AutoOpenProject;
           List<string> tmp = new List<string>();
           foreach (Serializable.File f in saveData.Files.RecentlyOpenedList) tmp.Add(f.Path);
@@ -169,6 +168,7 @@ namespace Gemini
           CodeFolding = saveData.UseCodeFolding;
           RecentPriority = saveData.RecentPriority;
           AutoSaveConfig = saveData.AutoSaveConfig;
+          ProjectConfig = saveData.UseProjectConfig;
           ScriptStyles = saveData.ScriptStyles;
           AutoComplete = saveData.AutoComplete.Use;
           AutoCompleteLength = saveData.AutoComplete.Length;

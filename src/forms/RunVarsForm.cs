@@ -1,5 +1,14 @@
 ﻿using System.Windows.Forms;
 
+/*\
+ *  ######  ###### ##     ## ###### ##    ## ######
+ * ##    ## ##     ###   ###   ##   ###   ##   ##
+ * ##       ##     #### ####   ##   ####  ##   ##
+ * ##  ###  ####   ## ### ##   ##   ## ## ##   ##
+ * ##    ## ##     ##     ##   ##   ##  ####   ##
+ * ##    ## ##     ##     ##   ##   ##   ###   ##
+ *  ######  ###### ##     ## ###### ##    ## ######
+\*/
 namespace Gemini
 {
   public partial class RunVarsForm : Form
@@ -16,6 +25,6 @@ namespace Gemini
 
     private void buttonOK_Click( object sender, System.EventArgs e )
     { Close(); }
-    
+
   }
 }

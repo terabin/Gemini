@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gemini</RootNamespace>
     <AssemblyName>Gemini</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -28,7 +28,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>3.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -47,24 +47,26 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>false</Optimize>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
     <OutputPath>bin\release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
+    <ErrorReport>queue</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>SecurityRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>
     </DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS0108</NoWarn>
+    <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Gemini.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>
@@ -72,6 +74,16 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>gemini.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>744D7D56A4EC35EEF7FFC70DA1D2E785757A54FB</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Gemini_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IronRuby, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -108,6 +120,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="serializable\ColorSerializeHelper.cs" />
     <Compile Include="serializable\FontSerializeHelper.cs" />
     <Compile Include="classes\Ruby.cs" />
@@ -165,11 +182,6 @@
     </Compile>
     <Compile Include="forms\UpdateForm.designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ScintillaNET\AutoComplete.cs" />
     <Compile Include="ScintillaNET\CallTip.cs" />
@@ -387,11 +399,6 @@
     <EmbeddedResource Include="files\RMVXAce\Data\Weapons.rvdata2" />
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="resources\folder_export.png" />
-    <None Include="resources\OpenFile.png" />
-    <None Include="resources\History.png" />
-    <None Include="resources\exit.png" />
-    <None Include="resources\gemini ico.png" />
     <EmbeddedResource Include="files\help\RPGVXAce.chm" />
     <EmbeddedResource Include="files\help\RPGVX.chm" />
     <EmbeddedResource Include="files\help\RPGXP.chm" />
@@ -404,73 +411,81 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="resources\folder_export.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="files\RMVX\RGSS202E.dll" />
-    <None Include="resources\Add.png" />
-    <None Include="resources\changelog.png" />
-    <None Include="resources\charmap.png" />
-    <None Include="resources\CloseProject.png" />
-    <None Include="resources\CloseTab0.png" />
-    <None Include="resources\CloseTab1.png" />
-    <None Include="resources\CloseTab2.png" />
-    <None Include="resources\Color wheel.png" />
-    <None Include="resources\comment.png" />
-    <None Include="resources\copy.png" />
-    <None Include="resources\cut.png" />
-    <None Include="resources\Delete.png" />
-    <None Include="resources\delete2.png" />
-    <None Include="resources\DeleteHS.png" />
-    <None Include="resources\Document.png" />
-    <None Include="resources\emptyspace.png" />
-    <None Include="resources\find.png" />
-    <None Include="resources\find2.png" />
-    <None Include="resources\fold.png" />
-    <None Include="resources\Folder_Open.png" />
-    <None Include="resources\folder_up.png" />
-    <None Include="resources\gemini.png" />
-    <None Include="resources\go_to.png" />
-    <None Include="resources\GoToNextMessage.png" />
-    <None Include="resources\GoToPreviousMessage.png" />
-    <None Include="resources\highlight.png" />
-    <None Include="resources\indent.png" />
-    <None Include="resources\next.png" />
-    <None Include="resources\Open file.png" />
-    <None Include="resources\outline.png" />
-    <None Include="resources\paste.png" />
-    <None Include="resources\play.png" />
-    <None Include="resources\previous.png" />
-    <None Include="resources\redo.png" />
-    <None Include="resources\replace.png" />
-    <None Include="resources\rmvx_icon.png" />
-    <None Include="resources\rmvxace_icon.png" />
-    <None Include="resources\rmxp_icon.png" />
-    <None Include="resources\ruby_icon.png" />
-    <None Include="resources\ruler.png" />
-    <None Include="resources\Save.png" />
-    <None Include="resources\select_all.png" />
-    <None Include="resources\text_complete.png" />
-    <None Include="resources\text_icon.png" />
-    <None Include="resources\theme.png" />
-    <None Include="resources\tool.png" />
-    <None Include="resources\Transparent_Background.png" />
-    <None Include="resources\undo.png" />
-    <None Include="resources\update.png" />
-    <None Include="resources\LineColorHS.png" />
     <EmbeddedResource Include="files\RMVXAce\Game.exe" />
-    <None Include="resources\Help.png" />
-    <None Include="resources\Debug.png" />
     <EmbeddedResource Include="files\default.xml" />
-    <None Include="resources\find3.png" />
     <EmbeddedResource Include="files\RMVXAce\RGSS301.dll" />
-    <EmbeddedResource Include="Changelog.html" />
     <Content Include="files\RMXP\RGSS104E.dll" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="gemini.ico" />
-    <Content Include="resources\Folder_Closed.png" />
+    <Content Include="resources\add.png" />
+    <Content Include="resources\batch.png" />
+    <Content Include="resources\bg.png" />
+    <Content Include="resources\changelog.png" />
+    <Content Include="resources\charmap.png" />
+    <Content Include="resources\close.png" />
+    <Content Include="resources\closeTab.png" />
+    <Content Include="resources\closeTabClick.png" />
+    <Content Include="resources\closeTabHover.png" />
+    <Content Include="resources\comment.png" />
+    <Content Include="resources\computer.png" />
+    <Content Include="resources\copy.png" />
+    <Content Include="resources\cut.png" />
+    <Content Include="resources\debug.png" />
+    <Content Include="resources\delete.png" />
+    <Content Include="resources\down.png" />
+    <Content Include="resources\emptyspace.png" />
+    <Content Include="resources\exit.png" />
+    <Content Include="resources\expand.png" />
+    <Content Include="resources\file.png" />
+    <Content Include="resources\file_export.png" />
+    <Content Include="resources\file_flat.png" />
+    <Content Include="resources\file_import.png" />
+    <Content Include="resources\file_plus.png" />
+    <Content Include="resources\file_update.png" />
+    <Content Include="resources\find.png" />
+    <Content Include="resources\fold.png" />
+    <Content Include="resources\folder.png" />
+    <Content Include="resources\folder_import.png" />
+    <Content Include="resources\folder_plus.png" />
+    <Content Include="resources\folder_recent.png" />
+    <Content Include="resources\gemini.png" />
+    <Content Include="resources\gemini_big.png" />
+    <Content Include="resources\goto.png" />
+    <Content Include="resources\help.png" />
+    <Content Include="resources\highlight.png" />
+    <Content Include="resources\highlightColor.png" />
+    <Content Include="resources\highlightFinds.png" />
+    <Content Include="resources\increaser.png" />
+    <Content Include="resources\indent.png" />
+    <Content Include="resources\left.png" />
+    <Content Include="resources\outline.png" />
+    <Content Include="resources\paste.png" />
+    <Content Include="resources\recent.png" />
+    <Content Include="resources\redo.png" />
+    <Content Include="resources\reduce.png" />
+    <Content Include="resources\replace.png" />
+    <Content Include="resources\right.png" />
+    <Content Include="resources\rmvxace_icon.png" />
     <Content Include="resources\rmvxace_script.png" />
+    <Content Include="resources\rmvx_icon.png" />
     <Content Include="resources\rmvx_script.png" />
+    <Content Include="resources\rmxp_icon.png" />
     <Content Include="resources\rmxp_script.png" />
+    <Content Include="resources\ruby.png" />
+    <Content Include="resources\ruler.png" />
+    <Content Include="resources\run.png" />
+    <Content Include="resources\save.png" />
+    <Content Include="resources\styles.png" />
+    <Content Include="resources\text_complete.png" />
+    <Content Include="resources\text_wrench.png" />
+    <Content Include="resources\undo.png" />
+    <Content Include="resources\up.png" />
+    <Content Include="resources\update.png" />
+    <Content Include="resources\wrench.png" />
     <Content Include="ScintillaNET\Configuration\Builtin\cs.xml" />
     <EmbeddedResource Include="ScintillaNET\Configuration\Builtin\default.xml" />
     <Content Include="ScintillaNET\Configuration\Builtin\html.xml" />

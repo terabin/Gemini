@@ -474,7 +474,6 @@ namespace ScintillaNet
 	public class KeywordCollection : TopLevelHelper
 	{
 		private Dictionary<string, string[]> _lexerKeywordListMap;
-		private Dictionary<string, Dictionary<string, int>> _lexerStyleMap;
 		private Dictionary<string, Lexer> _lexerAliasMap;
 
 		internal KeywordCollection(Scintilla scintilla)

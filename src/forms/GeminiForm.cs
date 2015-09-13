@@ -11,11 +11,33 @@ using System.Windows.Forms;
 using IronRuby.Builtins;
 using ScintillaNet;
 
-namespace Gemini {
-  public partial class GeminiForm : Form {
+/*\
+ *  ######  ###### ##     ## ###### ##    ## ######
+ * ##    ## ##     ###   ###   ##   ###   ##   ##
+ * ##       ##     #### ####   ##   ####  ##   ##
+ * ##  ###  ####   ## ### ##   ##   ## ## ##   ##
+ * ##    ## ##     ##     ##   ##   ##  ####   ##
+ * ##    ## ##     ##     ##   ##   ##   ###   ##
+ *  ######  ###### ##     ## ###### ##    ## ######
+\*/
+namespace Gemini
+{
+  public partial class GeminiForm : Form
+  {
     [DllImport("User32.dll")]
     private static extern bool SetForegroundWindow(IntPtr hWnd);
 
+
+    /*\
+     * ####### ##         ##        ##
+     * ##                 ##        ##
+     * ##      ###  ####  ##        ##  ######
+     * #####   ##  ##  ## ##    ###### ##
+     * ##      ##  ###### ##   ##   ##  #####
+     * ##      ##  ##     ##   ##   ##      ##
+     * ##      ##   #####  ###  ###### ######
+     * ======================================
+    \*/
     #region Fields and Properties
 
     private string _projectDirectory = "";
@@ -44,6 +66,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     *  ######                           ##                                ##
+     * ##                                ##                                ##
+     * ##       ######  #######   ###### #######  ######  ##    ##  ###### #######  ######   ######
+     * ##      ##    ## ##    ## ##      ##      ##    ## ##    ## ##      ##      ##    ## ##    ##
+     * ##      ##    ## ##    ##  #####  ##      ##       ##    ## ##      ##      ##    ## ##
+     * ##      ##    ## ##    ##      ## ##   ## ##       ##    ## ##      ##   ## ##    ## ##
+     *  ######  ######  ##    ## ######   #####  ##        ######   ######  #####   ######  ##
+     * =============================================================================================
+    \*/
     #region Contructor
 
     /// <summary>
@@ -53,7 +85,7 @@ namespace Gemini {
     public GeminiForm(string[] args)
     {
       InitializeComponent();
-      Icon = Icon.FromHandle(Properties.Resources.gemini_ico.GetHicon());
+      Icon = Icon.FromHandle(Properties.Resources.gemini.GetHicon());
       Ruby.CreateRuntime();
       Settings.SetDefaults();
       Settings.LoadSettings();
@@ -84,7 +116,7 @@ namespace Gemini {
     /// </summary>
     private void ApplySettings()
     {
-      UpdateMenusChecked();
+      UpdateSettingsState();
       UpdateRecentProjectList();
       UpdateAutoCompleteWords();
       foreach (Script script in _scripts)
@@ -99,6 +131,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * #######                                  #######                            ##
+     * ##                                       ##                                 ##
+     * ##       ######   ######  ##### ###      ##      ##     ##  #####  #######  ######
+     * #####   ##    ## ##    ## ##  ##  ##     #####   ##     ## ##   ## ##    ## ##
+     * ##      ##    ## ##       ##  ##  ##     ##       ##   ##  ####### ##    ## ##
+     * ##      ##    ## ##       ##  ##  ##     ##        ## ##   ##      ##    ## ##  ##
+     * ##       ######  ##       ##  ##  ##     #######    ###     #####  ##    ##  ####
+     * ==================================================================================
+    \*/
     #region Main Form Events
 
     /// <summary>
@@ -142,6 +184,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ##                               #######
+     * ###   ###                               ##
+     * #### ####  #####  #######  ##    ##     ##
+     * ## ### ## ##   ## ##    ## ##    ##     #####
+     * ##     ## ####### ##    ## ##    ##     ##
+     * ##     ## ##      ##    ## ##    ##     ##      ###
+     * ##     ##  #####  ##    ##  ######      ##      ###
+     * ===================================================
+    \*/
     #region Menu File Events
 
     private void mainMenu_ToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -276,7 +328,7 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_AutoSaveSettings_Click(object sender, EventArgs e)
     {
       Settings.AutoSaveConfig = !Settings.AutoSaveConfig;
-      UpdateMenusChecked();
+      UpdateSettingsState();
       menuMain_dropFile.ShowDropDown();
       menuMain_dropSettings_itemSaveSettings.ShowDropDown();
       menuMain_dropSettings_itemAutoSaveSettings.Select();
@@ -288,7 +340,8 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_DeleteSettings_Click(object sender, EventArgs e)
     {
       if (MessageBox.Show("Are you sure you want to delete all settings?",
-          "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+          "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+        return;
       Settings.SetDefaults();
       ApplySettings();
     }
@@ -303,6 +356,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ##                               #######
+     * ###   ###                               ##
+     * #### ####  #####  #######  ##    ##     ##
+     * ## ### ## ##   ## ##    ## ##    ##     #####
+     * ##     ## ####### ##    ## ##    ##     ##
+     * ##     ## ##      ##    ## ##    ##     ##      ###
+     * ##     ##  #####  ##    ##  ######      ####### ###
+     * ===================================================
+    \*/
     #region Menu Edit Events
 
     private void mainMenu_ToolStripMenuItem_Undo_Click(object sender, EventArgs e)
@@ -483,19 +546,49 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ##                                ######
+     * ###   ###                               ##
+     * #### ####  #####  #######  ##    ##     ##
+     * ## ### ## ##   ## ##    ## ##    ##      ######
+     * ##     ## ####### ##    ## ##    ##           ##
+     * ##     ## ##      ##    ## ##    ##           ## ###
+     * ##     ##  #####  ##    ##  ######      #######  ###
+     * ====================================================
+    \*/
     #region Menu Settings Events
+
+    private void menuMain_dropSettings_itemProjectSettings_Click(object sender, EventArgs e)
+    {
+      if (Settings.ProjectConfig)
+      {
+        DialogResult result = MessageBox.Show("Do you want to save the local configuration now?", "Save configuration?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        if (result == DialogResult.Yes)
+          SaveLocalConfiguration();
+      }
+      else if (File.Exists(_projectDirectory + "GeminiLocal.xml"))
+      {
+        DialogResult result = MessageBox.Show("There was found a configuration in the project folder, do you want to load it now?", "Load configuration?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+        if (result == DialogResult.Yes)
+          LoadLocalConfiguration();
+      }
+      Settings.ProjectConfig = !Settings.ProjectConfig;
+      UpdateSettingsState();
+      menuMain_dropSettings.ShowDropDown();
+      menuMain_dropSettings_itemConfiguration.ShowDropDown();
+      menuMain_dropSettings_itemProjectSettings.Select();
+    }
 
     private void menuMain_dropSetting_itemMenuVisible_Click(object sender, EventArgs e)
     {
-      Settings.MenuVisible = !Settings.MenuVisible;
-      menuMain_dropSettings_itemMenuVisible.Checked = Settings.MenuVisible;
-      UpdateMenusChecked();
+      Settings.AutoHideMenuBar = !Settings.AutoHideMenuBar;
+      UpdateSettingsState();
     }
 
-    private void menuMain_dropSettings_itemHideScripts_Click(object sender, EventArgs e)
+    private void menuMain_dropSettings_itemHideToolbar_Click(object sender, EventArgs e)
     {
-      Settings.OnlyHideScripts = !Settings.OnlyHideScripts;
-      UpdateMenusChecked();
+      Settings.DistractionMode = new Serializable.DistracionMode(Settings.DistractionMode.Use, !Settings.DistractionMode.HideToolbar);
+      UpdateSettingsState();
     }
 
     private void menuMain_dropSettings_itemPioritizeRecent_Click(object sender, EventArgs e)
@@ -504,18 +597,18 @@ namespace Gemini {
       if (sender == menuMain_dropSettings_itemPioritizeRecent)
       {
         menuMain_dropSettings.ShowDropDown();
-        menuMain_dropSettings_itemAutoOpenProject.ShowDropDown();
+        autoOpenToolStripMenuItem.ShowDropDown();
         menuMain_dropSettings_itemPioritizeRecent.Select();
       }
-      UpdateMenusChecked();
+      UpdateSettingsState();
     }
 
     private void menuMain_dropSettings_itemAutoOpenProject_Click(object sender, EventArgs e)
     {
       Settings.AutoOpen = !Settings.AutoOpen;
-      UpdateMenusChecked();
+      UpdateSettingsState();
       menuMain_dropSettings.ShowDropDown();
-      menuMain_dropSettings_itemAutoOpenProject.Select();
+      autoOpenToolStripMenuItem.Select();
     }
 
     private void menuMain_dropGame_itemCustomRuntime_Click(object sender, EventArgs e)
@@ -528,11 +621,10 @@ namespace Gemini {
         }
     }
 
-    private void menuMain_dropSettings_itemShowScripts_Click(object sender, EventArgs e)
+    private void menuMain_dropSettings_itemToggleDistractionMode_Click(object sender, EventArgs e)
     {
-      Settings.MinimalView = !Settings.MinimalView;
-      menuMain_dropSettings_itemMinimalView.Checked = Settings.MinimalView;
-      UpdateMenusChecked();
+      Settings.DistractionMode = new Serializable.DistracionMode(!Settings.DistractionMode.Use, Settings.DistractionMode.HideToolbar);
+      UpdateSettingsState();
     }
 
     /// <summary>
@@ -573,7 +665,7 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_AutoComplete_Click(object sender, EventArgs e)
     {
       Settings.AutoComplete = !Settings.AutoComplete;
-      UpdateMenusChecked();
+      UpdateSettingsState();
       if (Settings.AutoComplete && Settings.AutoCompleteFlag == 0)
       {
         DialogResult result = MessageBox.Show("Auto-complete word list is empty, would you like to configure it now?",
@@ -594,7 +686,7 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_IndentGuides_Click(object sender, EventArgs e)
     {
       Settings.GuideLines = !Settings.GuideLines;
-      UpdateMenusChecked();
+      UpdateSettingsState();
       foreach (Script script in _scripts)
         script.UpdateSettings();
       if (sender == menuMain_dropSettings_itemIndentGuides)
@@ -610,7 +702,7 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_AutoIndent_Click(object sender, EventArgs e)
     {
       Settings.AutoIndent = !Settings.AutoIndent;
-      UpdateMenusChecked();
+      UpdateSettingsState();
       foreach (Script script in _scripts)
         script.UpdateSettings();
       if (sender == menuMain_dropSettings_itemAutoIndent)
@@ -626,7 +718,7 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_LineHighlight_Click(object sender, EventArgs e)
     {
       Settings.LineHighLight = !Settings.LineHighLight;
-      UpdateMenusChecked();
+      UpdateSettingsState();
       foreach (Script script in _scripts)
         script.UpdateSettings();
       if (sender == menuMain_dropSettings_itemHighlight)
@@ -656,7 +748,7 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_CodeFolding_Click(object sender, EventArgs e)
     {
       Settings.CodeFolding = !Settings.CodeFolding;
-      UpdateMenusChecked();
+      UpdateSettingsState();
       foreach (Script script in _scripts)
         script.UpdateSettings();
       if (sender == menuMain_dropSettings_itemFolding)
@@ -670,8 +762,8 @@ namespace Gemini {
     {
       DialogResult result = MessageBox.Show("If you proceed, all scripts will be saved with new sections. Proceed?",
           "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-        if (result == DialogResult.No)
-          return;
+      if (result == DialogResult.No)
+        return;
       string _text, _file;
       int i = 0;
       bool folder = _projectScriptsFolderPath != "" && Directory.Exists(_projectScriptsFolderPath);
@@ -687,7 +779,8 @@ namespace Gemini {
         node.ToolTipText = s.Name + " - " + string.Format("{0:00000000}", s.Section);
         if (folder)
         {
-          _file = files.Find(delegate (string str) {
+          _file = files.Find(delegate (string str)
+          {
             return Regex.IsMatch(str, string.Format("{0:00000000}",
               _oldSections[i]), RegexOptions.Singleline | RegexOptions.CultureInvariant);
           });
@@ -695,7 +788,7 @@ namespace Gemini {
           {
             _text = File.ReadAllText(_file);
             File.Delete(_file);
-            File.WriteAllText(_projectScriptsFolderPath + s.Name + "." + string.Format("{0:00000000}", s.Section)+".rb", _text);
+            File.WriteAllText(_projectScriptsFolderPath + s.Name + "." + string.Format("{0:00000000}", s.Section) + ".rb", _text);
           }
         }
         i++;
@@ -707,6 +800,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ##                                ######
+     * ###   ###                               ##    ##
+     * #### ####  #####  #######  ##    ##     ##
+     * ## ### ## ##   ## ##    ## ##    ##     ##  ###
+     * ##     ## ####### ##    ## ##    ##     ##    ##
+     * ##     ## ##      ##    ## ##    ##     ##    ## ###
+     * ##     ##  #####  ##    ##  ######       ######  ###
+     * ====================================================
+    \*/
     #region Menu Game Events
 
     private void mainMenu_ToolStripMenuItem_Help_Click(object sender, EventArgs e)
@@ -751,12 +854,12 @@ namespace Gemini {
     private void mainMenu_ToolStripMenuItem_Debug_Click(object sender, EventArgs e)
     {
       Settings.DebugMode = !Settings.DebugMode;
-      UpdateMenusChecked();
-      /*if (sender == menuMain_dropGame_itemDebug)
+      UpdateSettingsState();
+      if (sender == menuMain_dropGame_itemDebug)
       {
         menuMain_dropGame.ShowDropDown();
         menuMain_dropGame_itemDebug.Select();
-      }*/
+      }
     }
 
     private void mainMenu_ToolStripMenuItem_ProjectFolder_Click(object sender, EventArgs e)
@@ -767,13 +870,21 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ##                                  ###
+     * ###   ###                                 ## ##
+     * #### ####  #####  #######  ##    ##      ##   ##
+     * ## ### ## ##   ## ##    ## ##    ##     ##     ##
+     * ##     ## ####### ##    ## ##    ##     #########
+     * ##     ## ##      ##    ## ##    ##     ##     ## ###
+     * ##     ##  #####  ##    ##  ######      ##     ## ###
+     * =====================================================
+    \*/
     #region Menu About Events
 
     private void mainMenu_ToolStripMenuItem_VersionHistory_Click(object sender, EventArgs e)
     {
-      if (!File.Exists("Changelog.html"))
-        CopyResource("Gemini.Changelog.html", "Changelog.html");
-      Process.Start("Changelog.html");
+      Process.Start("https://github.com/revam/Gemini/blob/master/CHANGELOG.md");
     }
 
     private void mainMenu_ToolStripMenuItem_AboutGemini_Click(object sender, EventArgs e)
@@ -784,6 +895,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * #######      ## ##  ##
+     * ##           ##     ##
+     * ##           ## ### #######  ######   ######
+     * #####    ###### ##  ##      ##    ## ##    ##
+     * ##      ##   ## ##  ##      ##    ## ##
+     * ##      ##   ## ##  ##   ## ##    ## ##
+     * #######  ###### ##   #####   ######  ##
+     * ==
+    \*/
     #region Script Editor Events
 
     /// <summary>
@@ -902,6 +1023,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     *  ######                  ##          ##           ######                                  ##
+     * ##                                   ##          ##                                       ##
+     * ##       ######  ######  ### ######  #######     ##       #####   #####   ######   ###### ## ####
+     *  #####  ##      ##    ## ##  ##   ## ##           #####  ##   ##      ## ##    ## ##      ###   ##
+     *      ## ##      ##       ##  ##   ## ##               ## #######  ###### ##       ##      ##    ##
+     *      ## ##      ##       ##  ######  ##   ##          ## ##      ##   ## ##       ##      ##    ##
+     * ######   ###### ##       ##  ##       #####      ######   #####  ####### ##        ###### ##    ##
+     * ==================================================================================================
+    \*/
     #region Script Search Events
 
     private void searches_ToolStripButton_Click(object sender, EventArgs e)
@@ -930,11 +1061,21 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ## ##
+     * ##     ##
+     * ##     ## ###  #####  ##       ##
+     * ##     ## ##  ##   ## ##       ##
+     *  ##   ##  ##  ####### ##   #   ##
+     *   ## ##   ##  ##       ## ### ##
+     *    ###    ##   #####    ### ###
+     * =================================
+    \*/
     #region Scripts View Events
 
     private void scriptsView_MouseDown(object sender, MouseEventArgs e)
     {
-      if (e.Button == MouseButtons.Left && e.Clicks == 2 && scriptsView.SelectedNode.Level == 1)
+      if (scriptsView.SelectedNode != null && e.Button == MouseButtons.Left && e.Clicks == 2 && scriptsView.SelectedNode.Level == 1)
         scriptsView_itemOpen_Click(sender, e);
     }
 
@@ -1158,6 +1299,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ######                     ##                 ##
+     * ##   ##                                       ##
+     * ##   ##  ######   ######  ###  #####   ###### #######
+     * ######  ##    ## ##    ##  ## ##   ## ##      ##
+     * ##      ##       ##    ##  ## ####### ##      ##
+     * ##      ##       ##    ##  ## ##      ##      ##   ##
+     * ##      ##        ######   ##  #####   ######  #####
+     * ==========================##=========================
+    \*/
     #region Project Methods
 
     private void CreateProject(string engine, string title, string directory, bool library, bool open)
@@ -1261,21 +1412,11 @@ namespace Gemini {
       Enabled = false;
       if (LoadScripts())
       {
-        if (!string.IsNullOrEmpty(_projectGamePath))
-        {
-          Settings.LoadLocalSettings(_projectDirectory + "GeminiLocal.xml");
-          if (Settings.OpenScripts.Count > 0)
-            foreach (Serializable.Script s in Settings.OpenScripts)
-              if (ScriptExistBySection(s.Section))
-                OpenScript(s.Section, s.Position);
-          if (ScriptExistBySection(Settings.ActiveScript.Section))
-            scriptsEditor_tabs.SelectedTab = GetScriptBySection(Settings.ActiveScript.Section).TabPage;
-          Settings.OpenScripts.Clear();
-        }
+        LoadLocalConfiguration();
         AddRecentProject(projectPath);
         UpdateTitle(projectPath);
         UpdateMenusEnabled();
-        UpdateMenusChecked();
+        UpdateSettingsState();
         UpdateAutoCompleteWords();
         scriptName.TextChanged += new EventHandler(scriptName_TextChanged);
       }
@@ -1378,7 +1519,7 @@ namespace Gemini {
 
     private void SaveLocalConfiguration()
     {
-      if (!string.IsNullOrEmpty(_projectGamePath))
+      if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectGamePath))
       {
         Script s;
         if (GetActiveScript() != null)
@@ -1391,8 +1532,33 @@ namespace Gemini {
       }
     }
 
+    private void LoadLocalConfiguration()
+    {
+      if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectGamePath))
+      {
+        Settings.LoadLocalSettings(_projectDirectory + "GeminiLocal.xml");
+        if (Settings.OpenScripts.Count > 0)
+          foreach (Serializable.Script s in Settings.OpenScripts)
+            if (ScriptExistBySection(s.Section))
+              OpenScript(s.Section, s.Position);
+        if (ScriptExistBySection(Settings.ActiveScript.Section))
+          scriptsEditor_tabs.SelectedTab = GetScriptBySection(Settings.ActiveScript.Section).TabPage;
+        Settings.OpenScripts.Clear();
+      }
+    }
+
     #endregion
 
+    /*\
+     *  ######                  ##          ##
+     * ##                                   ##
+     * ##       ######  ######  ### ######  #######
+     *  #####  ##      ##    ## ##  ##   ## ##
+     *      ## ##      ##       ##  ##   ## ##
+     *      ## ##      ##       ##  ######  ##   ##
+     * ######   ###### ##       ##  ##       #####
+     * =============================##===========
+    \*/
     #region Script Methods
 
     /// <summary>
@@ -1521,9 +1687,12 @@ namespace Gemini {
     /// </summary>
     /// <param name="node">the selected <see cref="TreeNode"/></param>
     /// <param name="paths">A string-array with paths to import from</param>
-    private void ImportScriptsFrom(TreeNode node, bool selectLast, string[] paths) {
-      if (node == null) {
-        if (!NodeExistByName("Materials")) {
+    private void ImportScriptsFrom(TreeNode node, bool selectLast, string[] paths)
+    {
+      if (node == null)
+      {
+        if (!NodeExistByName("Materials"))
+        {
           MessageBox.Show("The project seems to be missing a 'Materials' Script Group.",
             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
           return;
@@ -1533,7 +1702,8 @@ namespace Gemini {
       scriptsView.BeginUpdate();
       foreach (string path in paths)
         if (File.Exists(path))
-          try {
+          try
+          {
             if (_fileNameRegex.IsMatch(path) && ScriptExistBySection(int.Parse(_fileNameRegex.Match(path).Captures[1].Value)))
               UpdateScriptBySection(int.Parse(_fileNameRegex.Match(path).Captures[1].Value),
                 _fileNameRegex.Match(path).Captures[0].Value, File.ReadAllText(path));
@@ -1544,7 +1714,9 @@ namespace Gemini {
               InsertNode(node, selectLast, Path.GetFileNameWithoutExtension(path), File.ReadAllText(path));
             if (node.Level == 1)
               node = node.NextNode;
-          } catch {
+          }
+          catch
+          {
             MessageBox.Show("There was an error while importing from '" + path + "'.",
               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
           }
@@ -1556,16 +1728,21 @@ namespace Gemini {
     /// Exports the scripts using the passed filed extension to determine the file type
     /// </summary>
     /// <param name="extension">The extension to save the files as</param>
-    private void ExportScriptsTo(string extenction) {
-      using (FolderBrowserDialog dialog = new FolderBrowserDialog()) {
+    private void ExportScriptsTo(string extenction)
+    {
+      using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+      {
         dialog.ShowNewFolderButton = true;
         dialog.RootFolder = Environment.SpecialFolder.MyDocuments;
         dialog.Description = "Choose folder...";
-        if (dialog.ShowDialog() == DialogResult.OK) {
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
           Enabled = false;
-          try {
+          try
+          {
             int i = 0;
-            for (int j = 0; j < scriptsView.Nodes.Count; j++) {
+            for (int j = 0; j < scriptsView.Nodes.Count; j++)
+            {
               string filename = String.Format("{0:000} - ", i);
               File.WriteAllText(dialog.SelectedPath + "/" + filename + extenction, "");
               i++;
@@ -1582,7 +1759,9 @@ namespace Gemini {
                 i++;
               }
             }
-          } catch {
+          }
+          catch
+          {
             MessageBox.Show("An error occurred, the export has been stopped.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
           }
           Enabled = true;
@@ -1594,26 +1773,34 @@ namespace Gemini {
     /// Export the given Script to a file
     /// </summary>
     /// <param name="section">The Script section</param>
-    private void ExportScript(int section) {
+    private void ExportScript(int section)
+    {
       if (!Directory.Exists(_projectScriptsFolderPath))
         Directory.CreateDirectory(_projectScriptsFolderPath);
       if (ScriptExistBySection(section))
-        try {
+        try
+        {
           Script script = GetScriptBySection(section);
           File.WriteAllText(_projectScriptsFolderPath + script.Name + "." + string.Format("{0:00000000}", script.Section) + ".rb", script.Text);
-        } catch {
+        }
+        catch
+        {
           Script script = GetScriptBySection(section);
-          MessageBox.Show("An error occurred while exporting the script; '"+script.Name+" - "+script.Section+".rb'",
+          MessageBox.Show("An error occurred while exporting the script; '" + script.Name + " - " + script.Section + ".rb'",
             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
-    private void DeleteExportedScript(int section) {
-      try {
+    private void DeleteExportedScript(int section)
+    {
+      try
+      {
         Script script = GetScriptBySection(section);
         if (File.Exists(_projectScriptsFolderPath + script.Name + "." + string.Format("{0:00000000}", script.Section) + ".rb"))
           File.Delete(_projectScriptsFolderPath + script.Name + "." + string.Format("{0:00000000}", script.Section) + ".rb");
-      } catch {
+      }
+      catch
+      {
         MessageBox.Show("An error occurred while deleting script-file.",
           "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
@@ -1623,7 +1810,8 @@ namespace Gemini {
     /// Export all the Scripts in an Script Group to files in the Project Scripts Folder
     /// </summary>
     /// <param name="node">The selected node. Must be a Group Node</param>
-    private void ExportScriptGroup(TreeNode rootNode) {
+    private void ExportScriptGroup(TreeNode rootNode)
+    {
       if (rootNode.Level != 0) return;
       foreach (TreeNode node in rootNode.Nodes)
         ExportScript(int.Parse(node.Name));
@@ -1632,7 +1820,8 @@ namespace Gemini {
     /// <summary>
     /// Exports all the Scripts to the Project Scripts Folder
     /// </summary>
-    private void ExportScripts() {
+    private void ExportScripts()
+    {
       foreach (TreeNode rootNode in scriptsView.Nodes)
         foreach (TreeNode node in rootNode.Nodes)
           ExportScript(int.Parse(node.Name));
@@ -1643,7 +1832,8 @@ namespace Gemini {
     /// </summary>
     /// <param name="section">Section to locate script from</param>
     /// <returns></returns>
-    private Script GetScriptBySection(int section) {
+    private Script GetScriptBySection(int section)
+    {
       return _scripts.Find(delegate (Script s) { return s.Section == section; });
     }
 
@@ -1653,14 +1843,16 @@ namespace Gemini {
         _scripts[_scripts.FindIndex(delegate (Script d) { return d.Section == s.Section; })] = s;
     }
 
-    private bool ScriptExistBySection(int section) {
+    private bool ScriptExistBySection(int section)
+    {
       foreach (Script script in _scripts)
         if (script.Section == section)
           return true;
       return false;
     }
 
-    private void UpdateScriptBySection(int section, string name, string value) {
+    private void UpdateScriptBySection(int section, string name, string value)
+    {
       Script script = GetScriptBySection(section);
       if (script.Name != name.Trim())
         script.Name = name.Trim();
@@ -1669,8 +1861,18 @@ namespace Gemini {
       if (!script.Opened)
         script.Dispose();
     }
+
     #endregion
 
+    /*\
+     * ##    ##               ##
+     * ###   ##               ##
+     * ####  ##  ######   ######  #####
+     * ## ## ## ##    ## ##   ## ##   ##
+     * ##  #### ##    ## ##   ## #######
+     * ##   ### ##    ## ##   ## ##
+     * ##    ##  ######   ######  #####
+    \*/
     #region Node Methods
 
     /// <summary>
@@ -1700,7 +1902,7 @@ namespace Gemini {
       TreeNode node = new TreeNode();
       node.Name = string.Format("{0:00000000}", script.Section);
       node.Text = script.Name.Replace("▼ ", "");
-      node.ToolTipText = node.Text + (script.Name.StartsWith("▼ ")? "" : " - " + node.Name);
+      node.ToolTipText = node.Text + (script.Name.StartsWith("▼ ") ? "" : " - " + node.Name);
       if (script.Name.StartsWith("▼ "))
       {
         if (selectedNode != null && selectedNode.Level == 1)
@@ -1813,6 +2015,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     *  ###### ##   ##          ##                                     ##
+     * ##      ##               ##                                     ##
+     * ##      ##   ### ######  ##       ######   #####   ######   ######
+     * ##      ##   ##  ##   ## ######  ##    ##      ## ##    ## ##   ##
+     * ##      ##   ##  ##   ## ##   ## ##    ##  ###### ##       ##   ##
+     * ##      ##   ##  ######  ##   ## ##    ## ##   ## ##       ##   ##
+     *  ######  ### ##  ##      ######   ######  ####### ##        ######
+     * =================##===============================================
+    \*/
     #region Clipboard Methods
 
     /// <summary>
@@ -1873,6 +2085,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     *  ######                                  ##
+     * ##                                       ##
+     * ##       #####   #####   ######   ###### ## ####
+     *  #####  ##   ##      ## ##    ## ##      ###   ##
+     *      ## #######  ###### ##       ##      ##    ##
+     *      ## ##      ##   ## ##       ##      ##    ##
+     * ######   #####  ####### ##        ###### ##    ##
+     * =================================================
+    \*/
     #region Search Methods
 
     private void ShowFind()
@@ -1984,6 +2206,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ## ##
+     * ###   ###
+     * #### #### ###  ######  ######
+     * ## ### ## ##  ##      ##
+     * ##     ## ##   #####  ##
+     * ##     ## ##       ## ##      ###
+     * ##     ## ##  ######   ###### ###
+     * =================================
+    \*/
     #region Misc Methods
 
     /// <summary>
@@ -2087,6 +2319,16 @@ namespace Gemini {
 
     #endregion
 
+    /*\
+     * ##     ##              ##         ##
+     * ##     ##              ##         ##
+     * ##     ## ######       ##  #####  #######  #####
+     * ##     ## ##   ##  ######      ## ##      ##   ##
+     * ##     ## ##   ## ##   ##  ###### ##      #######
+     * ##     ## ######  ##   ## ##   ## ##   ## ##
+     *  #######  ##       ###### #######  #####   #####
+     * ==========##=====================================
+    \*/
     #region Update Methods
 
     private void UpdateAutoCompleteWords()
@@ -2273,16 +2515,22 @@ namespace Gemini {
       toolsEditor_itemCloseProject.Enabled = menuMain_dropFile_itemClose.Enabled;
     }
 
-    private void UpdateMenusChecked()
+    private void UpdateSettingsState()
     {
       bool scripts = _projectScriptsFolderPath != "";
 
-      splitMain.Panel1Collapsed = Settings.MinimalView;
-      toolsEditor_toolStrip.Visible = Settings.OnlyHideScripts || !Settings.MinimalView;
-      menuMain_menuStrip.Visible = Settings.MenuVisible;
+      splitMain.Panel1Collapsed = Settings.DistractionMode.Use;
+      toolsEditor_toolStrip.Visible = !Settings.DistractionMode.HideToolbar || !Settings.DistractionMode.Use;
+      if (Settings.DistractionMode.Use)
+        menuMain_dropSettings_itemToggleDistractionMode.Image = Properties.Resources.reduce;
+      else
+        menuMain_dropSettings_itemToggleDistractionMode.Image = Properties.Resources.expand;
+      menuMain_menuStrip.Visible = !Settings.AutoHideMenuBar;
+      menuMain_dropSettings_itemMenuVisible.Checked = Settings.AutoHideMenuBar;
 
-      menuMain_dropSettings_itemHideScripts.Checked = Settings.OnlyHideScripts;
-      menuMain_dropSettings_itemAutoOpenProject.Checked = Settings.AutoOpen;
+      menuMain_dropSettings_itemProjectSettings.Checked = Settings.ProjectConfig;
+      menuMain_dropSettings_itemHideToolbar.Checked = Settings.DistractionMode.HideToolbar;
+      autoOpenToolStripMenuItem.Checked = Settings.AutoOpen;
       menuMain_dropSettings_itemPioritizeRecent.Checked = Settings.RecentPriority;
       menuMain_dropSettings_itemAutoSaveSettings.Checked = Settings.AutoSaveConfig;
       menuMain_dropSettings_itemAutoC.Checked = Settings.AutoComplete;
@@ -2308,12 +2556,14 @@ namespace Gemini {
           (script.Scintilla.Selection.Length == 0 ? "" : "(" + script.Scintilla.Selection.Length + ")"));
     }
 
-    private void UpdateName(Script s) {
+    private void UpdateName(Script s)
+    {
       if (s.TabName != GetNodeBySection(s.Section).Text)
         GetNodeBySection(s.Section).Text = s.TabName;
     }
 
-    private void UpdateNames() {
+    private void UpdateNames()
+    {
       Script s;
       scriptsView.BeginUpdate();
       foreach (TreeNode rootNode in scriptsView.Nodes)

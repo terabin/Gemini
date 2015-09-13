@@ -2,12 +2,12 @@ namespace ScintillaNet
 {
 	partial class IncrementalSearcher
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,8 +22,8 @@ namespace ScintillaNet
 
 		#region Component Designer generated code
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -39,9 +39,9 @@ namespace ScintillaNet
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // lblFind
-            // 
+            //
             this.lblFind.AutoSize = true;
             this.lblFind.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblFind.Location = new System.Drawing.Point(0, 0);
@@ -51,9 +51,9 @@ namespace ScintillaNet
             this.lblFind.TabIndex = 0;
             this.lblFind.Text = "&Find";
             this.lblFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // txtFind
-            // 
+            //
             this.txtFind.Location = new System.Drawing.Point(33, 1);
             this.txtFind.Margin = new System.Windows.Forms.Padding(3, 1, 0, 0);
             this.txtFind.Name = "txtFind";
@@ -61,9 +61,9 @@ namespace ScintillaNet
             this.txtFind.TabIndex = 1;
             this.txtFind.TextChanged += new System.EventHandler(this.txtFind_TextChanged);
             this.txtFind.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFind_KeyDown);
-            // 
+            //
             // flowLayoutPanel1
-            // 
+            //
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.lblFind);
@@ -79,13 +79,13 @@ namespace ScintillaNet
             this.flowLayoutPanel1.Size = new System.Drawing.Size(259, 22);
             this.flowLayoutPanel1.TabIndex = 4;
             this.flowLayoutPanel1.WrapContents = false;
-            // 
+            //
             // btnNext
-            // 
+            //
             this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.FlatAppearance.BorderSize = 0;
-            this.btnNext.Image = global::Gemini.Properties.Resources.smallArrow_down;
+            this.btnNext.Image = global::Gemini.Properties.Resources.down;
             this.btnNext.Location = new System.Drawing.Point(171, 0);
             this.btnNext.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.btnNext.Name = "btnNext";
@@ -94,13 +94,13 @@ namespace ScintillaNet
             this.toolTip.SetToolTip(this.btnNext, "Find Next");
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
+            //
             // brnPrevious
-            // 
+            //
             this.brnPrevious.AutoSize = true;
             this.brnPrevious.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.brnPrevious.FlatAppearance.BorderSize = 0;
-            this.brnPrevious.Image = global::Gemini.Properties.Resources.smallArrow_up;
+            this.brnPrevious.Image = global::Gemini.Properties.Resources.up;
             this.brnPrevious.Location = new System.Drawing.Point(193, 0);
             this.brnPrevious.Margin = new System.Windows.Forms.Padding(0);
             this.brnPrevious.Name = "brnPrevious";
@@ -109,15 +109,15 @@ namespace ScintillaNet
             this.toolTip.SetToolTip(this.brnPrevious, "Find Previous");
             this.brnPrevious.UseVisualStyleBackColor = true;
             this.brnPrevious.Click += new System.EventHandler(this.brnPrevious_Click);
-            // 
+            //
             // btnHighlightAll
-            // 
+            //
             this.btnHighlightAll.AutoSize = true;
             this.btnHighlightAll.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnHighlightAll.FlatAppearance.BorderSize = 0;
             this.btnHighlightAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 1.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHighlightAll.ForeColor = System.Drawing.Color.SkyBlue;
-            this.btnHighlightAll.Image = global::Gemini.Properties.Resources.lineColorHS;
+            this.btnHighlightAll.Image = global::Gemini.Properties.Resources.highlightFinds;
             this.btnHighlightAll.Location = new System.Drawing.Point(215, 0);
             this.btnHighlightAll.Margin = new System.Windows.Forms.Padding(0);
             this.btnHighlightAll.Name = "btnHighlightAll";
@@ -127,14 +127,14 @@ namespace ScintillaNet
             this.toolTip.SetToolTip(this.btnHighlightAll, "Highlight All Matches (ALT+H)");
             this.btnHighlightAll.UseVisualStyleBackColor = true;
             this.btnHighlightAll.Click += new System.EventHandler(this.btnHighlightAll_Click);
-            // 
+            //
             // btnClearHighlights
-            // 
+            //
             this.btnClearHighlights.AutoSize = true;
             this.btnClearHighlights.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnClearHighlights.FlatAppearance.BorderSize = 0;
             this.btnClearHighlights.Font = new System.Drawing.Font("Microsoft Sans Serif", 1.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearHighlights.Image = global::Gemini.Properties.Resources.delete_hs;
+            this.btnClearHighlights.Image = global::Gemini.Properties.Resources.delete;
             this.btnClearHighlights.Location = new System.Drawing.Point(237, 0);
             this.btnClearHighlights.Margin = new System.Windows.Forms.Padding(0);
             this.btnClearHighlights.Name = "btnClearHighlights";
@@ -144,9 +144,9 @@ namespace ScintillaNet
             this.toolTip.SetToolTip(this.btnClearHighlights, "Clear Highlights (ALT+J)");
             this.btnClearHighlights.UseVisualStyleBackColor = true;
             this.btnClearHighlights.Click += new System.EventHandler(this.btnClearHighlights_Click);
-            // 
+            //
             // IncrementalSearcher
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;

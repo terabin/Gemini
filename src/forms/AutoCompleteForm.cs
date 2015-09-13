@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Gemini.Properties;
 
+/*\
+ *  ######  ###### ##     ## ###### ##    ## ######
+ * ##    ## ##     ###   ###   ##   ###   ##   ##
+ * ##       ##     #### ####   ##   ####  ##   ##
+ * ##  ###  ####   ## ### ##   ##   ## ## ##   ##
+ * ##    ## ##     ##     ##   ##   ##  ####   ##
+ * ##    ## ##     ##     ##   ##   ##   ###   ##
+ *  ######  ###### ##     ## ###### ##    ## ######
+\*/
 namespace Gemini
 {
 	public partial class AutoCompleteForm : Form

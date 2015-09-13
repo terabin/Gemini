@@ -13,9 +13,9 @@ namespace Gemini
     public AdvancedTabControl()
     {
       InitializeComponent();
-      this.imageList.Images.Add((Image)Gemini.Properties.Resources.CloseTab0);
-      this.imageList.Images.Add((Image)Gemini.Properties.Resources.CloseTab1);
-      this.imageList.Images.Add((Image)Gemini.Properties.Resources.CloseTab2);
+      this.imageList.Images.Add((Image)Gemini.Properties.Resources.closeTab);
+      this.imageList.Images.Add((Image)Gemini.Properties.Resources.closeTabHover);
+      this.imageList.Images.Add((Image)Gemini.Properties.Resources.closeTabClick);
     }
 
     protected override void OnKeyDown(KeyEventArgs e)

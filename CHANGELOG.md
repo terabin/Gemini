@@ -1,28 +1,40 @@
-#Gemini Version History
+# Changelog
+
+## Changes made in Git project
 
 ### v.3.1.0
+- New icons and logo
+- Updated Settings menu
+- Changed some defaults in the configuration
+- Made it optional to use project-based configuration
+- Fixed some paddings
+- Removed 'Highlight Color' from editor toolbar
+- Configured and enabled update functionality
 
-## Newer changes made in git-project
-
-# v.3.0.0
+### v.3.0.0
 - Removed the splash screen
 - Added Fody and Fody Costura
-- Compressed and intergrated all dll-libraries into the assembly
+- Compressed and integrated all dll-libraries into the assembly
+- Moved ALL settings to the Settings menu
 - Changed configuration save format to xml
-- Implemented priject-based settings (does not work on r*data)
+- Added project-based configuration
   - Stores last opened scripts, debug mode and custom runtime parameters
-- Rewrite of the script-handeling methods
-  - Removed the Listview and related methods
-  - Added a new Treeview and related methods
+- Rewrite of script-handeling methods
+  - Removed the List View and related methods
+  - Added a new Tree View and related methods
   - Faster save and load time
 - Made the UI more flexible
 - Improved import - will now report under selected script, in selected script group or in the 'Materials' group from the menu if the group is present
 - Added a quick import from/export to projects scripts folder and related methods
 - Added custom runtime options
-- Updated the help-files, data- and dll-library for XP and Ace to the latest english available
+- Made the script sections static instead of random each time, and added a 'Update Sections' option
+- Updated the help-files, data- and dll-library for XP and Ace to the latest English available
+- Removed the 'Editor' frame
+- Minimized some paddings
 - Temporarily disabled update functionality
+- Some more minor fixes and things I can't remember
 
-## Older changes made by ForeverZer0 and Zeus81
+## Older versions by ForeverZer0 and Zeus81 listed below
 
 ### v.2.0.0
 - New logo
@@ -54,7 +66,7 @@
 - Added drag drop to reorder open scripts tabs
 - Added display of the altered state of scripts in tabs and script list with a
 - Added close button on tabs and middle click to close them too
-- Added new tabbed interface for searches with Ctrl+Maj+F
+- Added new tabbed interface for searches with Ctrl+Shift+F
 - Fixed find/replace window bugs
 - Added Ctrl+0 to reset the text zoom
 - Fixed coloring bugs
@@ -87,7 +99,6 @@
 - Fixed browse issue with New Project creation
 - Fixed typo that would be created in Game.ini file for RMVX projects
 - Added Ctrl+Q functionality for add/removing line comments
-
 
 ### v.1.0.0
 - Initial Release

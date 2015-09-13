@@ -5,6 +5,15 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
+/*\
+ *  ######  ###### ##     ## ###### ##    ## ######
+ * ##    ## ##     ###   ###   ##   ###   ##   ##
+ * ##       ##     #### ####   ##   ####  ##   ##
+ * ##  ###  ####   ## ### ##   ##   ## ## ##   ##
+ * ##    ## ##     ##     ##   ##   ##  ####   ##
+ * ##    ## ##     ##     ##   ##   ##   ###   ##
+ *  ######  ###### ##     ## ###### ##    ## ######
+\*/
 namespace Gemini
 {
 	partial class AboutForm : Form

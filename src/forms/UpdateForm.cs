@@ -5,6 +5,15 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
+/*\
+ *  ######  ###### ##     ## ###### ##    ## ######
+ * ##    ## ##     ###   ###   ##   ###   ##   ##
+ * ##       ##     #### ####   ##   ####  ##   ##
+ * ##  ###  ####   ## ### ##   ##   ## ## ##   ##
+ * ##    ## ##     ##     ##   ##   ##  ####   ##
+ * ##    ## ##     ##     ##   ##   ##   ###   ##
+ *  ######  ###### ##     ## ###### ##    ## ######
+\*/
 namespace Gemini
 {
   public partial class UpdateForm : Form
@@ -18,7 +27,7 @@ namespace Gemini
       buttonDownload.Visible = labelProgress.Visible = progressBar.Visible = false;
       labelCurrentVersion.Text += ProductVersion;
       _webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(VersionInfo_DownloadStringCompleted);
-      _webClient.DownloadStringAsync(new Uri(@"http://dl.dropbox.com/u/20787370/Gemini/VersionInfo.dat"));
+      _webClient.DownloadStringAsync(new Uri(@"https://github.com/revam/Gemini/tree/master/builds/release/VersionInfo.dat"));
     }
 
     private void VersionInfo_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -28,7 +37,7 @@ namespace Gemini
       else if (new Version(ProductVersion) < new Version(e.Result))
       {
         buttonDownload.Visible = true;
-        labelInfo.Text = String.Format("Version {0} is available.", e.Result);
+        labelInfo.Text = string.Format("Version {0} is available.", e.Result);
         if (Visible == false)
         { // Auto Update
           System.Media.SystemSounds.Asterisk.Play();
@@ -58,7 +67,7 @@ namespace Gemini
       labelProgress.Visible = progressBar.Visible = true;
       _webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(WebClient_DownloadProgressChanged);
       _webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Gemini_DownloadFileCompleted);
-      _webClient.DownloadFileAsync(new Uri(@"http://dl.dropbox.com/u/20787370/Gemini/Gemini.exe"), "Gemini.upd");
+      _webClient.DownloadFileAsync(new Uri(@"https://github.com/revam/Gemini/tree/master/builds/release/Gemini.exe"), "Gemini.upd");
     }
 
     private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

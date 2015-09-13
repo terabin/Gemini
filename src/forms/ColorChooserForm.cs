@@ -5,6 +5,15 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
+/*\
+ *  ######  ###### ##     ## ###### ##    ## ######
+ * ##    ## ##     ###   ###   ##   ###   ##   ##
+ * ##       ##     #### ####   ##   ####  ##   ##
+ * ##  ###  ####   ## ### ##   ##   ## ## ##   ##
+ * ##    ## ##     ##     ##   ##   ##  ####   ##
+ * ##    ## ##     ##     ##   ##   ##   ###   ##
+ *  ######  ###### ##     ## ###### ##    ## ######
+\*/
 namespace Gemini
 {
 
@@ -44,7 +53,7 @@ namespace Gemini
 
 		private void ColorChooserLoad(object sender, EventArgs e)
 		{
-			// Turn on double-buffering, so the form looks better. 
+			// Turn on double-buffering, so the form looks better.
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 			SetStyle(ControlStyles.UserPaint, true);
 			SetStyle(ControlStyles.DoubleBuffer, true);
@@ -69,7 +78,7 @@ namespace Gemini
 			myColorWheel = new ColorWheel(colorRectangle, brightnessRectangle, selectedColorRectangle);
 			myColorWheel.ColorChanged += MyColorWheelColorChanged;
 
-			// Set the RGB and HSV values 
+			// Set the RGB and HSV values
 			// of the NumericUpDown controls.
 			SetRGB(argb);
 			SetHSV(hsv);
@@ -77,8 +86,8 @@ namespace Gemini
 
 		private void HandleMouse(object sender, MouseEventArgs e)
 		{
-			// If you have the left mouse button down, 
-			// then update the selectedPoint value and 
+			// If you have the left mouse button down,
+			// then update the selectedPoint value and
 			// force a repaint of the color wheel.
 			if (e.Button != MouseButtons.Left)
 				return;
@@ -147,7 +156,7 @@ namespace Gemini
 		}
 
 		private void HandleHSVScroll(object sender, EventArgs e)
-		// If the H, S, or V values change, use this 
+		// If the H, S, or V values change, use this
 		// code to update the RGB values and invalidate
 		// the color wheel (so it updates the pointers).
 		// Check the isInUpdate flag to avoid recursive events
@@ -162,7 +171,7 @@ namespace Gemini
 
 		private void HandleRGBScroll(object sender, EventArgs e)
 		{
-			// If the R, G, or B values change, use this 
+			// If the R, G, or B values change, use this
 			// code to update the HSV values and invalidate
 			// the color wheel (so it updates the pointers).
 			// Check the isInUpdate flag to avoid recursive events
@@ -233,7 +242,7 @@ namespace Gemini
 
 		#endregion
 
-		// Keep track of the current mouse state. 
+		// Keep track of the current mouse state.
 
 		#region MouseState enum
 
@@ -250,20 +259,20 @@ namespace Gemini
 
 		#endregion
 
-		// The code needs to convert back and forth between 
-		// degrees and radians. There are 2*PI radians in a 
+		// The code needs to convert back and forth between
+		// degrees and radians. There are 2*PI radians in a
 		// full circle, and 360 degrees. This constant allows
 		// you to convert back and forth.
 		private const double DEGREES_PER_RADIAN = 180.0 / Math.PI;
 
 		// COLOR_COUNT represents the number of distinct colors
-		// used to create the circular gradient. Its value 
-		// is somewhat arbitrary -- change this to 6, for 
-		// example, to see what happens. 1536 (6 * 256) seems 
-		// a good compromise -- it's enough to get a full 
+		// used to create the circular gradient. Its value
+		// is somewhat arbitrary -- change this to 6, for
+		// example, to see what happens. 1536 (6 * 256) seems
+		// a good compromise -- it's enough to get a full
 		// range of colors, but it doesn't overwhelm the processor
 		// attempting to generate the image. The color wheel
-		// contains 6 sections, and each section displays 
+		// contains 6 sections, and each section displays
 		// 256 colors. Seems like a reasonable compromise.
 		private const int COLOR_COUNT = 6 * 256;
 		private readonly int brightnessMax;
@@ -279,7 +288,7 @@ namespace Gemini
 		public ColorChangedEventHandler ColorChanged;
 
 		// selectedColor is the actual value selected
-		// by the user. fullColor is the same color, 
+		// by the user. fullColor is the same color,
 		// with its brightness set to 255.
 		private ColorHandler.HSV HSV;
 		private ColorHandler.ARGB argb;
@@ -305,7 +314,7 @@ namespace Gemini
 
 			using (var path = new GraphicsPath())
 			{
-				// Store away locations for later use. 
+				// Store away locations for later use.
 				this.colorRectangle = colorRectangle;
 				this.brightnessRectangle = brightnessRectangle;
 				this.selectedColorRectangle = selectedColorRectangle;
@@ -324,7 +333,7 @@ namespace Gemini
 
 				// Create a region corresponding to the color circle.
 				// Code uses this later to determine if a specified
-				// point is within the region, using the IsVisible 
+				// point is within the region, using the IsVisible
 				// method.
 				path.AddEllipse(colorRectangle);
 				colorRegion = new Region(path);
@@ -334,20 +343,20 @@ namespace Gemini
 				brightnessMax = this.brightnessRectangle.Bottom;
 
 				// Create a region corresponding to the
-				// brightness rectangle, with a little extra 
-				// "breathing room". 
+				// brightness rectangle, with a little extra
+				// "breathing room".
 
 				path.AddRectangle(new Rectangle(brightnessRectangle.Left, brightnessRectangle.Top - 10,
 					brightnessRectangle.Width + 10, brightnessRectangle.Height + 20));
 				// Create region corresponding to brightness
-				// rectangle. Later code uses this to 
+				// rectangle. Later code uses this to
 				// determine if a specified point is within
 				// the region, using the IsVisible method.
 				brightnessRegion = new Region(path);
 
 				// Set the location for the brightness indicator "marker".
 				// Also calculate the scaling factor, scaling the height
-				// to be between 0 and 255. 
+				// to be between 0 and 255.
 				brightnessX = brightnessRectangle.Left + brightnessRectangle.Width;
 				brightnessScaling = (double)255 / (brightnessMax - brightnessMin);
 
@@ -415,11 +424,11 @@ namespace Gemini
 
 		public void Draw(Graphics g, Point mousePoint)
 		{
-			// You've moved the mouse. 
+			// You've moved the mouse.
 			// Now update the screen to match.
 
-			// Keep track of the previous color pointer point, 
-			// so you can put the mouse there in case the 
+			// Keep track of the previous color pointer point,
+			// so you can put the mouse there in case the
 			// user has clicked outside the circle.
 			Point newColorPoint = colorPoint;
 			Point newBrightnessPoint = brightnessPoint;
@@ -446,7 +455,7 @@ namespace Gemini
 					else
 					{
 						// Clicked outside the color and the brightness
-						// regions. In that case, just put the 
+						// regions. In that case, just put the
 						// pointers back where they were.
 						currentState = MouseState.ClickOutsideRegion;
 					}
@@ -487,8 +496,8 @@ namespace Gemini
 						mousePoint.X - centerPoint.X, mousePoint.Y - centerPoint.Y);
 					int degrees = CalcDegrees(delta);
 
-					// Calculate distance from the center to the new point 
-					// as a fraction of the radius. Use your old friend, 
+					// Calculate distance from the center to the new point
+					// as a fraction of the radius. Use your old friend,
 					// the Pythagorean theorem, to calculate this value.
 					double distance = Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y) / radius;
 
@@ -496,10 +505,10 @@ namespace Gemini
 					{
 						if (distance > 1)
 						{
-							// Mouse is down, and outside the circle, but you 
-							// were previously dragging in the color circle. 
+							// Mouse is down, and outside the circle, but you
+							// were previously dragging in the color circle.
 							// What to do?
-							// In that case, move the point to the edge of the 
+							// In that case, move the point to the edge of the
 							// circle at the correct angle.
 							distance = 1;
 							newColorPoint = GetPoint(degrees, radius, centerPoint);
@@ -517,7 +526,7 @@ namespace Gemini
 			selectedColor = ColorHandler.HSVtoColor(HSV);
 
 			// Raise an event back to the parent form,
-			// so the form can update any UI it's using 
+			// so the form can update any UI it's using
 			// to display selected color values.
 			OnColorChanged(argb, HSV);
 
@@ -539,15 +548,15 @@ namespace Gemini
 			colorPoint = newColorPoint;
 			brightnessPoint = newBrightnessPoint;
 
-			// Draw the gradients and points. 
+			// Draw the gradients and points.
 			UpdateDisplay();
 		}
 
 		private Point CalcBrightnessPoint(int brightness)
 		{
-			// Take the value for brightness (0 to 255), scale to the 
-			// scaling used in the brightness bar, then add the value 
-			// to the bottom of the bar. return the correct point at which 
+			// Take the value for brightness (0 to 255), scale to the
+			// scaling used in the brightness bar, then add the value
+			// to the bottom of the bar. return the correct point at which
 			// to display the brightness pointer.
 			return new Point(brightnessX,
 				(int)(brightnessMax - brightness / brightnessScaling));
@@ -555,8 +564,8 @@ namespace Gemini
 
 		private void UpdateDisplay()
 		{
-			// Update the gradients, and place the 
-			// pointers correctly based on colors and 
+			// Update the gradients, and place the
+			// pointers correctly based on colors and
 			// brightness.
 
 			using (Brush selectedBrush = new SolidBrush(selectedColor))
@@ -565,7 +574,7 @@ namespace Gemini
 				g.DrawImage(colorImage, colorRectangle);
 
 				// Draw the "selected color" rectangle.
-				using (TextureBrush textureBrush = 
+				using (TextureBrush textureBrush =
 					new TextureBrush(Properties.Resources.bg))
 				{
 					g.FillRectangle(textureBrush, selectedColorRectangle);
@@ -583,21 +592,21 @@ namespace Gemini
 		private void CalcCoordsAndUpdate(ColorHandler.HSV HSV)
 		{
 			// Convert color to real-world coordinates and then calculate
-			// the various points. HSV.Hue represents the degrees (0 to 360), 
-			// HSV.Saturation represents the radius. 
-			// This procedure doesn't draw anything--it simply 
+			// the various points. HSV.Hue represents the degrees (0 to 360),
+			// HSV.Saturation represents the radius.
+			// This procedure doesn't draw anything--it simply
 			// updates class-level variables. The UpdateDisplay
 			// procedure uses these values to update the screen.
 
-			// Given the angle (HSV.Hue), and distance from 
-			// the center (HSV.Saturation), and the center, 
-			// calculate the point corresponding to 
+			// Given the angle (HSV.Hue), and distance from
+			// the center (HSV.Saturation), and the center,
+			// calculate the point corresponding to
 			// the selected color, on the color wheel.
 			colorPoint = GetPoint((double)HSV.Hue / 255 * 360,
 				(double)HSV.Saturation / 255 * radius,
 				centerPoint);
 
-			// Given the brightness (HSV.value), calculate the 
+			// Given the brightness (HSV.value), calculate the
 			// point corresponding to the brightness indicator.
 			brightnessPoint = CalcBrightnessPoint(HSV.Value);
 
@@ -606,7 +615,7 @@ namespace Gemini
 			selectedColor = ColorHandler.HSVtoColor(HSV);
 			argb = ColorHandler.HSVtoRGB(HSV);
 
-			// The full color is the same as HSV, except that the 
+			// The full color is the same as HSV, except that the
 			// brightness is set to full (255). This is the top-most
 			// color in the brightness gradient.
 			fullColor = ColorHandler.HSVtoColor(HSV.Alpha, HSV.Hue, HSV.Saturation, 255);
@@ -615,7 +624,7 @@ namespace Gemini
 		private void DrawLinearGradient(Color TopColor)
 		{
 			// Given the top color, draw a linear gradient
-			// ranging from black to the top color. Use the 
+			// ranging from black to the top color. Use the
 			// brightness rectangle as the area to fill.
 			using (var lgb =
 				new LinearGradientBrush(brightnessRectangle, TopColor,
@@ -631,10 +640,10 @@ namespace Gemini
 
 			if (pt.X == 0)
 			{
-				// The point is on the y-axis. Determine whether 
-				// it's above or below the x-axis, and return the 
+				// The point is on the y-axis. Determine whether
+				// it's above or below the x-axis, and return the
 				// corresponding angle. Note that the orientation of the
-				// y-coordinate is backwards. That is, A positive Y value 
+				// y-coordinate is backwards. That is, A positive Y value
 				// indicates a point BELOW the x-axis.
 				if (pt.Y > 0)
 				{
@@ -650,14 +659,14 @@ namespace Gemini
 				// This value needs to be multiplied
 				// by -1 because the y-coordinate
 				// is opposite from the normal direction here.
-				// That is, a y-coordinate that's "higher" on 
+				// That is, a y-coordinate that's "higher" on
 				// the form has a lower y-value, in this coordinate
 				// system. So everything's off by a factor of -1 when
 				// performing the ratio calculations.
 				degrees = (int)(-Math.Atan((double)pt.Y / pt.X) * DEGREES_PER_RADIAN);
 
 				// If the x-coordinate of the selected point
-				// is to the left of the center of the circle, you 
+				// is to the left of the center of the circle, you
 				// need to add 180 degrees to the angle. ArcTan only
 				// gives you a value on the right-hand side of the circle.
 				if (pt.X < 0)
@@ -665,7 +674,7 @@ namespace Gemini
 					degrees += 180;
 				}
 
-				// Ensure that the return value is 
+				// Ensure that the return value is
 				// between 0 and 360.
 				degrees = (degrees + 360) % 360;
 			}
@@ -681,7 +690,7 @@ namespace Gemini
 				new PathGradientBrush(GetPoints(radius, new Point(radius, radius))))
 			{
 				// Set the various properties. Note the SurroundColors
-				// property, which contains an array of points, 
+				// property, which contains an array of points,
 				// in a one-to-one relationship with the points
 				// that created the gradient.
 				pgb.CenterColor = Color.White;
@@ -689,8 +698,8 @@ namespace Gemini
 				pgb.SurroundColors = GetColors();
 
 				// Create a new bitmap containing
-				// the color wheel gradient, so the 
-				// code only needs to do all this 
+				// the color wheel gradient, so the
+				// code only needs to do all this
 				// work once. Later code uses the bitmap
 				// rather than recreating the gradient.
 				colorImage = new Bitmap(
@@ -709,10 +718,10 @@ namespace Gemini
 		private Color[] GetColors()
 		{
 			// Create an array of COLOR_COUNT
-			// colors, looping through all the 
+			// colors, looping through all the
 			// hues between 0 and 255, broken
 			// into COLOR_COUNT intervals. HSV is
-			// particularly well-suited for this, 
+			// particularly well-suited for this,
 			// because the only value that changes
 			// as you create colors is the Hue.
 			var Colors = new Color[COLOR_COUNT];
@@ -725,7 +734,7 @@ namespace Gemini
 		private Point[] GetPoints(double radius, Point centerPoint)
 		{
 			// Generate the array of points that describe
-			// the locations of the COLOR_COUNT colors to be 
+			// the locations of the COLOR_COUNT colors to be
 			// displayed on the color wheel.
 			var Points = new Point[COLOR_COUNT];
 
@@ -737,7 +746,7 @@ namespace Gemini
 		private Point GetPoint(double degrees, double radius, Point centerPoint)
 		{
 			// Given the center of a circle and its radius, along
-			// with the angle corresponding to the point, find the coordinates. 
+			// with the angle corresponding to the point, find the coordinates.
 			// In other words, conver  t from polar to rectangular coordinates.
 			double radians = degrees / DEGREES_PER_RADIAN;
 
@@ -747,7 +756,7 @@ namespace Gemini
 
 		private void DrawColorPointer(Point pt)
 		{
-			// Given a point, draw the color selector. 
+			// Given a point, draw the color selector.
 			// The constant SIZE represents half
 			// the width -- the square will be twice
 			// this value in width and height.
@@ -758,7 +767,7 @@ namespace Gemini
 
 		private void DrawBrightnessPointer(Point pt)
 		{
-			// Draw a triangle for the 
+			// Draw a triangle for the
 			// brightness indicator that "points"
 			// at the provided point.
 			const int HEIGHT = 10;
@@ -774,7 +783,7 @@ namespace Gemini
 
 	public class ColorHandler
 	{
-		// Handle conversions between RGB and HSV    
+		// Handle conversions between RGB and HSV
 		// (and Color types, as well).
 
 		public static ARGB HSVtoRGB(int a, int h, int s, int v)
@@ -797,11 +806,11 @@ namespace Gemini
 		public static ARGB HSVtoRGB(HSV HSV)
 		{
 			// HSV contains values scaled as in the color wheel:
-			// that is, all from 0 to 255. 
+			// that is, all from 0 to 255.
 
 			// for ( this code to work, HSV.Hue needs
 			// to be scaled from 0 to 360 (it//s the angle of the selected
-			// point within the circle). HSV.Saturation and HSV.value must be 
+			// point within the circle). HSV.Saturation and HSV.value must be
 			// scaled to be between 0 and 1.
 
 			double h;
@@ -839,7 +848,7 @@ namespace Gemini
 				double fractionalSector = sectorPos - sectorNumber;
 
 				// Calculate values for the three axes
-				// of the color. 
+				// of the color.
 				double p = v * (1 - s);
 				double q = v * (1 - (s * fractionalSector));
 				double t = v * (1 - (s * (1 - fractionalSector)));
@@ -892,9 +901,9 @@ namespace Gemini
 
 		public static HSV RGBtoHSV(ARGB argb)
 		{
-			// In this function, R, G, and B values must be scaled 
+			// In this function, R, G, and B values must be scaled
 			// to be between 0 and 1.
-			// HSV.Hue will be a value between 0 and 360, and 
+			// HSV.Hue will be a value between 0 and 360, and
 			// HSV.Saturation and value are between 0 and 1.
 			// The code must scale these to be between 0 and 255 for
 			// the purposes of this application.
@@ -938,7 +947,7 @@ namespace Gemini
 					h = 4 + (r - g) / delta;
 				}
 			}
-			// Scale h to be between 0 and 360. 
+			// Scale h to be between 0 and 360.
 			// This may require adding 360, if the value
 			// is negative.
 			h *= 60;
@@ -947,7 +956,7 @@ namespace Gemini
 				h += 360;
 			}
 
-			// Scale to the requirements of this 
+			// Scale to the requirements of this
 			// application. All values are between 0 and 255.
 			return new HSV(argb.Alpha, (int)(h / 360 * 255), (int)(s * 255), (int)(v * 255));
 		}
