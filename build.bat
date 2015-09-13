@@ -26,4 +26,4 @@ rem "https://$($env:access_token):x-oauth-basic@github.com" > "%USERPROFILE%\.gi
 @echo on
 git add -f build
 git commit -m "Add latest build from AppVeyor"
-git push origin %appveyor_repo_branch%
+git push --verbose origin %appveyor_repo_branch%
