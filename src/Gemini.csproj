@@ -66,7 +66,7 @@
     <StartupObject>Gemini.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>
@@ -442,8 +442,10 @@
     <Content Include="resources\expand.png" />
     <Content Include="resources\file.png" />
     <Content Include="resources\file_export.png" />
+    <Content Include="resources\file_exports.png" />
     <Content Include="resources\file_flat.png" />
     <Content Include="resources\file_import.png" />
+    <Content Include="resources\file_imports.png" />
     <Content Include="resources\file_plus.png" />
     <Content Include="resources\file_update.png" />
     <Content Include="resources\find.png" />

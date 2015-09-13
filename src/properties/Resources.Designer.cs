@@ -283,6 +283,16 @@ namespace Gemini.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file_exports {
+            get {
+                object obj = ResourceManager.GetObject("file_exports", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap file_flat {
             get {
                 object obj = ResourceManager.GetObject("file_flat", resourceCulture);
@@ -296,6 +306,16 @@ namespace Gemini.Properties {
         internal static System.Drawing.Bitmap file_import {
             get {
                 object obj = ResourceManager.GetObject("file_import", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap file_imports {
+            get {
+                object obj = ResourceManager.GetObject("file_imports", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

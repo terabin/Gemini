@@ -459,7 +459,7 @@
       this.menuMain_dropFile_itemImport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.defaultFolderToolStripMenuItem,
             this.browseToolStripMenuItem});
-      this.menuMain_dropFile_itemImport.Image = global::Gemini.Properties.Resources.file_import;
+      this.menuMain_dropFile_itemImport.Image = global::Gemini.Properties.Resources.file_imports;
       this.menuMain_dropFile_itemImport.Name = "menuMain_dropFile_itemImport";
       this.menuMain_dropFile_itemImport.Size = new System.Drawing.Size(183, 22);
       this.menuMain_dropFile_itemImport.Text = "Import Scripts from...";
@@ -469,7 +469,7 @@
       // 
       this.defaultFolderToolStripMenuItem.Image = global::Gemini.Properties.Resources.folder;
       this.defaultFolderToolStripMenuItem.Name = "defaultFolderToolStripMenuItem";
-      this.defaultFolderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+      this.defaultFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.defaultFolderToolStripMenuItem.Text = "Script folder";
       this.defaultFolderToolStripMenuItem.Click += new System.EventHandler(this.menuMain_dropFile_itemImportScripts_Click);
       // 
@@ -477,7 +477,7 @@
       // 
       this.browseToolStripMenuItem.Image = global::Gemini.Properties.Resources.folder_import;
       this.browseToolStripMenuItem.Name = "browseToolStripMenuItem";
-      this.browseToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+      this.browseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.browseToolStripMenuItem.Text = "Browse";
       this.browseToolStripMenuItem.Click += new System.EventHandler(this.menuMain_dropFile_itemImportScriptsFrom_Click);
       // 
@@ -488,7 +488,7 @@
             this.menuMain_dropFile_itemExoprtToRMData,
             this.menuMain_dropFile_itemExportToText,
             this.menuMain_dropFile_itemExportToRuby});
-      this.menuMain_dropFile_itemExportTo.Image = global::Gemini.Properties.Resources.file_export;
+      this.menuMain_dropFile_itemExportTo.Image = global::Gemini.Properties.Resources.file_exports;
       this.menuMain_dropFile_itemExportTo.Name = "menuMain_dropFile_itemExportTo";
       this.menuMain_dropFile_itemExportTo.Size = new System.Drawing.Size(183, 22);
       this.menuMain_dropFile_itemExportTo.Text = "Export Scripts to...";
