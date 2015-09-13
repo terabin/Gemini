@@ -42,7 +42,7 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 - [ ] Move to ScintillaNet 3.5 (Newer and better, but it will be a hassle to fix all the imcompatiblies)
 - [ ] Add Drag and Drop functionality to the current Tree View or switch to a better one to view the scripts.
 - [ ] Add Ctrl+Tab/Ctrl+Shift+Tab shortcuts for switching for tabs
-- [x] Adapt the update methods to work with the new Git-Repo.
+- [ ] Adapt the update methods to work with the new Git-Repo.
 
 ## Versions
 Here version numbers are defined as `MAJOR.MINOR.PATCH` where:
@@ -59,7 +59,7 @@ Here version numbers are defined as `MAJOR.MINOR.PATCH` where:
 - Changed some defaults in the configuration
 - Made it optional to use project-based configuration
 - Removed 'Highlight Color' from editor toolbar
-- Pre-enabled update functionality (**NOT TESTED**)
+- Pre-enabled update functionality (**Under testing**)
 - Some fixes here and there
 
 See `CHANGELOG.md` for a more detailed list of changes.

@@ -23,4 +23,5 @@ git config credential.helper store
 rem "https://$($env:access_token):x-oauth-basic@github.com" > "%USERPROFILE%\.git-credentials"
 git add -f build
 git commit -m "Add latest build from AppVeyor"
-git -c push.default=simple push origin %appveyor_build_branch% --porcelain
+echo %appveyor_build_branch%
+git -c push.default=simple push origin HEAD:%appveyor_build_branch% --porcelain
