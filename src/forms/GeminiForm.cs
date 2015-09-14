@@ -87,6 +87,7 @@ namespace Gemini
       Icon = Icon.FromHandle(Properties.Resources.gemini.GetHicon());
       Ruby.CreateRuntime();
       Settings.SetDefaults();
+      Settings.SetLocalDefaults();
       Settings.LoadSettings();
       ApplySettings();
       UpdateMenusEnabled();
