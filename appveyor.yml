@@ -29,9 +29,14 @@ build_script:
 #- mkdir build\%configuration%
 - echo "%appveyor_build_version%" > build\%configuration%\VersionInfo.dat
 #- cp src\bin\%configuration%\Gemini.exe build\%configuration%\Gemini.exe
-- 7z a src\bin\%configuration%\Gemini.zip src\bin\%configuration%\Gemini.exe
+- cd src\bin\%configuration%\
+- 7z a Gemini.zip Gemini.exe
+- cd ..
+- cd ..
+- cd ..
+- cp src\bin\%configuration%\Gemini.zip Gemini.zip
 artifacts:
-- path: src\bin\$(configuration)\Gemini.zip
+- path: Gemini.zip
   name: Gemini
 before_deploy:
 -
@@ -40,9 +45,10 @@ deploy:
   tag: v$(appveyor_build_version)
   release: Gemini v$(appveyor_build_version)
   description: Autocompiled build from Appveyor.
-  auth_token:
-    secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
-  artifact: src\bin\$(configuration)\Gemini.zip
+  auth_token: $(access_token)
+  artifact: Gemini.zip
+  draft: false
+  prerelease: true
 #on_success:
 #  - git config credential.helper store
 #  - echo "https://%access_token%:x-oauth-basic@github.com" > "%userprofile%\.git-credential
