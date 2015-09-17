@@ -124,6 +124,8 @@ namespace Gemini
         script.UpdateSettings();
         script.SetStyle();
       }
+      if (Settings.AutoHideMenuBar && menuMain_menuStrip.Visible) MenuBarDeactivate();
+      else MenuBarActive();
       Bounds = Settings.WindowBounds;
       if (Settings.WindowMaximized)
         WindowState = FormWindowState.Maximized;
@@ -158,15 +160,14 @@ namespace Gemini
       try { _charmap.Kill(); } catch { }
     }
 
-
     private void GeminiForm_KeyDown(object sender, KeyEventArgs e)
     {
-      if (e.Alt)
-        menuMain_dropSetting_itemMenuVisible_Click(sender, e);
+      if (Settings.AutoHideMenuBar && menuMain_menuStrip.Visible && e.Alt) MenuBarDeactivate();
+      else if (Settings.AutoHideMenuBar && e.Alt) MenuBarActive();
     }
 
     /// <summary>
-    /// Automatically rewrite the latest save when the script file is overwritten by RPG Maker
+    /// Automatically rewrite the latest save when the script file is overwritten by another program
     /// </summary>
     private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
     {
@@ -180,6 +181,35 @@ namespace Gemini
         }
         catch { }
       scriptsFileWatcher.EnableRaisingEvents = true;
+    }
+
+    #endregion
+
+    /*\
+     * ##     ##                                   ##               ##
+     * ###   ###                                   ##
+     * #### ####  #####  #######  ##    ##  ###### #######  ######  ### ######
+     * ## ### ## ##   ## ##    ## ##    ## ##      ##      ##    ## ##  ##   ##
+     * ##     ## ####### ##    ## ##    ##  #####  ##      ##       ##  ##   ##
+     * ##     ## ##      ##    ## ##    ##      ## ##   ## ##       ##  ######
+     * ##     ##  #####  ##    ##  ######  ######   #####  ##       ##  ##
+     * =================================================================##=====
+    \*/
+    #region Menu Strip Events
+
+    private void menuMain_menuStrip_Leave(object sender, EventArgs e)
+    {
+      if (Settings.AutoHideMenuBar) MenuBarDeactivate();
+    }
+
+    private void MenuBarActive()
+    {
+      menuMain_menuStrip.Visible = true;
+    }
+
+    private void MenuBarDeactivate()
+    {
+      menuMain_menuStrip.Visible = false;
     }
 
     #endregion
@@ -579,9 +609,11 @@ namespace Gemini
       menuMain_dropSettings_itemProjectSettings.Select();
     }
 
-    private void menuMain_dropSetting_itemMenuVisible_Click(object sender, EventArgs e)
+    private void menuMain_dropSetting_itemAutoHideMenuBar_Click(object sender, EventArgs e)
     {
       Settings.AutoHideMenuBar = !Settings.AutoHideMenuBar;
+      if (Settings.AutoHideMenuBar && menuMain_menuStrip.Visible) MenuBarDeactivate();
+      else MenuBarActive();
       UpdateSettingsState();
     }
 
@@ -1279,6 +1311,7 @@ namespace Gemini
     {
       if (_updatingText) return;
       scriptName.Text = _invalidRegex.Replace(scriptName.Text, "");
+      scriptName.Select(scriptName.Text.Length, 0);
       int section = int.Parse(scriptsView.SelectedNode.Name);
       if (section >= 0 && (scriptsView.SelectedNode.Level == 0 ?
         GetNodeBySection(section).Text : GetScriptBySection(section).Name) != scriptName.Text)
@@ -1898,7 +1931,7 @@ namespace Gemini
       TreeNode node = new TreeNode();
       node.Name = string.Format("{0:00000000}", script.Section);
       node.Text = script.Name.Replace("▼ ", "");
-      node.ToolTipText = node.Text + (script.Name.StartsWith("▼ ") ? "" : " - " + node.Name);
+      node.ToolTipText = (script.Name.StartsWith("▼ ") ? "" : node.Name + " - ") + node.Text;
       if (script.Name.StartsWith("▼ "))
       {
         if (selectedNode != null && selectedNode.Level == 1)
@@ -2513,7 +2546,7 @@ namespace Gemini
 
     private void UpdateSettingsState()
     {
-      bool scripts = _projectScriptsFolderPath != "";
+      bool project = _projectScriptsFolderPath != "";
 
       splitMain.Panel1Collapsed = Settings.DistractionMode.Use;
       toolsEditor_toolStrip.Visible = !Settings.DistractionMode.HideToolbar || !Settings.DistractionMode.Use;
@@ -2521,9 +2554,17 @@ namespace Gemini
         menuMain_dropSettings_itemToggleDistractionMode.Image = Properties.Resources.reduce;
       else
         menuMain_dropSettings_itemToggleDistractionMode.Image = Properties.Resources.expand;
-      menuMain_menuStrip.Visible = !Settings.AutoHideMenuBar;
-      menuMain_dropSettings_itemMenuVisible.Checked = Settings.AutoHideMenuBar;
 
+      if (Settings.AutoHideMenuBar)
+      {
+        menuMain_menuStrip.Leave += menuMain_menuStrip_Leave;
+      }
+      else
+      {
+        menuMain_menuStrip.Leave -= menuMain_menuStrip_Leave;
+      }
+
+      menuMain_dropSettings_itemAutoHideMenuBar.Checked = Settings.AutoHideMenuBar;
       menuMain_dropSettings_itemProjectSettings.Checked = Settings.ProjectConfig;
       menuMain_dropSettings_itemHideToolbar.Checked = Settings.DistractionMode.HideToolbar;
       autoOpenToolStripMenuItem.Checked = Settings.AutoOpen;
@@ -2570,5 +2611,6 @@ namespace Gemini
     }
 
     #endregion
+
   }
 }

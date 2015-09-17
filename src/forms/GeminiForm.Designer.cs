@@ -40,19 +40,19 @@
       System.Windows.Forms.ToolStripSeparator menuMain_dropEdit_seperator3;
       System.Windows.Forms.ToolStripSeparator menuMain_dropSettings_seperator3;
       System.Windows.Forms.ToolStripSeparator menuMain_dropAbout_seperator1;
-      System.Windows.Forms.ToolStripSeparator toolStripSeparator22;
-      System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
       System.Windows.Forms.ToolStripSeparator scriptsView_contextMenu_seperator1;
       System.Windows.Forms.ToolStripSeparator scriptsView_contextMenu_seperator2;
+      System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+      System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+      System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+      System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+      System.Windows.Forms.ToolStripSeparator toolStripSeparator22;
+      System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
       System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
       System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
       System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
       System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
       System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-      System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
-      System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
-      System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
-      System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
       this.menuMain_menuStrip = new System.Windows.Forms.MenuStrip();
       this.menuMain_dropFile = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropFile_itemNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,7 +98,7 @@
       this.menuMain_dropEdit_itemRemoveEmptyOpen = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropEdit_itemRemoveEmptyAll = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuMain_dropSettings_itemMenuVisible = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuMain_dropSettings_itemAutoHideMenuBar = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_seperator = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_dropSettings_itemAutoOpenProject = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemPioritizeRecent = new System.Windows.Forms.ToolStripMenuItem();
@@ -152,6 +152,31 @@
       this.scriptsView_contextMenu_itemMoveUp = new System.Windows.Forms.ToolStripMenuItem();
       this.scriptsView_contextMenu_itemMoveDown = new System.Windows.Forms.ToolStripMenuItem();
       this.scriptsView_contextMenu_itemBatchSearch = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptName = new System.Windows.Forms.TextBox();
+      this.scriptsEditpr_statusStrip = new System.Windows.Forms.StatusStrip();
+      this.scriptsEditor_StatusStrip_itemCharacters = new System.Windows.Forms.ToolStripStatusLabel();
+      this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+      this.scriptsEditor_ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.scriptsEditor_ToolStripMenuItem_Undo = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Redo = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Cut = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Delete = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_SelectAll = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_IncrementalSearch = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Find = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_FindNext = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_FindPrevious = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Replace = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_GoToLine = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_Comment = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete = new System.Windows.Forms.ToolStripMenuItem();
+      this.scriptsFileWatcher = new System.IO.FileSystemWatcher();
+      this.splitView = new System.Windows.Forms.SplitContainer();
+      this.groupSearches = new System.Windows.Forms.GroupBox();
+      this.splitMain = new System.Windows.Forms.SplitContainer();
+      this.groupScripts = new System.Windows.Forms.GroupBox();
       this.toolsView_toolStrip = new System.Windows.Forms.ToolStrip();
       this.toolsView_itemExport = new System.Windows.Forms.ToolStripButton();
       this.toolsView_itemImport = new System.Windows.Forms.ToolStripButton();
@@ -160,9 +185,7 @@
       this.toolsView_itemMoveUp = new System.Windows.Forms.ToolStripButton();
       this.toolsView_itemMoveDown = new System.Windows.Forms.ToolStripButton();
       this.toolsView_itemBatchSearch = new System.Windows.Forms.ToolStripButton();
-      this.scriptName = new System.Windows.Forms.TextBox();
-      this.scriptsEditpr_statusStrip = new System.Windows.Forms.StatusStrip();
-      this.scriptsEditor_StatusStrip_itemCharacters = new System.Windows.Forms.ToolStripStatusLabel();
+      this.scriptsEditor_tabs = new Gemini.AdvancedTabControl();
       this.toolsEditor_toolStrip = new System.Windows.Forms.ToolStrip();
       this.toolsEditor_itemSaveProject = new System.Windows.Forms.ToolStripButton();
       this.toolsEditor_itemOpenProject = new System.Windows.Forms.ToolStripButton();
@@ -185,31 +208,7 @@
       this.toolsEditor_itemDebug = new System.Windows.Forms.ToolStripButton();
       this.toolsEditor_itemProjectFolder = new System.Windows.Forms.ToolStripButton();
       this.toolsEditor_itemCloseProject = new System.Windows.Forms.ToolStripButton();
-      this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-      this.scriptsEditor_ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.scriptsEditor_ToolStripMenuItem_Undo = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Redo = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Cut = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Copy = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Paste = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Delete = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_SelectAll = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_IncrementalSearch = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Find = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_FindNext = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_FindPrevious = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Replace = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_GoToLine = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_Comment = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete = new System.Windows.Forms.ToolStripMenuItem();
-      this.scriptsFileWatcher = new System.IO.FileSystemWatcher();
-      this.splitView = new System.Windows.Forms.SplitContainer();
-      this.scriptsEditor_tabs = new Gemini.AdvancedTabControl();
-      this.groupSearches = new System.Windows.Forms.GroupBox();
       this.searches_TabControl = new Gemini.AdvancedTabControl();
-      this.splitMain = new System.Windows.Forms.SplitContainer();
-      this.groupScripts = new System.Windows.Forms.GroupBox();
-      this.mToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       menuMain_dropFile_seperator1 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropFile_seperator2 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropEdit_seperator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -217,24 +216,22 @@
       menuMain_dropEdit_seperator3 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropSettings_seperator3 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropAbout_seperator1 = new System.Windows.Forms.ToolStripSeparator();
-      toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
-      toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
       scriptsView_contextMenu_seperator1 = new System.Windows.Forms.ToolStripSeparator();
       scriptsView_contextMenu_seperator2 = new System.Windows.Forms.ToolStripSeparator();
+      toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+      toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+      toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+      toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+      toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
+      toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
       toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
       toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
       toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
       toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
       toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-      toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
-      toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-      toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-      toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_menuStrip.SuspendLayout();
       this.scriptsView_contextMenu.SuspendLayout();
-      this.toolsView_toolStrip.SuspendLayout();
       this.scriptsEditpr_statusStrip.SuspendLayout();
-      this.toolsEditor_toolStrip.SuspendLayout();
       this.scriptsEditor_ContextMenuStrip.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.scriptsFileWatcher)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitView)).BeginInit();
@@ -247,6 +244,8 @@
       this.splitMain.Panel2.SuspendLayout();
       this.splitMain.SuspendLayout();
       this.groupScripts.SuspendLayout();
+      this.toolsView_toolStrip.SuspendLayout();
+      this.toolsEditor_toolStrip.SuspendLayout();
       this.SuspendLayout();
       // 
       // menuMain_dropFile_seperator1
@@ -284,16 +283,6 @@
       menuMain_dropAbout_seperator1.Name = "menuMain_dropAbout_seperator1";
       menuMain_dropAbout_seperator1.Size = new System.Drawing.Size(151, 6);
       // 
-      // toolStripSeparator22
-      // 
-      toolStripSeparator22.Name = "toolStripSeparator22";
-      toolStripSeparator22.Size = new System.Drawing.Size(6, 25);
-      // 
-      // toolStripSeparator20
-      // 
-      toolStripSeparator20.Name = "toolStripSeparator20";
-      toolStripSeparator20.Size = new System.Drawing.Size(6, 25);
-      // 
       // scriptsView_contextMenu_seperator1
       // 
       scriptsView_contextMenu_seperator1.Name = "scriptsView_contextMenu_seperator1";
@@ -303,32 +292,6 @@
       // 
       scriptsView_contextMenu_seperator2.Name = "scriptsView_contextMenu_seperator2";
       scriptsView_contextMenu_seperator2.Size = new System.Drawing.Size(197, 6);
-      // 
-      // toolStripSeparator8
-      // 
-      toolStripSeparator8.Name = "toolStripSeparator8";
-      toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
-      // 
-      // toolStripSeparator9
-      // 
-      toolStripSeparator9.Name = "toolStripSeparator9";
-      toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-      // 
-      // toolStripSeparator10
-      // 
-      toolStripSeparator10.Name = "toolStripSeparator10";
-      toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
-      // 
-      // toolStripSeparator11
-      // 
-      toolStripSeparator11.Name = "toolStripSeparator11";
-      toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
-      // 
-      // toolStripSeparator5
-      // 
-      toolStripSeparator5.Name = "toolStripSeparator5";
-      toolStripSeparator5.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-      toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
       // 
       // toolStripSeparator15
       // 
@@ -349,6 +312,16 @@
       // 
       toolStripSeparator12.Name = "toolStripSeparator12";
       toolStripSeparator12.Size = new System.Drawing.Size(204, 6);
+      // 
+      // toolStripSeparator22
+      // 
+      toolStripSeparator22.Name = "toolStripSeparator22";
+      toolStripSeparator22.Size = new System.Drawing.Size(6, 25);
+      // 
+      // toolStripSeparator20
+      // 
+      toolStripSeparator20.Name = "toolStripSeparator20";
+      toolStripSeparator20.Size = new System.Drawing.Size(6, 25);
       // 
       // menuMain_menuStrip
       // 
@@ -784,7 +757,7 @@
       // menuMain_dropSettings
       // 
       this.menuMain_dropSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuMain_dropSettings_itemMenuVisible,
+            this.menuMain_dropSettings_itemAutoHideMenuBar,
             this.menuMain_dropSettings_seperator,
             this.menuMain_dropSettings_itemAutoOpenProject,
             this.viewToolStripMenuItem,
@@ -806,13 +779,14 @@
       this.menuMain_dropSettings.Size = new System.Drawing.Size(61, 20);
       this.menuMain_dropSettings.Text = "Settings";
       // 
-      // menuMain_dropSettings_itemMenuVisible
+      // menuMain_dropSettings_itemAutoHideMenuBar
       // 
-      this.menuMain_dropSettings_itemMenuVisible.Name = "menuMain_dropSettings_itemMenuVisible";
-      this.menuMain_dropSettings_itemMenuVisible.ShortcutKeyDisplayString = "";
-      this.menuMain_dropSettings_itemMenuVisible.Size = new System.Drawing.Size(197, 22);
-      this.menuMain_dropSettings_itemMenuVisible.Text = "Auto Hide Menu Bar";
-      this.menuMain_dropSettings_itemMenuVisible.ToolTipText = "Automaticly hide the menu bar and toggle it by pressing Alt";
+      this.menuMain_dropSettings_itemAutoHideMenuBar.Name = "menuMain_dropSettings_itemAutoHideMenuBar";
+      this.menuMain_dropSettings_itemAutoHideMenuBar.ShortcutKeyDisplayString = "";
+      this.menuMain_dropSettings_itemAutoHideMenuBar.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemAutoHideMenuBar.Text = "Auto Hide Menu Bar";
+      this.menuMain_dropSettings_itemAutoHideMenuBar.ToolTipText = "Automaticly hide the menu bar and toggle it by pressing Alt";
+      this.menuMain_dropSettings_itemAutoHideMenuBar.Click += new System.EventHandler(this.menuMain_dropSetting_itemAutoHideMenuBar_Click);
       // 
       // menuMain_dropSettings_seperator
       // 
@@ -1177,10 +1151,10 @@
       this.scriptsView.ContextMenuStrip = this.scriptsView_contextMenu;
       this.scriptsView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.scriptsView.ItemHeight = 17;
-      this.scriptsView.Location = new System.Drawing.Point(6, 16);
+      this.scriptsView.Location = new System.Drawing.Point(8, 16);
       this.scriptsView.Name = "scriptsView";
       this.scriptsView.ShowNodeToolTips = true;
-      this.scriptsView.Size = new System.Drawing.Size(168, 471);
+      this.scriptsView.Size = new System.Drawing.Size(164, 471);
       this.scriptsView.TabIndex = 0;
       this.scriptsView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.scriptsView_AfterSelect);
       this.scriptsView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scriptsView_KeyDown);
@@ -1285,104 +1259,14 @@
       this.scriptsView_contextMenu_itemBatchSearch.Text = "Find...";
       this.scriptsView_contextMenu_itemBatchSearch.Click += new System.EventHandler(this.scriptsView_contextMenu_itemBatchSearch_Click);
       // 
-      // toolsView_toolStrip
-      // 
-      this.toolsView_toolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.toolsView_toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-      this.toolsView_toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolsView_itemExport,
-            this.toolsView_itemImport,
-            toolStripSeparator22,
-            this.toolsView_itemInsert,
-            this.toolsView_itemDelete,
-            toolStripSeparator20,
-            this.toolsView_itemMoveUp,
-            this.toolsView_itemMoveDown,
-            this.toolsView_itemBatchSearch});
-      this.toolsView_toolStrip.Location = new System.Drawing.Point(3, 513);
-      this.toolsView_toolStrip.Name = "toolsView_toolStrip";
-      this.toolsView_toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-      this.toolsView_toolStrip.Size = new System.Drawing.Size(174, 25);
-      this.toolsView_toolStrip.TabIndex = 6;
-      this.toolsView_toolStrip.Text = "toolStrip1";
-      // 
-      // toolsView_itemExport
-      // 
-      this.toolsView_itemExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsView_itemExport.Image = global::Gemini.Properties.Resources.file_export;
-      this.toolsView_itemExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsView_itemExport.Name = "toolsView_itemExport";
-      this.toolsView_itemExport.Size = new System.Drawing.Size(23, 22);
-      this.toolsView_itemExport.Text = "Quick Export Script";
-      // 
-      // toolsView_itemImport
-      // 
-      this.toolsView_itemImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsView_itemImport.Image = global::Gemini.Properties.Resources.file_import;
-      this.toolsView_itemImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsView_itemImport.Name = "toolsView_itemImport";
-      this.toolsView_itemImport.Size = new System.Drawing.Size(23, 22);
-      this.toolsView_itemImport.Text = "Quick Import Script";
-      // 
-      // toolsView_itemInsert
-      // 
-      this.toolsView_itemInsert.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsView_itemInsert.Image = global::Gemini.Properties.Resources.add;
-      this.toolsView_itemInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsView_itemInsert.Name = "toolsView_itemInsert";
-      this.toolsView_itemInsert.Size = new System.Drawing.Size(23, 22);
-      this.toolsView_itemInsert.Text = "Insert New Script (Ins)";
-      this.toolsView_itemInsert.Click += new System.EventHandler(this.scriptsView_contextMenu_itemInsert_Click);
-      // 
-      // toolsView_itemDelete
-      // 
-      this.toolsView_itemDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsView_itemDelete.Image = global::Gemini.Properties.Resources.delete;
-      this.toolsView_itemDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsView_itemDelete.Name = "toolsView_itemDelete";
-      this.toolsView_itemDelete.Size = new System.Drawing.Size(23, 22);
-      this.toolsView_itemDelete.Text = "Delete Script (Suppr)";
-      this.toolsView_itemDelete.Click += new System.EventHandler(this.scriptsView_contextMenu_itemDelete_Click);
-      // 
-      // toolsView_itemMoveUp
-      // 
-      this.toolsView_itemMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsView_itemMoveUp.Image = global::Gemini.Properties.Resources.up;
-      this.toolsView_itemMoveUp.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsView_itemMoveUp.Name = "toolsView_itemMoveUp";
-      this.toolsView_itemMoveUp.Size = new System.Drawing.Size(23, 22);
-      this.toolsView_itemMoveUp.Text = "Move Item Up (Ctrl+Up)";
-      this.toolsView_itemMoveUp.Click += new System.EventHandler(this.scriptsView_contextMenu_itemMoveUp_Click);
-      // 
-      // toolsView_itemMoveDown
-      // 
-      this.toolsView_itemMoveDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsView_itemMoveDown.Image = global::Gemini.Properties.Resources.down;
-      this.toolsView_itemMoveDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsView_itemMoveDown.Name = "toolsView_itemMoveDown";
-      this.toolsView_itemMoveDown.Size = new System.Drawing.Size(23, 22);
-      this.toolsView_itemMoveDown.Text = "Move Item Down (Ctrl+Down)";
-      this.toolsView_itemMoveDown.Click += new System.EventHandler(this.scriptsView_contextMenu_itemMoveDown_Click);
-      // 
-      // toolsView_itemBatchSearch
-      // 
-      this.toolsView_itemBatchSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-      this.toolsView_itemBatchSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsView_itemBatchSearch.Image = global::Gemini.Properties.Resources.batch;
-      this.toolsView_itemBatchSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsView_itemBatchSearch.Name = "toolsView_itemBatchSearch";
-      this.toolsView_itemBatchSearch.Size = new System.Drawing.Size(23, 22);
-      this.toolsView_itemBatchSearch.Text = "New Search (Ctrl+Maj+F)";
-      this.toolsView_itemBatchSearch.Click += new System.EventHandler(this.scriptsView_contextMenu_itemBatchSearch_Click);
-      // 
       // scriptName
       // 
       this.scriptName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.scriptName.Location = new System.Drawing.Point(6, 490);
+      this.scriptName.Location = new System.Drawing.Point(8, 490);
       this.scriptName.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
       this.scriptName.Name = "scriptName";
-      this.scriptName.Size = new System.Drawing.Size(168, 20);
+      this.scriptName.Size = new System.Drawing.Size(164, 20);
       this.scriptName.TabIndex = 1;
       this.toolTip.SetToolTip(this.scriptName, "Edit title of script");
       // 
@@ -1402,259 +1286,6 @@
       this.scriptsEditor_StatusStrip_itemCharacters.Name = "scriptsEditor_StatusStrip_itemCharacters";
       this.scriptsEditor_StatusStrip_itemCharacters.Size = new System.Drawing.Size(0, 17);
       this.scriptsEditor_StatusStrip_itemCharacters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // toolsEditor_toolStrip
-      // 
-      this.toolsEditor_toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-      this.toolsEditor_toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolsEditor_itemSaveProject,
-            this.toolsEditor_itemOpenProject,
-            toolStripSeparator8,
-            this.toolsEditor_itemSpecialChars,
-            this.toolsEditor_itemStyleConfig,
-            this.toolsEditor_itemAutoCConfig,
-            toolStripSeparator9,
-            this.toolsEditor_itemAutoC,
-            this.toolsEditor_itemAutoIndent,
-            this.toolsEditor_itemIndentGuides,
-            this.toolsEditor_itemFolding,
-            this.toolsEditor_itemHighlight,
-            toolStripSeparator10,
-            this.toolsEditor_itemSearch,
-            this.toolsEditor_itemFind,
-            this.toolsEditor_itemReplace,
-            this.toolsEditor_itemGoToLine,
-            toolStripSeparator11,
-            this.toolsEditor_itemComment,
-            this.toolsEditor_itemStructureScript,
-            this.toolsEditor_itemRemoveLines,
-            toolStripSeparator5,
-            this.toolsEditor_itemRun,
-            this.toolsEditor_itemDebug,
-            this.toolsEditor_itemProjectFolder,
-            this.toolsEditor_itemCloseProject});
-      this.toolsEditor_toolStrip.Location = new System.Drawing.Point(0, 0);
-      this.toolsEditor_toolStrip.Name = "toolsEditor_toolStrip";
-      this.toolsEditor_toolStrip.Padding = new System.Windows.Forms.Padding(0);
-      this.toolsEditor_toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-      this.toolsEditor_toolStrip.Size = new System.Drawing.Size(598, 25);
-      this.toolsEditor_toolStrip.TabIndex = 1;
-      this.toolsEditor_toolStrip.Text = "scriptsEditor_ToolStrip";
-      // 
-      // toolsEditor_itemSaveProject
-      // 
-      this.toolsEditor_itemSaveProject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemSaveProject.Image = global::Gemini.Properties.Resources.save;
-      this.toolsEditor_itemSaveProject.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemSaveProject.Name = "toolsEditor_itemSaveProject";
-      this.toolsEditor_itemSaveProject.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemSaveProject.Text = "Save Project (Ctrl+S)";
-      this.toolsEditor_itemSaveProject.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_SaveProject_Click);
-      // 
-      // toolsEditor_itemOpenProject
-      // 
-      this.toolsEditor_itemOpenProject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemOpenProject.Image = global::Gemini.Properties.Resources.folder_import;
-      this.toolsEditor_itemOpenProject.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemOpenProject.Name = "toolsEditor_itemOpenProject";
-      this.toolsEditor_itemOpenProject.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemOpenProject.Text = "Open Project (Ctrl+O)";
-      this.toolsEditor_itemOpenProject.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_OpenProject_Click);
-      // 
-      // toolsEditor_itemSpecialChars
-      // 
-      this.toolsEditor_itemSpecialChars.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemSpecialChars.Image = global::Gemini.Properties.Resources.charmap;
-      this.toolsEditor_itemSpecialChars.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemSpecialChars.Name = "toolsEditor_itemSpecialChars";
-      this.toolsEditor_itemSpecialChars.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemSpecialChars.Text = "Special Characters";
-      this.toolsEditor_itemSpecialChars.Click += new System.EventHandler(this.scriptsEditor_ToolStripButton_SpecialChars_Click);
-      // 
-      // toolsEditor_itemStyleConfig
-      // 
-      this.toolsEditor_itemStyleConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemStyleConfig.Image = global::Gemini.Properties.Resources.styles;
-      this.toolsEditor_itemStyleConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemStyleConfig.Name = "toolsEditor_itemStyleConfig";
-      this.toolsEditor_itemStyleConfig.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemStyleConfig.Text = "Style Configuration";
-      this.toolsEditor_itemStyleConfig.Click += new System.EventHandler(this.menuMain_dropSettings_itemStylesConfig_Click);
-      // 
-      // toolsEditor_itemAutoCConfig
-      // 
-      this.toolsEditor_itemAutoCConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemAutoCConfig.Image = global::Gemini.Properties.Resources.text_wrench;
-      this.toolsEditor_itemAutoCConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemAutoCConfig.Name = "toolsEditor_itemAutoCConfig";
-      this.toolsEditor_itemAutoCConfig.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemAutoCConfig.Text = "Auto-Complete Configuration";
-      this.toolsEditor_itemAutoCConfig.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoCompleteConfig_Click);
-      // 
-      // toolsEditor_itemAutoC
-      // 
-      this.toolsEditor_itemAutoC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemAutoC.Image = global::Gemini.Properties.Resources.text_complete;
-      this.toolsEditor_itemAutoC.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemAutoC.Name = "toolsEditor_itemAutoC";
-      this.toolsEditor_itemAutoC.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemAutoC.Text = "Toggle Auto-Complete";
-      this.toolsEditor_itemAutoC.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoComplete_Click);
-      // 
-      // toolsEditor_itemAutoIndent
-      // 
-      this.toolsEditor_itemAutoIndent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemAutoIndent.Image = global::Gemini.Properties.Resources.indent;
-      this.toolsEditor_itemAutoIndent.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemAutoIndent.Name = "toolsEditor_itemAutoIndent";
-      this.toolsEditor_itemAutoIndent.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemAutoIndent.Text = "Toggle Auto-Indentation";
-      this.toolsEditor_itemAutoIndent.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoIndent_Click);
-      // 
-      // toolsEditor_itemIndentGuides
-      // 
-      this.toolsEditor_itemIndentGuides.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemIndentGuides.Image = global::Gemini.Properties.Resources.ruler;
-      this.toolsEditor_itemIndentGuides.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemIndentGuides.Name = "toolsEditor_itemIndentGuides";
-      this.toolsEditor_itemIndentGuides.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemIndentGuides.Text = "Toggle Indent Guide";
-      this.toolsEditor_itemIndentGuides.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_IndentGuides_Click);
-      // 
-      // toolsEditor_itemFolding
-      // 
-      this.toolsEditor_itemFolding.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemFolding.Image = global::Gemini.Properties.Resources.fold;
-      this.toolsEditor_itemFolding.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemFolding.Name = "toolsEditor_itemFolding";
-      this.toolsEditor_itemFolding.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemFolding.Text = "Toggle Code Folding";
-      this.toolsEditor_itemFolding.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_CodeFolding_Click);
-      // 
-      // toolsEditor_itemHighlight
-      // 
-      this.toolsEditor_itemHighlight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemHighlight.Image = global::Gemini.Properties.Resources.highlight;
-      this.toolsEditor_itemHighlight.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemHighlight.Name = "toolsEditor_itemHighlight";
-      this.toolsEditor_itemHighlight.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemHighlight.Text = "Toggle Line Highlighter";
-      this.toolsEditor_itemHighlight.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_LineHighlight_Click);
-      // 
-      // toolsEditor_itemSearch
-      // 
-      this.toolsEditor_itemSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemSearch.Image = global::Gemini.Properties.Resources.increaser;
-      this.toolsEditor_itemSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemSearch.Name = "toolsEditor_itemSearch";
-      this.toolsEditor_itemSearch.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemSearch.Text = "Incremental Search (Ctrl+I)";
-      this.toolsEditor_itemSearch.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_IncrementalSearch_Click);
-      // 
-      // toolsEditor_itemFind
-      // 
-      this.toolsEditor_itemFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemFind.Image = global::Gemini.Properties.Resources.find;
-      this.toolsEditor_itemFind.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemFind.Name = "toolsEditor_itemFind";
-      this.toolsEditor_itemFind.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemFind.Text = "Find (Ctrl+F)";
-      this.toolsEditor_itemFind.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Find_Click);
-      // 
-      // toolsEditor_itemReplace
-      // 
-      this.toolsEditor_itemReplace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemReplace.Image = global::Gemini.Properties.Resources.replace;
-      this.toolsEditor_itemReplace.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemReplace.Name = "toolsEditor_itemReplace";
-      this.toolsEditor_itemReplace.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemReplace.Text = "Replace (Ctrl+H)";
-      this.toolsEditor_itemReplace.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Replace_Click);
-      // 
-      // toolsEditor_itemGoToLine
-      // 
-      this.toolsEditor_itemGoToLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemGoToLine.Image = global::Gemini.Properties.Resources._goto;
-      this.toolsEditor_itemGoToLine.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemGoToLine.Name = "toolsEditor_itemGoToLine";
-      this.toolsEditor_itemGoToLine.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemGoToLine.Text = "Go To Line (Ctrl+G)";
-      this.toolsEditor_itemGoToLine.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_GoToLine_Click);
-      // 
-      // toolsEditor_itemComment
-      // 
-      this.toolsEditor_itemComment.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemComment.Image = global::Gemini.Properties.Resources.comment;
-      this.toolsEditor_itemComment.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemComment.Name = "toolsEditor_itemComment";
-      this.toolsEditor_itemComment.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemComment.Text = "Toggle comment (Ctrl+Q)";
-      this.toolsEditor_itemComment.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ToggleComment_Click);
-      // 
-      // toolsEditor_itemStructureScript
-      // 
-      this.toolsEditor_itemStructureScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemStructureScript.Image = global::Gemini.Properties.Resources.outline;
-      this.toolsEditor_itemStructureScript.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemStructureScript.Name = "toolsEditor_itemStructureScript";
-      this.toolsEditor_itemStructureScript.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemStructureScript.Text = "Structure Script";
-      this.toolsEditor_itemStructureScript.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_StructureScriptCurrent_Click);
-      // 
-      // toolsEditor_itemRemoveLines
-      // 
-      this.toolsEditor_itemRemoveLines.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemRemoveLines.Image = global::Gemini.Properties.Resources.emptyspace;
-      this.toolsEditor_itemRemoveLines.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemRemoveLines.Name = "toolsEditor_itemRemoveLines";
-      this.toolsEditor_itemRemoveLines.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemRemoveLines.Text = "Remove Empty Lines";
-      this.toolsEditor_itemRemoveLines.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_RemoveEmptyLinesCurrent_Click);
-      // 
-      // toolsEditor_itemRun
-      // 
-      this.toolsEditor_itemRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemRun.Image = global::Gemini.Properties.Resources.run;
-      this.toolsEditor_itemRun.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemRun.Name = "toolsEditor_itemRun";
-      this.toolsEditor_itemRun.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-      this.toolsEditor_itemRun.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemRun.Text = "Run Game (F5|F12)";
-      this.toolsEditor_itemRun.Click += new System.EventHandler(this.menuMain_dropGame_itemRun_Click);
-      // 
-      // toolsEditor_itemDebug
-      // 
-      this.toolsEditor_itemDebug.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemDebug.Image = global::Gemini.Properties.Resources.debug;
-      this.toolsEditor_itemDebug.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemDebug.Name = "toolsEditor_itemDebug";
-      this.toolsEditor_itemDebug.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-      this.toolsEditor_itemDebug.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemDebug.Text = "Toggle Debug Mode";
-      this.toolsEditor_itemDebug.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Debug_Click);
-      // 
-      // toolsEditor_itemProjectFolder
-      // 
-      this.toolsEditor_itemProjectFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemProjectFolder.Image = global::Gemini.Properties.Resources.folder;
-      this.toolsEditor_itemProjectFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemProjectFolder.Name = "toolsEditor_itemProjectFolder";
-      this.toolsEditor_itemProjectFolder.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-      this.toolsEditor_itemProjectFolder.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemProjectFolder.Text = "Open Project Folder";
-      this.toolsEditor_itemProjectFolder.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ProjectFolder_Click);
-      // 
-      // toolsEditor_itemCloseProject
-      // 
-      this.toolsEditor_itemCloseProject.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-      this.toolsEditor_itemCloseProject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolsEditor_itemCloseProject.Image = global::Gemini.Properties.Resources.close;
-      this.toolsEditor_itemCloseProject.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolsEditor_itemCloseProject.Name = "toolsEditor_itemCloseProject";
-      this.toolsEditor_itemCloseProject.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-      this.toolsEditor_itemCloseProject.Size = new System.Drawing.Size(23, 22);
-      this.toolsEditor_itemCloseProject.Text = "Close Project";
-      this.toolsEditor_itemCloseProject.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_CloseProject_Click);
       // 
       // scriptsEditor_ContextMenuStrip
       // 
@@ -1848,18 +1479,6 @@
       this.splitView.SplitterWidth = 8;
       this.splitView.TabIndex = 3;
       // 
-      // scriptsEditor_tabs
-      // 
-      this.scriptsEditor_tabs.AllowDrop = true;
-      this.scriptsEditor_tabs.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.scriptsEditor_tabs.Location = new System.Drawing.Point(0, 25);
-      this.scriptsEditor_tabs.Name = "scriptsEditor_tabs";
-      this.scriptsEditor_tabs.SelectedIndex = 0;
-      this.scriptsEditor_tabs.Size = new System.Drawing.Size(598, 492);
-      this.scriptsEditor_tabs.TabIndex = 0;
-      this.scriptsEditor_tabs.SelectedIndexChanged += new System.EventHandler(this.scriptsEditor_TabControl_SelectedIndexChanged);
-      this.scriptsEditor_tabs.GotFocus += new System.EventHandler(this.scriptsEditor_TabControl_GotFocus);
-      // 
       // groupSearches
       // 
       this.groupSearches.Controls.Add(this.searches_TabControl);
@@ -1870,18 +1489,6 @@
       this.groupSearches.TabIndex = 0;
       this.groupSearches.TabStop = false;
       this.groupSearches.Text = "Searches";
-      // 
-      // searches_TabControl
-      // 
-      this.searches_TabControl.AllowDrop = true;
-      this.searches_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.searches_TabControl.HotTrack = true;
-      this.searches_TabControl.Location = new System.Drawing.Point(3, 16);
-      this.searches_TabControl.Name = "searches_TabControl";
-      this.searches_TabControl.SelectedIndex = 0;
-      this.searches_TabControl.Size = new System.Drawing.Size(144, 27);
-      this.searches_TabControl.TabIndex = 0;
-      this.searches_TabControl.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.searches_TabControl_ControlRemoved);
       // 
       // splitMain
       // 
@@ -1917,10 +1524,399 @@
       this.groupScripts.TabStop = false;
       this.groupScripts.Text = "Scripts";
       // 
-      // mToolStripMenuItem
+      // toolsView_toolStrip
       // 
-      this.mToolStripMenuItem.Name = "mToolStripMenuItem";
-      this.mToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+      this.toolsView_toolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.toolsView_toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+      this.toolsView_toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsView_itemExport,
+            this.toolsView_itemImport,
+            toolStripSeparator22,
+            this.toolsView_itemInsert,
+            this.toolsView_itemDelete,
+            toolStripSeparator20,
+            this.toolsView_itemMoveUp,
+            this.toolsView_itemMoveDown,
+            this.toolsView_itemBatchSearch});
+      this.toolsView_toolStrip.Location = new System.Drawing.Point(3, 513);
+      this.toolsView_toolStrip.Name = "toolsView_toolStrip";
+      this.toolsView_toolStrip.Size = new System.Drawing.Size(174, 25);
+      this.toolsView_toolStrip.Renderer = new Gemini.Renderers.GeminiToolStripRenderer();
+      this.toolsView_toolStrip.TabIndex = 6;
+      this.toolsView_toolStrip.Text = "toolStrip1";
+      // 
+      // toolsView_itemExport
+      // 
+      this.toolsView_itemExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsView_itemExport.Image = global::Gemini.Properties.Resources.file_export;
+      this.toolsView_itemExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsView_itemExport.Name = "toolsView_itemExport";
+      this.toolsView_itemExport.Size = new System.Drawing.Size(23, 23);
+      this.toolsView_itemExport.Text = "Quick Export Script";
+      // 
+      // toolsView_itemImport
+      // 
+      this.toolsView_itemImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsView_itemImport.Image = global::Gemini.Properties.Resources.file_import;
+      this.toolsView_itemImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsView_itemImport.Name = "toolsView_itemImport";
+      this.toolsView_itemImport.Size = new System.Drawing.Size(23, 23);
+      this.toolsView_itemImport.Text = "Quick Import Script";
+      // 
+      // toolsView_itemInsert
+      // 
+      this.toolsView_itemInsert.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsView_itemInsert.Image = global::Gemini.Properties.Resources.add;
+      this.toolsView_itemInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsView_itemInsert.Name = "toolsView_itemInsert";
+      this.toolsView_itemInsert.Size = new System.Drawing.Size(23, 23);
+      this.toolsView_itemInsert.Text = "Insert New Script (Ins)";
+      this.toolsView_itemInsert.Click += new System.EventHandler(this.scriptsView_contextMenu_itemInsert_Click);
+      // 
+      // toolsView_itemDelete
+      // 
+      this.toolsView_itemDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsView_itemDelete.Image = global::Gemini.Properties.Resources.delete;
+      this.toolsView_itemDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsView_itemDelete.Name = "toolsView_itemDelete";
+      this.toolsView_itemDelete.Size = new System.Drawing.Size(23, 23);
+      this.toolsView_itemDelete.Text = "Delete Script (Suppr)";
+      this.toolsView_itemDelete.Click += new System.EventHandler(this.scriptsView_contextMenu_itemDelete_Click);
+      // 
+      // toolsView_itemMoveUp
+      // 
+      this.toolsView_itemMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsView_itemMoveUp.Image = global::Gemini.Properties.Resources.up;
+      this.toolsView_itemMoveUp.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsView_itemMoveUp.Name = "toolsView_itemMoveUp";
+      this.toolsView_itemMoveUp.Size = new System.Drawing.Size(23, 23);
+      this.toolsView_itemMoveUp.Text = "Move Item Up (Ctrl+Up)";
+      this.toolsView_itemMoveUp.Click += new System.EventHandler(this.scriptsView_contextMenu_itemMoveUp_Click);
+      // 
+      // toolsView_itemMoveDown
+      // 
+      this.toolsView_itemMoveDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsView_itemMoveDown.Image = global::Gemini.Properties.Resources.down;
+      this.toolsView_itemMoveDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsView_itemMoveDown.Name = "toolsView_itemMoveDown";
+      this.toolsView_itemMoveDown.Size = new System.Drawing.Size(23, 23);
+      this.toolsView_itemMoveDown.Text = "Move Item Down (Ctrl+Down)";
+      this.toolsView_itemMoveDown.Click += new System.EventHandler(this.scriptsView_contextMenu_itemMoveDown_Click);
+      // 
+      // toolsView_itemBatchSearch
+      // 
+      this.toolsView_itemBatchSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+      this.toolsView_itemBatchSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsView_itemBatchSearch.Image = global::Gemini.Properties.Resources.batch;
+      this.toolsView_itemBatchSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsView_itemBatchSearch.Name = "toolsView_itemBatchSearch";
+      this.toolsView_itemBatchSearch.Size = new System.Drawing.Size(23, 23);
+      this.toolsView_itemBatchSearch.Text = "New Search (Ctrl+Shift+F)";
+      this.toolsView_itemBatchSearch.Click += new System.EventHandler(this.scriptsView_contextMenu_itemBatchSearch_Click);
+      // 
+      // scriptsEditor_tabs
+      // 
+      this.scriptsEditor_tabs.AllowDrop = true;
+      this.scriptsEditor_tabs.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.scriptsEditor_tabs.Location = new System.Drawing.Point(0, 24);
+      this.scriptsEditor_tabs.Name = "scriptsEditor_tabs";
+      this.scriptsEditor_tabs.SelectedIndex = 0;
+      this.scriptsEditor_tabs.Size = new System.Drawing.Size(598, 493);
+      this.scriptsEditor_tabs.TabIndex = 0;
+      this.scriptsEditor_tabs.SelectedIndexChanged += new System.EventHandler(this.scriptsEditor_TabControl_SelectedIndexChanged);
+      this.scriptsEditor_tabs.GotFocus += new System.EventHandler(this.scriptsEditor_TabControl_GotFocus);
+      // 
+      // toolsEditor_toolStrip
+      // 
+      this.toolsEditor_toolStrip.AutoSize = false;
+      this.toolsEditor_toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+      this.toolsEditor_toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsEditor_itemSaveProject,
+            this.toolsEditor_itemOpenProject,
+            toolStripSeparator8,
+            this.toolsEditor_itemSpecialChars,
+            this.toolsEditor_itemStyleConfig,
+            this.toolsEditor_itemAutoCConfig,
+            toolStripSeparator9,
+            this.toolsEditor_itemAutoC,
+            this.toolsEditor_itemAutoIndent,
+            this.toolsEditor_itemIndentGuides,
+            this.toolsEditor_itemFolding,
+            this.toolsEditor_itemHighlight,
+            toolStripSeparator10,
+            this.toolsEditor_itemSearch,
+            this.toolsEditor_itemFind,
+            this.toolsEditor_itemReplace,
+            this.toolsEditor_itemGoToLine,
+            toolStripSeparator11,
+            this.toolsEditor_itemComment,
+            this.toolsEditor_itemStructureScript,
+            this.toolsEditor_itemRemoveLines,
+            toolStripSeparator5,
+            this.toolsEditor_itemRun,
+            this.toolsEditor_itemDebug,
+            this.toolsEditor_itemProjectFolder,
+            this.toolsEditor_itemCloseProject});
+      this.toolsEditor_toolStrip.Location = new System.Drawing.Point(0, 0);
+      this.toolsEditor_toolStrip.Name = "toolsEditor_toolStrip";
+      this.toolsEditor_toolStrip.Padding = new System.Windows.Forms.Padding(0);
+      this.toolsEditor_toolStrip.Renderer = new Gemini.Renderers.GeminiToolStripRenderer();
+      this.toolsEditor_toolStrip.Size = new System.Drawing.Size(598, 25);
+      this.toolsEditor_toolStrip.TabIndex = 1;
+      this.toolsEditor_toolStrip.Text = "";
+      // 
+      // toolsEditor_itemSaveProject
+      // 
+      this.toolsEditor_itemSaveProject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemSaveProject.Image = global::Gemini.Properties.Resources.save;
+      this.toolsEditor_itemSaveProject.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemSaveProject.Name = "toolsEditor_itemSaveProject";
+      this.toolsEditor_itemSaveProject.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemSaveProject.Text = "Save Project (Ctrl+S)";
+      this.toolsEditor_itemSaveProject.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_SaveProject_Click);
+      // 
+      // toolsEditor_itemOpenProject
+      // 
+      this.toolsEditor_itemOpenProject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemOpenProject.Image = global::Gemini.Properties.Resources.folder_import;
+      this.toolsEditor_itemOpenProject.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemOpenProject.Name = "toolsEditor_itemOpenProject";
+      this.toolsEditor_itemOpenProject.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemOpenProject.Text = "Open Project (Ctrl+O)";
+      this.toolsEditor_itemOpenProject.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_OpenProject_Click);
+      // 
+      // toolStripSeparator8
+      // 
+      toolStripSeparator8.Name = "toolStripSeparator8";
+      toolStripSeparator8.Size = new System.Drawing.Size(6, 24);
+      // 
+      // toolsEditor_itemSpecialChars
+      // 
+      this.toolsEditor_itemSpecialChars.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemSpecialChars.Image = global::Gemini.Properties.Resources.charmap;
+      this.toolsEditor_itemSpecialChars.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemSpecialChars.Name = "toolsEditor_itemSpecialChars";
+      this.toolsEditor_itemSpecialChars.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemSpecialChars.Text = "Special Characters";
+      this.toolsEditor_itemSpecialChars.Click += new System.EventHandler(this.scriptsEditor_ToolStripButton_SpecialChars_Click);
+      // 
+      // toolsEditor_itemStyleConfig
+      // 
+      this.toolsEditor_itemStyleConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemStyleConfig.Image = global::Gemini.Properties.Resources.styles;
+      this.toolsEditor_itemStyleConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemStyleConfig.Name = "toolsEditor_itemStyleConfig";
+      this.toolsEditor_itemStyleConfig.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemStyleConfig.Text = "Style Configuration";
+      this.toolsEditor_itemStyleConfig.Click += new System.EventHandler(this.menuMain_dropSettings_itemStylesConfig_Click);
+      // 
+      // toolsEditor_itemAutoCConfig
+      // 
+      this.toolsEditor_itemAutoCConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemAutoCConfig.Image = global::Gemini.Properties.Resources.text_wrench;
+      this.toolsEditor_itemAutoCConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemAutoCConfig.Name = "toolsEditor_itemAutoCConfig";
+      this.toolsEditor_itemAutoCConfig.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemAutoCConfig.Text = "Auto-Complete Configuration";
+      this.toolsEditor_itemAutoCConfig.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoCompleteConfig_Click);
+      // 
+      // toolStripSeparator9
+      // 
+      toolStripSeparator9.Name = "toolStripSeparator9";
+      toolStripSeparator9.Size = new System.Drawing.Size(6, 24);
+      // 
+      // toolsEditor_itemAutoC
+      // 
+      this.toolsEditor_itemAutoC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemAutoC.Image = global::Gemini.Properties.Resources.text_complete;
+      this.toolsEditor_itemAutoC.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemAutoC.Name = "toolsEditor_itemAutoC";
+      this.toolsEditor_itemAutoC.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemAutoC.Text = "Toggle Auto-Complete";
+      this.toolsEditor_itemAutoC.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoComplete_Click);
+      // 
+      // toolsEditor_itemAutoIndent
+      // 
+      this.toolsEditor_itemAutoIndent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemAutoIndent.Image = global::Gemini.Properties.Resources.indent;
+      this.toolsEditor_itemAutoIndent.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemAutoIndent.Name = "toolsEditor_itemAutoIndent";
+      this.toolsEditor_itemAutoIndent.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemAutoIndent.Text = "Toggle Auto-Indentation";
+      this.toolsEditor_itemAutoIndent.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoIndent_Click);
+      // 
+      // toolsEditor_itemIndentGuides
+      // 
+      this.toolsEditor_itemIndentGuides.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemIndentGuides.Image = global::Gemini.Properties.Resources.ruler;
+      this.toolsEditor_itemIndentGuides.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemIndentGuides.Name = "toolsEditor_itemIndentGuides";
+      this.toolsEditor_itemIndentGuides.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemIndentGuides.Text = "Toggle Indent Guide";
+      this.toolsEditor_itemIndentGuides.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_IndentGuides_Click);
+      // 
+      // toolsEditor_itemFolding
+      // 
+      this.toolsEditor_itemFolding.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemFolding.Image = global::Gemini.Properties.Resources.fold;
+      this.toolsEditor_itemFolding.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemFolding.Name = "toolsEditor_itemFolding";
+      this.toolsEditor_itemFolding.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemFolding.Text = "Toggle Code Folding";
+      this.toolsEditor_itemFolding.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_CodeFolding_Click);
+      // 
+      // toolsEditor_itemHighlight
+      // 
+      this.toolsEditor_itemHighlight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemHighlight.Image = global::Gemini.Properties.Resources.highlight;
+      this.toolsEditor_itemHighlight.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemHighlight.Name = "toolsEditor_itemHighlight";
+      this.toolsEditor_itemHighlight.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemHighlight.Text = "Toggle Line Highlighter";
+      this.toolsEditor_itemHighlight.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_LineHighlight_Click);
+      // 
+      // toolStripSeparator10
+      // 
+      toolStripSeparator10.Name = "toolStripSeparator10";
+      toolStripSeparator10.Size = new System.Drawing.Size(6, 24);
+      // 
+      // toolsEditor_itemSearch
+      // 
+      this.toolsEditor_itemSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemSearch.Image = global::Gemini.Properties.Resources.increaser;
+      this.toolsEditor_itemSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemSearch.Name = "toolsEditor_itemSearch";
+      this.toolsEditor_itemSearch.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemSearch.Text = "Incremental Search (Ctrl+I)";
+      this.toolsEditor_itemSearch.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_IncrementalSearch_Click);
+      // 
+      // toolsEditor_itemFind
+      // 
+      this.toolsEditor_itemFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemFind.Image = global::Gemini.Properties.Resources.find;
+      this.toolsEditor_itemFind.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemFind.Name = "toolsEditor_itemFind";
+      this.toolsEditor_itemFind.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemFind.Text = "Find (Ctrl+F)";
+      this.toolsEditor_itemFind.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Find_Click);
+      // 
+      // toolsEditor_itemReplace
+      // 
+      this.toolsEditor_itemReplace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemReplace.Image = global::Gemini.Properties.Resources.replace;
+      this.toolsEditor_itemReplace.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemReplace.Name = "toolsEditor_itemReplace";
+      this.toolsEditor_itemReplace.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemReplace.Text = "Replace (Ctrl+H)";
+      this.toolsEditor_itemReplace.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Replace_Click);
+      // 
+      // toolsEditor_itemGoToLine
+      // 
+      this.toolsEditor_itemGoToLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemGoToLine.Image = global::Gemini.Properties.Resources._goto;
+      this.toolsEditor_itemGoToLine.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemGoToLine.Name = "toolsEditor_itemGoToLine";
+      this.toolsEditor_itemGoToLine.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemGoToLine.Text = "Go To Line (Ctrl+G)";
+      this.toolsEditor_itemGoToLine.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_GoToLine_Click);
+      // 
+      // toolStripSeparator11
+      // 
+      toolStripSeparator11.Name = "toolStripSeparator11";
+      toolStripSeparator11.Size = new System.Drawing.Size(6, 24);
+      // 
+      // toolsEditor_itemComment
+      // 
+      this.toolsEditor_itemComment.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemComment.Image = global::Gemini.Properties.Resources.comment;
+      this.toolsEditor_itemComment.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemComment.Name = "toolsEditor_itemComment";
+      this.toolsEditor_itemComment.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemComment.Text = "Toggle comment (Ctrl+Q)";
+      this.toolsEditor_itemComment.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ToggleComment_Click);
+      // 
+      // toolsEditor_itemStructureScript
+      // 
+      this.toolsEditor_itemStructureScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemStructureScript.Image = global::Gemini.Properties.Resources.outline;
+      this.toolsEditor_itemStructureScript.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemStructureScript.Name = "toolsEditor_itemStructureScript";
+      this.toolsEditor_itemStructureScript.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemStructureScript.Text = "Structure Script";
+      this.toolsEditor_itemStructureScript.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_StructureScriptCurrent_Click);
+      // 
+      // toolsEditor_itemRemoveLines
+      // 
+      this.toolsEditor_itemRemoveLines.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemRemoveLines.Image = global::Gemini.Properties.Resources.emptyspace;
+      this.toolsEditor_itemRemoveLines.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemRemoveLines.Name = "toolsEditor_itemRemoveLines";
+      this.toolsEditor_itemRemoveLines.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemRemoveLines.Text = "Remove Empty Lines";
+      this.toolsEditor_itemRemoveLines.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_RemoveEmptyLinesCurrent_Click);
+      // 
+      // toolStripSeparator5
+      // 
+      toolStripSeparator5.Name = "toolStripSeparator5";
+      toolStripSeparator5.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+      toolStripSeparator5.Size = new System.Drawing.Size(6, 24);
+      // 
+      // toolsEditor_itemRun
+      // 
+      this.toolsEditor_itemRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemRun.Image = global::Gemini.Properties.Resources.run;
+      this.toolsEditor_itemRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemRun.Name = "toolsEditor_itemRun";
+      this.toolsEditor_itemRun.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+      this.toolsEditor_itemRun.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemRun.Text = "Run Game (F5|F12)";
+      this.toolsEditor_itemRun.Click += new System.EventHandler(this.menuMain_dropGame_itemRun_Click);
+      // 
+      // toolsEditor_itemDebug
+      // 
+      this.toolsEditor_itemDebug.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemDebug.Image = global::Gemini.Properties.Resources.debug;
+      this.toolsEditor_itemDebug.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemDebug.Name = "toolsEditor_itemDebug";
+      this.toolsEditor_itemDebug.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+      this.toolsEditor_itemDebug.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemDebug.Text = "Toggle Debug Mode";
+      this.toolsEditor_itemDebug.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Debug_Click);
+      // 
+      // toolsEditor_itemProjectFolder
+      // 
+      this.toolsEditor_itemProjectFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemProjectFolder.Image = global::Gemini.Properties.Resources.folder;
+      this.toolsEditor_itemProjectFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemProjectFolder.Name = "toolsEditor_itemProjectFolder";
+      this.toolsEditor_itemProjectFolder.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+      this.toolsEditor_itemProjectFolder.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemProjectFolder.Text = "Open Project Folder";
+      this.toolsEditor_itemProjectFolder.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ProjectFolder_Click);
+      // 
+      // toolsEditor_itemCloseProject
+      // 
+      this.toolsEditor_itemCloseProject.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+      this.toolsEditor_itemCloseProject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolsEditor_itemCloseProject.Image = global::Gemini.Properties.Resources.close;
+      this.toolsEditor_itemCloseProject.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolsEditor_itemCloseProject.Name = "toolsEditor_itemCloseProject";
+      this.toolsEditor_itemCloseProject.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+      this.toolsEditor_itemCloseProject.Size = new System.Drawing.Size(23, 23);
+      this.toolsEditor_itemCloseProject.Text = "Close Project";
+      this.toolsEditor_itemCloseProject.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_CloseProject_Click);
+      // 
+      // searches_TabControl
+      // 
+      this.searches_TabControl.AllowDrop = true;
+      this.searches_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.searches_TabControl.HotTrack = true;
+      this.searches_TabControl.Location = new System.Drawing.Point(3, 16);
+      this.searches_TabControl.Name = "searches_TabControl";
+      this.searches_TabControl.SelectedIndex = 0;
+      this.searches_TabControl.Size = new System.Drawing.Size(144, 27);
+      this.searches_TabControl.TabIndex = 0;
+      this.searches_TabControl.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.searches_TabControl_ControlRemoved);
       // 
       // GeminiForm
       // 
@@ -1940,12 +1936,8 @@
       this.menuMain_menuStrip.ResumeLayout(false);
       this.menuMain_menuStrip.PerformLayout();
       this.scriptsView_contextMenu.ResumeLayout(false);
-      this.toolsView_toolStrip.ResumeLayout(false);
-      this.toolsView_toolStrip.PerformLayout();
       this.scriptsEditpr_statusStrip.ResumeLayout(false);
       this.scriptsEditpr_statusStrip.PerformLayout();
-      this.toolsEditor_toolStrip.ResumeLayout(false);
-      this.toolsEditor_toolStrip.PerformLayout();
       this.scriptsEditor_ContextMenuStrip.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.scriptsFileWatcher)).EndInit();
       this.splitView.Panel1.ResumeLayout(false);
@@ -1960,6 +1952,10 @@
       this.splitMain.ResumeLayout(false);
       this.groupScripts.ResumeLayout(false);
       this.groupScripts.PerformLayout();
+      this.toolsView_toolStrip.ResumeLayout(false);
+      this.toolsView_toolStrip.PerformLayout();
+      this.toolsEditor_toolStrip.ResumeLayout(false);
+      this.toolsEditor_toolStrip.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -2111,14 +2107,13 @@
     private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemToggleDistractionMode;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemHideToolbar;
-    private System.Windows.Forms.ToolStripMenuItem mToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemConfiguration;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemProjectSettings;
     private System.Windows.Forms.ToolStripSeparator menuMain_dropSettings_seperator7;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemSaveSettings;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemClearSettings;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoSaveSettings;
-    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemMenuVisible;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoHideMenuBar;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemUpdate;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemUpdateNow;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoUpdate;
