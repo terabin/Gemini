@@ -1,8 +1,7 @@
 version: 3.1.0.{build}
 branches:
-  except:
-    - release/*
-    - docs
+  only:
+    - master
 skip_commits:
   message: /(Create|Add).*\.(png|jpg|jpeg|bmp|gif|md)/
 #init:
