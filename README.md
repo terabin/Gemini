@@ -11,14 +11,13 @@ Terms of use set by ForeverZer0 (found under Download at link above)
 ## Introduction
 Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a feature-rich script editor designed purposefully for the RPG Maker community. It can directly read and write archived Scripts.r*data files, which allows you to use the power of an external IDE without the trouble of importing/exporting scripts to and from the built-in editor.
 
-## Features
 
-### Newest Features
-- Project-based configuration
+## Newest Features
+- Project-based confi<guration
 - Able to customize game executable and arguments
 - Can restore last opened tabs per projects for faster production rate
 
-### Older Features
+## Features
 - Uses the popular SciLexer library for syntax highlighting
 - Custom color and font styles for parsing syntax
 - Auto-Complete function to help improve productivity, letting you choose default words, or create your own list
@@ -55,6 +54,7 @@ Here version numbers are defined as `MAJOR.MINOR.PATCH` where:
 
 ### From 3.0.0 to 3.1.0
 - Updated icons
+- Fix paddings
 - Updated Settings menu
 - Changed some defaults in the configuration
 - Made it optional to use project-based configuration

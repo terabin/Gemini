@@ -2,6 +2,7 @@
 
 ### v.3.1.0
 - Updated icons
+- Fix paddings
 - Updated Settings menu
 - Changed some defaults in the configuration
 - Made it optional to use project-based configuration
