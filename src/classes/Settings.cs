@@ -34,6 +34,7 @@ namespace Gemini
     public static string RuntimeExecutable { get; set; }
     public static string RuntimeArguments { get; set; }
     public static bool AutoCheckUpdates { get; set; }
+    public static string UpdateChannel{ get; set; }
 
     public static void SetDefaults()
     {
@@ -65,6 +66,7 @@ namespace Gemini
       LineHighLightColor = Color.FromArgb(50, 195, 216, 255);
       CodeFolding = true;
       AutoCheckUpdates = false;
+      UpdateChannel = "master";
     }
 
     public static void SetLocalDefaults()
@@ -125,6 +127,7 @@ namespace Gemini
       saveData.ScriptStyles = ScriptStyles;
       saveData.AutoComplete = new Serializable.AutoComplete(AutoComplete, AutoCompleteLength, AutoCompleteFlag, AutoCompleteCustomWords);
       saveData.AutoCheckUpdates = AutoCheckUpdates;
+      saveData.UpdateChannel = UpdateChannel;
       if (File.Exists(path))
         File.Delete(path);
       using (Stream stream = File.OpenWrite(path))
@@ -177,6 +180,7 @@ namespace Gemini
           AutoCompleteFlag = saveData.AutoComplete.Flag;
           AutoCompleteCustomWords = saveData.AutoComplete.CustomWords;
           AutoCheckUpdates = saveData.AutoCheckUpdates;
+          UpdateChannel = saveData.UpdateChannel;
         }
         catch (Exception)
         {

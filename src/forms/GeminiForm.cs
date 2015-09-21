@@ -621,26 +621,36 @@ namespace Gemini
     {
       Settings.DistractionMode = new Serializable.DistracionMode(Settings.DistractionMode.Use, !Settings.DistractionMode.HideToolbar);
       UpdateSettingsState();
+      menuMain_dropSettings.ShowDropDown();
+      menuMain_dropSettings_itemViewConfig.ShowDropDown();
+      menuMain_dropSettings_itemHideToolbar.Select();
     }
 
     private void menuMain_dropSettings_itemPioritizeRecent_Click(object sender, EventArgs e)
     {
       Settings.RecentPriority = !Settings.RecentPriority;
-      if (sender == menuMain_dropSettings_itemPioritizeRecent)
-      {
-        menuMain_dropSettings.ShowDropDown();
-        autoOpenToolStripMenuItem.ShowDropDown();
-        menuMain_dropSettings_itemPioritizeRecent.Select();
-      }
-      UpdateSettingsState();
-    }
-
-    private void menuMain_dropSettings_itemAutoOpenProject_Click(object sender, EventArgs e)
-    {
-      Settings.AutoOpen = !Settings.AutoOpen;
       UpdateSettingsState();
       menuMain_dropSettings.ShowDropDown();
-      autoOpenToolStripMenuItem.Select();
+      menuMain_dropSettings_itemAutoOpenProject.ShowDropDown();
+      menuMain_dropSettings_itemPioritizeRecent.Select();
+    }
+
+    private void menuMain_dropSettings_itemAutoOpenOn_Click(object sender, EventArgs e)
+    {
+      Settings.AutoOpen = true;
+      UpdateSettingsState();
+      menuMain_dropSettings.ShowDropDown();
+      menuMain_dropSettings_itemAutoOpenProject.ShowDropDown();
+      menuMain_dropSettings_itemAutoOpenOn.Select();
+    }
+
+    private void menuMain_dropSettings_itemAutoOpenOff_Click(object sender, EventArgs e)
+    {
+      Settings.AutoOpen = false;
+      UpdateSettingsState();
+      menuMain_dropSettings.ShowDropDown();
+      menuMain_dropSettings_itemAutoOpenProject.ShowDropDown();
+      menuMain_dropSettings_itemAutoOpenOff.Select();
     }
 
     private void menuMain_dropGame_itemCustomRuntime_Click(object sender, EventArgs e)
@@ -662,7 +672,7 @@ namespace Gemini
     /// <summary>
     /// Displays the style editor dialog
     /// </summary>
-    private void menuMain_dropSettings_itemStylesConfig_Click(object sender, EventArgs e)
+    private void menuMain_dropSettings_itemStyleConfig_Click(object sender, EventArgs e)
     {
       using (StyleEditorForm dialog = new StyleEditorForm())
         if (dialog.ShowDialog() == DialogResult.OK)
@@ -2567,7 +2577,8 @@ namespace Gemini
       menuMain_dropSettings_itemAutoHideMenuBar.Checked = Settings.AutoHideMenuBar;
       menuMain_dropSettings_itemProjectSettings.Checked = Settings.ProjectConfig;
       menuMain_dropSettings_itemHideToolbar.Checked = Settings.DistractionMode.HideToolbar;
-      autoOpenToolStripMenuItem.Checked = Settings.AutoOpen;
+      menuMain_dropSettings_itemAutoOpenOn.Checked = Settings.AutoOpen;
+      menuMain_dropSettings_itemAutoOpenOff.Checked = !Settings.AutoOpen;
       menuMain_dropSettings_itemPioritizeRecent.Checked = Settings.RecentPriority;
       menuMain_dropSettings_itemAutoSaveSettings.Checked = Settings.AutoSaveConfig;
       menuMain_dropSettings_itemAutoC.Checked = Settings.AutoComplete;

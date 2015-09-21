@@ -1,4 +1,4 @@
-version: dev-3.1.0.{build}
+version: 3.1.0
 branches:
   only:
     - master
@@ -16,13 +16,13 @@ assembly_info:
   file: '**\AssemblyInfo.*'
   assembly_version: '{version}'
   assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
+  assembly_informational_version: 'branch-%appveyor_repo_branch%'
 environment:
   access_token:
     secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
 build_script:
 - ps: nuget restore
-- ps: copy-item -path packages -destination src -recurse
+- ps: move-item -path packages -destination src -recurse
 - msbuild "Gemini.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 #- mkdir build
 #- mkdir build\%configuration%
@@ -30,9 +30,7 @@ build_script:
 #- cp src\bin\%configuration%\Gemini.exe build\%configuration%\Gemini.exe
 - cd src\bin\%configuration%\
 - 7z a Gemini.zip Gemini.exe
-- cd ..
-- cd ..
-- cd ..
+- cd ../../..
 - cp src\bin\%configuration%\Gemini.zip Gemini.zip
 artifacts:
 - path: Gemini.zip
@@ -43,14 +41,15 @@ deploy:
 - provider: GitHub
   tag: v$(appveyor_build_version)
   release: Gemini v$(appveyor_build_version)
-  description: Autocompiled build from Appveyor.
-  auth_token: $(access_token)
+  description: Automatic build from Appveyor.
+  auth_token:
+    secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
   artifact: Gemini.zip
   draft: false
   prerelease: true
-#on_success:
-#  - git config credential.helper store
-#  - echo "https://%access_token%:x-oauth-basic@github.com" > "%userprofile%\.git-credential
-#  - git add -f build
-#  - git commit -m "Add latest build from AppVeyor\n[skip ci]"
-#  - git push --verbose origin release/%appveyor_repo_branch%
+on_success:
+  - git config credential.helper store
+  - echo "https://%access_token%:x-oauth-basic@github.com" > "%userprofile%\.git-credential"
+  - git add -f build
+  - git commit -m "Add latest build from AppVeyor\n[skip ci]"
+  - git push --verbose origin release/%appveyor_repo_branch%

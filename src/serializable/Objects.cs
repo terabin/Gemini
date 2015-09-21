@@ -6,6 +6,7 @@ namespace Gemini.Serializable
   [Serializable]
   public struct Gemini
   {
+    public string UpdateChannel;
     public bool AutoCheckUpdates;
     public bool AutoSaveConfig;
     public bool UseProjectConfig;
