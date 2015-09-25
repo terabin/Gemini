@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 
 namespace Gemini.Serializable
 {
@@ -9,26 +10,22 @@ namespace Gemini.Serializable
   {
     public static Color Deserialize(ColorProperties value)
     {
-      return Color.FromArgb(value.Alpha, value.Red, value.Green, value.Blue);
+      return Color.FromArgb(int.Parse(value.Hex.Replace("#",""), NumberStyles.HexNumber));
     }
     
     public static ColorProperties Serialize(Color value)
     {
-      ColorProperties prop;
-      prop.Alpha = value.A;
-      prop.Red = value.R;
-      prop.Green = value.G;
-      prop.Blue = value.B;
-      return prop;
+      return new ColorProperties("#" + value.A.ToString("X2") + value.R.ToString("X2")+ value.G.ToString("X2")+ value.B.ToString("X2"));
     }
   }
 
   [Serializable]
   public struct ColorProperties
   {
-    public int Alpha;
-    public int Red;
-    public int Green;
-    public int Blue;
+    public ColorProperties(string hex)
+    {
+      Hex = hex;
+    }
+    public string Hex;
   }
 }

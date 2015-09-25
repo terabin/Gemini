@@ -13,9 +13,10 @@ namespace Gemini
     public Color ForeColor
     {
       get { return ColorSerializetionHelper.Deserialize(ForegroundColor); }
-      set { BackgroundColor = ColorSerializetionHelper.Serialize(value); }
+      set { ForegroundColor = ColorSerializetionHelper.Serialize(value); }
     }
     public ColorProperties ForegroundColor;
+
     [XmlIgnore()]
     public Color BackColor
     {
@@ -23,6 +24,7 @@ namespace Gemini
       set { BackgroundColor = ColorSerializetionHelper.Serialize(value); }
     }
     public ColorProperties BackgroundColor;
+
     [XmlIgnore()]
     public Font Font
     {

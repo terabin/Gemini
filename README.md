@@ -53,8 +53,8 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 - [ ] Add Ctrl+Tab/Ctrl+Shift+Tab shortcuts for switching for tabs
 - [ ] Adapt the update methods to work with the new Git-Repo.
 
-## Versions
-Here version is defined as `MAJOR.MINOR.PATCH` where:
+## Versioning
+Version is defined as `MAJOR.MINOR.PATCH`, where:
 
 1. `MAJOR` is increased when there is incompatible API changes,
 2. `MINOR` is increased when backwards-compatible functionality is added, and
@@ -62,18 +62,7 @@ Here version is defined as `MAJOR.MINOR.PATCH` where:
 
 ## Changes
 
-### From 3.0.0 to 3.1.0
-- Updated icons
-- Fixed some paddings
-- Updated Settings menu
-- Changed some defaults in the configuration
-- Made it optional to use project-based configuration
-- Removed 'Highlight Color' from editor toolbar
-- Pre-enabled update functionality
-- Game start fixes
-- Some fixes here and there
-
-See `CHANGELOG.md` for a longer list of changes.
+See `CHANGELOG.md` for a list of changes.
 
 ## Compatibility
 Requires Microsoft [.NET Framework 4 (Web Installer)](http://www.microsoft.com/en-us/download/details.aspx?id=17851).

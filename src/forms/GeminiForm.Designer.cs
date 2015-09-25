@@ -1,37 +1,37 @@
 ﻿namespace Gemini
 {
-    partial class GeminiForm
+  partial class GeminiForm
+  {
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+      if (disposing && (components != null))
+      {
         _findReplaceDialog.Dispose();
-				_charmap.Dispose();
-                foreach (Script script in _scripts)
-                    script.Dispose();
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        _charmap.Dispose();
+        foreach (Script script in _scripts)
+          script.Dispose();
+        components.Dispose();
+      }
+      base.Dispose(disposing);
+    }
 
-        #region Windows Form Designer generated code
+    #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
       this.components = new System.ComponentModel.Container();
       System.Windows.Forms.ToolStripSeparator menuMain_dropFile_seperator1;
       System.Windows.Forms.ToolStripSeparator menuMain_dropFile_seperator2;
@@ -113,6 +113,7 @@
       this.menuMain_dropSettings_itemUpdateNow = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_seperator8 = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_dropSettings_itemAutoUpdate = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemAutoSaveSettings = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemProjectSettings = new System.Windows.Forms.ToolStripMenuItem();
@@ -208,7 +209,9 @@
       this.toolsView_itemMoveUp = new System.Windows.Forms.ToolStripButton();
       this.toolsView_itemMoveDown = new System.Windows.Forms.ToolStripButton();
       this.toolsView_itemBatchSearch = new System.Windows.Forms.ToolStripButton();
-      this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+      this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+      this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+      this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropFile_seperator1 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropFile_seperator2 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropEdit_seperator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -628,7 +631,7 @@
       // 
       this.menuMain_dropEdit_itemBatchSearch.Image = global::Gemini.Properties.Resources.batch;
       this.menuMain_dropEdit_itemBatchSearch.Name = "menuMain_dropEdit_itemBatchSearch";
-      this.menuMain_dropEdit_itemBatchSearch.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+      this.menuMain_dropEdit_itemBatchSearch.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.F)));
       this.menuMain_dropEdit_itemBatchSearch.Size = new System.Drawing.Size(213, 22);
       this.menuMain_dropEdit_itemBatchSearch.Text = "Batch Search";
@@ -902,7 +905,7 @@
             this.menuMain_dropSettings_itemUpdateNow,
             this.menuMain_dropSettings_seperator8,
             this.menuMain_dropSettings_itemAutoUpdate,
-            this.toolStripComboBox1});
+            this.toolStripMenuItem1});
       this.menuMain_dropSettings_itemUpdate.Image = global::Gemini.Properties.Resources.update;
       this.menuMain_dropSettings_itemUpdate.Name = "menuMain_dropSettings_itemUpdate";
       this.menuMain_dropSettings_itemUpdate.Size = new System.Drawing.Size(197, 22);
@@ -925,6 +928,13 @@
       this.menuMain_dropSettings_itemAutoUpdate.Size = new System.Drawing.Size(195, 22);
       this.menuMain_dropSettings_itemAutoUpdate.Text = "Auto-check for updates";
       this.menuMain_dropSettings_itemAutoUpdate.ToolTipText = "Toggle automaticly check for updates at startup";
+      // 
+      // toolStripMenuItem1
+      // 
+      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(195, 22);
+      this.toolStripMenuItem1.Text = "Update Channel";
+      this.toolStripMenuItem1.ToolTipText = "Branch tag to use to check for updates";
       // 
       // menuMain_dropSettings_itemConfiguration
       // 
@@ -967,6 +977,7 @@
       this.menuMain_dropSettings_itemSaveSettings.Size = new System.Drawing.Size(211, 22);
       this.menuMain_dropSettings_itemSaveSettings.Text = "Save Settings";
       this.menuMain_dropSettings_itemSaveSettings.ToolTipText = "Save current settings";
+      this.menuMain_dropSettings_itemSaveSettings.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_SaveSettings_Click);
       // 
       // menuMain_dropSettings_itemClearSettings
       // 
@@ -974,6 +985,7 @@
       this.menuMain_dropSettings_itemClearSettings.Size = new System.Drawing.Size(211, 22);
       this.menuMain_dropSettings_itemClearSettings.Text = "Clear Settings";
       this.menuMain_dropSettings_itemClearSettings.ToolTipText = "Delete current user settings";
+      this.menuMain_dropSettings_itemClearSettings.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_DeleteSettings_Click);
       // 
       // menuMain_dropSettings_seperator1
       // 
@@ -1168,16 +1180,16 @@
       // 
       // scriptsView
       // 
-      this.scriptsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+      this.scriptsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
       this.scriptsView.ContextMenuStrip = this.scriptsView_contextMenu;
       this.scriptsView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.scriptsView.ItemHeight = 17;
-      this.scriptsView.Location = new System.Drawing.Point(8, 16);
+      this.scriptsView.Location = new System.Drawing.Point(7, 15);
       this.scriptsView.Name = "scriptsView";
       this.scriptsView.ShowNodeToolTips = true;
-      this.scriptsView.Size = new System.Drawing.Size(164, 471);
+      this.scriptsView.Size = new System.Drawing.Size(226, 472);
       this.scriptsView.TabIndex = 0;
       this.scriptsView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.scriptsView_AfterSelect);
       this.scriptsView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scriptsView_KeyDown);
@@ -1284,12 +1296,12 @@
       // 
       // scriptName
       // 
-      this.scriptName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+      this.scriptName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.scriptName.Location = new System.Drawing.Point(8, 490);
+      this.scriptName.Location = new System.Drawing.Point(7, 490);
       this.scriptName.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
       this.scriptName.Name = "scriptName";
-      this.scriptName.Size = new System.Drawing.Size(164, 20);
+      this.scriptName.Size = new System.Drawing.Size(226, 20);
       this.scriptName.TabIndex = 1;
       this.toolTip.SetToolTip(this.scriptName, "Edit title of script");
       // 
@@ -1299,7 +1311,7 @@
             this.scriptsEditor_StatusStrip_itemCharacters});
       this.scriptsEditpr_statusStrip.Location = new System.Drawing.Point(0, 517);
       this.scriptsEditpr_statusStrip.Name = "scriptsEditpr_statusStrip";
-      this.scriptsEditpr_statusStrip.Size = new System.Drawing.Size(598, 22);
+      this.scriptsEditpr_statusStrip.Size = new System.Drawing.Size(538, 22);
       this.scriptsEditpr_statusStrip.SizingGrip = false;
       this.scriptsEditpr_statusStrip.TabIndex = 2;
       this.scriptsEditpr_statusStrip.Text = "scriptsEditor_StatusStrip";
@@ -1497,7 +1509,7 @@
       this.splitView.Panel2.Controls.Add(this.groupSearches);
       this.splitView.Panel2Collapsed = true;
       this.splitView.Panel2MinSize = 0;
-      this.splitView.Size = new System.Drawing.Size(598, 539);
+      this.splitView.Size = new System.Drawing.Size(538, 539);
       this.splitView.SplitterDistance = 349;
       this.splitView.SplitterWidth = 8;
       this.splitView.TabIndex = 3;
@@ -1509,7 +1521,7 @@
       this.scriptsEditor_tabs.Location = new System.Drawing.Point(0, 25);
       this.scriptsEditor_tabs.Name = "scriptsEditor_tabs";
       this.scriptsEditor_tabs.SelectedIndex = 0;
-      this.scriptsEditor_tabs.Size = new System.Drawing.Size(598, 492);
+      this.scriptsEditor_tabs.Size = new System.Drawing.Size(538, 492);
       this.scriptsEditor_tabs.TabIndex = 0;
       this.scriptsEditor_tabs.SelectedIndexChanged += new System.EventHandler(this.scriptsEditor_TabControl_SelectedIndexChanged);
       this.scriptsEditor_tabs.GotFocus += new System.EventHandler(this.scriptsEditor_TabControl_GotFocus);
@@ -1548,8 +1560,8 @@
       this.toolsEditor_toolStrip.Location = new System.Drawing.Point(0, 0);
       this.toolsEditor_toolStrip.Name = "toolsEditor_toolStrip";
       this.toolsEditor_toolStrip.Padding = new System.Windows.Forms.Padding(0);
-      this.toolsEditor_toolStrip.Renderer = new Renderers.GeminiToolStripRenderer();
-      this.toolsEditor_toolStrip.Size = new System.Drawing.Size(598, 25);
+      this.toolsEditor_toolStrip.Renderer = new Rendering.ToolStripRenderer();
+      this.toolsEditor_toolStrip.Size = new System.Drawing.Size(538, 25);
       this.toolsEditor_toolStrip.TabIndex = 1;
       // 
       // toolsEditor_itemSaveProject
@@ -1808,7 +1820,7 @@
       this.splitMain.Panel2.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
       this.splitMain.Panel2MinSize = 500;
       this.splitMain.Size = new System.Drawing.Size(784, 541);
-      this.splitMain.SplitterDistance = 180;
+      this.splitMain.SplitterDistance = 240;
       this.splitMain.TabIndex = 0;
       // 
       // groupScripts
@@ -1819,7 +1831,7 @@
       this.groupScripts.Dock = System.Windows.Forms.DockStyle.Fill;
       this.groupScripts.Location = new System.Drawing.Point(0, 0);
       this.groupScripts.Name = "groupScripts";
-      this.groupScripts.Size = new System.Drawing.Size(180, 541);
+      this.groupScripts.Size = new System.Drawing.Size(240, 541);
       this.groupScripts.TabIndex = 7;
       this.groupScripts.TabStop = false;
       this.groupScripts.Text = "Scripts";
@@ -1835,13 +1847,16 @@
             this.toolsView_itemInsert,
             this.toolsView_itemDelete,
             toolStripSeparator20,
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripSeparator1,
             this.toolsView_itemMoveUp,
             this.toolsView_itemMoveDown,
             this.toolsView_itemBatchSearch});
       this.toolsView_toolStrip.Location = new System.Drawing.Point(3, 513);
       this.toolsView_toolStrip.Name = "toolsView_toolStrip";
-      this.toolsView_toolStrip.Renderer = new Renderers.GeminiToolStripRenderer();
-      this.toolsView_toolStrip.Size = new System.Drawing.Size(174, 25);
+      this.toolsView_toolStrip.Renderer = new Rendering.ToolStripRenderer();
+      this.toolsView_toolStrip.Size = new System.Drawing.Size(234, 25);
       this.toolsView_toolStrip.TabIndex = 6;
       this.toolsView_toolStrip.Text = "toolStrip1";
       // 
@@ -1910,18 +1925,32 @@
       this.toolsView_itemBatchSearch.Image = global::Gemini.Properties.Resources.batch;
       this.toolsView_itemBatchSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.toolsView_itemBatchSearch.Name = "toolsView_itemBatchSearch";
-      this.toolsView_itemBatchSearch.Size = new System.Drawing.Size(23, 22);
+      this.toolsView_itemBatchSearch.Size = new System.Drawing.Size(23, 20);
       this.toolsView_itemBatchSearch.Text = "New Search (Ctrl+Shift+F)";
       this.toolsView_itemBatchSearch.Click += new System.EventHandler(this.scriptsView_contextMenu_itemBatchSearch_Click);
       // 
-      // toolStripComboBox1
+      // toolStripButton1
       // 
-      this.toolStripComboBox1.Items.AddRange(new object[] {
-            "master",
-            "develop",
-            "release-canidates"});
-      this.toolStripComboBox1.Name = "toolStripComboBox1";
-      this.toolStripComboBox1.Size = new System.Drawing.Size(121, 21);
+      this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolStripButton1.Image = global::Gemini.Properties.Resources.left;
+      this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolStripButton1.Name = "toolStripButton1";
+      this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+      this.toolStripButton1.Text = "toolStripButton1";
+      // 
+      // toolStripButton2
+      // 
+      this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolStripButton2.Image = global::Gemini.Properties.Resources.right;
+      this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolStripButton2.Name = "toolStripButton2";
+      this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+      this.toolStripButton2.Text = "toolStripButton2";
+      // 
+      // toolStripSeparator1
+      // 
+      this.toolStripSeparator1.Name = "toolStripSeparator1";
+      this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
       // 
       // GeminiForm
       // 
@@ -1964,129 +1993,129 @@
       this.ResumeLayout(false);
       this.PerformLayout();
 
-        }
+    }
 
-        #endregion
+    #endregion
 
-        private System.Windows.Forms.MenuStrip menuMain_menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings;
-        private System.Windows.Forms.TextBox scriptName;
-        private System.Windows.Forms.ContextMenuStrip scriptsView_contextMenu;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemInsert;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemCut;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemCopy;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemPaste;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemDelete;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemMoveUp;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemMoveDown;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemBatchSearch;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemOpen;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemSave;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExit;
-        private System.Windows.Forms.ToolTip toolTip;
-		private System.Windows.Forms.ToolStrip toolsEditor_toolStrip;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemComment;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemRun;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoC;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoIndent;
-		private System.Windows.Forms.StatusStrip scriptsEditpr_statusStrip;
-		private System.Windows.Forms.ToolStripStatusLabel scriptsEditor_StatusStrip_itemCharacters;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemStyleConfig;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNew;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNewRMXP;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNewRMVX;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropAbout;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoC;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemIndentGuides;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoIndent;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemHighlight;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoCConfig;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemSaveProject;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemCloseProject;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemStyleConfig;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemSearch;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemFind;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemGoToLine;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemIndentGuides;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoCConfig;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemHighlight;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemHighlightColor;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemSpecialChars;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemOpenProject;
-		private System.Windows.Forms.ContextMenuStrip scriptsEditor_ContextMenuStrip;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Undo;
-        private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Redo;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Cut;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Copy;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Paste;
-        private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Delete;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Find;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_IncrementalSearch;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_FindNext;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_FindPrevious;
-        private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Replace;
-        private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Comment;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_GoToLine;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemReplace;
-		private System.Windows.Forms.ToolStripButton toolsEditor_itemStructureScript;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExportTo;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExportToText;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExportToRuby;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropAbout_itemAboutGemini;
-		private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete;
-		private System.Windows.Forms.ToolStripMenuItem menuMain_dropAbout_itemVersionHistory;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemFolding;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemProjectFolder;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNewRMVXAce;
-        private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_SelectAll;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemDebug;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemClose;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemRunWithF12;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemDebug;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemProjectFolder;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemFolding;
-        private System.Windows.Forms.ToolStripButton toolsEditor_itemRemoveLines;
-        private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemOpen;
-        private System.IO.FileSystemWatcher scriptsFileWatcher;
-        private System.Windows.Forms.SplitContainer splitView;
-        private AdvancedTabControl scriptsEditor_tabs;
-        private System.Windows.Forms.GroupBox groupSearches;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExoprtToRMData;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemHelp;
-        private System.Windows.Forms.ToolStrip toolsView_toolStrip;
-        private System.Windows.Forms.ToolStripButton toolsView_itemImport;
-        private System.Windows.Forms.ToolStripButton toolsView_itemInsert;
-        private System.Windows.Forms.ToolStripButton toolsView_itemMoveUp;
-        private System.Windows.Forms.ToolStripButton toolsView_itemMoveDown;
-        private System.Windows.Forms.ToolStripButton toolsView_itemDelete;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSelectAll;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemIncrementalSearch;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemFind;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemReplace;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemGoTo;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemBatchComment;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemToggleComment;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemComment;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemUnComment;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemStructureScript;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSScriptCurrent;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSScriptOpen;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSScriptAll;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmpty;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmptyCurrent;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmptyOpen;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmptyAll;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemUndo;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRedo;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemCut;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemCopy;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemPaste;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemDelete;
-        private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemBatchSearch;
-        private System.Windows.Forms.ToolStripButton toolsView_itemBatchSearch;
+    private System.Windows.Forms.MenuStrip menuMain_menuStrip;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings;
+    private System.Windows.Forms.TextBox scriptName;
+    private System.Windows.Forms.ContextMenuStrip scriptsView_contextMenu;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemInsert;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemCut;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemCopy;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemPaste;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemDelete;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemMoveUp;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemMoveDown;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemBatchSearch;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemOpen;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemSave;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExit;
+    private System.Windows.Forms.ToolTip toolTip;
+    private System.Windows.Forms.ToolStrip toolsEditor_toolStrip;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemComment;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemRun;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoC;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoIndent;
+    private System.Windows.Forms.StatusStrip scriptsEditpr_statusStrip;
+    private System.Windows.Forms.ToolStripStatusLabel scriptsEditor_StatusStrip_itemCharacters;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemStyleConfig;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNew;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNewRMXP;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNewRMVX;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropAbout;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoC;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemIndentGuides;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoIndent;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemHighlight;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoCConfig;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemSaveProject;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemCloseProject;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemStyleConfig;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemSearch;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemFind;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemGoToLine;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemIndentGuides;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoCConfig;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemHighlight;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemHighlightColor;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemSpecialChars;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemOpenProject;
+    private System.Windows.Forms.ContextMenuStrip scriptsEditor_ContextMenuStrip;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Undo;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Redo;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Cut;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Copy;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Paste;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Delete;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Find;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_IncrementalSearch;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_FindNext;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_FindPrevious;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Replace;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_Comment;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_GoToLine;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemReplace;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemStructureScript;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExportTo;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExportToText;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExportToRuby;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropAbout_itemAboutGemini;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropAbout_itemVersionHistory;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemFolding;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemProjectFolder;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNewRMVXAce;
+    private System.Windows.Forms.ToolStripMenuItem scriptsEditor_ToolStripMenuItem_SelectAll;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemDebug;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemClose;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemRunWithF12;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemDebug;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemProjectFolder;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemFolding;
+    private System.Windows.Forms.ToolStripButton toolsEditor_itemRemoveLines;
+    private System.Windows.Forms.ToolStripMenuItem scriptsView_contextMenu_itemOpen;
+    private System.IO.FileSystemWatcher scriptsFileWatcher;
+    private System.Windows.Forms.SplitContainer splitView;
+    private AdvancedTabControl scriptsEditor_tabs;
+    private System.Windows.Forms.GroupBox groupSearches;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExoprtToRMData;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropGame_itemHelp;
+    private System.Windows.Forms.ToolStrip toolsView_toolStrip;
+    private System.Windows.Forms.ToolStripButton toolsView_itemImport;
+    private System.Windows.Forms.ToolStripButton toolsView_itemInsert;
+    private System.Windows.Forms.ToolStripButton toolsView_itemMoveUp;
+    private System.Windows.Forms.ToolStripButton toolsView_itemMoveDown;
+    private System.Windows.Forms.ToolStripButton toolsView_itemDelete;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSelectAll;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemIncrementalSearch;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemFind;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemReplace;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemGoTo;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemBatchComment;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemToggleComment;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemComment;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemUnComment;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemStructureScript;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSScriptCurrent;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSScriptOpen;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemSScriptAll;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmpty;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmptyCurrent;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmptyOpen;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRemoveEmptyAll;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemUndo;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemRedo;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemCut;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemCopy;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemPaste;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemDelete;
+    private System.Windows.Forms.ToolStripMenuItem menuMain_dropEdit_itemBatchSearch;
+    private System.Windows.Forms.ToolStripButton toolsView_itemBatchSearch;
     private System.Windows.Forms.TreeView scriptsView;
     private System.Windows.Forms.ToolStripButton toolsView_itemExport;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoOpenProject;
@@ -2123,6 +2152,9 @@
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoUpdate;
     private System.Windows.Forms.ToolStripSeparator menuMain_dropSettings_seperator6;
     private System.Windows.Forms.ToolStripSeparator menuMain_dropSettings_seperator8;
-    private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+    private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+    private System.Windows.Forms.ToolStripButton toolStripButton1;
+    private System.Windows.Forms.ToolStripButton toolStripButton2;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
   }
 }

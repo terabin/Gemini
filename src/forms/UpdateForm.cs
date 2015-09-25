@@ -27,7 +27,7 @@ namespace Gemini
       buttonDownload.Visible = labelProgress.Visible = progressBar.Visible = false;
       labelCurrentVersion.Text += ProductVersion;
       _webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(VersionInfo_DownloadStringCompleted);
-      _webClient.DownloadStringAsync(new Uri(@"https://raw.githubusercontent.com/revam/Gemini/master/builds/release/VersionInfo.dat"));
+      _webClient.DownloadStringAsync(new Uri(@"https://raw.githubusercontent.com/revam/Gemini/master/VersionInfo.dat"));
     }
 
     private void VersionInfo_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)

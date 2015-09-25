@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Gemini.Renderers
+namespace Gemini.Rendering
 {
-  public class GeminiToolStripRenderer : ToolStripSystemRenderer
+  public class ToolStripRenderer : ToolStripSystemRenderer
   {
     protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
     {

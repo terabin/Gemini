@@ -887,7 +887,8 @@ namespace Gemini
       else if (_projectEngine == "RMXP") arguments = "debug";
       else if (_projectEngine == "RMVX") arguments = "test";
       else if (_projectEngine == "RMVXAce") arguments = "console test";
-      try { Process.Start(_projectDirectory + Settings.RuntimeExecutable, arguments); }
+      try { Process.Start(_projectDirectory + (!string.IsNullOrEmpty(Settings.RuntimeExecutable) ? Settings.RuntimeExecutable : "Game.exe"),
+        arguments); }
       catch { MessageBox.Show("Cannot run game.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
     }
 
@@ -1058,7 +1059,8 @@ namespace Gemini
     {
       UpdateScriptStatus();
       UpdateMenusEnabled();
-      UpdateName(GetActiveScript());
+      if (GetActiveScript() != null)
+        UpdateName(GetActiveScript());
     }
 
     #endregion
@@ -1650,21 +1652,8 @@ namespace Gemini
       bool saveCopy = path != _projectScriptPath;
       scriptsFileWatcher.EnableRaisingEvents = false;
       RubyArray data = new RubyArray();
-      foreach (TreeNode rootNode in scriptsView.Nodes)
-      {
-        data[data.Count] = new Script(GetRandomSection(false), "", " ").RMScript;
-        data[data.Count] = new Script(GetRandomSection(false), "▼ " + rootNode.Text, "").RMScript;
-        foreach (TreeNode node in rootNode.Nodes)
-        {
-          if (!saveCopy)
-          {
-            GetScriptBySection(int.Parse(node.Name)).ApplyChanges();
-            GetScriptBySection(int.Parse(node.Name)).NeedSave = false;
-          }
-          data[data.Count] = GetScriptBySection(int.Parse(node.Name)).RMScript;
-        }
-      }
-      data[data.Count] = new Script(GetRandomSection(false), "", " ").RMScript;
+      data[data.Count] = new Script(GetRandomSection(false), "", "").RMScript;
+      SaveScriptLoop(ref data, saveCopy, scriptsView.Nodes);
       byte[] save = Ruby.MarshalDump(data);
       try
       {
@@ -1681,6 +1670,27 @@ namespace Gemini
       {
         _projectLastSave = save;
         _projectNeedSave = false;
+      }
+    }
+
+    private void SaveScriptLoop(ref RubyArray data, bool saveCopy, TreeNodeCollection nodes)
+    { 
+      foreach (TreeNode node in nodes)
+      {
+        if (!saveCopy)
+        {
+          GetScriptBySection(int.Parse(node.Name)).ApplyChanges();
+          GetScriptBySection(int.Parse(node.Name)).NeedSave = false;
+        }
+        if (nodes.Count > 0)
+        {
+          //GetScriptBySection(int.Parse(node.Name)).Name = "▼ " + GetScriptBySection(int.Parse(node.Name)).Name; 
+          data[data.Count] = GetScriptBySection(int.Parse(node.Name)).RMScript;
+          SaveScriptLoop(ref data, saveCopy, node.Nodes);
+          data[data.Count] = new Script(GetRandomSection(false), "", "").RMScript;
+        }
+        else
+          data[data.Count] = GetScriptBySection(int.Parse(node.Name)).RMScript;
       }
     }
 
