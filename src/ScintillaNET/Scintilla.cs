@@ -102,12 +102,12 @@ namespace ScintillaNet
 			_goto = new GoTo(this);
 
 
-			_helpers.AddRange(new TopLevelHelper[] 
-			{ 
-				_caret, 
-				_lines, 
+			_helpers.AddRange(new TopLevelHelper[]
+			{
+				_caret,
+				_lines,
 				_selection,
-				_indicators, 
+				_indicators,
 				_snippets,
 				_margins,
 				_scrolling,
@@ -178,11 +178,11 @@ namespace ScintillaNet
 		{
 			//	Hmm... this if/else construct is getting bigger and bigger every revision.
 			//	Maybe I should be using switch like a *real* WndProc :)
-		
+
 			//	wi11811 2008-07-28 Chris Rickard
 			//	If we get a destroy message we make this window a message-only window so that it doesn't actually
 			//	get destroyed, causing Scintilla to wipe out all its settings associated with this window handle.
-			//	We do send a WM_DESTROY message to Scintilla in the Dispose() method so that it does clean up its 
+			//	We do send a WM_DESTROY message to Scintilla in the Dispose() method so that it does clean up its
 			//	resources when this control is actually done with. Credit (blame :) goes to tom103 for figuring
 			//	this one out.
 			if (m.Msg == NativeMethods.WM_DESTROY)
@@ -242,7 +242,7 @@ namespace ScintillaNet
 			else if ((m.Msg ^ NativeMethods.WM_REFLECT) == NativeMethods.WM_NOTIFY)
 			{
 				//	OK Turns out the undocumented reflected message is a standard thing to do in MFC.
-				//	But it isn't defined within the Win32 Platform SDK which is why I couldn't find 
+				//	But it isn't defined within the Win32 Platform SDK which is why I couldn't find
 				//	anything about it at the time.
 				ReflectNotify(ref m);
 				return;
@@ -1006,10 +1006,10 @@ namespace ScintillaNet
 			Encoding.ASCII,
 			Encoding.UTF8,
 			Encoding.Unicode,			//	UTF-16
-			Encoding.GetEncoding(932),	//	shift_jis - Japanese (Shift-JIS) 
+			Encoding.GetEncoding(932),	//	shift_jis - Japanese (Shift-JIS)
 			Encoding.GetEncoding(936),	//	gb2312 - Chinese Simplified (GB2312)
 			Encoding.GetEncoding(949),	//	ks_c_5601-1987  - Korean
-			Encoding.GetEncoding(950),	//	big5 - Chinese Traditional (Big5) 
+			Encoding.GetEncoding(950),	//	big5 - Chinese Traditional (Big5)
 			Encoding.GetEncoding(1361)	//	Johab - Korean (Johab)
 		};
 
@@ -1026,7 +1026,7 @@ namespace ScintillaNet
 			}
 			set
 			{
-				//	EncoderFallbackException isn't really the correct exception but 
+				//	EncoderFallbackException isn't really the correct exception but
 				//	I'm being lazy and you get the point
 				if (!ValidCodePages.Contains(value))
 					throw new EncoderFallbackException("Scintilla only supports the following Encodings: " + ValidCodePages.ToString());
@@ -1618,13 +1618,13 @@ namespace ScintillaNet
 				if (length == 1)
 					return new byte[] { 0 };
 
-				//  Allocate a buffer the size of the string + 1 for 
+				//  Allocate a buffer the size of the string + 1 for
 				//  the NULL terminator. Scintilla always sets this
 				//  regardless of the encoding
 				byte[] buffer = new byte[length];
 
 				//  Get a direct pointer to the the head of the buffer
-				//  to pass to the message along with the wParam. 
+				//  to pass to the message along with the wParam.
 				//  Scintilla will fill the buffer with string data.
 				fixed (byte* bp = buffer)
 				{
@@ -1640,7 +1640,7 @@ namespace ScintillaNet
 				}
 				else
 				{
-					//	This byte[] HAS to be NULL terminated or who knows how big 
+					//	This byte[] HAS to be NULL terminated or who knows how big
 					//	of an overrun we'll have on our hands
 					if (value[value.Length - 1] != 0)
 					{
@@ -2302,7 +2302,7 @@ namespace ScintillaNet
 					BeginInvoke(new MethodInvoker(delegate() { lmr.Change(e.Position, e.Position + e.Length); }));
 				}
 
-				//	If the Range is a single point we treat it slightly 
+				//	If the Range is a single point we treat it slightly
 				//	differently than a spanned range
 				if (mr.IsPoint)
 				{
@@ -2324,7 +2324,7 @@ namespace ScintillaNet
 					else if (mr.End >= e.Position)
 					{
 						//	However it the start of the range == the insertion
-						//	point of the new text instead of offestting the 
+						//	point of the new text instead of offestting the
 						//	range we expand it.
 						mr.Change(mr.Start, mr.End + e.Length);
 					}
@@ -3295,7 +3295,7 @@ namespace ScintillaNet
 			//	As a side note: I think the previous code was implemented based off
 			//	some funky code I made for the snippet keyword detection, but since
 			//	it doesn't reference this method there's no reason to keep the buggy
-			//	behavior. I also removed the try..catch because in theory this 
+			//	behavior. I also removed the try..catch because in theory this
 			//	shouldn't throw and we REALLY shouldn't be eating exceptions at the
 			//	System.Exception level. If some start popping up I can add some
 			//	conditionals or catch more specific Exceptions.
