@@ -40,7 +40,6 @@ namespace Gemini
     \*/
     #region Fields and Properties
 
-    private string _projectDirectory = "";
     private string _projectScriptPath = "";
     private string _projectScriptsFolderPath = "";
     private string _projectEngine = "";
@@ -51,14 +50,26 @@ namespace Gemini
       RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     private bool _projectNeedSave = false;
-    private bool _saving = false;
+    private bool _busy = false;
     private byte[] _projectLastSave;
     private List<Script> _scripts = new List<Script>();
 
     private bool _updatingText = false;
 
     private List<int> _usedSections = new List<int>();
-    private List<int> _oldSections = new List<int>();
+    private List<ScriptList> _scriptRelations = new List<ScriptList>();
+    private struct ScriptList
+    {
+      public ScriptList(int section, int level, List<int> list)
+      {
+        Section = section;
+        Level = level;
+        List = list;
+      }
+      public int Section;
+      public int Level;
+      public List<int> List;
+    }
 
     private FindReplaceDialog _findReplaceDialog = new FindReplaceDialog();
     private Process _charmap = new Process();
@@ -88,7 +99,7 @@ namespace Gemini
       Ruby.CreateRuntime();
       Settings.SetDefaults();
       Settings.SetLocalDefaults();
-      Settings.LoadSettings();
+      Settings.LoadConfiguration();
       ApplySettings();
       UpdateMenusEnabled();
       string[] files = { };
@@ -293,7 +304,7 @@ namespace Gemini
 
     private void menuMain_dropFile_itemImportScripts_Click(object sender, EventArgs e)
     {
-      ImportScriptsFrom(scriptsView.SelectedNode, false, Directory.GetFiles(_projectScriptsFolderPath));
+      ImportScriptsFrom(scriptsView.SelectedNode, Directory.GetFiles(_projectScriptsFolderPath));
     }
 
     /// <summary>
@@ -309,7 +320,7 @@ namespace Gemini
         dialog.Multiselect = true;
         DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
-          ImportScriptsFrom(scriptsView.SelectedNode, true, dialog.FileNames);
+          ImportScriptsFrom(scriptsView.SelectedNode, dialog.FileNames);
       }
     }
 
@@ -324,7 +335,7 @@ namespace Gemini
       {
         dialog.FileName = Path.GetFileName(_projectScriptPath);
         dialog.Filter = _projectEngine + " Scripts|*" + Path.GetExtension(_projectScriptPath) + "|All Documents|*.*";
-        dialog.InitialDirectory = _projectDirectory;
+        dialog.InitialDirectory = Settings.ProjectDirectory;
         dialog.Title = "Export Scripts...";
         if (dialog.ShowDialog() == DialogResult.OK)
           SaveScripts(dialog.FileName);
@@ -596,7 +607,7 @@ namespace Gemini
         if (result == DialogResult.Yes)
           SaveLocalConfiguration();
       }
-      else if (File.Exists(_projectDirectory + "GeminiLocal.xml"))
+      else if (File.Exists(Settings.ProjectDirectory + "Gemini.config"))
       {
         DialogResult result = MessageBox.Show("There was found a configuration in the project folder, do you want to load it now?", "Load configuration?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
         if (result == DialogResult.Yes)
@@ -806,38 +817,37 @@ namespace Gemini
           "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
       if (result == DialogResult.No)
         return;
-      string _text, _file;
-      int i = 0;
-      bool folder = _projectScriptsFolderPath != "" && Directory.Exists(_projectScriptsFolderPath);
-      TreeNode node;
-      List<string> files = !folder ? new List<string>() : new List<string>(Directory.GetFiles(_projectScriptsFolderPath, "*.rb", SearchOption.TopDirectoryOnly));
-      scriptsView.BeginUpdate();
+      //string _text, _file;
+      //bool folder = _projectScriptsFolderPath != "" && Directory.Exists(_projectScriptsFolderPath);
+      //TreeNode node;
+      //List<string> files = !folder ? new List<string>() : new List<string>(Directory.GetFiles(_projectScriptsFolderPath, "*.rb", SearchOption.TopDirectoryOnly));
       foreach (Script s in _scripts)
       {
-        _oldSections.Add(s.Section);
-        _usedSections.Remove(s.Section);
+        int oldsection = s.Section;
         s.Section = GetRandomSection();
-        (node = GetNodeBySection(_oldSections[i])).Name = string.Format("{0:00000000}", s.Section);
-        node.ToolTipText = s.Name + " - " + string.Format("{0:00000000}", s.Section);
-        if (folder)
-        {
-          _file = files.Find(delegate (string str)
-          {
-            return Regex.IsMatch(str, string.Format("{0:00000000}",
-              _oldSections[i]), RegexOptions.Singleline | RegexOptions.CultureInvariant);
-          });
-          if (!string.IsNullOrEmpty(_file))
-          {
-            _text = File.ReadAllText(_file);
-            File.Delete(_file);
-            File.WriteAllText(_projectScriptsFolderPath + s.Name + "." + string.Format("{0:00000000}", s.Section) + ".rb", _text);
-          }
-        }
-        i++;
+        _usedSections.Remove(oldsection);
+        int i = _scriptRelations.FindIndex(delegate (ScriptList m) { return m.Section == oldsection; });
+        if (i >= 0) _scriptRelations[i] = new ScriptList(s.Section, _scriptRelations[i].Level, _scriptRelations[i].List);
+        i = _scriptRelations.FindIndex(delegate (ScriptList m) { return m.List.Contains(oldsection); });
+        if (i >= 0) _scriptRelations[i].List[_scriptRelations[i].List.IndexOf(oldsection)] = s.Section;
+        //(node = GetNodeBySection(_oldSections[i])).Name = string.Format("{0:00000000}", s.Section);
+        //node.ToolTipText = s.Name + " - " + string.Format("{0:00000000}", s.Section);
+        //if (folder)
+        //{
+        //  _file = files.Find(delegate (string str)
+        //  {
+        //    return Regex.IsMatch(str, string.Format("{0:00000000}",
+        //      oldsection), RegexOptions.Singleline | RegexOptions.CultureInvariant);
+        //  });
+        //  if (!string.IsNullOrEmpty(_file))
+        //  {
+        //    _text = File.ReadAllText(_file);
+        //    File.Delete(_file);
+        //    File.WriteAllText(_projectScriptsFolderPath + s.Name + "." + string.Format("{0:00000000}", s.Section) + ".rb", _text);
+        //  }
+        //}
       }
-      scriptsView.EndUpdate();
-      _oldSections.Clear();
-      SaveScripts();
+      //SaveScripts();
     }
 
     #endregion
@@ -887,8 +897,7 @@ namespace Gemini
       else if (_projectEngine == "RMXP") arguments = "debug";
       else if (_projectEngine == "RMVX") arguments = "test";
       else if (_projectEngine == "RMVXAce") arguments = "console test";
-      try { Process.Start(_projectDirectory + (!string.IsNullOrEmpty(Settings.RuntimeExecutable) ? Settings.RuntimeExecutable : "Game.exe"),
-        arguments); }
+      try { Process.Start(Settings.ProjectDirectory + (!string.IsNullOrEmpty(Settings.RuntimeExecutable) ? Settings.RuntimeExecutable : "Game.exe"), arguments); }
       catch { MessageBox.Show("Cannot run game.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
     }
 
@@ -905,8 +914,8 @@ namespace Gemini
 
     private void mainMenu_ToolStripMenuItem_ProjectFolder_Click(object sender, EventArgs e)
     {
-      if (_projectDirectory == "") return;
-      Process.Start(_projectDirectory);
+      if (string.IsNullOrEmpty(Settings.ProjectDirectory)) return;
+      Process.Start(Settings.ProjectDirectory);
     }
 
     #endregion
@@ -924,15 +933,10 @@ namespace Gemini
     #region Menu About Events
 
     private void mainMenu_ToolStripMenuItem_VersionHistory_Click(object sender, EventArgs e)
-    {
-      Process.Start("https://github.com/revam/Gemini/blob/master/CHANGELOG.md");
-    }
+    { Process.Start("https://github.com/revam/Gemini/blob/master/CHANGELOG.md"); }
 
     private void mainMenu_ToolStripMenuItem_AboutGemini_Click(object sender, EventArgs e)
-    {
-      using (AboutForm dialog = new AboutForm())
-        dialog.ShowDialog();
-    }
+    { using (AboutForm dialog = new AboutForm()) dialog.ShowDialog(); }
 
     #endregion
 
@@ -972,14 +976,10 @@ namespace Gemini
     }
 
     private void scriptsEditor_ToolStripMenuItem_FindNext_Click(object sender, EventArgs e)
-    {
-      _findReplaceDialog.FindNext();
-    }
+    { _findReplaceDialog.FindNext(); }
 
     private void scriptsEditor_ToolStripMenuItem_FindPrevious_Click(object sender, EventArgs e)
-    {
-      _findReplaceDialog.FindPrevious();
-    }
+    { _findReplaceDialog.FindPrevious(); }
 
     private void scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete_Click(object sender, EventArgs e)
     {
@@ -1167,7 +1167,7 @@ namespace Gemini
           if (dialog.AddNew)
             InsertNode(scriptsView.SelectedNode, true, dialog.Title, "");
           else
-            ImportScriptsFrom(scriptsView.SelectedNode, true, dialog.Paths);
+            ImportScriptsFrom(scriptsView.SelectedNode, dialog.Paths);
     }
 
     /// <summary>
@@ -1199,7 +1199,7 @@ namespace Gemini
     {
       RubyArray rmScript = GetClipboardScript();
       if (rmScript != null)
-        InsertNode(scriptsView.SelectedNode, true, rmScript);
+        InsertNode(scriptsView.SelectedNode, rmScript);
     }
 
     /// <summary>
@@ -1220,7 +1220,7 @@ namespace Gemini
         DeleteNodeGroup(node);
       }
       else
-        DeleteNode(node.Name);
+        RemoveNode(node.Name);
     }
 
     /// <summary>
@@ -1418,23 +1418,23 @@ namespace Gemini
     private void OpenProject(string projectPath)
     {
       if (!CloseProject(true)) return;
-      _projectDirectory = Path.GetDirectoryName(projectPath) + @"\";
+      Settings.ProjectDirectory = Path.GetDirectoryName(projectPath) + @"\";
       switch (Path.GetExtension(projectPath))
       {
         case ".rxproj":
           _projectEngine = "RMXP";
           _projectScriptPath = GetScriptsPath();
-          _projectScriptsFolderPath = _projectDirectory + @"Scripts\";
+          _projectScriptsFolderPath = Settings.ProjectDirectory + @"Scripts\";
           break;
         case ".rvproj":
           _projectEngine = "RMVX";
           _projectScriptPath = GetScriptsPath();
-          _projectScriptsFolderPath = _projectDirectory + @"Scripts\";
+          _projectScriptsFolderPath = Settings.ProjectDirectory + @"Scripts\";
           break;
         case ".rvproj2":
           _projectEngine = "RMVXAce";
           _projectScriptPath = GetScriptsPath();
-          _projectScriptsFolderPath = _projectDirectory + @"Scripts\";
+          _projectScriptsFolderPath = Settings.ProjectDirectory + @"Scripts\";
           break;
         case ".rxdata":
           _projectEngine = "RMXP";
@@ -1449,7 +1449,6 @@ namespace Gemini
           _projectScriptPath = projectPath;
           break;
       }
-      Enabled = false;
       if (LoadScripts())
       {
         LoadLocalConfiguration();
@@ -1462,7 +1461,6 @@ namespace Gemini
       }
       else
         CloseProject(false);
-      Enabled = true;
     }
 
     private void OpenRecentProject(int id, bool showErrorMessage)
@@ -1498,6 +1496,8 @@ namespace Gemini
 
     private bool CloseProject(bool showSaveMessage)
     {
+      if (_busy) return false;
+      _busy = true;
       if (showSaveMessage && NeedSave())
       {
         DialogResult result = MessageBox.Show("Save changes before closing?",
@@ -1520,11 +1520,12 @@ namespace Gemini
       scriptsEditor_tabs.TabPages.Clear();
       scriptsView.Nodes.Clear();
       scriptName.ResetText();
-      _projectDirectory = _projectScriptPath = _projectScriptsFolderPath = _projectEngine = "";
+      Settings.ProjectDirectory = _projectScriptPath = _projectScriptsFolderPath = _projectEngine = "";
       _projectNeedSave = false;
       _projectLastSave = null;
       UpdateTitle();
       UpdateMenusEnabled();
+      _busy = false;
       return true;
     }
 
@@ -1544,7 +1545,7 @@ namespace Gemini
     {
       try
       {
-        Settings.SaveSettings();
+        Settings.SaveConfiguration();
         SaveLocalConfiguration();
         if (showMessage)
           MessageBox.Show("Configuration was successfully saved.", "Message");
@@ -1559,6 +1560,8 @@ namespace Gemini
 
     private void SaveLocalConfiguration()
     {
+      if (_busy) return;
+      _busy = true;
       if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectScriptsFolderPath))
       {
         Script s;
@@ -1568,24 +1571,28 @@ namespace Gemini
           Settings.OpenScripts.Add(new Serializable.Script((s =
             _scripts.Find(delegate (Script t) { return t.Opened && t.TabPage == scriptsEditor_tabs.TabPages[i]; })).Section,
             s.Scintilla.CurrentPos));
-        Settings.SaveLocalSettings(_projectDirectory + "GeminiLocal.xml");
+        Settings.SaveLocalConfiguration();
       }
+      _busy = false;
     }
 
     private void LoadLocalConfiguration()
     {
+      if (_busy) return;
+      _busy = true;
       if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectScriptsFolderPath))
       {
         Settings.SetLocalDefaults();
-        Settings.LoadLocalSettings(_projectDirectory + "GeminiLocal.xml");
+        Settings.LoadLocalConfiguration();
         if (Settings.OpenScripts.Count > 0)
           foreach (Serializable.Script s in Settings.OpenScripts)
             if (ScriptExistBySection(s.Section))
               OpenScript(s.Section, s.Position);
-        if (ScriptExistBySection(Settings.ActiveScript.Section))
+        if ((Settings.ActiveScript.Section <= 0) && ScriptExistBySection(Settings.ActiveScript.Section))
           scriptsEditor_tabs.SelectedTab = GetScriptBySection(Settings.ActiveScript.Section).TabPage;
         Settings.OpenScripts.Clear();
       }
+      _busy = false;
     }
 
     #endregion
@@ -1616,15 +1623,12 @@ namespace Gemini
     /// </summary>
     private bool LoadScripts()
     {
+      if (_busy) return false;
+      _busy = true;
       if (File.Exists(_projectScriptPath))
         try
         {
-          RubyArray rmScripts = (RubyArray)Ruby.MarshalLoad(_projectLastSave = File.ReadAllBytes(_projectScriptPath));
-          scriptsView.BeginUpdate();
-          for (int i = 0; i < rmScripts.Count; i++)
-            InsertNode(scriptsView.SelectedNode, true, rmScripts[i]);
-          scriptsView.SelectedNode = scriptsView.TopNode;
-          scriptsView.EndUpdate();
+          LoadScriptsLoop((RubyArray)Ruby.MarshalLoad(_projectLastSave = File.ReadAllBytes(_projectScriptPath)), -1, 0, 0);
           _projectNeedSave = false;
           scriptsFileWatcher.Path = Path.GetDirectoryName(_projectScriptPath);
           scriptsFileWatcher.Filter = Path.GetFileName(_projectScriptPath);
@@ -1638,22 +1642,40 @@ namespace Gemini
         }
       else
         MessageBox.Show("Cannot locate script file\r\n" + _projectScriptPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      _busy = false;
       return false;
+    }
+
+    private int LoadScriptsLoop(RubyArray rmScripts, int section, int i, int level)
+    {
+      List<int> list = new List<int>();
+      for (; i < rmScripts.Count; i++)
+      {
+        Script script = new Script((RubyArray)rmScripts[i]);
+        if (i > 0 && string.IsNullOrEmpty(script.Name.Trim()) && string.IsNullOrEmpty(script.Text.Trim()))
+          break;
+        if (!_usedSections.Contains(script.Section))
+          _usedSections.Add(script.Section);
+        list.Add(script.Section);
+        if (script.Name.StartsWith("▼ "))
+          i = LoadScriptsLoop(rmScripts, script.Section, i+1, level+1);
+        script.Name.Trim().Replace("▼ ", "");
+        _scripts.Add(script);
+      }
+      _scriptRelations.Add(new ScriptList(section, level, list));
+      return i;
     }
 
     private void SaveScripts()
     { SaveScripts(_projectScriptPath); }
     private void SaveScripts(string path)
     {
-      Console.WriteLine("Starting...");
-      if (_saving || path == "") return;
-      _saving = true;
-      Console.WriteLine("Saving...");
+      if (_busy || string.IsNullOrEmpty(path)) return;
+      _busy = true;
       bool saveCopy = path != _projectScriptPath;
       scriptsFileWatcher.EnableRaisingEvents = false;
-      RubyArray data = new RubyArray();
-      data[data.Count] = new Script(GetRandomSection(false), "", "").RMScript;
-      SaveScriptLoop(ref data, saveCopy, scriptsView.Nodes);
+      RubyArray data = (RubyArray)SaveScriptLoop(new RubyArray(), 0, -1, saveCopy)[0];
+      data.Insert(0, new Script(GetRandomSection(), "", "").RMScript);
       byte[] save = Ruby.MarshalDump(data);
       try
       {
@@ -1665,39 +1687,78 @@ namespace Gemini
         MessageBox.Show("An error occurred attempting to save the scripts.\nPlease ensure that you have write access to:\n\t" +
             Path.GetDirectoryName(path), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
-      _saving = false;
       if (!saveCopy)
       {
         _projectLastSave = save;
         _projectNeedSave = false;
       }
+      _busy = false;
     }
 
-    private void SaveScriptLoop(ref RubyArray data, bool saveCopy, TreeNodeCollection nodes)
-    { 
-      foreach (TreeNode node in nodes)
+    private object[] SaveScriptLoop(RubyArray data, int i, int section, bool saveCopy)
+    {
+      RubyArray secondData = new RubyArray();
+      ScriptList l = _scriptRelations.Find(delegate (ScriptList m) { return m.Section == section; });
+      for (; i < l.List.Count; i++)
       {
         if (!saveCopy)
         {
-          GetScriptBySection(int.Parse(node.Name)).ApplyChanges();
-          GetScriptBySection(int.Parse(node.Name)).NeedSave = false;
+          GetScriptBySection(l.List[i]).ApplyChanges();
+          GetScriptBySection(l.List[i]).NeedSave = false;
         }
-        if (nodes.Count > 0)
+        RubyArray rmScript = GetScriptBySection(l.List[i]).RMScript;
+        if (_scriptRelations.Exists(delegate (ScriptList m) { return m.Section == l.List[i]; }))
         {
-          //GetScriptBySection(int.Parse(node.Name)).Name = "▼ " + GetScriptBySection(int.Parse(node.Name)).Name; 
-          data[data.Count] = GetScriptBySection(int.Parse(node.Name)).RMScript;
-          SaveScriptLoop(ref data, saveCopy, node.Nodes);
-          data[data.Count] = new Script(GetRandomSection(false), "", "").RMScript;
+          rmScript[1] = Ruby.ConvertString("▼ " + GetScriptBySection(l.List[i]).Name);
+          secondData[secondData.Count] = rmScript;
+          var tmp = SaveScriptLoop(secondData, i, l.List[i], saveCopy);
+          data = (RubyArray)tmp[0];
+          i = (int)tmp[1];
+          data[data.Count] = new Script(GetRandomSection(), "", "").RMScript;
         }
         else
-          data[data.Count] = GetScriptBySection(int.Parse(node.Name)).RMScript;
+          secondData[secondData.Count] = rmScript;
       }
+      data.AddMultiple(0, secondData);
+      return new object[] { data, i };
     }
 
-    private void DeleteScript(int section)
+    /// <summary>
+    /// Add a new script
+    /// </summary>
+    /// <param name="parentSection">Parent <see cref="Script"/> Section or <see cref="int"/> -1 if none</param>
+    /// <param name="index">Valid index or -1 if none</param>
+    /// <param name="args">(<see cref="RubyArray"/> rmScript) or (<see cref="string"/> scriptName, <see cref="string"/> textContent)</param>
+    private void AddScript(int parentSection, int index, params object[] args)
+    {
+      // bail if section is
+      if (!_scriptRelations.Exists(delegate (ScriptList l) { return l.Section == parentSection; })) throw new Exception("Invalid section for parent.");
+      //create script if possible
+      Script script;
+      if (args.Length == 1)
+        script = new Script((RubyArray)args[0]);
+      else if (args.Length == 2)
+        script = new Script(GetRandomSection(), (string)args[0], (string)args[1]);
+      else throw new Exception("No valid script passed");
+      // bail if section used or script empty
+      if (_usedSections.Contains(script.Section)) throw new InvalidCastException("Section already used.");
+      if ((string.IsNullOrEmpty(script.Name) && string.IsNullOrEmpty(script.Text.Trim()))) throw new ArgumentNullException("Empty Script passed.");
+            // trim name
+            script.Name.Trim().Replace("▼ ", "");
+
+      _usedSections.Add(script.Section);
+      _scripts.Add(script);
+      //add relations and script only if valid section
+        _scriptRelations.Find(delegate (ScriptList l) { return l.Section == parentSection; }).List.Add(script.Section);
+    }
+
+    private void RemoveScript(int section)
     {
       if (ScriptExistBySection(section))
+      {
+        MoveUpRelations(section);
         _scripts.Remove(GetScriptBySection(section));
+      }
     }
 
     /// <summary>
@@ -1714,7 +1775,6 @@ namespace Gemini
     /// </summary>
     /// <param name="section">The script that will be loaded into the page</param>
     /// <param name="position">The cursor position in the script</param>
-    /// <param name="anchor">The selection anchor</param>
     private void OpenScript(int section, int position)
     {
       int index = _scripts.IndexOf(GetScriptBySection(section));
@@ -1736,7 +1796,7 @@ namespace Gemini
     /// </summary>
     /// <param name="node">the selected <see cref="TreeNode"/></param>
     /// <param name="paths">A string-array with paths to import from</param>
-    private void ImportScriptsFrom(TreeNode node, bool selectLast, string[] paths)
+    private void ImportScriptsFrom(TreeNode node, params string[] paths)
     {
       if (node == null)
       {
@@ -1757,10 +1817,10 @@ namespace Gemini
               UpdateScriptBySection(int.Parse(_fileNameRegex.Match(path).Captures[1].Value),
                 _fileNameRegex.Match(path).Captures[0].Value, File.ReadAllText(path));
             else if (_fileNameRegex.IsMatch(path))
-              InsertNode(node, selectLast, _fileNameRegex.Match(path).Captures[0].Value,
+              InsertNode(node, _fileNameRegex.Match(path).Captures[0].Value,
                 _fileNameRegex.Match(path).Captures[1].Value, File.ReadAllText(path));
             else
-              InsertNode(node, selectLast, Path.GetFileNameWithoutExtension(path), File.ReadAllText(path));
+              InsertNode(node, Path.GetFileNameWithoutExtension(path), File.ReadAllText(path));
             if (node.Level == 1)
               node = node.NextNode;
           }
@@ -1924,72 +1984,20 @@ namespace Gemini
     \*/
     #region Node Methods
 
-    /// <summary>
-    /// Adds a new node to the TreeView
-    /// </summary>
-    /// <param name="selectedNode">The <see cref="TreeNode"/> currently selected</param>
-    /// <param name="index">The insert index</param>
-    /// <param name="select">If the inserted node schould be selected</param>
-    /// <param name="args">(<see cref="RubyArray"/> rmScript) or (<see cref="string"/> name, <see cref="string"/> text)</param>
-    private void InsertNode(TreeNode selectedNode, bool select, params object[] args)
-    { InsertNode(selectedNode, selectedNode == null ? -1 : selectedNode.Index + 1, select, args); }
-    private void InsertNode(TreeNode selectedNode, int index, bool select, params object[] args)
+    private void InsertNode(TreeNode currentNode, params object[] args)
     {
-      Script script;
-      if (args.Length == 1)
-      {
-        RubyArray rmScript = (RubyArray)args[0];
-        rmScript[0] = int.Parse(rmScript[0].ToString());
-        Console.WriteLine();
-        script = new Script(rmScript);
-        script.Section = GetSection(script);
-      }
-      else if (args.Length == 2)
-        script = new Script(GetRandomSection(), (string)args[0], (string)args[1]);
-      else return;
-      script.Name.Trim();
-      TreeNode node = new TreeNode();
-      node.Name = string.Format("{0:00000000}", script.Section);
-      node.Text = script.Name.Replace("▼ ", "");
-      node.ToolTipText = (script.Name.StartsWith("▼ ") ? "" : node.Name + " - ") + node.Text;
-      if (script.Name.StartsWith("▼ "))
-      {
-        if (selectedNode != null && selectedNode.Level == 1)
-          index = selectedNode.Parent.Index + 1;
-        else if (index < 0)
-          index = scriptsView.Nodes.Count;
-        scriptsView.Nodes.Insert(index, node);
-      }
-      else if (script.Name == "" & script.Text.Trim() == "")
-        return;
-      else if (script.Name != "")
-      {
-        if (selectedNode.Level == 0)
-          scriptsView.Nodes[selectedNode.Index].Nodes.Add(node);
-        else if (selectedNode.Level == 1)
-        {
-          if (index < 0)
-            index = scriptsView.Nodes[selectedNode.Index].Nodes.Count;
-          selectedNode = selectedNode.Parent;
-          scriptsView.Nodes[selectedNode.Index].Nodes.Insert(index, node);
-        }
-        else return;
-        _scripts.Add(script);
-      }
-      else return;
-      if (select)
-        scriptsView.SelectedNode = node;
-      _projectNeedSave = true;
+
+
     }
 
-    private void DeleteNode(string section)
-    { DeleteNode(int.Parse(section)); }
-    private void DeleteNode(int section)
+    private void RemoveNode(string section)
+    { RemoveNode(int.Parse(section)); }
+    private void RemoveNode(int section)
     {
       TreeNode node = GetNodeBySection(section);
       if (node == null) return;
       scriptsView.Nodes[node.Parent.Index].Nodes.Remove(node);
-      DeleteScript(section);
+      RemoveScript(section);
       _projectNeedSave = true;
     }
 
@@ -2005,7 +2013,7 @@ namespace Gemini
       for (int i = 0; i < rootNode.Nodes.Count; i++)
       {
         TreeNode node = rootNode.LastNode;
-        DeleteNode(node.Name);
+        RemoveNode(node.Name);
       }
 
       scriptsView.Nodes.Remove(rootNode);
@@ -2289,7 +2297,7 @@ namespace Gemini
     /// </summary>
     private string GetGameTitle()
     {
-      string ini = _projectDirectory + "Game.ini";
+      string ini = Settings.ProjectDirectory + "Game.ini";
       if (File.Exists(ini))
         foreach (string line in File.ReadAllLines(ini))
           if (line.StartsWith("Title="))
@@ -2302,30 +2310,15 @@ namespace Gemini
     /// </summary>
     private string GetScriptsPath()
     {
-      string ini = _projectDirectory + "Game.ini";
+      string ini = Settings.ProjectDirectory + "Game.ini";
       if (File.Exists(ini))
         foreach (string line in File.ReadAllLines(ini))
           if (line.StartsWith("Scripts="))
-            return _projectDirectory + line.Replace("Scripts=", "").Trim();
-      if (_projectEngine == "RMXP") return _projectDirectory + @"Data\Scripts.rxdata";
-      else if (_projectEngine == "RMVX") return _projectDirectory + @"Data\Scripts.rvdata";
-      else if (_projectEngine == "RMVXAce") return _projectDirectory + @"Data\Scripts.rvdata2";
+            return Settings.ProjectDirectory + line.Replace("Scripts=", "").Trim();
+      if (_projectEngine == "RMXP") return Settings.ProjectDirectory + @"Data\Scripts.rxdata";
+      else if (_projectEngine == "RMVX") return Settings.ProjectDirectory + @"Data\Scripts.rvdata";
+      else if (_projectEngine == "RMVXAce") return Settings.ProjectDirectory + @"Data\Scripts.rvdata2";
       return "";
-    }
-
-    /// <summary>
-    /// Retrieves either the given <see cref="Script.Section"/> or a non-repeatable random integer
-    /// </summary>
-    /// <param name="script"><see cref="Script"/> to check</param>
-    /// <returns><see cref="Script.Section"/> / Random integer</returns>
-    private int GetSection(Script script)
-    {
-      if (script.Section != 0 && script.Section.ToString().Length < 9)
-      {
-        _usedSections.Add(script.Section);
-        return script.Section;
-      }
-      return GetRandomSection();
     }
 
     /// <summary>
@@ -2333,27 +2326,13 @@ namespace Gemini
     /// </summary>
     /// <returns>Random integer</returns>
     private int GetRandomSection()
-    { return GetRandomSection(true); }
-
-    /// <summary>
-    /// Retrieves a non-repeatable random integer
-    /// </summary>
-    /// <param name="add">Whether or not to add it to <see cref="_usedSections"/> list</param>
-    /// <returns>Random integer</returns>
-    private int GetRandomSection(bool add)
     {
       Random random = new Random();
       int section;
       do section = random.Next(99999999);
       while (_usedSections.Contains(section));
-      if (add)
         _usedSections.Add(section);
       return section;
-    }
-
-    public static string WildcardPatternToRegexPattern(string pattern)
-    {
-      return string.Format("^{0}$", Regex.Escape(pattern.Replace('/', Path.DirectorySeparatorChar)).Replace(@"\*", ".*").Replace(@"\?", "."));
     }
 
     private bool NeedSave()
@@ -2364,6 +2343,19 @@ namespace Gemini
         if (script.NeedSave)
           return true;
       return false;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="section"></param>
+    private void MoveUpRelations(int section)
+    {
+      if (!_scriptRelations.Exists(delegate (ScriptList l) { return l.Section == section; })) throw new Exception("No valid section for parent!");
+      ScriptList li = _scriptRelations.Find(delegate (ScriptList l) { return l.List.Contains(section); });
+      li.List.InsertRange(li.List.IndexOf(section), _scriptRelations.Find(delegate (ScriptList l) { return l.Section == section; }).List);
+      li.List.Remove(section);
+      _scriptRelations.RemoveAll(delegate (ScriptList l) { return l.Section == section; });
     }
 
     #endregion
