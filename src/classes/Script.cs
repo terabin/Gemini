@@ -44,7 +44,7 @@ namespace Gemini
     public Script(RubyArray rmScript)
     {
       _rmScript = rmScript;
-      _section = (int)_rmScript[0];
+      _section = int.Parse(rmScript[0].ToString());
       _name = Ruby.ConvertString((MutableString)_rmScript[1]);
       UpdateTabName();
     }
@@ -317,7 +317,7 @@ namespace Gemini
     }
 
     /// <summary>
-    /// Registers characters added to the control for controlling auto-indentation and autocomplete 
+    /// Registers characters added to the control for controlling auto-indentation and autocomplete
     /// </summary>
     private void Scintilla_CharAdded(object sender, CharAddedEventArgs e)
     {
