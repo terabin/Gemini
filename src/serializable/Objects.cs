@@ -3,8 +3,21 @@ using System.Drawing;
 
 namespace Gemini.Serializable
 {
+
   [Serializable]
-  public struct Gemini
+  public struct Settings
+  {
+    public Settings(object global, object project)
+    {
+      Global = global;
+      Project = project;
+    }
+    public object Global;
+    public object Project;
+  }
+
+  [Serializable]
+  public struct GeminiGlobal
   {
     public bool AutoCheckUpdates;
     public bool AutoSaveConfig;
