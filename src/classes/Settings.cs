@@ -16,6 +16,7 @@ namespace Gemini
     public static bool RecentPriority { get; set; }
     public static bool AutoSaveConfig { get; set; }
     public static bool ProjectConfig { get; set; }
+    public static string ProjectDirectory { get; set; }
     public static Serializable.DistracionMode DistractionMode { get; set; }
     public static List<Serializable.Script> OpenScripts { get; set; }
     public static Serializable.Script ActiveScript { get; set; }
@@ -103,9 +104,34 @@ namespace Gemini
       };
     }
 
-    public static void SaveSettings(string path = "Gemini.xml")
+    public static void SaveConfiguration(string path = "Gemini.config")
     {
-      Serializable.Gemini saveData = new Serializable.Gemini();
+      if (ProjectConfig && ProjectDirectory == Path.GetDirectoryName(Application.ExecutablePath)) return;
+      Serializable.Settings saveData = new Serializable.Settings(GetGlobalSaveData(), null);
+      if (File.Exists(path))
+        File.Delete(path);
+      using (Stream stream = File.OpenWrite(path))
+        new System.Xml.Serialization.XmlSerializer(typeof(Serializable.GeminiGlobal)).Serialize(stream, saveData);
+    }
+
+    public static void SaveLocalConfiguration()
+    { SaveLocalConfiguration(ProjectDirectory + "Gemini.config"); }
+    public static void SaveLocalConfiguration(string path = null)
+    {
+      Serializable.Settings saveData;
+      if (ProjectConfig && ProjectDirectory == Path.GetDirectoryName(Application.ExecutablePath))
+        saveData = new Serializable.Settings(GetGlobalSaveData(), GetProjectSaveData());
+      else
+        saveData = new Serializable.Settings(null, GetProjectSaveData());
+      if (File.Exists(path))
+        File.Delete(path);
+      using (Stream stream = File.OpenWrite(path))
+        new System.Xml.Serialization.XmlSerializer(typeof(Serializable.Settings)).Serialize(stream, saveData);
+    }
+
+    private static Serializable.GeminiGlobal GetGlobalSaveData()
+    {
+      Serializable.GeminiGlobal saveData = new Serializable.GeminiGlobal();
       saveData.WindowMaximized = Application.OpenForms.Count == 0 ? false :
         Application.OpenForms[0].WindowState == FormWindowState.Maximized;
       saveData.WindowBounds = new Serializable.WindowBounds(saveData.WindowMaximized ? WindowBounds : Application.OpenForms[0].Bounds);
@@ -125,13 +151,10 @@ namespace Gemini
       saveData.ScriptStyles = ScriptStyles;
       saveData.AutoComplete = new Serializable.AutoComplete(AutoComplete, AutoCompleteLength, AutoCompleteFlag, AutoCompleteCustomWords);
       saveData.AutoCheckUpdates = AutoCheckUpdates;
-      if (File.Exists(path))
-        File.Delete(path);
-      using (Stream stream = File.OpenWrite(path))
-        new System.Xml.Serialization.XmlSerializer(typeof(Serializable.Gemini)).Serialize(stream, saveData);
+      return saveData;
     }
 
-    public static void SaveLocalSettings(string path)
+    private static Serializable.GeminiProject GetProjectSaveData()
     {
       Serializable.GeminiProject saveData = new Serializable.GeminiProject();
       saveData.DebugMode = DebugMode;
@@ -141,20 +164,15 @@ namespace Gemini
       saveData.Scripts = s;
       saveData.RuntimeExecutable = RuntimeExecutable;
       saveData.RuntimeArguments = RuntimeArguments;
-      if (File.Exists(path))
-        File.Delete(path);
-      using (Stream stream = File.OpenWrite(path))
-        new System.Xml.Serialization.XmlSerializer(typeof(Serializable.GeminiProject)).Serialize(stream, saveData);
+      return saveData;
     }
 
-    public static void LoadSettings(string path = "Gemini.xml")
+    public static void LoadConfiguration(string path = "Gemini.config")
     {
       if (File.Exists(path))
         try
         {
-          Serializable.Gemini saveData;
-          using (Stream stream = File.OpenRead(path))
-            saveData = (Serializable.Gemini)new System.Xml.Serialization.XmlSerializer(typeof(Serializable.Gemini)).Deserialize(stream);
+          Serializable.GeminiGlobal saveData = (Serializable.GeminiGlobal)LoadObject(path, 0);
           WindowMaximized = saveData.WindowMaximized;
           WindowBounds = saveData.WindowBounds.Bounds;
           AutoHideMenuBar = saveData.AutoHideMenuBar;
@@ -188,15 +206,14 @@ namespace Gemini
         }
     }
 
-
-    public static void LoadLocalSettings(string path)
+    public static void LoadLocalConfiguration()
+    { LoadLocalConfiguration(ProjectDirectory + "Gemini.config");}
+    public static void LoadLocalConfiguration(string path)
     {
       if (File.Exists(path))
         try
         {
-          Serializable.GeminiProject saveData;
-          using (Stream stream = File.OpenRead(path))
-            saveData = (Serializable.GeminiProject)new System.Xml.Serialization.XmlSerializer(typeof(Serializable.GeminiProject)).Deserialize(stream);
+          Serializable.GeminiProject saveData = (Serializable.GeminiProject)LoadObject(path, 1);
           OpenScripts = new List<Serializable.Script>(saveData.Scripts.OpenSections);
           ActiveScript = saveData.Scripts.ActiveScript;
           DebugMode = saveData.DebugMode;
@@ -211,6 +228,16 @@ namespace Gemini
           if (f == DialogResult.No)
             Application.Exit();
         }
+    }
+
+    private static object LoadObject(string path, int refer)
+    {
+      Serializable.Settings saveData;
+      using (Stream stream = File.OpenRead(path))
+        saveData = (Serializable.Settings)new System.Xml.Serialization.XmlSerializer(typeof(Serializable.Settings)).Deserialize(stream);
+      if (refer == 0 ) return saveData.Global;
+      else if (refer == 1 ) return saveData.Project;
+      else return null;
     }
   }
 
