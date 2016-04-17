@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IronRuby.Builtins;
+using ScintillaNet;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -8,8 +10,6 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using IronRuby.Builtins;
-using ScintillaNet;
 
 /*\
  *  ######  ###### ##     ## ###### ##    ## ######
@@ -20,13 +20,13 @@ using ScintillaNet;
  * ##    ## ##     ##     ##   ##   ##   ###   ##
  *  ######  ###### ##     ## ###### ##    ## ######
 \*/
+
 namespace Gemini
 {
   public partial class GeminiForm : Form
   {
     [DllImport("User32.dll")]
     private static extern bool SetForegroundWindow(IntPtr hWnd);
-
 
     /*\
      * ####### ##         ##        ##
@@ -38,6 +38,7 @@ namespace Gemini
      * ##      ##   #####  ###  ###### ######
      * ======================================
     \*/
+
     #region Fields and Properties
 
     private string _projectScriptPath = "";
@@ -46,6 +47,7 @@ namespace Gemini
 
     private Regex _invalidRegex = new Regex(@"[^A-Za-z0-9 +\-_=.,!@#$%^&();'(){}[\]]+",
       RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
     private Regex _fileNameRegex = new Regex(@"([A-Za-z0-9 +\-_=.,!@#$%^&();'(){}[\]]+)\.([A-Za-z0-9]{8})\.rb",
       RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
@@ -58,6 +60,7 @@ namespace Gemini
 
     private List<int> _usedSections = new List<int>();
     private List<ScriptList> _scriptRelations = new List<ScriptList>();
+
     private struct ScriptList
     {
       public ScriptList(int section, int level, List<int> list)
@@ -66,6 +69,7 @@ namespace Gemini
         Level = level;
         List = list;
       }
+
       public int Section;
       public int Level;
       public List<int> List;
@@ -74,7 +78,7 @@ namespace Gemini
     private FindReplaceDialog _findReplaceDialog = new FindReplaceDialog();
     private Process _charmap = new Process();
 
-    #endregion
+    #endregion Fields and Properties
 
     /*\
      *  ######                           ##                                ##
@@ -86,6 +90,7 @@ namespace Gemini
      *  ######  ######  ##    ## ######   #####  ##        ######   ######  #####   ######  ##
      * =============================================================================================
     \*/
+
     #region Contructor
 
     /// <summary>
@@ -142,7 +147,7 @@ namespace Gemini
         WindowState = FormWindowState.Maximized;
     }
 
-    #endregion
+    #endregion Contructor
 
     /*\
      * #######                                  #######                            ##
@@ -154,6 +159,7 @@ namespace Gemini
      * ##       ######  ##       ##  ##  ##     #######    ###     #####  ##    ##  ####
      * ==================================================================================
     \*/
+
     #region Main Form Events
 
     /// <summary>
@@ -194,7 +200,7 @@ namespace Gemini
       scriptsFileWatcher.EnableRaisingEvents = true;
     }
 
-    #endregion
+    #endregion Main Form Events
 
     /*\
      * ##     ##                                   ##               ##
@@ -206,6 +212,7 @@ namespace Gemini
      * ##     ##  #####  ##    ##  ######  ######   #####  ##       ##  ##
      * =================================================================##=====
     \*/
+
     #region Menu Strip Events
 
     private void menuMain_menuStrip_Leave(object sender, EventArgs e)
@@ -223,7 +230,7 @@ namespace Gemini
       menuMain_menuStrip.Visible = false;
     }
 
-    #endregion
+    #endregion Menu Strip Events
 
     /*\
      * ##     ##                               #######
@@ -235,6 +242,7 @@ namespace Gemini
      * ##     ##  #####  ##    ##  ######      ##      ###
      * ===================================================
     \*/
+
     #region Menu File Events
 
     private void mainMenu_ToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -395,7 +403,7 @@ namespace Gemini
       Close();
     }
 
-    #endregion
+    #endregion Menu File Events
 
     /*\
      * ##     ##                               #######
@@ -407,6 +415,7 @@ namespace Gemini
      * ##     ##  #####  ##    ##  ######      ####### ###
      * ===================================================
     \*/
+
     #region Menu Edit Events
 
     private void mainMenu_ToolStripMenuItem_Undo_Click(object sender, EventArgs e)
@@ -585,7 +594,7 @@ namespace Gemini
       Enabled = true;
     }
 
-    #endregion
+    #endregion Menu Edit Events
 
     /*\
      * ##     ##                                ######
@@ -597,6 +606,7 @@ namespace Gemini
      * ##     ##  #####  ##    ##  ######      #######  ###
      * ====================================================
     \*/
+
     #region Menu Settings Events
 
     private void menuMain_dropSettings_itemProjectSettings_Click(object sender, EventArgs e)
@@ -850,7 +860,7 @@ namespace Gemini
       //SaveScripts();
     }
 
-    #endregion
+    #endregion Menu Settings Events
 
     /*\
      * ##     ##                                ######
@@ -862,6 +872,7 @@ namespace Gemini
      * ##     ##  #####  ##    ##  ######       ######  ###
      * ====================================================
     \*/
+
     #region Menu Game Events
 
     private void mainMenu_ToolStripMenuItem_Help_Click(object sender, EventArgs e)
@@ -918,7 +929,7 @@ namespace Gemini
       Process.Start(Settings.ProjectDirectory);
     }
 
-    #endregion
+    #endregion Menu Game Events
 
     /*\
      * ##     ##                                  ###
@@ -930,6 +941,7 @@ namespace Gemini
      * ##     ##  #####  ##    ##  ######      ##     ## ###
      * =====================================================
     \*/
+
     #region Menu About Events
 
     private void mainMenu_ToolStripMenuItem_VersionHistory_Click(object sender, EventArgs e)
@@ -938,7 +950,7 @@ namespace Gemini
     private void mainMenu_ToolStripMenuItem_AboutGemini_Click(object sender, EventArgs e)
     { using (AboutForm dialog = new AboutForm()) dialog.ShowDialog(); }
 
-    #endregion
+    #endregion Menu About Events
 
     /*\
      * #######      ## ##  ##
@@ -950,6 +962,7 @@ namespace Gemini
      * #######  ###### ##   #####   ######  ##
      * ==
     \*/
+
     #region Script Editor Events
 
     /// <summary>
@@ -1063,7 +1076,7 @@ namespace Gemini
         UpdateName(GetActiveScript());
     }
 
-    #endregion
+    #endregion Script Editor Events
 
     /*\
      *  ######                  ##          ##           ######                                  ##
@@ -1075,6 +1088,7 @@ namespace Gemini
      * ######   ###### ##       ##  ##       #####      ######   #####  ####### ##        ###### ##    ##
      * ==================================================================================================
     \*/
+
     #region Script Search Events
 
     private void searches_ToolStripButton_Click(object sender, EventArgs e)
@@ -1101,7 +1115,7 @@ namespace Gemini
         splitView.Panel2Collapsed = true;
     }
 
-    #endregion
+    #endregion Script Search Events
 
     /*\
      * ##     ## ##
@@ -1113,6 +1127,7 @@ namespace Gemini
      *    ###    ##   #####    ### ###
      * =================================
     \*/
+
     #region Scripts View Events
 
     private void scriptsView_MouseDown(object sender, MouseEventArgs e)
@@ -1299,7 +1314,6 @@ namespace Gemini
           scriptsView.Nodes[pIndex].Nodes.RemoveAt(index);
           scriptsView.Nodes[pIndex].Nodes.Insert(index + 1, node);
           scriptsView.SelectedNode = scriptsView.Nodes[pIndex].Nodes[index + 1];
-
         }
       }
       else { scriptsView.EndUpdate(); return; }
@@ -1340,7 +1354,7 @@ namespace Gemini
       }
     }
 
-    #endregion
+    #endregion Scripts View Events
 
     /*\
      * ######                     ##                 ##
@@ -1352,6 +1366,7 @@ namespace Gemini
      * ##      ##        ######   ##  #####   ######  #####
      * ==========================##=========================
     \*/
+
     #region Project Methods
 
     private void CreateProject(string engine, string title, string directory, bool library, bool open)
