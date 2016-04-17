@@ -9,20 +9,20 @@ namespace Gemini.Serializable
   {
     public static Font Deserialize(FontProperties value)
     {
-      if (value.Attributes.Length < 5)
+      if (value.Meta.Length < 5)
         return new Font(value.Name, value.Size);
       else
       {
         FontStyle fs = new FontStyle();
-        if (value.Attributes.Contains("R"))
+        if (value.Meta.Contains("R"))
           fs |= FontStyle.Regular;
-        if (value.Attributes.Contains("B"))
+        if (value.Meta.Contains("B"))
           fs |= FontStyle.Bold;
-        if (value.Attributes.Contains("I"))
+        if (value.Meta.Contains("I"))
           fs |= FontStyle.Italic;
-        if (value.Attributes.Contains("U"))
+        if (value.Meta.Contains("U"))
           fs |= FontStyle.Underline;
-        if (value.Attributes.Contains("S"))
+        if (value.Meta.Contains("S"))
           fs |= FontStyle.Strikeout;
         return new Font(value.Name, value.Size, fs);
       }
@@ -39,7 +39,7 @@ namespace Gemini.Serializable
       if (value.Italic) str += "I";
       if (value.Underline) str += "U";
       if (value.Strikeout) str += "S";
-      fprop.Attributes = str;
+      fprop.Meta = str;
       return fprop;
     }
   }
@@ -47,8 +47,18 @@ namespace Gemini.Serializable
   [Serializable]
   public struct FontProperties
   {
+    public Font Get()
+    {
+      return FontSerializetionHelper.Deserialize(this);
+    }
+
+    public void Set(Font font)
+    {
+      this = FontSerializetionHelper.Serialize(font);
+    }
+
     public string Name;
+    public string Meta;
     public float Size;
-    public string Attributes;
   }
 }

@@ -4,24 +4,25 @@ using System.Drawing;
 namespace Gemini.Serializable
 {
   [Serializable]
-  public struct Settings
+  public struct SaveData
   {
-    public Settings(object global, object project)
+    public SaveData(object global, object project)
     {
-      Global = global;
+      Settings = global;
       Project = project;
     }
-    public object Global;
+
+    public object Settings;
     public object Project;
   }
 
   [Serializable]
-  public struct GeminiGlobal
+  public struct Settings
   {
     public bool AutoCheckUpdates;
     public bool AutoSaveConfig;
     public bool UseProjectConfig;
-    public WindowBounds WindowBounds;
+    public Window WindowBounds;
     public bool WindowMaximized;
     public Files Files;
     public bool AutoHideMenuBar;
@@ -30,7 +31,7 @@ namespace Gemini.Serializable
     public bool UseAutoIndent;
     public bool UseGuideLines;
     public bool UseLineHighLight;
-    public ColorProperties LineHighLightColor;
+    public string LineHighLightColor;
     public bool UseCodeFolding;
     public bool RecentPriority;
     public ScriptStyle[] ScriptStyles;
@@ -56,23 +57,14 @@ namespace Gemini.Serializable
   [Serializable]
   public struct Files
   {
-    public Files(bool open, File[] recent)
+    public Files(bool open, string[] recent)
     {
       AutoOpenProject = open;
       RecentlyOpenedList = recent;
     }
-    public bool AutoOpenProject;
-    public File[] RecentlyOpenedList;
-  }
 
-  [Serializable]
-  public struct File
-  {
-    public File(string path)
-    {
-      Path = path;
-    }
-    public string Path;
+    public bool AutoOpenProject;
+    public string[] RecentlyOpenedList;
   }
 
   [Serializable]
@@ -89,9 +81,9 @@ namespace Gemini.Serializable
   }
 
   [Serializable]
-  public struct WindowBounds
+  public struct Window
   {
-    public WindowBounds(Rectangle rec)
+    public Window(Rectangle rec)
     {
       X = rec.X;
       Y = rec.Y;
@@ -103,12 +95,13 @@ namespace Gemini.Serializable
     public int Y;
     public int Width;
     public int Height;
-    [System.Xml.Serialization.XmlIgnore()]
+
+    [Newtonsoft.Json.JsonIgnore()]
     public Rectangle Bounds { get { return new Rectangle(X, Y, Width, Height); } }
   }
 
   [Serializable]
-  public struct GeminiProject
+  public struct Project
   {
     public bool DebugMode;
     public string RuntimeExecutable;

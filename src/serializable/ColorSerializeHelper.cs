@@ -7,24 +7,14 @@ namespace Gemini.Serializable
   [TypeConverter(typeof(ColorConverter))]
   internal class ColorSerializetionHelper
   {
-    public static Color Deserialize(ColorProperties value)
+    public static Color Deserialize(string value)
     {
-      return Color.FromArgb(int.Parse(value.Hex.Replace("#",""), NumberStyles.HexNumber));
+      return Color.FromArgb(int.Parse(value.Replace("#", ""), NumberStyles.HexNumber));
     }
-    
-    public static ColorProperties Serialize(Color value)
-    {
-      return new ColorProperties("#" + value.A.ToString("X2") + value.R.ToString("X2")+ value.G.ToString("X2")+ value.B.ToString("X2"));
-    }
-  }
 
-  [Serializable]
-  public struct ColorProperties
-  {
-    public ColorProperties(string hex)
+    public static string Serialize(Color value)
     {
-      Hex = hex;
+      return "#" + value.A.ToString("X2") + value.R.ToString("X2") + value.G.ToString("X2") + value.B.ToString("X2");
     }
-    public string Hex;
   }
 }

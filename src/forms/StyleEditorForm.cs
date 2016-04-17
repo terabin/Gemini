@@ -51,9 +51,9 @@ namespace Gemini
         comboBoxFonts.SelectedIndex = comboBoxFonts.Items.IndexOf(style.Font.Name);
         string size = Convert.ToString(style.Font.Size);
         comboBoxSizes.SelectedIndex = comboBoxSizes.Items.IndexOf(size);
-        checkBoxBold.Checked = style.Font.Bold;
-        checkBoxItalic.Checked = style.Font.Italic;
-        checkBoxUnderline.Checked = style.Font.Underline;
+        checkBoxBold.Checked = style.Font.Get().Bold;
+        checkBoxItalic.Checked = style.Font.Get().Italic;
+        checkBoxUnderline.Checked = style.Font.Get().Underline;
         panelForeColor.BackColor = style.ForeColor;
         panelBackColor.BackColor = style.BackColor;
         _sampleScript.Scintilla.Text = _exampleStrings[index];
@@ -67,8 +67,8 @@ namespace Gemini
       int styleIndex = listBoxStyles.SelectedIndex;
       if (!_suppressRefresh && (styleIndex >= 0) && (fontIndex >= 0))
       {
-        _styles[styleIndex].Font = new Font((string)comboBoxFonts.Items[fontIndex],
-          _styles[styleIndex].Font.Size);
+        _styles[styleIndex].Font.Set(new Font((string)comboBoxFonts.Items[fontIndex],
+          _styles[styleIndex].Font.Get().Size));
         _sampleScript.SetStyle(_styles);
       }
     }
@@ -79,8 +79,8 @@ namespace Gemini
       int styleIndex = listBoxStyles.SelectedIndex;
       if (!_suppressRefresh && (styleIndex >= 0) && (sizeIndex >= 0))
       {
-        _styles[styleIndex].Font = new Font(_styles[styleIndex].Font.Name,
-          Convert.ToInt32(comboBoxSizes.Items[sizeIndex]));
+        _styles[styleIndex].Font.Set(new Font(_styles[styleIndex].Font.Name,
+          Convert.ToInt32(comboBoxSizes.Items[sizeIndex])));
         _sampleScript.SetStyle(_styles);
       }
     }
@@ -109,19 +109,19 @@ namespace Gemini
     private void ChangeFontStyle(int styleIndex, FontStyle fontStyle)
     {
       FontStyle newStyle = FontStyle.Regular;
-      if ((fontStyle == FontStyle.Bold) && (!_styles[styleIndex].Font.Bold))
+      if ((fontStyle == FontStyle.Bold) && (!_styles[styleIndex].Font.Get().Bold))
         newStyle |= fontStyle;
-      else if ((fontStyle != FontStyle.Bold) && _styles[styleIndex].Font.Bold)
+      else if ((fontStyle != FontStyle.Bold) && _styles[styleIndex].Font.Get().Bold)
         newStyle |= FontStyle.Bold;
-      if ((fontStyle == FontStyle.Italic) && (!_styles[styleIndex].Font.Italic))
+      if ((fontStyle == FontStyle.Italic) && (!_styles[styleIndex].Font.Get().Italic))
         newStyle |= fontStyle;
-      else if ((fontStyle != FontStyle.Italic) && _styles[styleIndex].Font.Italic)
+      else if ((fontStyle != FontStyle.Italic) && _styles[styleIndex].Font.Get().Italic)
         newStyle |= FontStyle.Italic;
-      if ((fontStyle == FontStyle.Underline) && (!_styles[styleIndex].Font.Underline))
+      if ((fontStyle == FontStyle.Underline) && (!_styles[styleIndex].Font.Get().Underline))
         newStyle |= fontStyle;
-      else if ((fontStyle != FontStyle.Underline) && _styles[styleIndex].Font.Underline)
+      else if ((fontStyle != FontStyle.Underline) && _styles[styleIndex].Font.Get().Underline)
         newStyle |= FontStyle.Underline;
-      _styles[styleIndex].Font = new Font(_styles[styleIndex].Font, newStyle);
+      _styles[styleIndex].Font.Set(new Font(_styles[styleIndex].Font.Get(), newStyle));
       _sampleScript.SetStyle(_styles);
     }
 

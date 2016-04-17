@@ -105,42 +105,32 @@ namespace Gemini
       };
     }
 
-    public static void SaveConfiguration(string path = "Gemini.config")
+    public static void SaveConfiguration(string path = "Gemini.json")
     {
-      if (ProjectConfig && ProjectDirectory == Path.GetDirectoryName(Application.ExecutablePath)) return;
-      Serializable.Settings saveData = new Serializable.Settings(GetGlobalSaveData(), null);
-      if (File.Exists(path))
-        File.Delete(path);
-      using (Stream stream = File.OpenWrite(path))
-        new System.Xml.Serialization.XmlSerializer(typeof(Serializable.GeminiGlobal)).Serialize(stream, saveData);
+      if (ProjectConfig && ProjectDirectory == Path.GetDirectoryName(Application.ExecutablePath))
+      {
+        return;
+      }
+      SaveObject(path, 0);
     }
 
     public static void SaveLocalConfiguration()
-    { SaveLocalConfiguration(ProjectDirectory + "Gemini.config"); }
-    public static void SaveLocalConfiguration(string path = null)
+    { SaveLocalConfiguration(ProjectDirectory + "Gemini.json"); }
+
+    public static void SaveLocalConfiguration(string path = "")
     {
-      Serializable.Settings saveData;
-      if (ProjectConfig && ProjectDirectory == Path.GetDirectoryName(Application.ExecutablePath))
-        saveData = new Serializable.Settings(GetGlobalSaveData(), GetProjectSaveData());
-      else
-        saveData = new Serializable.Settings(null, GetProjectSaveData());
-      if (File.Exists(path))
-        File.Delete(path);
-      using (Stream stream = File.OpenWrite(path))
-        new System.Xml.Serialization.XmlSerializer(typeof(Serializable.Settings)).Serialize(stream, saveData);
+      SaveObject(path, ((ProjectConfig && ProjectDirectory == Path.GetDirectoryName(Application.ExecutablePath)) ? 1 : 2));
     }
 
-    private static Serializable.GeminiGlobal GetGlobalSaveData()
+    private static Serializable.Settings GetSettings()
     {
-      Serializable.GeminiGlobal saveData = new Serializable.GeminiGlobal();
+      Serializable.Settings saveData = new Serializable.Settings();
       saveData.WindowMaximized = Application.OpenForms.Count == 0 ? false :
         Application.OpenForms[0].WindowState == FormWindowState.Maximized;
-      saveData.WindowBounds = new Serializable.WindowBounds(saveData.WindowMaximized ? WindowBounds : Application.OpenForms[0].Bounds);
+      saveData.WindowBounds = new Serializable.Window(saveData.WindowMaximized ? WindowBounds : Application.OpenForms[0].Bounds);
       saveData.AutoHideMenuBar = AutoHideMenuBar;
       saveData.DistracionMode = DistractionMode;
-      List<Serializable.File> f = new List<Serializable.File>();
-      foreach (string s in RecentlyOpened) f.Add(new Serializable.File(s));
-      saveData.Files = new Serializable.Files(AutoOpen, f.ToArray());
+      saveData.Files = new Serializable.Files(AutoOpen, RecentlyOpened.ToArray());
       saveData.UseAutoIndent = AutoIndent;
       saveData.UseGuideLines = GuideLines;
       saveData.UseLineHighLight = LineHighLight;
@@ -155,9 +145,9 @@ namespace Gemini
       return saveData;
     }
 
-    private static Serializable.GeminiProject GetProjectSaveData()
+    private static Serializable.Project GetProjectData()
     {
-      Serializable.GeminiProject saveData = new Serializable.GeminiProject();
+      Serializable.Project saveData = new Serializable.Project();
       saveData.DebugMode = DebugMode;
       Serializable.Scripts s = new Serializable.Scripts();
       s.ActiveScript = ActiveScript;
@@ -168,19 +158,19 @@ namespace Gemini
       return saveData;
     }
 
-    public static void LoadConfiguration(string path = "Gemini.config")
+    public static void LoadConfiguration(string path = "Gemini.json")
     {
       if (File.Exists(path))
         try
         {
-          Serializable.GeminiGlobal saveData = (Serializable.GeminiGlobal)LoadObject(path, 0);
+          var saveData = (Serializable.Settings)LoadObject(path, 0);
           WindowMaximized = saveData.WindowMaximized;
           WindowBounds = saveData.WindowBounds.Bounds;
           AutoHideMenuBar = saveData.AutoHideMenuBar;
           DistractionMode = saveData.DistracionMode;
           AutoOpen = saveData.Files.AutoOpenProject;
           List<string> tmp = new List<string>();
-          foreach (Serializable.File f in saveData.Files.RecentlyOpenedList) tmp.Add(f.Path);
+          foreach (string f in saveData.Files.RecentlyOpenedList) tmp.Add(f);
           RecentlyOpened = tmp;
           AutoIndent = saveData.UseAutoIndent;
           GuideLines = saveData.UseGuideLines;
@@ -208,14 +198,14 @@ namespace Gemini
     }
 
     public static void LoadLocalConfiguration()
-    { LoadLocalConfiguration(ProjectDirectory + "Gemini.config");}
+    { LoadLocalConfiguration(ProjectDirectory + "Gemini.json"); }
 
     public static void LoadLocalConfiguration(string path)
     {
       if (File.Exists(path))
         try
         {
-          Serializable.GeminiProject saveData = (Serializable.GeminiProject)LoadObject(path, 1);
+          var saveData = (Serializable.Project)LoadObject(path, 1);
           OpenScripts = new List<Serializable.Script>(saveData.Scripts.OpenSections);
           ActiveScript = saveData.Scripts.ActiveScript;
           DebugMode = saveData.DebugMode;
@@ -232,15 +222,33 @@ namespace Gemini
         }
     }
 
-    private static object LoadObject(string path, int refer)
+    private static object LoadObject(string path, int refer = 0)
     {
-      Serializable.Settings saveData;
-      using (Stream stream = File.OpenRead(path))
-        saveData = (Serializable.Settings)new System.Xml.Serialization.XmlSerializer(typeof(Serializable.Settings)).Deserialize(stream);
-      if (refer == 0 ) return saveData.Global;
-      else if (refer == 1 ) return saveData.Project;
-      else return null;
+      Serializable.SaveData saveData;
+      using (StreamReader file = File.OpenText(path))
+        saveData = (Serializable.SaveData)new JsonSerializer().Deserialize(file, typeof(Serializable.SaveData));
+      if (refer == 0) return saveData.Settings;
+      else if (refer == 1) return saveData.Project;
+      return null;
+    }
+
+    /// <summary>
+    /// Save data-object to file determened by
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="mode"></param>
+    private static void SaveObject(string path, int mode = 0)
+    {
+      if (File.Exists(path))
+        File.Delete(path);
+      using (StreamWriter file = File.CreateText(path))
+        new JsonSerializer().Serialize(
+          file,
+          new Serializable.SaveData(
+            (mode<2 ? (object)GetSettings() : null),
+            (mode>0 ? (object)GetProjectData() : null)
+          )
+        );
     }
   }
-
 }
