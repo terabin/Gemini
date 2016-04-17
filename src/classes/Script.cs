@@ -1,8 +1,8 @@
-﻿using System;
+﻿using IronRuby.Builtins;
+using ScintillaNet;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using ScintillaNet;
-using IronRuby.Builtins;
 
 namespace Gemini
 {
@@ -12,6 +12,7 @@ namespace Gemini
 
     // Fields
     private bool _needSave = false;
+
     private int _section;
     private string _name;
     private string _tabName;
@@ -20,15 +21,18 @@ namespace Gemini
     private TabPage _tabPage;
     private Scintilla _scintilla;
     private static List<char> _braces = new List<char>() { '(', ')', '[', ']', '{', '}' };
+
     private static List<char> _suppressedChars = new List<char>() {
       ' ', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=',
       '{', '}', '[', ']', ':', ';', '<', '>', '.', ',', '?', '/', '\\',
       '\n', '\r', '\t', '`', '~', '|' , '\'', '"' };
+
     private static List<string> _unindentWords = new List<string>() {
-            "else", "elsif", "rescue", "ensure", "when", "end", ")", "]", "}" };
+      "else", "elsif", "rescue", "ensure", "when", "end", ")", "]", "}" };
 
     // Properties
     public int Section { get { return _section; } set { _section = value; _rmScript[0] = _section; } }
+
     public string Name { get { return _name; } set { _name = value; _rmScript[1] = Ruby.ConvertString(_name); UpdateTabName(); } }
     public string Text { get { return _scintilla == null ? GetText() : _scintilla.Text; } }
     public string TabName { get { return _tabName; } }
@@ -39,7 +43,7 @@ namespace Gemini
     public bool NeedApplyChanges { get { return _scintilla != null && _text != _scintilla.Text; } }
     public bool Opened { get { return _tabPage != null; } }
 
-    #endregion
+    #endregion Fields and Properties
 
     public Script(RubyArray rmScript)
     {
@@ -51,12 +55,12 @@ namespace Gemini
 
     public Script(int section, string title, string text)
     {
-      _rmScript = new RubyArray() { section, Ruby.ConvertString(title), Ruby.ZlibDeflate(text)};
+      _rmScript = new RubyArray() { section, Ruby.ConvertString(title), Ruby.ZlibDeflate(text) };
       _section = section;
       _name = title;
       UpdateTabName();
     }
-
+    
     public void Dispose()
     {
       if (_tabPage != null)
@@ -176,7 +180,7 @@ namespace Gemini
             continue;
           _scintilla.Styles[i].ForeColor = styles[i].ForeColor;
           _scintilla.Styles[i].BackColor = styles[i].BackColor;
-          _scintilla.Styles[i].Font = styles[i].Font;
+          _scintilla.Styles[i].Font = styles[i].Font.Get();
         }
         // demoted keywords style
         _scintilla.Styles[29].ForeColor = _scintilla.Styles[5].ForeColor;
@@ -185,14 +189,14 @@ namespace Gemini
         // braces style
         _scintilla.Styles.BraceLight.ForeColor = styles[1].ForeColor;
         _scintilla.Styles.BraceLight.BackColor = styles[1].BackColor;
-        _scintilla.Styles.BraceLight.Font = styles[1].Font;
+        _scintilla.Styles.BraceLight.Font = styles[1].Font.Get();
         _scintilla.Styles.BraceBad.ForeColor = styles[1].BackColor;
         _scintilla.Styles.BraceBad.BackColor = styles[1].ForeColor;
-        _scintilla.Styles.BraceBad.Font = styles[1].Font;
+        _scintilla.Styles.BraceBad.Font = styles[1].Font.Get();
         // left margin style
         _scintilla.Styles.LineNumber.ForeColor = styles[19].ForeColor;
         _scintilla.Styles.LineNumber.BackColor = styles[19].BackColor;
-        _scintilla.Styles.LineNumber.Font = styles[19].Font;
+        _scintilla.Styles.LineNumber.Font = styles[19].Font.Get();
         _scintilla.Margins.FoldMarginColor = styles[19].BackColor;
       }
     }
@@ -367,7 +371,8 @@ namespace Gemini
     /// Ensures the margin is sized correctly to allow display of the line numbers
     /// </summary>
     private int _maxLineNumberCharLength;
-    private void Scintilla_TextChanged( object sender, EventArgs e )
+
+    private void Scintilla_TextChanged(object sender, EventArgs e)
     {
       Scintilla scintilla = (Scintilla)sender;
       var maxLength = scintilla.Lines.Count.ToString().Length;
@@ -398,7 +403,6 @@ namespace Gemini
         scintilla.NativeInterface.BraceHighlight(-1, -1);
     }
 
-    #endregion
-
+    #endregion Scintilla Events
   }
 }

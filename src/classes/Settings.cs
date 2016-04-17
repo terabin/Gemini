@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -81,26 +82,26 @@ namespace Gemini
     {
       using (Font font = new Font("Courier New", 10))
         return new ScriptStyle[] {
-        new ScriptStyle("White Space"        , Color.Black           , Color.White   , font),
-        new ScriptStyle("Brace Match"        , Color.Purple          , Color.Yellow  , font),
-        new ScriptStyle("Comment Line"       , Color.Green           , Color.White   , font),
-        new ScriptStyle("Comment Block"      , Color.Green           , Color.White   , font),
-        new ScriptStyle("Number"             , Color.DarkRed         , Color.White   , font),
-        new ScriptStyle("Keyword"            , Color.Blue            , Color.White   , font),
-        new ScriptStyle("Double Quote String", Color.Purple          , Color.White   , font),
-        new ScriptStyle("Single Quote String", Color.MediumVioletRed , Color.White   , font),
-        new ScriptStyle("Class Name"         , Color.DarkOrange      , Color.White   , font),
-        new ScriptStyle("Method Name"        , Color.Black           , Color.White   , font),
-        new ScriptStyle("Operator"           , Color.DarkCyan        , Color.White   , font),
-        new ScriptStyle("Call"               , Color.Black           , Color.White   , font),
-        new ScriptStyle("Regular Expression" , Color.MediumPurple    , Color.White   , font),
-        new ScriptStyle("Global Variable"    , Color.Black           , Color.White   , font),
-        new ScriptStyle("Symbol"             , Color.Orange          , Color.White   , font),
-        new ScriptStyle("Module Name"        , Color.DarkOrange      , Color.White   , font),
-        new ScriptStyle("Instance Variable"  , Color.Black           , Color.White   , font),
-        new ScriptStyle("Class Variable"     , Color.Black           , Color.White   , font),
-        new ScriptStyle("System String"      , Color.Red             , Color.White   , font),
-        new ScriptStyle("Line Number"        , Color.Gray            , Color.White   , font)
+        new ScriptStyle("White Space", Color.Black, Color.White, font),
+        new ScriptStyle("Brace Match", Color.Purple, Color.Yellow, font),
+        new ScriptStyle("Comment Line", Color.Green, Color.White, font),
+        new ScriptStyle("Comment Block", Color.Green, Color.White, font),
+        new ScriptStyle("Number", Color.DarkRed, Color.White, font),
+        new ScriptStyle("Keyword", Color.Blue, Color.White, font),
+        new ScriptStyle("Double Quote String", Color.Purple, Color.White, font),
+        new ScriptStyle("Single Quote String", Color.MediumVioletRed, Color.White, font),
+        new ScriptStyle("Class Name", Color.DarkOrange, Color.White, font),
+        new ScriptStyle("Method Name", Color.Black, Color.White, font),
+        new ScriptStyle("Operator", Color.DarkCyan, Color.White, font),
+        new ScriptStyle("Call", Color.Black, Color.White, font),
+        new ScriptStyle("Regular Expression", Color.MediumPurple, Color.White, font),
+        new ScriptStyle("Global Variable", Color.Black, Color.White, font),
+        new ScriptStyle("Symbol", Color.Orange, Color.White, font),
+        new ScriptStyle("Module Name", Color.DarkOrange, Color.White, font),
+        new ScriptStyle("Instance Variable", Color.Black, Color.White, font),
+        new ScriptStyle("Class Variable", Color.Black, Color.White, font),
+        new ScriptStyle("Line Number", Color.Gray, Color.White, font),
+        new ScriptStyle("System String", Color.Red, Color.White, font),
       };
     }
 
@@ -208,6 +209,7 @@ namespace Gemini
 
     public static void LoadLocalConfiguration()
     { LoadLocalConfiguration(ProjectDirectory + "Gemini.config");}
+
     public static void LoadLocalConfiguration(string path)
     {
       if (File.Exists(path))

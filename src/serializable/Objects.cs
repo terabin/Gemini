@@ -3,7 +3,6 @@ using System.Drawing;
 
 namespace Gemini.Serializable
 {
-
   [Serializable]
   public struct Settings
   {
@@ -47,6 +46,7 @@ namespace Gemini.Serializable
       Flag = f;
       CustomWords = c;
     }
+
     public bool Use;
     public int Length;
     public int Flag;
@@ -83,6 +83,7 @@ namespace Gemini.Serializable
       Use = use;
       HideToolbar = ht;
     }
+
     public bool Use;
     public bool HideToolbar;
   }
@@ -97,6 +98,7 @@ namespace Gemini.Serializable
       Width = rec.Width;
       Height = rec.Height;
     }
+
     public int X;
     public int Y;
     public int Width;
@@ -129,6 +131,7 @@ namespace Gemini.Serializable
       Section = section;
       Position = position;
     }
+
     public int Section;
     public int Position;
   }
