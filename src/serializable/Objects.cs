@@ -6,14 +6,14 @@ namespace Gemini.Serializable
   [Serializable]
   public struct SaveData
   {
-    public SaveData(object global, object project)
+    public SaveData(Settings? settings, Project? project)
     {
-      Settings = global;
+      Settings = settings;
       Project = project;
     }
 
-    public object Settings;
-    public object Project;
+    public Settings? Settings;
+    public Project? Project;
   }
 
   [Serializable]
@@ -22,7 +22,7 @@ namespace Gemini.Serializable
     public bool AutoCheckUpdates;
     public bool AutoSaveConfig;
     public bool UseProjectConfig;
-    public Window WindowBounds;
+    public Window Window;
     public bool WindowMaximized;
     public Files Files;
     public bool AutoHideMenuBar;
@@ -112,8 +112,8 @@ namespace Gemini.Serializable
   [Serializable]
   public struct Scripts
   {
-    public Script ActiveScript;
-    public Script[] OpenSections;
+    public Script Active;
+    public Script[] Opened;
   }
 
   [Serializable]

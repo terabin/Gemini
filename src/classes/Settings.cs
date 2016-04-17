@@ -127,7 +127,7 @@ namespace Gemini
       Serializable.Settings saveData = new Serializable.Settings();
       saveData.WindowMaximized = Application.OpenForms.Count == 0 ? false :
         Application.OpenForms[0].WindowState == FormWindowState.Maximized;
-      saveData.WindowBounds = new Serializable.Window(saveData.WindowMaximized ? WindowBounds : Application.OpenForms[0].Bounds);
+      saveData.Window = new Serializable.Window(saveData.WindowMaximized ? WindowBounds : Application.OpenForms[0].Bounds);
       saveData.AutoHideMenuBar = AutoHideMenuBar;
       saveData.DistracionMode = DistractionMode;
       saveData.Files = new Serializable.Files(AutoOpen, RecentlyOpened.ToArray());
@@ -150,8 +150,8 @@ namespace Gemini
       Serializable.Project saveData = new Serializable.Project();
       saveData.DebugMode = DebugMode;
       Serializable.Scripts s = new Serializable.Scripts();
-      s.ActiveScript = ActiveScript;
-      s.OpenSections = OpenScripts.ToArray();
+      s.Active = ActiveScript;
+      s.Opened = OpenScripts.ToArray();
       saveData.Scripts = s;
       saveData.RuntimeExecutable = RuntimeExecutable;
       saveData.RuntimeArguments = RuntimeArguments;
@@ -163,9 +163,9 @@ namespace Gemini
       if (File.Exists(path))
         try
         {
-          var saveData = (Serializable.Settings)LoadObject(path, 0);
+          Serializable.Settings saveData = (Serializable.Settings)LoadObject(path, 0);
           WindowMaximized = saveData.WindowMaximized;
-          WindowBounds = saveData.WindowBounds.Bounds;
+          WindowBounds = saveData.Window.Bounds;
           AutoHideMenuBar = saveData.AutoHideMenuBar;
           DistractionMode = saveData.DistracionMode;
           AutoOpen = saveData.Files.AutoOpenProject;
@@ -206,8 +206,8 @@ namespace Gemini
         try
         {
           var saveData = (Serializable.Project)LoadObject(path, 1);
-          OpenScripts = new List<Serializable.Script>(saveData.Scripts.OpenSections);
-          ActiveScript = saveData.Scripts.ActiveScript;
+          OpenScripts = new List<Serializable.Script>(saveData.Scripts.Opened);
+          ActiveScript = saveData.Scripts.Active;
           DebugMode = saveData.DebugMode;
           RuntimeExecutable = saveData.RuntimeExecutable;
           RuntimeArguments = saveData.RuntimeArguments;
@@ -226,7 +226,8 @@ namespace Gemini
     {
       Serializable.SaveData saveData;
       using (StreamReader file = File.OpenText(path))
-        saveData = (Serializable.SaveData)new JsonSerializer().Deserialize(file, typeof(Serializable.SaveData));
+        saveData = (Serializable.SaveData)(new JsonSerializer().Deserialize(file, typeof(Serializable.SaveData)));
+
       if (refer == 0) return saveData.Settings;
       else if (refer == 1) return saveData.Project;
       return null;
@@ -245,8 +246,8 @@ namespace Gemini
         new JsonSerializer().Serialize(
           file,
           new Serializable.SaveData(
-            (mode<2 ? (object)GetSettings() : null),
-            (mode>0 ? (object)GetProjectData() : null)
+            (mode < 2 ? GetSettings() : (Serializable.Settings?)null),
+            (mode>0 ? GetProjectData() : (Serializable.Project?)null)
           )
         );
     }
