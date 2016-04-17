@@ -198,8 +198,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// If Smart Indenting is enabled, this delegate will be added to the CharAdded multicast event.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="ch">Next <see cref="char"/> typed</param>
 		internal void CheckSmartIndent(char ch)
 		{
 			char newline = (Scintilla.EndOfLine.Mode == EndOfLineMode.CR) ? '\r' : '\n';

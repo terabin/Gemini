@@ -23,9 +23,9 @@ public static class XpmConverter
 	/// </summary>
 	/// <param name="imageList">The image list to transform.</param>
 	/// <returns></returns>
-	static public List<string> ConvertToXPM(ImageList ImageList)
+	static public List<string> ConvertToXPM(ImageList imageList)
 	{
-		return ConvertToXPM(ImageList, DefaultTransparentColor);
+		return ConvertToXPM(imageList, DefaultTransparentColor);
 	}
 
 	/// <summary>

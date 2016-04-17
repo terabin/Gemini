@@ -535,7 +535,7 @@ namespace ScintillaNet
 		/// Registers an image with index to be displayed in the AutoComplete window.
 		/// </summary>
 		/// <param name="type">Index of the image to register to</param>
-		/// <param name="xpmImage">Image to display in the XPM image format</param>
+		/// <param name="image">Image to display in the XPM image format</param>
 		/// <param name="transparentColor">Color to mask the image as transparent</param>
 		private void RegisterImage(int type, Bitmap image, Color transparentColor)
 		{
@@ -710,7 +710,7 @@ namespace ScintillaNet
 		#region AutomaticLengthEntered
 		private bool _automaticLengthEntered = true;
 		/// <summary>
-		/// Gets or Sets the last automatically calculated LengthEntered used whith <see cref="Show" />.
+		/// Gets or Sets the last automatically calculated LengthEntered used whith <see cref="Show(int, string)" />.
 		/// </summary>
 		public bool AutomaticLengthEntered
 		{

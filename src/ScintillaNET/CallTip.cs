@@ -85,7 +85,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// Shows the calltip with overloads
 		/// </summary>
-		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverLoadList"/></param>
+		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverloadList"/></param>
 		/// <param name="position">The document position where the calltip should be displayed</param>
 		/// <param name="startIndex">The index of the initial overload to display</param>
 		/// <param name="highlightStart">Start posision of the part of the message that should be selected</param>
@@ -110,7 +110,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// Shows the calltip with overloads
 		/// </summary>
-		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverLoadList"/></param>
+		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverloadList"/></param>
 		/// <param name="position">The document position where the calltip should be displayed</param>
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
@@ -125,7 +125,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// Shows the calltip with overloads
 		/// </summary>
-		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverLoadList"/></param>
+		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverloadList"/></param>
 		/// <param name="position">The document position where the calltip should be displayed</param>
 		/// <param name="highlightStart">Start posision of the part of the message that should be selected</param>
 		/// <param name="highlightEnd">End posision of the part of the message that should be selected</param>
@@ -142,7 +142,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// Shows the calltip with overloads
 		/// </summary>
-		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverLoadList"/></param>
+		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverloadList"/></param>
 		/// <param name="startIndex">The index of the initial overload to display</param>
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
@@ -157,7 +157,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// Shows the calltip with overloads
 		/// </summary>
-		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverLoadList"/></param>
+		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverloadList"/></param>
 		/// <param name="startIndex">The index of the initial overload to display</param>
 		/// <param name="highlightStart">Start posision of the part of the message that should be selected</param>
 		/// <param name="highlightEnd">End posision of the part of the message that should be selected</param>
@@ -174,7 +174,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// Shows the calltip with overloads
 		/// </summary>
-		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverLoadList"/></param>
+		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverloadList"/></param>
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
@@ -188,7 +188,7 @@ namespace ScintillaNet
 		/// <summary>
 		/// Shows the calltip with overloads
 		/// </summary>
-		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverLoadList"/></param>
+		/// <param name="overloadList">List of overloads to be displayed see <see cref="OverloadList"/></param>
 		/// <param name="highlightStart">Start posision of the part of the message that should be selected</param>
 		/// <param name="highlightEnd">End posision of the part of the message that should be selected</param>
 		/// <remarks>
@@ -209,7 +209,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated. It will be displayed at the current document
+		/// The <see cref="OverloadList"/> must already be populated. It will be displayed at the current document
 		/// position with no highlight
 		/// </remarks>
 		public void ShowOverload(int position, uint startIndex)
@@ -227,7 +227,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated.
+		/// The <see cref="OverloadList"/> must already be populated.
 		/// </remarks>
 		public void ShowOverload(int position, uint startIndex, int highlightStart, int highlightEnd)
 		{
@@ -241,7 +241,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated. The overload at position 0 will be displayed
+		/// The <see cref="OverloadList"/> must already be populated. The overload at position 0 will be displayed
 		/// with no highlight.
 		/// </remarks>
 		public void ShowOverload(int position)
@@ -258,7 +258,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated. The overload at position 0 will be displayed.
+		/// The <see cref="OverloadList"/> must already be populated. The overload at position 0 will be displayed.
 		/// </remarks>
 		public void ShowOverload(int position, int highlightStart, int highlightEnd)
 		{
@@ -272,7 +272,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated. It will be displayed at the current document
+		/// The <see cref="OverloadList"/> must already be populated. It will be displayed at the current document
 		/// position with no highlight.
 		/// </remarks>
 		public void ShowOverload(uint startIndex)
@@ -289,7 +289,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated. It will be displayed at the current document
+		/// The <see cref="OverloadList"/> must already be populated. It will be displayed at the current document
 		/// position.
 		/// </remarks>
 		public void ShowOverload(uint startIndex, int highlightStart, int highlightEnd)
@@ -305,7 +305,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated. It will be displayed at the current document
+		/// The <see cref="OverloadList"/> must already be populated. It will be displayed at the current document
 		/// position starting at overload 0
 		/// </remarks>
 		public void ShowOverload(int highlightStart, int highlightEnd)
@@ -319,7 +319,7 @@ namespace ScintillaNet
 		/// <remarks>
 		/// ShowOverload automatically handles displaying a calltip with a list of overloads. It automatically shows the
 		/// up and down arrows and cycles through the list of overloads in response to mouse clicks.
-		/// The <see cref="OverLoadList"/> must already be populated. It will be displayed at the current document
+		/// The <see cref="OverloadList"/> must already be populated. It will be displayed at the current document
 		/// position starting at overload 0 with no highlight.
 		/// </remarks>
 		public void ShowOverload()
@@ -338,7 +338,7 @@ namespace ScintillaNet
 		/// <param name="position">The document position to show the calltip</param>
 		/// <param name="highlightStart">Start posision of the part of the message that should be selected</param>
 		/// <param name="highlightEnd">End posision of the part of the message that should be selected</param>
-		public void Show(string message, int position, int highlightStart, int higlightEnd)
+		public void Show(string message, int position, int highlightStart, int highlightEnd)
 		{
 			_lastPos = position;
 			if (position < 0)
@@ -372,9 +372,9 @@ namespace ScintillaNet
 		/// <remarks>
 		/// The calltip will be displayed at the current document position
 		/// </remarks>
-		public void Show(string message, int highlightStart, int higlightEnd)
+		public void Show(string message, int highlightStart, int highlightEnd)
 		{
-			Show(message, -1, highlightStart, higlightEnd);
+			Show(message, -1, highlightStart, highlightEnd);
 		}
 
 		/// <summary>
@@ -411,9 +411,9 @@ namespace ScintillaNet
 		/// <remarks>
 		/// The <see cref="Message"/> must already be populated.
 		/// </remarks>
-		public void Show(int position, int highlightStart, int higlightEnd)
+		public void Show(int position, int highlightStart, int highlightEnd)
 		{
-			Show(_message, position, highlightStart, higlightEnd);
+			Show(_message, position, highlightStart, highlightEnd);
 		}
 
 		/// <summary>
@@ -424,9 +424,9 @@ namespace ScintillaNet
 		/// <remarks>
 		/// The <see cref="Message"/> must already be populated. The calltip will be displayed at the current document position
 		/// </remarks>
-		public void Show(int highlightStart, int higlightEnd)
+		public void Show(int highlightStart, int highlightEnd)
 		{
-			Show(_message, -1, highlightStart, higlightEnd);
+			Show(_message, -1, highlightStart, highlightEnd);
 		}
 
 		/// <summary>
@@ -719,17 +719,17 @@ namespace ScintillaNet
 		}
 
 		/// <summary>
-		/// Creates a new instance of an OverLoadList
+		/// Creates a new instance of an OverloadList
 		/// </summary>
 		public OverloadList() : base(){ }
 
 		/// <summary>
-		/// Creates a new instance of an OverLoadList. The list of overloads is supplied by collection
+		/// Creates a new instance of an OverloadList. The list of overloads is supplied by collection
 		/// </summary>
 		public OverloadList(IEnumerable<string> collection) : base(collection) { }
 
 		/// <summary>
-		/// Creates a new instance of an OverLoadList. The 
+		/// Creates a new instance of an OverloadList. The 
 		/// </summary>
 		public OverloadList(int capacity) : base(capacity) { }
 	}

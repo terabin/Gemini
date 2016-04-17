@@ -2085,7 +2085,6 @@ namespace ScintillaNet
 		/// <summary>
 		/// Raises the <see cref="TextChanged"/> event.
 		/// </summary>
-		/// <param name="e">Empty</param>
 		protected virtual void OnTextChanged()
 		{
 			EventHandler<EventArgs> handler = Events[_textChangedKey] as EventHandler<EventArgs>;
@@ -2601,7 +2600,7 @@ namespace ScintillaNet
 		#region ModifiedChanged
 
 		/// <summary>
-		/// Occurs when the value of the <see cref="Modified"> property has changed.
+		/// Occurs when the value of the <see cref="Modified"/> property has changed.
 		/// </summary>
 		[Category("Property Changed"), Description("Occurs when the value of the Modified property changes.")]
 		public event EventHandler ModifiedChanged

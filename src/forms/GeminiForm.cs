@@ -1502,8 +1502,7 @@ namespace Gemini
     /// <summary>
     /// Adds an entry to the recent file lists, ensuring there are no duplicates
     /// </summary>
-    /// <param name="projectPath">The path of the file to add</param>
-    /// <param name="ext">The extension of the file, which determines the icon</param>
+    /// <param name="path">The path of the file to add</param>
     private void AddRecentProject(string path)
     {
       if (Settings.RecentlyOpened.Contains(path))
@@ -1959,7 +1958,7 @@ namespace Gemini
     }
 
     /// <summary>
-    /// Get the Script by the given section number
+    /// Get the <see cref="Script"/> by the given <paramref name="section"/>
     /// </summary>
     /// <param name="section">Section to locate script from</param>
     /// <returns></returns>
@@ -2080,7 +2079,7 @@ namespace Gemini
     /// <summary>
     /// Search for any TreeNodes correspondig to the given name. Accepts Regex
     /// </summary>
-    /// <param name="name">The name to search for</param>
+    /// <param name="regexName">The name to search for</param>
     /// <returns>The TreeNode to use</returns>
     private bool NodeExistByName(string regexName)
     {
@@ -2305,6 +2304,7 @@ namespace Gemini
     /// <summary>
     /// Copies an embedded resource to an external place on the hard-drive
     /// </summary>
+    /// <param name="resource">Rescource to copy</param>
     /// <param name="path">The path the resource will be saved to</param>
     private void CopyResource(string resource, string path)
     {

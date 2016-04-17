@@ -112,7 +112,7 @@ namespace ScintillaNet
 		///    (,int)    
 		/// </summary>
 		/// <param name="msg">Scintilla Message Number</param>
-		/// <param name="NULL">always pass null--Unused parameter</param>
+		/// <param name="wParam">always pass null--Unused parameter</param>
 		/// <param name="lParam">lParam</param>
 		/// <returns></returns>
         int INativeScintilla.SendMessageDirect(uint msg, VOID wParam, int lParam)
@@ -187,6 +187,7 @@ namespace ScintillaNet
 		///  by calling the message with a 0 lParam. 
 		/// </summary>
 		/// <param name="msg">Scintilla Message Number</param>
+    /// <param name="wParam">int wParam</param>
 		/// <param name="text">String output</param>
 		/// <returns></returns>
 		int INativeScintilla.SendMessageDirect(uint msg, int wParam, out string text)

@@ -44,7 +44,7 @@ namespace ScintillaNet
 		/// A <see cref="Color"/> that represents the background color of whitespace characters.
 		/// The default is <see cref="Color.Empty"/>.
 		/// </returns>
-		/// <exception cref="ArgumentOutOfRange">
+		/// <exception cref="ArgumentOutOfRangeException">
 		/// The specified <paramref name="value"/> has an alpha value that is less that <see cref="Byte.MaxValue"/>.
 		/// </exception>
 		[DefaultValue(typeof(Color), ""), NotifyParentProperty(true), RefreshProperties(RefreshProperties.Repaint)]
@@ -79,22 +79,22 @@ namespace ScintillaNet
 		}
 
 
-		/// <summary>
-		/// Gets or sets the whitespace foreground color.
-		/// </summary>
-		/// <remarks>
-		/// By default, the whitespace foreground color is determined by the lexer in use.
-		/// Setting the <c>ForeColor</c> to anything other than <see cref="Color.Empty"/> overrides the lexer behavior.
-		/// Transparent colors are not supported.
-		/// </remarks>
-		/// <returns>
-		/// A <see cref="Color"/> that represents the foreground color of whitespace characters.
-		/// The default is <see cref="Color.Empty"/>.
-		/// </returns>
-		/// <exception cref="ArgumentOutOfRange">
-		/// The specified <paramref name="value"/> has an alpha value that is less that <see cref="Byte.MaxValue"/>.
-		/// </exception>
-		[DefaultValue(typeof(Color), ""), NotifyParentProperty(true), RefreshProperties(RefreshProperties.Repaint)]
+    /// <summary>
+    /// Gets or sets the whitespace foreground color.
+    /// </summary>
+    /// <remarks>
+    /// By default, the whitespace foreground color is determined by the lexer in use.
+    /// Setting the <c>ForeColor</c> to anything other than <see cref="Color.Empty"/> overrides the lexer behavior.
+    /// Transparent colors are not supported.
+    /// </remarks>
+    /// <returns>
+    /// A <see cref="Color"/> that represents the foreground color of whitespace characters.
+    /// The default is <see cref="Color.Empty"/>.
+    /// </returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The specified <paramref name="value"/> has an alpha value that is less that <see cref="Byte.MaxValue"/>.
+    /// </exception>
+    [DefaultValue(typeof(Color), ""), NotifyParentProperty(true), RefreshProperties(RefreshProperties.Repaint)]
 		[Category("Appearance"), Description("The foreground color of whitespace characters.")]
 		public Color ForeColor
 		{

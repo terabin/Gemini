@@ -169,7 +169,7 @@ namespace ScintillaNet
 		/// Gets/Sets the color of the document line where the caret currently resides
 		/// </summary>
 		/// <remarks>
-		/// The <see cref="HighlightCurrentList"/> property must be set to true in order
+		/// The <see cref="HighlightCurrentLine"/> property must be set to true in order
 		/// for this to to take effect.
 		/// </remarks>
 		public Color CurrentLineBackgroundColor
