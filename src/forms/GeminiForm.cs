@@ -1441,24 +1441,29 @@ namespace Gemini
           _projectScriptPath = GetScriptsPath();
           _projectScriptsFolderPath = Settings.ProjectDirectory + @"Scripts\";
           break;
+
         case ".rvproj":
           _projectEngine = "RMVX";
           _projectScriptPath = GetScriptsPath();
           _projectScriptsFolderPath = Settings.ProjectDirectory + @"Scripts\";
           break;
+
         case ".rvproj2":
           _projectEngine = "RMVXAce";
           _projectScriptPath = GetScriptsPath();
           _projectScriptsFolderPath = Settings.ProjectDirectory + @"Scripts\";
           break;
+
         case ".rxdata":
           _projectEngine = "RMXP";
           _projectScriptPath = projectPath;
           break;
+
         case ".rvdata":
           _projectEngine = "RMVX";
           _projectScriptPath = projectPath;
           break;
+
         case ".rvdata2":
           _projectEngine = "RMVXAce";
           _projectScriptPath = projectPath;
@@ -1610,7 +1615,7 @@ namespace Gemini
       _busy = false;
     }
 
-    #endregion
+    #endregion Project Methods
 
     /*\
      *  ######                  ##          ##
@@ -1622,6 +1627,7 @@ namespace Gemini
      * ######   ###### ##       ##  ##       #####
      * =============================##===========
     \*/
+
     #region Script Methods
 
     /// <summary>
@@ -1683,6 +1689,7 @@ namespace Gemini
 
     private void SaveScripts()
     { SaveScripts(_projectScriptPath); }
+
     private void SaveScripts(string path)
     {
       if (_busy || string.IsNullOrEmpty(path)) return;
@@ -1758,13 +1765,13 @@ namespace Gemini
       // bail if section used or script empty
       if (_usedSections.Contains(script.Section)) throw new InvalidCastException("Section already used.");
       if ((string.IsNullOrEmpty(script.Name) && string.IsNullOrEmpty(script.Text.Trim()))) throw new ArgumentNullException("Empty Script passed.");
-            // trim name
-            script.Name.Trim().Replace("▼ ", "");
+      // trim name
+      script.Name.Trim().Replace("▼ ", "");
 
       _usedSections.Add(script.Section);
       _scripts.Add(script);
       //add relations and script only if valid section
-        _scriptRelations.Find(delegate (ScriptList l) { return l.Section == parentSection; }).List.Add(script.Section);
+      _scriptRelations.Find(delegate (ScriptList l) { return l.Section == parentSection; }).List.Add(script.Section);
     }
 
     private void RemoveScript(int section)
@@ -1978,15 +1985,17 @@ namespace Gemini
     private void UpdateScriptBySection(int section, string name, string value)
     {
       Script script = GetScriptBySection(section);
+
       if (script.Name != name.Trim())
         script.Name = name.Trim();
       script.Scintilla.Text = value;
+
       script.ApplyChanges();
       if (!script.Opened)
         script.Dispose();
     }
 
-    #endregion
+    #endregion Script Methods
 
     /*\
      * ##    ##               ##
@@ -1997,16 +2006,16 @@ namespace Gemini
      * ##   ### ##    ## ##   ## ##
      * ##    ##  ######   ######  #####
     \*/
+
     #region Node Methods
 
     private void InsertNode(TreeNode currentNode, params object[] args)
     {
-
-
     }
 
     private void RemoveNode(string section)
     { RemoveNode(int.Parse(section)); }
+
     private void RemoveNode(int section)
     {
       TreeNode node = GetNodeBySection(section);
@@ -2097,6 +2106,7 @@ namespace Gemini
      *  ######  ### ##  ##      ######   ######  ####### ##        ######
      * =================##===============================================
     \*/
+
     #region Clipboard Methods
 
     /// <summary>
@@ -2155,7 +2165,7 @@ namespace Gemini
       return null;
     }
 
-    #endregion
+    #endregion Node Methods
 
     /*\
      *  ######                                  ##
@@ -2167,6 +2177,7 @@ namespace Gemini
      * ######   #####  ####### ##        ###### ##    ##
      * =================================================
     \*/
+
     #region Search Methods
 
     private void ShowFind()
@@ -2276,7 +2287,7 @@ namespace Gemini
         control.label_Statistics.Text = "There is currently no open document to search.";
     }
 
-    #endregion
+    #endregion Clipboard Methods
 
     /*\
      * ##     ## ##
@@ -2373,7 +2384,7 @@ namespace Gemini
       _scriptRelations.RemoveAll(delegate (ScriptList l) { return l.Section == section; });
     }
 
-    #endregion
+    #endregion Search Methods
 
     /*\
      * ##     ##              ##         ##
