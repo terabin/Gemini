@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Gemini.Rendering
@@ -17,7 +16,7 @@ namespace Gemini.Rendering
 
       if (dr != null)
       {
-        e.Graphics.FillRectangle(SystemBrushes.Control, e.AffectedBounds);
+        e.Graphics.FillRectangle(new SolidBrush(e.BackColor), e.AffectedBounds);
       }
     }
   }
