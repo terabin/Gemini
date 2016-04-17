@@ -821,6 +821,7 @@ namespace Gemini
       }
     }
 
+    //TODO: Cleanup code here.
     private void menuMain_dropSettings_itemUpdateSections_Click(object sender, EventArgs e)
     {
       DialogResult result = MessageBox.Show("If you proceed, all scripts will be saved with new sections. Proceed?",
@@ -1102,10 +1103,10 @@ namespace Gemini
     private void searches_ListView_ItemActivate(object sender, EventArgs e)
     {
       SearchResult result = (SearchResult)((ListView)sender).SelectedItems[0];
-      if (ScriptExistBySection(result.Section))
+      if (ScriptExists(result.Section))
       {
         OpenScript(result.Section);
-        GetScriptBySection(result.Section).Scintilla.GoTo.Line(result.Line);
+        GetScript(result.Section).Scintilla.GoTo.Line(result.Line);
       }
     }
 
@@ -1202,7 +1203,7 @@ namespace Gemini
       int section = int.Parse(scriptsView.SelectedNode.Name);
       if (section >= 0)
       {
-        SetClipboardScript(GetScriptBySection(section));
+        SetClipboardScript(GetScript(section));
         UpdateMenusEnabled();
       }
     }
@@ -1243,11 +1244,7 @@ namespace Gemini
     /// </summary>
     private void scriptsView_contextMenu_itemExport_Click(object sender, EventArgs e)
     {
-      TreeNode node = scriptsView.SelectedNode;
-      if (node.Level == 0)
-        ExportScriptGroup(node);
-      else
-        ExportScript(int.Parse(node.Name));
+      ExportScript(int.Parse(scriptsView.SelectedNode.Name), true);
     }
 
     /// <summary>
@@ -1340,12 +1337,12 @@ namespace Gemini
       scriptName.Select(scriptName.Text.Length, 0);
       int section = int.Parse(scriptsView.SelectedNode.Name);
       if (section >= 0 && (scriptsView.SelectedNode.Level == 0 ?
-        GetNodeBySection(section).Text : GetScriptBySection(section).Name) != scriptName.Text)
+        GetNodeBySection(section).Text : GetScript(section).Name) != scriptName.Text)
       {
         Script s;
         if (scriptsView.SelectedNode.Level == 0)
           scriptsView.SelectedNode.Text = scriptName.Text;
-        else if ((s = GetScriptBySection(section)) != null)
+        else if ((s = GetScript(section)) != null)
         {
           s.Name = scriptName.Text;
           UpdateName(s);
@@ -1605,10 +1602,10 @@ namespace Gemini
         Settings.LoadLocalConfiguration();
         if (Settings.OpenScripts.Count > 0)
           foreach (Serializable.Script s in Settings.OpenScripts)
-            if (ScriptExistBySection(s.Section))
+            if (ScriptExists(s.Section))
               OpenScript(s.Section, s.Position);
-        if ((Settings.ActiveScript.Section <= 0) && ScriptExistBySection(Settings.ActiveScript.Section))
-          scriptsEditor_tabs.SelectedTab = GetScriptBySection(Settings.ActiveScript.Section).TabPage;
+        if ((Settings.ActiveScript.Section <= 0) && ScriptExists(Settings.ActiveScript.Section))
+          scriptsEditor_tabs.SelectedTab = GetScript(Settings.ActiveScript.Section).TabPage;
         Settings.OpenScripts.Clear();
       }
       _busy = false;
@@ -1678,7 +1675,7 @@ namespace Gemini
           _usedSections.Add(script.Section);
         list.Add(script.Section);
         if (script.Name.StartsWith("▼ "))
-          i = LoadScriptsLoop(rmScripts, script.Section, i+1, level+1);
+          i = LoadScriptsLoop(rmScripts, script.Section, i + 1, level + 1);
         script.Name.Trim().Replace("▼ ", "");
         _scripts.Add(script);
       }
@@ -1724,13 +1721,13 @@ namespace Gemini
       {
         if (!saveCopy)
         {
-          GetScriptBySection(l.List[i]).ApplyChanges();
-          GetScriptBySection(l.List[i]).NeedSave = false;
+          GetScript(l.List[i]).ApplyChanges();
+          GetScript(l.List[i]).NeedSave = false;
         }
-        RubyArray rmScript = GetScriptBySection(l.List[i]).RMScript;
+        RubyArray rmScript = GetScript(l.List[i]).RMScript;
         if (_scriptRelations.Exists(delegate (ScriptList m) { return m.Section == l.List[i]; }))
         {
-          rmScript[1] = Ruby.ConvertString("▼ " + GetScriptBySection(l.List[i]).Name);
+          rmScript[1] = Ruby.ConvertString("▼ " + GetScript(l.List[i]).Name);
           secondData[secondData.Count] = rmScript;
           var tmp = SaveScriptLoop(secondData, i, l.List[i], saveCopy);
           data = (RubyArray)tmp[0];
@@ -1775,10 +1772,10 @@ namespace Gemini
 
     private void RemoveScript(int section)
     {
-      if (ScriptExistBySection(section))
+      if (ScriptExists(section))
       {
         MoveUpRelations(section);
-        _scripts.Remove(GetScriptBySection(section));
+        _scripts.Remove(GetScript(section));
       }
     }
 
@@ -1798,7 +1795,7 @@ namespace Gemini
     /// <param name="position">The cursor position in the script</param>
     private void OpenScript(int section, int position)
     {
-      int index = _scripts.IndexOf(GetScriptBySection(section));
+      int index = _scripts.IndexOf(GetScript(section));
       if (!_scripts[index].Opened)
       {
         _scripts[index].Scintilla.ContextMenuStrip = scriptsEditor_ContextMenuStrip;
@@ -1834,8 +1831,8 @@ namespace Gemini
         if (File.Exists(path))
           try
           {
-            if (_fileNameRegex.IsMatch(path) && ScriptExistBySection(int.Parse(_fileNameRegex.Match(path).Captures[1].Value)))
-              UpdateScriptBySection(int.Parse(_fileNameRegex.Match(path).Captures[1].Value),
+            if (_fileNameRegex.IsMatch(path) && ScriptExists(int.Parse(_fileNameRegex.Match(path).Captures[1].Value)))
+              UpdateScript(int.Parse(_fileNameRegex.Match(path).Captures[1].Value),
                 _fileNameRegex.Match(path).Captures[0].Value, File.ReadAllText(path));
             else if (_fileNameRegex.IsMatch(path))
               InsertNode(node, _fileNameRegex.Match(path).Captures[0].Value,
@@ -1858,7 +1855,7 @@ namespace Gemini
     /// Exports the scripts using the passed filed extension to determine the file type
     /// </summary>
     /// <param name="extension">The extension to save the files as</param>
-    private void ExportScriptsTo(string extenction)
+    private void ExportScriptsTo(string extension)
     {
       using (FolderBrowserDialog dialog = new FolderBrowserDialog())
       {
@@ -1867,67 +1864,18 @@ namespace Gemini
         dialog.Description = "Choose folder...";
         if (dialog.ShowDialog() == DialogResult.OK)
         {
-          Enabled = false;
-          try
-          {
-            int i = 0;
-            for (int j = 0; j < scriptsView.Nodes.Count; j++)
-            {
-              string filename = String.Format("{0:000} - ", i);
-              File.WriteAllText(dialog.SelectedPath + "/" + filename + extenction, "");
-              i++;
-              filename = String.Format("{0:000} - {1}", i, "▼ " + scriptsView.Nodes[j].Text);
-              filename = _invalidRegex.Replace(filename, "");
-              File.WriteAllText(dialog.SelectedPath + "/" + filename + extenction, "");
-              i++;
-              for (int k = 0; k < scriptsView.Nodes[j].Nodes.Count; k++)
-              {
-                filename = String.Format("{0:000} - {1}", i, scriptsView.Nodes[j].Nodes[k].Text);
-                filename = _invalidRegex.Replace(filename, "");
-                File.WriteAllText(dialog.SelectedPath + "/" + filename + extenction,
-                  GetScriptBySection(int.Parse(scriptsView.Nodes[j].Nodes[k].Name)).Text);
-                i++;
-              }
-            }
-          }
-          catch
-          {
-            MessageBox.Show("An error occurred, the export has been stopped.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          }
-          Enabled = true;
+          ExportScripts(dialog.SelectedPath, extension);
         }
       }
-    }
-
-    /// <summary>
-    /// Export the given Script to a file
-    /// </summary>
-    /// <param name="section">The Script section</param>
-    private void ExportScript(int section)
-    {
-      if (!Directory.Exists(_projectScriptsFolderPath))
-        Directory.CreateDirectory(_projectScriptsFolderPath);
-      if (ScriptExistBySection(section))
-        try
-        {
-          Script script = GetScriptBySection(section);
-          File.WriteAllText(_projectScriptsFolderPath + script.Name + "." + string.Format("{0:00000000}", script.Section) + ".rb", script.Text);
-        }
-        catch
-        {
-          Script script = GetScriptBySection(section);
-          MessageBox.Show("An error occurred while exporting the script; '" + script.Name + " - " + script.Section + ".rb'",
-            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
     }
 
     private void DeleteExportedScript(int section)
     {
       try
       {
-        Script script = GetScriptBySection(section);
-        if (File.Exists(_projectScriptsFolderPath + script.Name + "." + string.Format("{0:00000000}", script.Section) + ".rb"))
-          File.Delete(_projectScriptsFolderPath + script.Name + "." + string.Format("{0:00000000}", script.Section) + ".rb");
+        Script script = GetScript(section);
+        if (File.Exists(_projectScriptsFolderPath + script.Name + "." + script.Section.ToString("{0:XXXXXXX}") + ".rb"))
+          File.Delete(_projectScriptsFolderPath + script.Name + "." + script.Section.ToString("{0:XXXXXXX}") + ".rb");
       }
       catch
       {
@@ -1937,34 +1885,102 @@ namespace Gemini
     }
 
     /// <summary>
-    /// Export all the Scripts in an Script Group to files in the Project Scripts Folder
+    /// Export the desired <see cref="Script"/> to a file in the Project Script Folder
     /// </summary>
-    /// <param name="node">The selected node. Must be a Group Node</param>
-    private void ExportScriptGroup(TreeNode rootNode)
+    /// <param name="section">The <see cref="Script.Section"/> to use</param>
+    /// <param name="prompt"></param>
+    private void ExportScript(int section, bool prompt = false)
     {
-      if (rootNode.Level != 0) return;
-      foreach (TreeNode node in rootNode.Nodes)
-        ExportScript(int.Parse(node.Name));
+      ExportScript(section, false, prompt);
     }
 
     /// <summary>
-    /// Exports all the Scripts to the Project Scripts Folder
+    /// Export the desired <see cref="Script"/>,
+    /// and all the underlying <see cref="Script"/>s if bool <paramref name="allScripts"/> is true and an <see cref="ScriptList"/> root <see cref="ScriptList.Section"/> is passed,
+    /// to file in the Project Scripts Folder.
     /// </summary>
-    private void ExportScripts()
+    /// <param name="section">The <see cref="Script.Section"/> to use</param>
+    /// <param name="allScripts"></param>
+    /// <param name="promt"></param>
+    /// <param name="dirPath">Used when reclusivly creating folders</param>
+    /// <param name="dirRootPath">To be used if exporting to another folder than default</param>
+    private void ExportScript(int section, bool allScripts, bool promt = false, string dirPath = null, string dirRootPath = null, string extension = ".rb")
     {
-      foreach (TreeNode rootNode in scriptsView.Nodes)
-        foreach (TreeNode node in rootNode.Nodes)
-          ExportScript(int.Parse(node.Name));
+      //Return if script do not exist
+      if (!ScriptExists(section))
+        return;
+
+      // Set root path for exporting if not set
+      if (string.IsNullOrEmpty(dirRootPath))
+        dirRootPath = _projectScriptsFolderPath;
+
+      //TODO: A must-do: add level-control, as in create folders to suit path... or something simular
+      // Set relativ path for exporting if not set
+      if (string.IsNullOrEmpty(dirPath))
+        dirPath = _projectScriptsFolderPath;
+
+      Script script = GetScript(section);
+      string name = script.Name + "." + script.Section.ToString("{0:00000000}");
+
+      // Create directory if it does not exist
+      if (!Directory.Exists(dirRootPath))
+        Directory.CreateDirectory(dirRootPath);
+
+      //Write to file and catch exeptions if any
+      try { File.WriteAllText(dirPath + name + ".rb", script.Text); }
+      catch (Exception e)
+      {
+        Debug.Write(e);
+        MessageBox.Show("An error occurred while exporting the script;\n'" + name + ".rb'",
+          "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      // If enabled and script has sub-scripts, create a directory and add sub-scripts reclusivly
+      if (allScripts && ScriptListExists(section))
+      {
+        string nxtDirPath = dirPath + name + @"\";
+        // Create script-spesified directory
+        if (!Directory.Exists(nxtDirPath))
+          try { Directory.CreateDirectory(nxtDirPath); }
+          catch (Exception e)
+          {
+            Debug.Write(e);
+            MessageBox.Show("An error occurred while creating script directory;\n'" + nxtDirPath,
+              "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          }
+
+        ScriptList list = GetScriptList(section);
+
+        list.List.ForEach(delegate (int s) { ExportScript(s, true, false, nxtDirPath, dirRootPath); }) ;
+      }
+    }
+
+    /// <summary>
+    /// Exports all the <see cref="Script"/>s to the Project Scripts Folder
+    /// </summary>
+    private void ExportScripts(string dirRootPath = null, string extension = ".rb")
+    {
+      _scripts.ForEach(delegate (Script s) { ExportScript(s.Section, true, false, null, dirRootPath, extension); } );
     }
 
     /// <summary>
     /// Get the <see cref="Script"/> by the given <paramref name="section"/>
     /// </summary>
     /// <param name="section">Section to locate script from</param>
-    /// <returns></returns>
-    private Script GetScriptBySection(int section)
+    /// <returns>The desired <see cref="Script"/> or <see cref="Nullable"/></returns>
+    private Script GetScript(int section)
     {
       return _scripts.Find(delegate (Script s) { return s.Section == section; });
+    }
+
+    /// <summary>
+    /// Get the <see cref="ScriptList"/> by the given <paramref name="section"/>
+    /// </summary>
+    /// <param name="section">Section to locate script from</param>
+    /// <returns>The desired <see cref="ScriptList"/> or <see cref="Nullable"/></returns>
+    private ScriptList GetScriptList(int section)
+    {
+      return _scriptRelations.Find(delegate (ScriptList s) { return s.Section == section; });
     }
 
     private void SetScript(Script s)
@@ -1973,17 +1989,23 @@ namespace Gemini
         _scripts[_scripts.FindIndex(delegate (Script d) { return d.Section == s.Section; })] = s;
     }
 
-    private bool ScriptExistBySection(int section)
+    private bool ScriptExists(int section)
     {
-      foreach (Script script in _scripts)
-        if (script.Section == section)
-          return true;
+      if (_scripts.Exists(delegate (Script d) { return d.Section == section; }))
+        return true;
       return false;
     }
 
-    private void UpdateScriptBySection(int section, string name, string value)
+    private bool ScriptListExists(int section)
     {
-      Script script = GetScriptBySection(section);
+      if (_scriptRelations.Exists(delegate (ScriptList d) { return d.Section == section; }))
+        return true;
+      return false;
+    }
+
+    private void UpdateScript(int section, string name, string value)
+    {
+      Script script = GetScript(section);
 
       if (script.Name != name.Trim())
         script.Name = name.Trim();
@@ -2646,7 +2668,7 @@ namespace Gemini
       scriptsView.BeginUpdate();
       foreach (TreeNode rootNode in scriptsView.Nodes)
         foreach (TreeNode node in rootNode.Nodes)
-          if (node.Text != (s = GetScriptBySection(int.Parse(node.Name))).TabName)
+          if (node.Text != (s = GetScript(int.Parse(node.Name))).TabName)
             node.Text = s.TabName;
       scriptsView.EndUpdate();
     }

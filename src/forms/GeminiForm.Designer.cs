@@ -102,24 +102,24 @@
       this.menuMain_dropSettings_seperator = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_dropSettings_itemAutoOpenProject = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemPioritizeRecent = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuMain_sropSettings_seperator5 = new System.Windows.Forms.ToolStripSeparator();
+      this.menuMain_dropSettings_seperator5 = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_dropSettings_itemAutoOpenOn = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemAutoOpenOff = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemViewConfig = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuMain_dropSettings_itemToggleDistractionMode = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuMain_dropSettings_seperator6 = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_dropSettings_itemHideToolbar = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuMain_dropSettings_itemUpdate = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuMain_dropSettings_itemUpdateNow = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuMain_dropSettings_seperator8 = new System.Windows.Forms.ToolStripSeparator();
-      this.menuMain_dropSettings_itemAutoUpdate = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuMain_dropSettings_seperator6 = new System.Windows.Forms.ToolStripSeparator();
+      this.menuMain_dropSettings_itemToggleDistractionMode = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemConfiguration = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemAutoSaveSettings = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemProjectSettings = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_seperator7 = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_dropSettings_itemSaveSettings = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemClearSettings = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuMain_dropSettings_itemUpdate = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuMain_dropSettings_itemUpdateNow = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuMain_dropSettings_seperator8 = new System.Windows.Forms.ToolStripSeparator();
+      this.menuMain_dropSettings_itemAutoUpdate = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_seperator1 = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_dropSettings_itemUpdateSections = new System.Windows.Forms.ToolStripMenuItem();
       this.menuMain_dropSettings_itemCustomRuntime = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,7 +153,7 @@
       this.scriptsView_contextMenu_itemMoveDown = new System.Windows.Forms.ToolStripMenuItem();
       this.scriptsView_contextMenu_itemBatchSearch = new System.Windows.Forms.ToolStripMenuItem();
       this.scriptName = new System.Windows.Forms.TextBox();
-      this.scriptsEditpr_statusStrip = new System.Windows.Forms.StatusStrip();
+      this.scriptsEditor_statusStrip = new System.Windows.Forms.StatusStrip();
       this.scriptsEditor_StatusStrip_itemCharacters = new System.Windows.Forms.ToolStripStatusLabel();
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
       this.scriptsEditor_ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -206,12 +206,12 @@
       this.toolsView_itemImport = new System.Windows.Forms.ToolStripButton();
       this.toolsView_itemInsert = new System.Windows.Forms.ToolStripButton();
       this.toolsView_itemDelete = new System.Windows.Forms.ToolStripButton();
-      this.toolsView_itemMoveUp = new System.Windows.Forms.ToolStripButton();
-      this.toolsView_itemMoveDown = new System.Windows.Forms.ToolStripButton();
-      this.toolsView_itemBatchSearch = new System.Windows.Forms.ToolStripButton();
       this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
       this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+      this.toolsView_itemMoveUp = new System.Windows.Forms.ToolStripButton();
+      this.toolsView_itemMoveDown = new System.Windows.Forms.ToolStripButton();
+      this.toolsView_itemBatchSearch = new System.Windows.Forms.ToolStripButton();
       menuMain_dropFile_seperator1 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropFile_seperator2 = new System.Windows.Forms.ToolStripSeparator();
       menuMain_dropEdit_seperator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -234,7 +234,7 @@
       toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
       this.menuMain_menuStrip.SuspendLayout();
       this.scriptsView_contextMenu.SuspendLayout();
-      this.scriptsEditpr_statusStrip.SuspendLayout();
+      this.scriptsEditor_statusStrip.SuspendLayout();
       this.scriptsEditor_ContextMenuStrip.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.scriptsFileWatcher)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitView)).BeginInit();
@@ -254,67 +254,67 @@
       // menuMain_dropFile_seperator1
       // 
       menuMain_dropFile_seperator1.Name = "menuMain_dropFile_seperator1";
-      menuMain_dropFile_seperator1.Size = new System.Drawing.Size(180, 6);
+      menuMain_dropFile_seperator1.Size = new System.Drawing.Size(183, 6);
       // 
       // menuMain_dropFile_seperator2
       // 
       menuMain_dropFile_seperator2.Name = "menuMain_dropFile_seperator2";
-      menuMain_dropFile_seperator2.Size = new System.Drawing.Size(180, 6);
+      menuMain_dropFile_seperator2.Size = new System.Drawing.Size(183, 6);
       // 
       // menuMain_dropEdit_seperator1
       // 
       menuMain_dropEdit_seperator1.Name = "menuMain_dropEdit_seperator1";
-      menuMain_dropEdit_seperator1.Size = new System.Drawing.Size(210, 6);
+      menuMain_dropEdit_seperator1.Size = new System.Drawing.Size(215, 6);
       // 
       // menuMain_dropEdit_seperator2
       // 
       menuMain_dropEdit_seperator2.Name = "menuMain_dropEdit_seperator2";
-      menuMain_dropEdit_seperator2.Size = new System.Drawing.Size(210, 6);
+      menuMain_dropEdit_seperator2.Size = new System.Drawing.Size(215, 6);
       // 
       // menuMain_dropEdit_seperator3
       // 
       menuMain_dropEdit_seperator3.Name = "menuMain_dropEdit_seperator3";
-      menuMain_dropEdit_seperator3.Size = new System.Drawing.Size(210, 6);
+      menuMain_dropEdit_seperator3.Size = new System.Drawing.Size(215, 6);
       // 
       // menuMain_dropSettings_seperator3
       // 
       menuMain_dropSettings_seperator3.Name = "menuMain_dropSettings_seperator3";
-      menuMain_dropSettings_seperator3.Size = new System.Drawing.Size(194, 6);
+      menuMain_dropSettings_seperator3.Size = new System.Drawing.Size(199, 6);
       // 
       // menuMain_dropAbout_seperator1
       // 
       menuMain_dropAbout_seperator1.Name = "menuMain_dropAbout_seperator1";
-      menuMain_dropAbout_seperator1.Size = new System.Drawing.Size(151, 6);
+      menuMain_dropAbout_seperator1.Size = new System.Drawing.Size(154, 6);
       // 
       // scriptsView_contextMenu_seperator1
       // 
       scriptsView_contextMenu_seperator1.Name = "scriptsView_contextMenu_seperator1";
-      scriptsView_contextMenu_seperator1.Size = new System.Drawing.Size(197, 6);
+      scriptsView_contextMenu_seperator1.Size = new System.Drawing.Size(200, 6);
       // 
       // scriptsView_contextMenu_seperator2
       // 
       scriptsView_contextMenu_seperator2.Name = "scriptsView_contextMenu_seperator2";
-      scriptsView_contextMenu_seperator2.Size = new System.Drawing.Size(197, 6);
+      scriptsView_contextMenu_seperator2.Size = new System.Drawing.Size(200, 6);
       // 
       // toolStripSeparator15
       // 
       toolStripSeparator15.Name = "toolStripSeparator15";
-      toolStripSeparator15.Size = new System.Drawing.Size(204, 6);
+      toolStripSeparator15.Size = new System.Drawing.Size(209, 6);
       // 
       // toolStripSeparator14
       // 
       toolStripSeparator14.Name = "toolStripSeparator14";
-      toolStripSeparator14.Size = new System.Drawing.Size(204, 6);
+      toolStripSeparator14.Size = new System.Drawing.Size(209, 6);
       // 
       // toolStripSeparator13
       // 
       toolStripSeparator13.Name = "toolStripSeparator13";
-      toolStripSeparator13.Size = new System.Drawing.Size(204, 6);
+      toolStripSeparator13.Size = new System.Drawing.Size(209, 6);
       // 
       // toolStripSeparator12
       // 
       toolStripSeparator12.Name = "toolStripSeparator12";
-      toolStripSeparator12.Size = new System.Drawing.Size(204, 6);
+      toolStripSeparator12.Size = new System.Drawing.Size(209, 6);
       // 
       // toolStripSeparator22
       // 
@@ -392,7 +392,7 @@
             this.menuMain_dropFile_itemNewRMVXAce});
       this.menuMain_dropFile_itemNew.Image = global::Gemini.Properties.Resources.folder_plus;
       this.menuMain_dropFile_itemNew.Name = "menuMain_dropFile_itemNew";
-      this.menuMain_dropFile_itemNew.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemNew.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemNew.Text = "New Project";
       this.menuMain_dropFile_itemNew.ToolTipText = "Create a new RPG Maker project";
       // 
@@ -400,7 +400,7 @@
       // 
       this.menuMain_dropFile_itemNewRMXP.Image = global::Gemini.Properties.Resources.rmxp_icon;
       this.menuMain_dropFile_itemNewRMXP.Name = "menuMain_dropFile_itemNewRMXP";
-      this.menuMain_dropFile_itemNewRMXP.Size = new System.Drawing.Size(167, 22);
+      this.menuMain_dropFile_itemNewRMXP.Size = new System.Drawing.Size(172, 22);
       this.menuMain_dropFile_itemNewRMXP.Text = "RPG Maker XP";
       this.menuMain_dropFile_itemNewRMXP.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_NewProjectRMXP_Click);
       // 
@@ -408,7 +408,7 @@
       // 
       this.menuMain_dropFile_itemNewRMVX.Image = global::Gemini.Properties.Resources.rmvx_icon;
       this.menuMain_dropFile_itemNewRMVX.Name = "menuMain_dropFile_itemNewRMVX";
-      this.menuMain_dropFile_itemNewRMVX.Size = new System.Drawing.Size(167, 22);
+      this.menuMain_dropFile_itemNewRMVX.Size = new System.Drawing.Size(172, 22);
       this.menuMain_dropFile_itemNewRMVX.Text = "RPG Maker VX";
       this.menuMain_dropFile_itemNewRMVX.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_NewProjectRMVX_Click);
       // 
@@ -416,7 +416,7 @@
       // 
       this.menuMain_dropFile_itemNewRMVXAce.Image = global::Gemini.Properties.Resources.rmvxace_icon;
       this.menuMain_dropFile_itemNewRMVXAce.Name = "menuMain_dropFile_itemNewRMVXAce";
-      this.menuMain_dropFile_itemNewRMVXAce.Size = new System.Drawing.Size(167, 22);
+      this.menuMain_dropFile_itemNewRMVXAce.Size = new System.Drawing.Size(172, 22);
       this.menuMain_dropFile_itemNewRMVXAce.Text = "RPG Maker VX Ace";
       this.menuMain_dropFile_itemNewRMVXAce.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_NewProjectRMVXAce_Click);
       // 
@@ -425,7 +425,7 @@
       this.menuMain_dropFile_itemOpen.Image = global::Gemini.Properties.Resources.folder_import;
       this.menuMain_dropFile_itemOpen.Name = "menuMain_dropFile_itemOpen";
       this.menuMain_dropFile_itemOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-      this.menuMain_dropFile_itemOpen.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemOpen.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemOpen.Text = "Open Project";
       this.menuMain_dropFile_itemOpen.ToolTipText = "Open a recent or an existing project";
       this.menuMain_dropFile_itemOpen.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_OpenProject_Click);
@@ -434,7 +434,7 @@
       // 
       this.menuMain_dropFile_itemOpenRecent.Image = global::Gemini.Properties.Resources.folder_recent;
       this.menuMain_dropFile_itemOpenRecent.Name = "menuMain_dropFile_itemOpenRecent";
-      this.menuMain_dropFile_itemOpenRecent.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemOpenRecent.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemOpenRecent.Text = "Open Recent...";
       // 
       // menuMain_dropFile_itemSave
@@ -442,7 +442,7 @@
       this.menuMain_dropFile_itemSave.Image = global::Gemini.Properties.Resources.save;
       this.menuMain_dropFile_itemSave.Name = "menuMain_dropFile_itemSave";
       this.menuMain_dropFile_itemSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-      this.menuMain_dropFile_itemSave.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemSave.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemSave.Text = "Save Project";
       this.menuMain_dropFile_itemSave.ToolTipText = "Save the current project";
       this.menuMain_dropFile_itemSave.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_SaveProject_Click);
@@ -451,7 +451,7 @@
       // 
       this.menuMain_dropFile_itemClose.Image = global::Gemini.Properties.Resources.close;
       this.menuMain_dropFile_itemClose.Name = "menuMain_dropFile_itemClose";
-      this.menuMain_dropFile_itemClose.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemClose.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemClose.Text = "Close Project";
       this.menuMain_dropFile_itemClose.ToolTipText = "Close the current project";
       this.menuMain_dropFile_itemClose.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_CloseProject_Click);
@@ -463,7 +463,7 @@
             this.browseToolStripMenuItem});
       this.menuMain_dropFile_itemImport.Image = global::Gemini.Properties.Resources.file_imports;
       this.menuMain_dropFile_itemImport.Name = "menuMain_dropFile_itemImport";
-      this.menuMain_dropFile_itemImport.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemImport.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemImport.Text = "Import Scripts from...";
       this.menuMain_dropFile_itemImport.ToolTipText = "Quick Import from Scripts Folder";
       // 
@@ -471,7 +471,7 @@
       // 
       this.defaultFolderToolStripMenuItem.Image = global::Gemini.Properties.Resources.folder;
       this.defaultFolderToolStripMenuItem.Name = "defaultFolderToolStripMenuItem";
-      this.defaultFolderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+      this.defaultFolderToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
       this.defaultFolderToolStripMenuItem.Text = "Script folder";
       this.defaultFolderToolStripMenuItem.Click += new System.EventHandler(this.menuMain_dropFile_itemImportScripts_Click);
       // 
@@ -479,7 +479,7 @@
       // 
       this.browseToolStripMenuItem.Image = global::Gemini.Properties.Resources.folder_import;
       this.browseToolStripMenuItem.Name = "browseToolStripMenuItem";
-      this.browseToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+      this.browseToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
       this.browseToolStripMenuItem.Text = "Browse";
       this.browseToolStripMenuItem.Click += new System.EventHandler(this.menuMain_dropFile_itemImportScriptsFrom_Click);
       // 
@@ -492,7 +492,7 @@
             this.menuMain_dropFile_itemExportToRuby});
       this.menuMain_dropFile_itemExportTo.Image = global::Gemini.Properties.Resources.file_exports;
       this.menuMain_dropFile_itemExportTo.Name = "menuMain_dropFile_itemExportTo";
-      this.menuMain_dropFile_itemExportTo.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemExportTo.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemExportTo.Text = "Export Scripts to...";
       this.menuMain_dropFile_itemExportTo.ToolTipText = "Export scripts to external files";
       // 
@@ -500,7 +500,7 @@
       // 
       this.menuMain_dropFile_itemExportToFolder.Image = global::Gemini.Properties.Resources.folder;
       this.menuMain_dropFile_itemExportToFolder.Name = "menuMain_dropFile_itemExportToFolder";
-      this.menuMain_dropFile_itemExportToFolder.Size = new System.Drawing.Size(154, 22);
+      this.menuMain_dropFile_itemExportToFolder.Size = new System.Drawing.Size(159, 22);
       this.menuMain_dropFile_itemExportToFolder.Text = "Script folder";
       this.menuMain_dropFile_itemExportToFolder.ToolTipText = "Make a quick export to the project scripts folder";
       this.menuMain_dropFile_itemExportToFolder.Click += new System.EventHandler(this.menuMain_dropFile_itemExport_Click);
@@ -508,7 +508,7 @@
       // menuMain_dropFile_itemExoprtToRMData
       // 
       this.menuMain_dropFile_itemExoprtToRMData.Name = "menuMain_dropFile_itemExoprtToRMData";
-      this.menuMain_dropFile_itemExoprtToRMData.Size = new System.Drawing.Size(154, 22);
+      this.menuMain_dropFile_itemExoprtToRMData.Size = new System.Drawing.Size(159, 22);
       this.menuMain_dropFile_itemExoprtToRMData.Text = "RM Data File";
       this.menuMain_dropFile_itemExoprtToRMData.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ExportScriptsRMData_Click);
       // 
@@ -516,7 +516,7 @@
       // 
       this.menuMain_dropFile_itemExportToText.Image = global::Gemini.Properties.Resources.file;
       this.menuMain_dropFile_itemExportToText.Name = "menuMain_dropFile_itemExportToText";
-      this.menuMain_dropFile_itemExportToText.Size = new System.Drawing.Size(154, 22);
+      this.menuMain_dropFile_itemExportToText.Size = new System.Drawing.Size(159, 22);
       this.menuMain_dropFile_itemExportToText.Text = "Text Documents";
       this.menuMain_dropFile_itemExportToText.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ExportScriptsText_Click);
       // 
@@ -524,7 +524,7 @@
       // 
       this.menuMain_dropFile_itemExportToRuby.Image = global::Gemini.Properties.Resources.ruby;
       this.menuMain_dropFile_itemExportToRuby.Name = "menuMain_dropFile_itemExportToRuby";
-      this.menuMain_dropFile_itemExportToRuby.Size = new System.Drawing.Size(154, 22);
+      this.menuMain_dropFile_itemExportToRuby.Size = new System.Drawing.Size(159, 22);
       this.menuMain_dropFile_itemExportToRuby.Text = "Ruby Scripts";
       this.menuMain_dropFile_itemExportToRuby.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ExportScriptsRuby_Click);
       // 
@@ -533,7 +533,7 @@
       this.menuMain_dropFile_itemExit.Image = global::Gemini.Properties.Resources.exit;
       this.menuMain_dropFile_itemExit.Name = "menuMain_dropFile_itemExit";
       this.menuMain_dropFile_itemExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-      this.menuMain_dropFile_itemExit.Size = new System.Drawing.Size(183, 22);
+      this.menuMain_dropFile_itemExit.Size = new System.Drawing.Size(186, 22);
       this.menuMain_dropFile_itemExit.Text = "Exit";
       this.menuMain_dropFile_itemExit.ToolTipText = "Exit Gemini";
       this.menuMain_dropFile_itemExit.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Exit_Click);
@@ -569,7 +569,7 @@
       this.menuMain_dropEdit_itemUndo.Image = global::Gemini.Properties.Resources.undo;
       this.menuMain_dropEdit_itemUndo.Name = "menuMain_dropEdit_itemUndo";
       this.menuMain_dropEdit_itemUndo.ShortcutKeyDisplayString = "Ctrl + Z";
-      this.menuMain_dropEdit_itemUndo.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemUndo.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemUndo.Text = "Undo";
       this.menuMain_dropEdit_itemUndo.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Undo_Click);
       // 
@@ -578,7 +578,7 @@
       this.menuMain_dropEdit_itemRedo.Image = global::Gemini.Properties.Resources.redo;
       this.menuMain_dropEdit_itemRedo.Name = "menuMain_dropEdit_itemRedo";
       this.menuMain_dropEdit_itemRedo.ShortcutKeyDisplayString = "Ctrl + Y";
-      this.menuMain_dropEdit_itemRedo.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemRedo.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemRedo.Text = "Redo";
       this.menuMain_dropEdit_itemRedo.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Redo_Click);
       // 
@@ -587,7 +587,7 @@
       this.menuMain_dropEdit_itemCut.Image = global::Gemini.Properties.Resources.cut;
       this.menuMain_dropEdit_itemCut.Name = "menuMain_dropEdit_itemCut";
       this.menuMain_dropEdit_itemCut.ShortcutKeyDisplayString = "Ctrl + X";
-      this.menuMain_dropEdit_itemCut.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemCut.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemCut.Text = "Cut";
       this.menuMain_dropEdit_itemCut.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Cut_Click);
       // 
@@ -596,7 +596,7 @@
       this.menuMain_dropEdit_itemCopy.Image = global::Gemini.Properties.Resources.copy;
       this.menuMain_dropEdit_itemCopy.Name = "menuMain_dropEdit_itemCopy";
       this.menuMain_dropEdit_itemCopy.ShortcutKeyDisplayString = "Ctrl + C";
-      this.menuMain_dropEdit_itemCopy.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemCopy.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemCopy.Text = "Copy";
       this.menuMain_dropEdit_itemCopy.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Copy_Click);
       // 
@@ -605,7 +605,7 @@
       this.menuMain_dropEdit_itemPaste.Image = global::Gemini.Properties.Resources.paste;
       this.menuMain_dropEdit_itemPaste.Name = "menuMain_dropEdit_itemPaste";
       this.menuMain_dropEdit_itemPaste.ShortcutKeyDisplayString = "Ctrl + V";
-      this.menuMain_dropEdit_itemPaste.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemPaste.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemPaste.Text = "Paste";
       this.menuMain_dropEdit_itemPaste.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Paste_Click);
       // 
@@ -614,7 +614,7 @@
       this.menuMain_dropEdit_itemDelete.Image = global::Gemini.Properties.Resources.delete;
       this.menuMain_dropEdit_itemDelete.Name = "menuMain_dropEdit_itemDelete";
       this.menuMain_dropEdit_itemDelete.ShortcutKeyDisplayString = "Suppr";
-      this.menuMain_dropEdit_itemDelete.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemDelete.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemDelete.Text = "Delete";
       this.menuMain_dropEdit_itemDelete.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Delete_Click);
       // 
@@ -623,7 +623,7 @@
       this.menuMain_dropEdit_itemSelectAll.Image = global::Gemini.Properties.Resources.file_flat;
       this.menuMain_dropEdit_itemSelectAll.Name = "menuMain_dropEdit_itemSelectAll";
       this.menuMain_dropEdit_itemSelectAll.ShortcutKeyDisplayString = "Ctrl + A";
-      this.menuMain_dropEdit_itemSelectAll.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemSelectAll.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemSelectAll.Text = "Select All";
       this.menuMain_dropEdit_itemSelectAll.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_SelectAll_Click);
       // 
@@ -631,9 +631,9 @@
       // 
       this.menuMain_dropEdit_itemBatchSearch.Image = global::Gemini.Properties.Resources.batch;
       this.menuMain_dropEdit_itemBatchSearch.Name = "menuMain_dropEdit_itemBatchSearch";
-      this.menuMain_dropEdit_itemBatchSearch.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+      this.menuMain_dropEdit_itemBatchSearch.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.F)));
-      this.menuMain_dropEdit_itemBatchSearch.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemBatchSearch.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemBatchSearch.Text = "Batch Search";
       this.menuMain_dropEdit_itemBatchSearch.Visible = false;
       this.menuMain_dropEdit_itemBatchSearch.Click += new System.EventHandler(this.scriptsView_contextMenu_itemBatchSearch_Click);
@@ -643,7 +643,7 @@
       this.menuMain_dropEdit_itemIncrementalSearch.Image = global::Gemini.Properties.Resources.increaser;
       this.menuMain_dropEdit_itemIncrementalSearch.Name = "menuMain_dropEdit_itemIncrementalSearch";
       this.menuMain_dropEdit_itemIncrementalSearch.ShortcutKeyDisplayString = "Ctrl + I";
-      this.menuMain_dropEdit_itemIncrementalSearch.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemIncrementalSearch.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemIncrementalSearch.Text = "Incremental Search";
       this.menuMain_dropEdit_itemIncrementalSearch.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_IncrementalSearch_Click);
       // 
@@ -652,7 +652,7 @@
       this.menuMain_dropEdit_itemFind.Image = global::Gemini.Properties.Resources.find;
       this.menuMain_dropEdit_itemFind.Name = "menuMain_dropEdit_itemFind";
       this.menuMain_dropEdit_itemFind.ShortcutKeyDisplayString = "Ctrl + F";
-      this.menuMain_dropEdit_itemFind.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemFind.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemFind.Text = "Find";
       this.menuMain_dropEdit_itemFind.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Find_Click);
       // 
@@ -661,7 +661,7 @@
       this.menuMain_dropEdit_itemReplace.Image = global::Gemini.Properties.Resources.replace;
       this.menuMain_dropEdit_itemReplace.Name = "menuMain_dropEdit_itemReplace";
       this.menuMain_dropEdit_itemReplace.ShortcutKeyDisplayString = "Ctrl + H";
-      this.menuMain_dropEdit_itemReplace.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemReplace.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemReplace.Text = "Replace";
       this.menuMain_dropEdit_itemReplace.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Replace_Click);
       // 
@@ -670,7 +670,7 @@
       this.menuMain_dropEdit_itemGoTo.Image = global::Gemini.Properties.Resources._goto;
       this.menuMain_dropEdit_itemGoTo.Name = "menuMain_dropEdit_itemGoTo";
       this.menuMain_dropEdit_itemGoTo.ShortcutKeyDisplayString = "Ctrl + G";
-      this.menuMain_dropEdit_itemGoTo.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemGoTo.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemGoTo.Text = "Go To Line";
       this.menuMain_dropEdit_itemGoTo.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_GoToLine_Click);
       // 
@@ -682,7 +682,7 @@
             this.menuMain_dropEdit_itemUnComment});
       this.menuMain_dropEdit_itemBatchComment.Image = global::Gemini.Properties.Resources.comment;
       this.menuMain_dropEdit_itemBatchComment.Name = "menuMain_dropEdit_itemBatchComment";
-      this.menuMain_dropEdit_itemBatchComment.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemBatchComment.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemBatchComment.Text = "Batch Comment Selection";
       this.menuMain_dropEdit_itemBatchComment.ToolTipText = "Comment selected lines";
       // 
@@ -690,7 +690,7 @@
       // 
       this.menuMain_dropEdit_itemToggleComment.Name = "menuMain_dropEdit_itemToggleComment";
       this.menuMain_dropEdit_itemToggleComment.ShortcutKeyDisplayString = "Ctrl + Q";
-      this.menuMain_dropEdit_itemToggleComment.Size = new System.Drawing.Size(155, 22);
+      this.menuMain_dropEdit_itemToggleComment.Size = new System.Drawing.Size(159, 22);
       this.menuMain_dropEdit_itemToggleComment.Text = "Toggle";
       this.menuMain_dropEdit_itemToggleComment.ToolTipText = "Toggle comment on selected lines";
       this.menuMain_dropEdit_itemToggleComment.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ToggleComment_Click);
@@ -698,7 +698,7 @@
       // menuMain_dropEdit_itemComment
       // 
       this.menuMain_dropEdit_itemComment.Name = "menuMain_dropEdit_itemComment";
-      this.menuMain_dropEdit_itemComment.Size = new System.Drawing.Size(155, 22);
+      this.menuMain_dropEdit_itemComment.Size = new System.Drawing.Size(159, 22);
       this.menuMain_dropEdit_itemComment.Text = "Comment";
       this.menuMain_dropEdit_itemComment.ToolTipText = "Add comment on selected lines";
       this.menuMain_dropEdit_itemComment.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Comment_Click);
@@ -706,7 +706,7 @@
       // menuMain_dropEdit_itemUnComment
       // 
       this.menuMain_dropEdit_itemUnComment.Name = "menuMain_dropEdit_itemUnComment";
-      this.menuMain_dropEdit_itemUnComment.Size = new System.Drawing.Size(155, 22);
+      this.menuMain_dropEdit_itemUnComment.Size = new System.Drawing.Size(159, 22);
       this.menuMain_dropEdit_itemUnComment.Text = "Uncomment";
       this.menuMain_dropEdit_itemUnComment.ToolTipText = "Remove comment on selected lines";
       this.menuMain_dropEdit_itemUnComment.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_UnComment_Click);
@@ -719,14 +719,14 @@
             this.menuMain_dropEdit_itemSScriptAll});
       this.menuMain_dropEdit_itemStructureScript.Image = global::Gemini.Properties.Resources.outline;
       this.menuMain_dropEdit_itemStructureScript.Name = "menuMain_dropEdit_itemStructureScript";
-      this.menuMain_dropEdit_itemStructureScript.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemStructureScript.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemStructureScript.Text = "Structure Script";
       this.menuMain_dropEdit_itemStructureScript.ToolTipText = "Apply proper structure to script";
       // 
       // menuMain_dropEdit_itemSScriptCurrent
       // 
       this.menuMain_dropEdit_itemSScriptCurrent.Name = "menuMain_dropEdit_itemSScriptCurrent";
-      this.menuMain_dropEdit_itemSScriptCurrent.Size = new System.Drawing.Size(113, 22);
+      this.menuMain_dropEdit_itemSScriptCurrent.Size = new System.Drawing.Size(114, 22);
       this.menuMain_dropEdit_itemSScriptCurrent.Text = "Current";
       this.menuMain_dropEdit_itemSScriptCurrent.ToolTipText = "Current script";
       this.menuMain_dropEdit_itemSScriptCurrent.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_StructureScriptCurrent_Click);
@@ -734,7 +734,7 @@
       // menuMain_dropEdit_itemSScriptOpen
       // 
       this.menuMain_dropEdit_itemSScriptOpen.Name = "menuMain_dropEdit_itemSScriptOpen";
-      this.menuMain_dropEdit_itemSScriptOpen.Size = new System.Drawing.Size(113, 22);
+      this.menuMain_dropEdit_itemSScriptOpen.Size = new System.Drawing.Size(114, 22);
       this.menuMain_dropEdit_itemSScriptOpen.Text = "Open";
       this.menuMain_dropEdit_itemSScriptOpen.ToolTipText = "All scripts open in the tab control";
       this.menuMain_dropEdit_itemSScriptOpen.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_StructureScriptOpen_Click);
@@ -742,7 +742,7 @@
       // menuMain_dropEdit_itemSScriptAll
       // 
       this.menuMain_dropEdit_itemSScriptAll.Name = "menuMain_dropEdit_itemSScriptAll";
-      this.menuMain_dropEdit_itemSScriptAll.Size = new System.Drawing.Size(113, 22);
+      this.menuMain_dropEdit_itemSScriptAll.Size = new System.Drawing.Size(114, 22);
       this.menuMain_dropEdit_itemSScriptAll.Text = "All";
       this.menuMain_dropEdit_itemSScriptAll.ToolTipText = "All loaded scripts";
       this.menuMain_dropEdit_itemSScriptAll.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_StructureScriptAll_Click);
@@ -755,14 +755,14 @@
             this.menuMain_dropEdit_itemRemoveEmptyAll});
       this.menuMain_dropEdit_itemRemoveEmpty.Image = global::Gemini.Properties.Resources.emptyspace;
       this.menuMain_dropEdit_itemRemoveEmpty.Name = "menuMain_dropEdit_itemRemoveEmpty";
-      this.menuMain_dropEdit_itemRemoveEmpty.Size = new System.Drawing.Size(213, 22);
+      this.menuMain_dropEdit_itemRemoveEmpty.Size = new System.Drawing.Size(218, 22);
       this.menuMain_dropEdit_itemRemoveEmpty.Text = "Remove Empty Lines";
       this.menuMain_dropEdit_itemRemoveEmpty.ToolTipText = "Remove Empty Lines";
       // 
       // menuMain_dropEdit_itemRemoveEmptyCurrent
       // 
       this.menuMain_dropEdit_itemRemoveEmptyCurrent.Name = "menuMain_dropEdit_itemRemoveEmptyCurrent";
-      this.menuMain_dropEdit_itemRemoveEmptyCurrent.Size = new System.Drawing.Size(113, 22);
+      this.menuMain_dropEdit_itemRemoveEmptyCurrent.Size = new System.Drawing.Size(114, 22);
       this.menuMain_dropEdit_itemRemoveEmptyCurrent.Text = "Current";
       this.menuMain_dropEdit_itemRemoveEmptyCurrent.ToolTipText = "Current script";
       this.menuMain_dropEdit_itemRemoveEmptyCurrent.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_RemoveEmptyLinesCurrent_Click);
@@ -770,7 +770,7 @@
       // menuMain_dropEdit_itemRemoveEmptyOpen
       // 
       this.menuMain_dropEdit_itemRemoveEmptyOpen.Name = "menuMain_dropEdit_itemRemoveEmptyOpen";
-      this.menuMain_dropEdit_itemRemoveEmptyOpen.Size = new System.Drawing.Size(113, 22);
+      this.menuMain_dropEdit_itemRemoveEmptyOpen.Size = new System.Drawing.Size(114, 22);
       this.menuMain_dropEdit_itemRemoveEmptyOpen.Text = "Open";
       this.menuMain_dropEdit_itemRemoveEmptyOpen.ToolTipText = "All scripts open in the tab control";
       this.menuMain_dropEdit_itemRemoveEmptyOpen.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_RemoveEmptyLinesOpen_Click);
@@ -778,7 +778,7 @@
       // menuMain_dropEdit_itemRemoveEmptyAll
       // 
       this.menuMain_dropEdit_itemRemoveEmptyAll.Name = "menuMain_dropEdit_itemRemoveEmptyAll";
-      this.menuMain_dropEdit_itemRemoveEmptyAll.Size = new System.Drawing.Size(113, 22);
+      this.menuMain_dropEdit_itemRemoveEmptyAll.Size = new System.Drawing.Size(114, 22);
       this.menuMain_dropEdit_itemRemoveEmptyAll.Text = "All";
       this.menuMain_dropEdit_itemRemoveEmptyAll.ToolTipText = "All loaded scripts";
       this.menuMain_dropEdit_itemRemoveEmptyAll.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_RemoveEmptyLinesAll_Click);
@@ -790,8 +790,8 @@
             this.menuMain_dropSettings_seperator,
             this.menuMain_dropSettings_itemAutoOpenProject,
             this.menuMain_dropSettings_itemViewConfig,
-            this.menuMain_dropSettings_itemUpdate,
             this.menuMain_dropSettings_itemConfiguration,
+            this.menuMain_dropSettings_itemUpdate,
             this.menuMain_dropSettings_seperator1,
             this.menuMain_dropSettings_itemUpdateSections,
             this.menuMain_dropSettings_itemCustomRuntime,
@@ -812,7 +812,7 @@
       // 
       this.menuMain_dropSettings_itemAutoHideMenuBar.Name = "menuMain_dropSettings_itemAutoHideMenuBar";
       this.menuMain_dropSettings_itemAutoHideMenuBar.ShortcutKeyDisplayString = "";
-      this.menuMain_dropSettings_itemAutoHideMenuBar.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemAutoHideMenuBar.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemAutoHideMenuBar.Text = "Auto Hide Menu Bar";
       this.menuMain_dropSettings_itemAutoHideMenuBar.ToolTipText = "Automaticly hide the menu bar and toggle it by pressing Alt";
       this.menuMain_dropSettings_itemAutoHideMenuBar.Click += new System.EventHandler(this.menuMain_dropSetting_itemAutoHideMenuBar_Click);
@@ -820,18 +820,18 @@
       // menuMain_dropSettings_seperator
       // 
       this.menuMain_dropSettings_seperator.Name = "menuMain_dropSettings_seperator";
-      this.menuMain_dropSettings_seperator.Size = new System.Drawing.Size(194, 6);
+      this.menuMain_dropSettings_seperator.Size = new System.Drawing.Size(199, 6);
       // 
       // menuMain_dropSettings_itemAutoOpenProject
       // 
       this.menuMain_dropSettings_itemAutoOpenProject.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuMain_dropSettings_itemPioritizeRecent,
-            this.menuMain_sropSettings_seperator5,
+            this.menuMain_dropSettings_seperator5,
             this.menuMain_dropSettings_itemAutoOpenOn,
             this.menuMain_dropSettings_itemAutoOpenOff});
       this.menuMain_dropSettings_itemAutoOpenProject.Image = global::Gemini.Properties.Resources.recent;
       this.menuMain_dropSettings_itemAutoOpenProject.Name = "menuMain_dropSettings_itemAutoOpenProject";
-      this.menuMain_dropSettings_itemAutoOpenProject.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemAutoOpenProject.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemAutoOpenProject.Text = "Auto-Open";
       this.menuMain_dropSettings_itemAutoOpenProject.ToolTipText = "Toggle auto loading of either the first local project or the last used project on" +
     " start";
@@ -839,102 +839,65 @@
       // menuMain_dropSettings_itemPioritizeRecent
       // 
       this.menuMain_dropSettings_itemPioritizeRecent.Name = "menuMain_dropSettings_itemPioritizeRecent";
-      this.menuMain_dropSettings_itemPioritizeRecent.Size = new System.Drawing.Size(200, 22);
+      this.menuMain_dropSettings_itemPioritizeRecent.Size = new System.Drawing.Size(204, 22);
       this.menuMain_dropSettings_itemPioritizeRecent.Text = "Prioritize Recent Projects";
       this.menuMain_dropSettings_itemPioritizeRecent.ToolTipText = "Prioritize recent projects over local projects";
       this.menuMain_dropSettings_itemPioritizeRecent.Click += new System.EventHandler(this.menuMain_dropSettings_itemPioritizeRecent_Click);
       // 
-      // menuMain_sropSettings_seperator5
+      // menuMain_dropSettings_seperator5
       // 
-      this.menuMain_sropSettings_seperator5.Name = "menuMain_sropSettings_seperator5";
-      this.menuMain_sropSettings_seperator5.Size = new System.Drawing.Size(197, 6);
+      this.menuMain_dropSettings_seperator5.Name = "menuMain_dropSettings_seperator5";
+      this.menuMain_dropSettings_seperator5.Size = new System.Drawing.Size(201, 6);
       // 
       // menuMain_dropSettings_itemAutoOpenOn
       // 
       this.menuMain_dropSettings_itemAutoOpenOn.Name = "menuMain_dropSettings_itemAutoOpenOn";
-      this.menuMain_dropSettings_itemAutoOpenOn.Size = new System.Drawing.Size(200, 22);
+      this.menuMain_dropSettings_itemAutoOpenOn.Size = new System.Drawing.Size(204, 22);
       this.menuMain_dropSettings_itemAutoOpenOn.Text = "Auto-Open ON";
-      this.menuMain_dropSettings_itemAutoOpenOn.ToolTipText = "Turn auto-open on local project or most recent project on";
+      this.menuMain_dropSettings_itemAutoOpenOn.ToolTipText = "Turn on automated opening of local project or most recent project";
       this.menuMain_dropSettings_itemAutoOpenOn.Click += new System.EventHandler(this.menuMain_dropSettings_itemAutoOpenOn_Click);
       // 
       // menuMain_dropSettings_itemAutoOpenOff
       // 
       this.menuMain_dropSettings_itemAutoOpenOff.Name = "menuMain_dropSettings_itemAutoOpenOff";
-      this.menuMain_dropSettings_itemAutoOpenOff.Size = new System.Drawing.Size(200, 22);
+      this.menuMain_dropSettings_itemAutoOpenOff.Size = new System.Drawing.Size(204, 22);
       this.menuMain_dropSettings_itemAutoOpenOff.Text = "Auto-Open OFF";
-      this.menuMain_dropSettings_itemAutoOpenOff.ToolTipText = "Turn auto-open on local project or most recent project off";
+      this.menuMain_dropSettings_itemAutoOpenOff.ToolTipText = "Turn off automated opening of local project or most recent project";
       this.menuMain_dropSettings_itemAutoOpenOff.Click += new System.EventHandler(this.menuMain_dropSettings_itemAutoOpenOff_Click);
       // 
       // menuMain_dropSettings_itemViewConfig
       // 
       this.menuMain_dropSettings_itemViewConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuMain_dropSettings_itemToggleDistractionMode,
+            this.menuMain_dropSettings_itemHideToolbar,
             this.menuMain_dropSettings_seperator6,
-            this.menuMain_dropSettings_itemHideToolbar});
+            this.menuMain_dropSettings_itemToggleDistractionMode});
       this.menuMain_dropSettings_itemViewConfig.Image = global::Gemini.Properties.Resources.computer;
       this.menuMain_dropSettings_itemViewConfig.Name = "menuMain_dropSettings_itemViewConfig";
-      this.menuMain_dropSettings_itemViewConfig.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemViewConfig.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemViewConfig.Text = "Distraction-Free Mode";
+      // 
+      // menuMain_dropSettings_itemHideToolbar
+      // 
+      this.menuMain_dropSettings_itemHideToolbar.Name = "menuMain_dropSettings_itemHideToolbar";
+      this.menuMain_dropSettings_itemHideToolbar.Size = new System.Drawing.Size(140, 22);
+      this.menuMain_dropSettings_itemHideToolbar.Text = "Hide toolbar";
+      this.menuMain_dropSettings_itemHideToolbar.ToolTipText = "Toggle hiding the editor toolbar in Minimalistic View mode";
+      this.menuMain_dropSettings_itemHideToolbar.Click += new System.EventHandler(this.menuMain_dropSettings_itemHideToolbar_Click);
+      // 
+      // menuMain_dropSettings_seperator6
+      // 
+      this.menuMain_dropSettings_seperator6.Name = "menuMain_dropSettings_seperator6";
+      this.menuMain_dropSettings_seperator6.Size = new System.Drawing.Size(137, 6);
       // 
       // menuMain_dropSettings_itemToggleDistractionMode
       // 
       this.menuMain_dropSettings_itemToggleDistractionMode.Name = "menuMain_dropSettings_itemToggleDistractionMode";
       this.menuMain_dropSettings_itemToggleDistractionMode.ShortcutKeyDisplayString = "";
       this.menuMain_dropSettings_itemToggleDistractionMode.ShortcutKeys = System.Windows.Forms.Keys.F6;
-      this.menuMain_dropSettings_itemToggleDistractionMode.Size = new System.Drawing.Size(139, 22);
+      this.menuMain_dropSettings_itemToggleDistractionMode.Size = new System.Drawing.Size(140, 22);
       this.menuMain_dropSettings_itemToggleDistractionMode.Text = "Toggle";
       this.menuMain_dropSettings_itemToggleDistractionMode.ToolTipText = "Toggle hide script-view and (if toggled) editor toolbar";
       this.menuMain_dropSettings_itemToggleDistractionMode.Click += new System.EventHandler(this.menuMain_dropSettings_itemToggleDistractionMode_Click);
-      // 
-      // menuMain_dropSettings_seperator6
-      // 
-      this.menuMain_dropSettings_seperator6.Name = "menuMain_dropSettings_seperator6";
-      this.menuMain_dropSettings_seperator6.Size = new System.Drawing.Size(136, 6);
-      // 
-      // menuMain_dropSettings_itemHideToolbar
-      // 
-      this.menuMain_dropSettings_itemHideToolbar.Name = "menuMain_dropSettings_itemHideToolbar";
-      this.menuMain_dropSettings_itemHideToolbar.Size = new System.Drawing.Size(139, 22);
-      this.menuMain_dropSettings_itemHideToolbar.Text = "Hide toolbar";
-      this.menuMain_dropSettings_itemHideToolbar.ToolTipText = "Toggle hiding the editor toolbar in Minimalistic View mode";
-      this.menuMain_dropSettings_itemHideToolbar.Click += new System.EventHandler(this.menuMain_dropSettings_itemHideToolbar_Click);
-      // 
-      // menuMain_dropSettings_itemUpdate
-      // 
-      this.menuMain_dropSettings_itemUpdate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuMain_dropSettings_itemUpdateNow,
-            this.menuMain_dropSettings_seperator8,
-            this.menuMain_dropSettings_itemAutoUpdate,
-            this.toolStripMenuItem1});
-      this.menuMain_dropSettings_itemUpdate.Image = global::Gemini.Properties.Resources.update;
-      this.menuMain_dropSettings_itemUpdate.Name = "menuMain_dropSettings_itemUpdate";
-      this.menuMain_dropSettings_itemUpdate.Size = new System.Drawing.Size(197, 22);
-      this.menuMain_dropSettings_itemUpdate.Text = "Update";
-      // 
-      // menuMain_dropSettings_itemUpdateNow
-      // 
-      this.menuMain_dropSettings_itemUpdateNow.Name = "menuMain_dropSettings_itemUpdateNow";
-      this.menuMain_dropSettings_itemUpdateNow.Size = new System.Drawing.Size(195, 22);
-      this.menuMain_dropSettings_itemUpdateNow.Text = "Check for Updates now";
-      // 
-      // menuMain_dropSettings_seperator8
-      // 
-      this.menuMain_dropSettings_seperator8.Name = "menuMain_dropSettings_seperator8";
-      this.menuMain_dropSettings_seperator8.Size = new System.Drawing.Size(192, 6);
-      // 
-      // menuMain_dropSettings_itemAutoUpdate
-      // 
-      this.menuMain_dropSettings_itemAutoUpdate.Name = "menuMain_dropSettings_itemAutoUpdate";
-      this.menuMain_dropSettings_itemAutoUpdate.Size = new System.Drawing.Size(195, 22);
-      this.menuMain_dropSettings_itemAutoUpdate.Text = "Auto-check for updates";
-      this.menuMain_dropSettings_itemAutoUpdate.ToolTipText = "Toggle automaticly check for updates at startup";
-      // 
-      // toolStripMenuItem1
-      // 
-      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(195, 22);
-      this.toolStripMenuItem1.Text = "Update Channel";
-      this.toolStripMenuItem1.ToolTipText = "Branch tag to use to check for updates";
       // 
       // menuMain_dropSettings_itemConfiguration
       // 
@@ -946,14 +909,14 @@
             this.menuMain_dropSettings_itemClearSettings});
       this.menuMain_dropSettings_itemConfiguration.Image = global::Gemini.Properties.Resources.wrench;
       this.menuMain_dropSettings_itemConfiguration.Name = "menuMain_dropSettings_itemConfiguration";
-      this.menuMain_dropSettings_itemConfiguration.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemConfiguration.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemConfiguration.Text = "Configuration";
       this.menuMain_dropSettings_itemConfiguration.ToolTipText = "Configure Configuration Settings";
       // 
       // menuMain_dropSettings_itemAutoSaveSettings
       // 
       this.menuMain_dropSettings_itemAutoSaveSettings.Name = "menuMain_dropSettings_itemAutoSaveSettings";
-      this.menuMain_dropSettings_itemAutoSaveSettings.Size = new System.Drawing.Size(211, 22);
+      this.menuMain_dropSettings_itemAutoSaveSettings.Size = new System.Drawing.Size(214, 22);
       this.menuMain_dropSettings_itemAutoSaveSettings.Text = "Auto-Save Settings";
       this.menuMain_dropSettings_itemAutoSaveSettings.ToolTipText = "Toggle auto-saving of settings on application closing";
       this.menuMain_dropSettings_itemAutoSaveSettings.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoSaveSettings_Click);
@@ -961,7 +924,7 @@
       // menuMain_dropSettings_itemProjectSettings
       // 
       this.menuMain_dropSettings_itemProjectSettings.Name = "menuMain_dropSettings_itemProjectSettings";
-      this.menuMain_dropSettings_itemProjectSettings.Size = new System.Drawing.Size(211, 22);
+      this.menuMain_dropSettings_itemProjectSettings.Size = new System.Drawing.Size(214, 22);
       this.menuMain_dropSettings_itemProjectSettings.Text = "Use Project-based Settings";
       this.menuMain_dropSettings_itemProjectSettings.ToolTipText = "Store and use project-based settings where available";
       this.menuMain_dropSettings_itemProjectSettings.Click += new System.EventHandler(this.menuMain_dropSettings_itemProjectSettings_Click);
@@ -969,12 +932,12 @@
       // menuMain_dropSettings_seperator7
       // 
       this.menuMain_dropSettings_seperator7.Name = "menuMain_dropSettings_seperator7";
-      this.menuMain_dropSettings_seperator7.Size = new System.Drawing.Size(208, 6);
+      this.menuMain_dropSettings_seperator7.Size = new System.Drawing.Size(211, 6);
       // 
       // menuMain_dropSettings_itemSaveSettings
       // 
       this.menuMain_dropSettings_itemSaveSettings.Name = "menuMain_dropSettings_itemSaveSettings";
-      this.menuMain_dropSettings_itemSaveSettings.Size = new System.Drawing.Size(211, 22);
+      this.menuMain_dropSettings_itemSaveSettings.Size = new System.Drawing.Size(214, 22);
       this.menuMain_dropSettings_itemSaveSettings.Text = "Save Settings";
       this.menuMain_dropSettings_itemSaveSettings.ToolTipText = "Save current settings";
       this.menuMain_dropSettings_itemSaveSettings.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_SaveSettings_Click);
@@ -982,21 +945,58 @@
       // menuMain_dropSettings_itemClearSettings
       // 
       this.menuMain_dropSettings_itemClearSettings.Name = "menuMain_dropSettings_itemClearSettings";
-      this.menuMain_dropSettings_itemClearSettings.Size = new System.Drawing.Size(211, 22);
+      this.menuMain_dropSettings_itemClearSettings.Size = new System.Drawing.Size(214, 22);
       this.menuMain_dropSettings_itemClearSettings.Text = "Clear Settings";
       this.menuMain_dropSettings_itemClearSettings.ToolTipText = "Delete current user settings";
       this.menuMain_dropSettings_itemClearSettings.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_DeleteSettings_Click);
       // 
+      // menuMain_dropSettings_itemUpdate
+      // 
+      this.menuMain_dropSettings_itemUpdate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuMain_dropSettings_itemUpdateNow,
+            this.menuMain_dropSettings_seperator8,
+            this.menuMain_dropSettings_itemAutoUpdate,
+            this.toolStripMenuItem1});
+      this.menuMain_dropSettings_itemUpdate.Image = global::Gemini.Properties.Resources.update;
+      this.menuMain_dropSettings_itemUpdate.Name = "menuMain_dropSettings_itemUpdate";
+      this.menuMain_dropSettings_itemUpdate.Size = new System.Drawing.Size(202, 22);
+      this.menuMain_dropSettings_itemUpdate.Text = "Update";
+      // 
+      // menuMain_dropSettings_itemUpdateNow
+      // 
+      this.menuMain_dropSettings_itemUpdateNow.Name = "menuMain_dropSettings_itemUpdateNow";
+      this.menuMain_dropSettings_itemUpdateNow.Size = new System.Drawing.Size(199, 22);
+      this.menuMain_dropSettings_itemUpdateNow.Text = "Check for Updates now";
+      // 
+      // menuMain_dropSettings_seperator8
+      // 
+      this.menuMain_dropSettings_seperator8.Name = "menuMain_dropSettings_seperator8";
+      this.menuMain_dropSettings_seperator8.Size = new System.Drawing.Size(196, 6);
+      // 
+      // menuMain_dropSettings_itemAutoUpdate
+      // 
+      this.menuMain_dropSettings_itemAutoUpdate.Name = "menuMain_dropSettings_itemAutoUpdate";
+      this.menuMain_dropSettings_itemAutoUpdate.Size = new System.Drawing.Size(199, 22);
+      this.menuMain_dropSettings_itemAutoUpdate.Text = "Auto-check for updates";
+      this.menuMain_dropSettings_itemAutoUpdate.ToolTipText = "Toggle automaticly check for updates at startup";
+      // 
+      // toolStripMenuItem1
+      // 
+      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
+      this.toolStripMenuItem1.Text = "Update Channel";
+      this.toolStripMenuItem1.ToolTipText = "Branch tag to use to check for updates";
+      // 
       // menuMain_dropSettings_seperator1
       // 
       this.menuMain_dropSettings_seperator1.Name = "menuMain_dropSettings_seperator1";
-      this.menuMain_dropSettings_seperator1.Size = new System.Drawing.Size(194, 6);
+      this.menuMain_dropSettings_seperator1.Size = new System.Drawing.Size(199, 6);
       // 
       // menuMain_dropSettings_itemUpdateSections
       // 
       this.menuMain_dropSettings_itemUpdateSections.Image = global::Gemini.Properties.Resources.file_update;
       this.menuMain_dropSettings_itemUpdateSections.Name = "menuMain_dropSettings_itemUpdateSections";
-      this.menuMain_dropSettings_itemUpdateSections.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemUpdateSections.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemUpdateSections.Text = "Update Sections";
       this.menuMain_dropSettings_itemUpdateSections.Click += new System.EventHandler(this.menuMain_dropSettings_itemUpdateSections_Click);
       // 
@@ -1004,20 +1004,20 @@
       // 
       this.menuMain_dropSettings_itemCustomRuntime.Image = global::Gemini.Properties.Resources.run;
       this.menuMain_dropSettings_itemCustomRuntime.Name = "menuMain_dropSettings_itemCustomRuntime";
-      this.menuMain_dropSettings_itemCustomRuntime.Size = new System.Drawing.Size(197, 22);
-      this.menuMain_dropSettings_itemCustomRuntime.Text = "Custom Runtime";
+      this.menuMain_dropSettings_itemCustomRuntime.Size = new System.Drawing.Size(202, 22);
+      this.menuMain_dropSettings_itemCustomRuntime.Text = "Customize Runtime";
       this.menuMain_dropSettings_itemCustomRuntime.Click += new System.EventHandler(this.menuMain_dropGame_itemCustomRuntime_Click);
       // 
       // menuMain_dropSettings_seperator2
       // 
       this.menuMain_dropSettings_seperator2.Name = "menuMain_dropSettings_seperator2";
-      this.menuMain_dropSettings_seperator2.Size = new System.Drawing.Size(194, 6);
+      this.menuMain_dropSettings_seperator2.Size = new System.Drawing.Size(199, 6);
       // 
       // menuMain_dropSettings_itemStyleConfig
       // 
       this.menuMain_dropSettings_itemStyleConfig.Image = global::Gemini.Properties.Resources.styles;
       this.menuMain_dropSettings_itemStyleConfig.Name = "menuMain_dropSettings_itemStyleConfig";
-      this.menuMain_dropSettings_itemStyleConfig.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemStyleConfig.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemStyleConfig.Text = "Style Configurator";
       this.menuMain_dropSettings_itemStyleConfig.ToolTipText = "Edit the styles of the editor";
       this.menuMain_dropSettings_itemStyleConfig.Click += new System.EventHandler(this.menuMain_dropSettings_itemStyleConfig_Click);
@@ -1026,7 +1026,7 @@
       // 
       this.menuMain_dropSettings_itemAutoCConfig.Image = global::Gemini.Properties.Resources.text_wrench;
       this.menuMain_dropSettings_itemAutoCConfig.Name = "menuMain_dropSettings_itemAutoCConfig";
-      this.menuMain_dropSettings_itemAutoCConfig.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemAutoCConfig.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemAutoCConfig.Text = "Auto-Complete Settings";
       this.menuMain_dropSettings_itemAutoCConfig.ToolTipText = "Configure how the auto-complete bahaves";
       this.menuMain_dropSettings_itemAutoCConfig.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoCompleteConfig_Click);
@@ -1035,7 +1035,7 @@
       // 
       this.menuMain_dropSettings_itemAutoC.Image = global::Gemini.Properties.Resources.text_complete;
       this.menuMain_dropSettings_itemAutoC.Name = "menuMain_dropSettings_itemAutoC";
-      this.menuMain_dropSettings_itemAutoC.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemAutoC.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemAutoC.Text = "Auto-Complete";
       this.menuMain_dropSettings_itemAutoC.ToolTipText = "Toggle Auto-Complete";
       this.menuMain_dropSettings_itemAutoC.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoComplete_Click);
@@ -1044,7 +1044,7 @@
       // 
       this.menuMain_dropSettings_itemAutoIndent.Image = global::Gemini.Properties.Resources.indent;
       this.menuMain_dropSettings_itemAutoIndent.Name = "menuMain_dropSettings_itemAutoIndent";
-      this.menuMain_dropSettings_itemAutoIndent.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemAutoIndent.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemAutoIndent.Text = "Auto-Indentation";
       this.menuMain_dropSettings_itemAutoIndent.ToolTipText = "Toggle Auto-Indentation";
       this.menuMain_dropSettings_itemAutoIndent.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AutoIndent_Click);
@@ -1053,7 +1053,7 @@
       // 
       this.menuMain_dropSettings_itemIndentGuides.Image = global::Gemini.Properties.Resources.ruler;
       this.menuMain_dropSettings_itemIndentGuides.Name = "menuMain_dropSettings_itemIndentGuides";
-      this.menuMain_dropSettings_itemIndentGuides.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemIndentGuides.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemIndentGuides.Text = "Indent Guides";
       this.menuMain_dropSettings_itemIndentGuides.ToolTipText = "Toggle Indent Guides";
       this.menuMain_dropSettings_itemIndentGuides.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_IndentGuides_Click);
@@ -1062,7 +1062,7 @@
       // 
       this.menuMain_dropSettings_itemFolding.Image = global::Gemini.Properties.Resources.fold;
       this.menuMain_dropSettings_itemFolding.Name = "menuMain_dropSettings_itemFolding";
-      this.menuMain_dropSettings_itemFolding.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemFolding.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemFolding.Text = "Code Folding";
       this.menuMain_dropSettings_itemFolding.ToolTipText = "Toggle Code Folding";
       this.menuMain_dropSettings_itemFolding.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_CodeFolding_Click);
@@ -1073,7 +1073,7 @@
             this.menuMain_dropSettings_itemHighlightColor});
       this.menuMain_dropSettings_itemHighlight.Image = global::Gemini.Properties.Resources.highlight;
       this.menuMain_dropSettings_itemHighlight.Name = "menuMain_dropSettings_itemHighlight";
-      this.menuMain_dropSettings_itemHighlight.Size = new System.Drawing.Size(197, 22);
+      this.menuMain_dropSettings_itemHighlight.Size = new System.Drawing.Size(202, 22);
       this.menuMain_dropSettings_itemHighlight.Text = "Line Highlighter";
       this.menuMain_dropSettings_itemHighlight.ToolTipText = "Toggle Line Highlighter";
       this.menuMain_dropSettings_itemHighlight.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_LineHighlight_Click);
@@ -1082,7 +1082,7 @@
       // 
       this.menuMain_dropSettings_itemHighlightColor.Image = global::Gemini.Properties.Resources.highlightColor;
       this.menuMain_dropSettings_itemHighlightColor.Name = "menuMain_dropSettings_itemHighlightColor";
-      this.menuMain_dropSettings_itemHighlightColor.Size = new System.Drawing.Size(154, 22);
+      this.menuMain_dropSettings_itemHighlightColor.Size = new System.Drawing.Size(156, 22);
       this.menuMain_dropSettings_itemHighlightColor.Text = "Highlight Color";
       this.menuMain_dropSettings_itemHighlightColor.ToolTipText = "Change the color of the line highlighter";
       this.menuMain_dropSettings_itemHighlightColor.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_HighlightColor_Click);
@@ -1096,7 +1096,7 @@
             this.menuMain_dropGame_itemDebug,
             this.menuMain_dropGame_itemProjectFolder});
       this.menuMain_dropGame.Name = "menuMain_dropGame";
-      this.menuMain_dropGame.Size = new System.Drawing.Size(48, 20);
+      this.menuMain_dropGame.Size = new System.Drawing.Size(50, 20);
       this.menuMain_dropGame.Text = "Game";
       // 
       // menuMain_dropGame_itemHelp
@@ -1158,14 +1158,14 @@
             menuMain_dropAbout_seperator1,
             this.menuMain_dropAbout_itemAboutGemini});
       this.menuMain_dropAbout.Name = "menuMain_dropAbout";
-      this.menuMain_dropAbout.Size = new System.Drawing.Size(51, 20);
+      this.menuMain_dropAbout.Size = new System.Drawing.Size(52, 20);
       this.menuMain_dropAbout.Text = "About";
       // 
       // menuMain_dropAbout_itemVersionHistory
       // 
       this.menuMain_dropAbout_itemVersionHistory.Image = global::Gemini.Properties.Resources.changelog;
       this.menuMain_dropAbout_itemVersionHistory.Name = "menuMain_dropAbout_itemVersionHistory";
-      this.menuMain_dropAbout_itemVersionHistory.Size = new System.Drawing.Size(154, 22);
+      this.menuMain_dropAbout_itemVersionHistory.Size = new System.Drawing.Size(157, 22);
       this.menuMain_dropAbout_itemVersionHistory.Text = "Version History";
       this.menuMain_dropAbout_itemVersionHistory.ToolTipText = "View the changelog between Gemini updates";
       this.menuMain_dropAbout_itemVersionHistory.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_VersionHistory_Click);
@@ -1174,19 +1174,19 @@
       // 
       this.menuMain_dropAbout_itemAboutGemini.Image = global::Gemini.Properties.Resources.gemini;
       this.menuMain_dropAbout_itemAboutGemini.Name = "menuMain_dropAbout_itemAboutGemini";
-      this.menuMain_dropAbout_itemAboutGemini.Size = new System.Drawing.Size(154, 22);
+      this.menuMain_dropAbout_itemAboutGemini.Size = new System.Drawing.Size(157, 22);
       this.menuMain_dropAbout_itemAboutGemini.Text = "About Gemini...";
       this.menuMain_dropAbout_itemAboutGemini.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_AboutGemini_Click);
       // 
       // scriptsView
       // 
-      this.scriptsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.scriptsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.scriptsView.ContextMenuStrip = this.scriptsView_contextMenu;
       this.scriptsView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.scriptsView.ItemHeight = 17;
-      this.scriptsView.Location = new System.Drawing.Point(7, 15);
+      this.scriptsView.Location = new System.Drawing.Point(8, 15);
       this.scriptsView.Name = "scriptsView";
       this.scriptsView.ShowNodeToolTips = true;
       this.scriptsView.Size = new System.Drawing.Size(226, 472);
@@ -1210,7 +1210,7 @@
             scriptsView_contextMenu_seperator2,
             this.scriptsView_contextMenu_itemBatchSearch});
       this.scriptsView_contextMenu.Name = "scriptsList_ContextMenuStrip";
-      this.scriptsView_contextMenu.Size = new System.Drawing.Size(201, 214);
+      this.scriptsView_contextMenu.Size = new System.Drawing.Size(204, 214);
       this.scriptsView_contextMenu.Opened += new System.EventHandler(this.mainMenu_ToolStripMenuItem_DropDownOpening);
       // 
       // scriptsView_contextMenu_itemOpen
@@ -1218,7 +1218,7 @@
       this.scriptsView_contextMenu_itemOpen.Image = global::Gemini.Properties.Resources.file_plus;
       this.scriptsView_contextMenu_itemOpen.Name = "scriptsView_contextMenu_itemOpen";
       this.scriptsView_contextMenu_itemOpen.ShortcutKeyDisplayString = "Enter";
-      this.scriptsView_contextMenu_itemOpen.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemOpen.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemOpen.Text = "Open";
       this.scriptsView_contextMenu_itemOpen.Click += new System.EventHandler(this.scriptsView_itemOpen_Click);
       // 
@@ -1227,7 +1227,7 @@
       this.scriptsView_contextMenu_itemInsert.Image = global::Gemini.Properties.Resources.add;
       this.scriptsView_contextMenu_itemInsert.Name = "scriptsView_contextMenu_itemInsert";
       this.scriptsView_contextMenu_itemInsert.ShortcutKeys = System.Windows.Forms.Keys.Insert;
-      this.scriptsView_contextMenu_itemInsert.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemInsert.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemInsert.Text = "Insert";
       this.scriptsView_contextMenu_itemInsert.Click += new System.EventHandler(this.scriptsView_contextMenu_itemInsert_Click);
       // 
@@ -1236,7 +1236,7 @@
       this.scriptsView_contextMenu_itemCut.Image = global::Gemini.Properties.Resources.cut;
       this.scriptsView_contextMenu_itemCut.Name = "scriptsView_contextMenu_itemCut";
       this.scriptsView_contextMenu_itemCut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-      this.scriptsView_contextMenu_itemCut.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemCut.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemCut.Text = "Cut";
       this.scriptsView_contextMenu_itemCut.Click += new System.EventHandler(this.scriptsView_contextMenu_itemCut_Click);
       // 
@@ -1245,7 +1245,7 @@
       this.scriptsView_contextMenu_itemCopy.Image = global::Gemini.Properties.Resources.copy;
       this.scriptsView_contextMenu_itemCopy.Name = "scriptsView_contextMenu_itemCopy";
       this.scriptsView_contextMenu_itemCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-      this.scriptsView_contextMenu_itemCopy.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemCopy.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemCopy.Text = "Copy";
       this.scriptsView_contextMenu_itemCopy.Click += new System.EventHandler(this.scriptsView_contextMenu_itemCopy_Click);
       // 
@@ -1254,7 +1254,7 @@
       this.scriptsView_contextMenu_itemPaste.Image = global::Gemini.Properties.Resources.paste;
       this.scriptsView_contextMenu_itemPaste.Name = "scriptsView_contextMenu_itemPaste";
       this.scriptsView_contextMenu_itemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-      this.scriptsView_contextMenu_itemPaste.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemPaste.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemPaste.Text = "Paste";
       this.scriptsView_contextMenu_itemPaste.Click += new System.EventHandler(this.scriptsView_contextMenu_itemPaste_Click);
       // 
@@ -1263,7 +1263,7 @@
       this.scriptsView_contextMenu_itemDelete.Image = global::Gemini.Properties.Resources.delete;
       this.scriptsView_contextMenu_itemDelete.Name = "scriptsView_contextMenu_itemDelete";
       this.scriptsView_contextMenu_itemDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-      this.scriptsView_contextMenu_itemDelete.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemDelete.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemDelete.Text = "Delete";
       this.scriptsView_contextMenu_itemDelete.Click += new System.EventHandler(this.scriptsView_contextMenu_itemDelete_Click);
       // 
@@ -1272,7 +1272,7 @@
       this.scriptsView_contextMenu_itemMoveUp.Image = global::Gemini.Properties.Resources.up;
       this.scriptsView_contextMenu_itemMoveUp.Name = "scriptsView_contextMenu_itemMoveUp";
       this.scriptsView_contextMenu_itemMoveUp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
-      this.scriptsView_contextMenu_itemMoveUp.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemMoveUp.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemMoveUp.Text = "Move Up";
       this.scriptsView_contextMenu_itemMoveUp.Click += new System.EventHandler(this.scriptsView_contextMenu_itemMoveUp_Click);
       // 
@@ -1281,7 +1281,7 @@
       this.scriptsView_contextMenu_itemMoveDown.Image = global::Gemini.Properties.Resources.down;
       this.scriptsView_contextMenu_itemMoveDown.Name = "scriptsView_contextMenu_itemMoveDown";
       this.scriptsView_contextMenu_itemMoveDown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
-      this.scriptsView_contextMenu_itemMoveDown.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemMoveDown.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemMoveDown.Text = "Move Down";
       this.scriptsView_contextMenu_itemMoveDown.Click += new System.EventHandler(this.scriptsView_contextMenu_itemMoveDown_Click);
       // 
@@ -1290,36 +1290,37 @@
       this.scriptsView_contextMenu_itemBatchSearch.Image = global::Gemini.Properties.Resources.batch;
       this.scriptsView_contextMenu_itemBatchSearch.Name = "scriptsView_contextMenu_itemBatchSearch";
       this.scriptsView_contextMenu_itemBatchSearch.ShortcutKeyDisplayString = "Ctrl+Shift+F";
-      this.scriptsView_contextMenu_itemBatchSearch.Size = new System.Drawing.Size(200, 22);
+      this.scriptsView_contextMenu_itemBatchSearch.Size = new System.Drawing.Size(203, 22);
       this.scriptsView_contextMenu_itemBatchSearch.Text = "Find...";
       this.scriptsView_contextMenu_itemBatchSearch.Click += new System.EventHandler(this.scriptsView_contextMenu_itemBatchSearch_Click);
       // 
       // scriptName
       // 
-      this.scriptName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+      this.scriptName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.scriptName.Location = new System.Drawing.Point(7, 490);
       this.scriptName.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
       this.scriptName.Name = "scriptName";
-      this.scriptName.Size = new System.Drawing.Size(226, 20);
+      this.scriptName.Size = new System.Drawing.Size(225, 20);
       this.scriptName.TabIndex = 1;
       this.toolTip.SetToolTip(this.scriptName, "Edit title of script");
       // 
-      // scriptsEditpr_statusStrip
+      // scriptsEditor_statusStrip
       // 
-      this.scriptsEditpr_statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.scriptsEditor_statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scriptsEditor_StatusStrip_itemCharacters});
-      this.scriptsEditpr_statusStrip.Location = new System.Drawing.Point(0, 517);
-      this.scriptsEditpr_statusStrip.Name = "scriptsEditpr_statusStrip";
-      this.scriptsEditpr_statusStrip.Size = new System.Drawing.Size(538, 22);
-      this.scriptsEditpr_statusStrip.SizingGrip = false;
-      this.scriptsEditpr_statusStrip.TabIndex = 2;
-      this.scriptsEditpr_statusStrip.Text = "scriptsEditor_StatusStrip";
+      this.scriptsEditor_statusStrip.Location = new System.Drawing.Point(0, 517);
+      this.scriptsEditor_statusStrip.Name = "scriptsEditor_statusStrip";
+      this.scriptsEditor_statusStrip.Size = new System.Drawing.Size(538, 22);
+      this.scriptsEditor_statusStrip.SizingGrip = false;
+      this.scriptsEditor_statusStrip.TabIndex = 2;
+      this.scriptsEditor_statusStrip.Text = "scriptsEditor_StatusStrip";
       // 
       // scriptsEditor_StatusStrip_itemCharacters
       // 
       this.scriptsEditor_StatusStrip_itemCharacters.Name = "scriptsEditor_StatusStrip_itemCharacters";
       this.scriptsEditor_StatusStrip_itemCharacters.Size = new System.Drawing.Size(0, 17);
+      this.scriptsEditor_statusStrip.Renderer = new Gemini.Rendering.ToolStripRenderer();
       this.scriptsEditor_StatusStrip_itemCharacters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // scriptsEditor_ContextMenuStrip
@@ -1345,7 +1346,7 @@
             toolStripSeparator12,
             this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete});
       this.scriptsEditor_ContextMenuStrip.Name = "scriptsEditor_ContextMenuStrip";
-      this.scriptsEditor_ContextMenuStrip.Size = new System.Drawing.Size(208, 358);
+      this.scriptsEditor_ContextMenuStrip.Size = new System.Drawing.Size(213, 358);
       this.scriptsEditor_ContextMenuStrip.Opened += new System.EventHandler(this.mainMenu_ToolStripMenuItem_DropDownOpening);
       // 
       // scriptsEditor_ToolStripMenuItem_Undo
@@ -1353,7 +1354,7 @@
       this.scriptsEditor_ToolStripMenuItem_Undo.Image = global::Gemini.Properties.Resources.undo;
       this.scriptsEditor_ToolStripMenuItem_Undo.Name = "scriptsEditor_ToolStripMenuItem_Undo";
       this.scriptsEditor_ToolStripMenuItem_Undo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-      this.scriptsEditor_ToolStripMenuItem_Undo.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Undo.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Undo.Text = "Undo";
       this.scriptsEditor_ToolStripMenuItem_Undo.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Undo_Click);
       // 
@@ -1362,7 +1363,7 @@
       this.scriptsEditor_ToolStripMenuItem_Redo.Image = global::Gemini.Properties.Resources.redo;
       this.scriptsEditor_ToolStripMenuItem_Redo.Name = "scriptsEditor_ToolStripMenuItem_Redo";
       this.scriptsEditor_ToolStripMenuItem_Redo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-      this.scriptsEditor_ToolStripMenuItem_Redo.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Redo.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Redo.Text = "Redo";
       this.scriptsEditor_ToolStripMenuItem_Redo.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Redo_Click);
       // 
@@ -1371,7 +1372,7 @@
       this.scriptsEditor_ToolStripMenuItem_Cut.Image = global::Gemini.Properties.Resources.cut;
       this.scriptsEditor_ToolStripMenuItem_Cut.Name = "scriptsEditor_ToolStripMenuItem_Cut";
       this.scriptsEditor_ToolStripMenuItem_Cut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-      this.scriptsEditor_ToolStripMenuItem_Cut.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Cut.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Cut.Text = "Cut";
       this.scriptsEditor_ToolStripMenuItem_Cut.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Cut_Click);
       // 
@@ -1380,7 +1381,7 @@
       this.scriptsEditor_ToolStripMenuItem_Copy.Image = global::Gemini.Properties.Resources.copy;
       this.scriptsEditor_ToolStripMenuItem_Copy.Name = "scriptsEditor_ToolStripMenuItem_Copy";
       this.scriptsEditor_ToolStripMenuItem_Copy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-      this.scriptsEditor_ToolStripMenuItem_Copy.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Copy.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Copy.Text = "Copy";
       this.scriptsEditor_ToolStripMenuItem_Copy.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Copy_Click);
       // 
@@ -1389,7 +1390,7 @@
       this.scriptsEditor_ToolStripMenuItem_Paste.Image = global::Gemini.Properties.Resources.paste;
       this.scriptsEditor_ToolStripMenuItem_Paste.Name = "scriptsEditor_ToolStripMenuItem_Paste";
       this.scriptsEditor_ToolStripMenuItem_Paste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-      this.scriptsEditor_ToolStripMenuItem_Paste.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Paste.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Paste.Text = "Paste";
       this.scriptsEditor_ToolStripMenuItem_Paste.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Paste_Click);
       // 
@@ -1398,7 +1399,7 @@
       this.scriptsEditor_ToolStripMenuItem_Delete.Image = global::Gemini.Properties.Resources.delete;
       this.scriptsEditor_ToolStripMenuItem_Delete.Name = "scriptsEditor_ToolStripMenuItem_Delete";
       this.scriptsEditor_ToolStripMenuItem_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-      this.scriptsEditor_ToolStripMenuItem_Delete.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Delete.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Delete.Text = "Delete";
       this.scriptsEditor_ToolStripMenuItem_Delete.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Delete_Click);
       // 
@@ -1407,7 +1408,7 @@
       this.scriptsEditor_ToolStripMenuItem_SelectAll.Image = global::Gemini.Properties.Resources.file_flat;
       this.scriptsEditor_ToolStripMenuItem_SelectAll.Name = "scriptsEditor_ToolStripMenuItem_SelectAll";
       this.scriptsEditor_ToolStripMenuItem_SelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-      this.scriptsEditor_ToolStripMenuItem_SelectAll.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_SelectAll.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_SelectAll.Text = "Select All";
       this.scriptsEditor_ToolStripMenuItem_SelectAll.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_SelectAll_Click);
       // 
@@ -1416,7 +1417,7 @@
       this.scriptsEditor_ToolStripMenuItem_IncrementalSearch.Image = global::Gemini.Properties.Resources.increaser;
       this.scriptsEditor_ToolStripMenuItem_IncrementalSearch.Name = "scriptsEditor_ToolStripMenuItem_IncrementalSearch";
       this.scriptsEditor_ToolStripMenuItem_IncrementalSearch.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-      this.scriptsEditor_ToolStripMenuItem_IncrementalSearch.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_IncrementalSearch.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_IncrementalSearch.Text = "Incremental Search";
       this.scriptsEditor_ToolStripMenuItem_IncrementalSearch.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_IncrementalSearch_Click);
       // 
@@ -1425,7 +1426,7 @@
       this.scriptsEditor_ToolStripMenuItem_Find.Image = global::Gemini.Properties.Resources.find;
       this.scriptsEditor_ToolStripMenuItem_Find.Name = "scriptsEditor_ToolStripMenuItem_Find";
       this.scriptsEditor_ToolStripMenuItem_Find.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-      this.scriptsEditor_ToolStripMenuItem_Find.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Find.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Find.Text = "Find...";
       this.scriptsEditor_ToolStripMenuItem_Find.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Find_Click);
       // 
@@ -1434,7 +1435,7 @@
       this.scriptsEditor_ToolStripMenuItem_FindNext.Image = global::Gemini.Properties.Resources.right;
       this.scriptsEditor_ToolStripMenuItem_FindNext.Name = "scriptsEditor_ToolStripMenuItem_FindNext";
       this.scriptsEditor_ToolStripMenuItem_FindNext.ShortcutKeys = System.Windows.Forms.Keys.F3;
-      this.scriptsEditor_ToolStripMenuItem_FindNext.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_FindNext.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_FindNext.Text = "Find Next...";
       this.scriptsEditor_ToolStripMenuItem_FindNext.Click += new System.EventHandler(this.scriptsEditor_ToolStripMenuItem_FindNext_Click);
       // 
@@ -1443,7 +1444,7 @@
       this.scriptsEditor_ToolStripMenuItem_FindPrevious.Image = global::Gemini.Properties.Resources.left;
       this.scriptsEditor_ToolStripMenuItem_FindPrevious.Name = "scriptsEditor_ToolStripMenuItem_FindPrevious";
       this.scriptsEditor_ToolStripMenuItem_FindPrevious.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F3)));
-      this.scriptsEditor_ToolStripMenuItem_FindPrevious.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_FindPrevious.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_FindPrevious.Text = "Find Previous...";
       this.scriptsEditor_ToolStripMenuItem_FindPrevious.Click += new System.EventHandler(this.scriptsEditor_ToolStripMenuItem_FindPrevious_Click);
       // 
@@ -1452,7 +1453,7 @@
       this.scriptsEditor_ToolStripMenuItem_Replace.Image = global::Gemini.Properties.Resources.replace;
       this.scriptsEditor_ToolStripMenuItem_Replace.Name = "scriptsEditor_ToolStripMenuItem_Replace";
       this.scriptsEditor_ToolStripMenuItem_Replace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-      this.scriptsEditor_ToolStripMenuItem_Replace.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Replace.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Replace.Text = "Replace...";
       this.scriptsEditor_ToolStripMenuItem_Replace.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_Replace_Click);
       // 
@@ -1461,7 +1462,7 @@
       this.scriptsEditor_ToolStripMenuItem_GoToLine.Image = global::Gemini.Properties.Resources._goto;
       this.scriptsEditor_ToolStripMenuItem_GoToLine.Name = "scriptsEditor_ToolStripMenuItem_GoToLine";
       this.scriptsEditor_ToolStripMenuItem_GoToLine.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-      this.scriptsEditor_ToolStripMenuItem_GoToLine.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_GoToLine.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_GoToLine.Text = "Go To...";
       this.scriptsEditor_ToolStripMenuItem_GoToLine.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_GoToLine_Click);
       // 
@@ -1470,7 +1471,7 @@
       this.scriptsEditor_ToolStripMenuItem_Comment.Image = global::Gemini.Properties.Resources.comment;
       this.scriptsEditor_ToolStripMenuItem_Comment.Name = "scriptsEditor_ToolStripMenuItem_Comment";
       this.scriptsEditor_ToolStripMenuItem_Comment.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-      this.scriptsEditor_ToolStripMenuItem_Comment.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_Comment.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_Comment.Text = "Comment";
       this.scriptsEditor_ToolStripMenuItem_Comment.Click += new System.EventHandler(this.mainMenu_ToolStripMenuItem_ToggleComment_Click);
       // 
@@ -1478,7 +1479,7 @@
       // 
       this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete.Image = global::Gemini.Properties.Resources.text_complete;
       this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete.Name = "scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete";
-      this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete.Size = new System.Drawing.Size(207, 22);
+      this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete.Size = new System.Drawing.Size(212, 22);
       this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete.Text = "Add to Auto-Complete";
       this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete.Click += new System.EventHandler(this.scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete_Click);
       // 
@@ -1500,7 +1501,7 @@
       // splitView.Panel1
       // 
       this.splitView.Panel1.Controls.Add(this.scriptsEditor_tabs);
-      this.splitView.Panel1.Controls.Add(this.scriptsEditpr_statusStrip);
+      this.splitView.Panel1.Controls.Add(this.scriptsEditor_statusStrip);
       this.splitView.Panel1.Controls.Add(this.toolsEditor_toolStrip);
       this.splitView.Panel1MinSize = 200;
       // 
@@ -1560,8 +1561,8 @@
       this.toolsEditor_toolStrip.Location = new System.Drawing.Point(0, 0);
       this.toolsEditor_toolStrip.Name = "toolsEditor_toolStrip";
       this.toolsEditor_toolStrip.Padding = new System.Windows.Forms.Padding(0);
-      this.toolsEditor_toolStrip.Renderer = new Rendering.ToolStripRenderer();
       this.toolsEditor_toolStrip.Size = new System.Drawing.Size(538, 25);
+      this.toolsEditor_toolStrip.Renderer = new Gemini.Rendering.ToolStripRenderer();
       this.toolsEditor_toolStrip.TabIndex = 1;
       // 
       // toolsEditor_itemSaveProject
@@ -1855,8 +1856,8 @@
             this.toolsView_itemBatchSearch});
       this.toolsView_toolStrip.Location = new System.Drawing.Point(3, 513);
       this.toolsView_toolStrip.Name = "toolsView_toolStrip";
-      this.toolsView_toolStrip.Renderer = new Rendering.ToolStripRenderer();
       this.toolsView_toolStrip.Size = new System.Drawing.Size(234, 25);
+      this.toolsView_toolStrip.Renderer = new Gemini.Rendering.ToolStripRenderer();
       this.toolsView_toolStrip.TabIndex = 6;
       this.toolsView_toolStrip.Text = "toolStrip1";
       // 
@@ -1898,6 +1899,29 @@
       this.toolsView_itemDelete.Text = "Delete Script (Suppr)";
       this.toolsView_itemDelete.Click += new System.EventHandler(this.scriptsView_contextMenu_itemDelete_Click);
       // 
+      // toolStripButton1
+      // 
+      this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolStripButton1.Image = global::Gemini.Properties.Resources.left;
+      this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolStripButton1.Name = "toolStripButton1";
+      this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+      this.toolStripButton1.Text = "toolStripButton1";
+      // 
+      // toolStripButton2
+      // 
+      this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.toolStripButton2.Image = global::Gemini.Properties.Resources.right;
+      this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.toolStripButton2.Name = "toolStripButton2";
+      this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+      this.toolStripButton2.Text = "toolStripButton2";
+      // 
+      // toolStripSeparator1
+      // 
+      this.toolStripSeparator1.Name = "toolStripSeparator1";
+      this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+      // 
       // toolsView_itemMoveUp
       // 
       this.toolsView_itemMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1925,32 +1949,9 @@
       this.toolsView_itemBatchSearch.Image = global::Gemini.Properties.Resources.batch;
       this.toolsView_itemBatchSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.toolsView_itemBatchSearch.Name = "toolsView_itemBatchSearch";
-      this.toolsView_itemBatchSearch.Size = new System.Drawing.Size(23, 20);
+      this.toolsView_itemBatchSearch.Size = new System.Drawing.Size(23, 22);
       this.toolsView_itemBatchSearch.Text = "New Search (Ctrl+Shift+F)";
       this.toolsView_itemBatchSearch.Click += new System.EventHandler(this.scriptsView_contextMenu_itemBatchSearch_Click);
-      // 
-      // toolStripButton1
-      // 
-      this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolStripButton1.Image = global::Gemini.Properties.Resources.left;
-      this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolStripButton1.Name = "toolStripButton1";
-      this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-      this.toolStripButton1.Text = "toolStripButton1";
-      // 
-      // toolStripButton2
-      // 
-      this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.toolStripButton2.Image = global::Gemini.Properties.Resources.right;
-      this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.toolStripButton2.Name = "toolStripButton2";
-      this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-      this.toolStripButton2.Text = "toolStripButton2";
-      // 
-      // toolStripSeparator1
-      // 
-      this.toolStripSeparator1.Name = "toolStripSeparator1";
-      this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
       // 
       // GeminiForm
       // 
@@ -1970,8 +1971,8 @@
       this.menuMain_menuStrip.ResumeLayout(false);
       this.menuMain_menuStrip.PerformLayout();
       this.scriptsView_contextMenu.ResumeLayout(false);
-      this.scriptsEditpr_statusStrip.ResumeLayout(false);
-      this.scriptsEditpr_statusStrip.PerformLayout();
+      this.scriptsEditor_statusStrip.ResumeLayout(false);
+      this.scriptsEditor_statusStrip.PerformLayout();
       this.scriptsEditor_ContextMenuStrip.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.scriptsFileWatcher)).EndInit();
       this.splitView.Panel1.ResumeLayout(false);
@@ -2019,7 +2020,7 @@
     private System.Windows.Forms.ToolStripButton toolsEditor_itemRun;
     private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoC;
     private System.Windows.Forms.ToolStripButton toolsEditor_itemAutoIndent;
-    private System.Windows.Forms.StatusStrip scriptsEditpr_statusStrip;
+    private System.Windows.Forms.StatusStrip scriptsEditor_statusStrip;
     private System.Windows.Forms.ToolStripStatusLabel scriptsEditor_StatusStrip_itemCharacters;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemStyleConfig;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemNew;
@@ -2134,7 +2135,7 @@
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropFile_itemExportToFolder;
     private AdvancedTabControl searches_TabControl;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemPioritizeRecent;
-    private System.Windows.Forms.ToolStripSeparator menuMain_sropSettings_seperator5;
+    private System.Windows.Forms.ToolStripSeparator menuMain_dropSettings_seperator5;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoOpenOn;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemAutoOpenOff;
     private System.Windows.Forms.ToolStripMenuItem menuMain_dropSettings_itemViewConfig;
