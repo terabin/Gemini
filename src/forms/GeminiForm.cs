@@ -2094,7 +2094,7 @@ namespace Gemini
       return false;
     }
 
-    #endregion
+    #endregion Node Methods
 
     /*\
      *  ###### ##   ##          ##                                     ##
@@ -2165,7 +2165,7 @@ namespace Gemini
       return null;
     }
 
-    #endregion Node Methods
+    #endregion Clipboard Methods
 
     /*\
      *  ######                                  ##
@@ -2287,7 +2287,7 @@ namespace Gemini
         control.label_Statistics.Text = "There is currently no open document to search.";
     }
 
-    #endregion Clipboard Methods
+    #endregion Search Methods
 
     /*\
      * ##     ## ##
@@ -2299,6 +2299,7 @@ namespace Gemini
      * ##     ## ##  ######   ###### ###
      * =================================
     \*/
+
     #region Misc Methods
 
     /// <summary>
@@ -2357,7 +2358,7 @@ namespace Gemini
       int section;
       do section = random.Next(99999999);
       while (_usedSections.Contains(section));
-        _usedSections.Add(section);
+      _usedSections.Add(section);
       return section;
     }
 
@@ -2384,7 +2385,7 @@ namespace Gemini
       _scriptRelations.RemoveAll(delegate (ScriptList l) { return l.Section == section; });
     }
 
-    #endregion Search Methods
+    #endregion Misc Methods
 
     /*\
      * ##     ##              ##         ##
@@ -2396,6 +2397,7 @@ namespace Gemini
      *  #######  ##       ###### #######  #####   #####
      * ==========##=====================================
     \*/
+
     #region Update Methods
 
     private void UpdateAutoCompleteWords()
@@ -2649,7 +2651,6 @@ namespace Gemini
       scriptsView.EndUpdate();
     }
 
-    #endregion
-
+    #endregion Update Methods
   }
 }
