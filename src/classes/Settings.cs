@@ -227,7 +227,6 @@ namespace Gemini
       Serializable.SaveData saveData;
       using (StreamReader file = File.OpenText(path))
         saveData = (Serializable.SaveData)(new JsonSerializer().Deserialize(file, typeof(Serializable.SaveData)));
-
       if (refer == 0) return saveData.Settings;
       else if (refer == 1) return saveData.Project;
       return null;
@@ -247,7 +246,7 @@ namespace Gemini
           file,
           new Serializable.SaveData(
             (mode < 2 ? GetSettings() : (Serializable.Settings?)null),
-            (mode>0 ? GetProjectData() : (Serializable.Project?)null)
+            (mode > 0 ? GetProjectData() : (Serializable.Project?)null)
           )
         );
     }
