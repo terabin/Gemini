@@ -21,7 +21,7 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 - Able to customize game executable and arguments
 - Can restore last opened tabs per projects for faster production rate
 
-# Known bugs of current release
+## Known bugs of current release
 
 - When you press Alt together with another key with "Auto-hide menu bar" on,
 it toggles menu bar. As it should not.
@@ -53,7 +53,7 @@ it toggles menu bar. As it should not.
 
 - [ ] Get Appveyor on master branch to auto-deploy on each update
 - [ ] Switch to ScintillaNet 3.5 (Newer, better, but a hassle to fix the incompatibles between current version)
-- [ ] Add Drag and Drop functionality to the current Tree View or switch to a better one to view the scripxts.
+- [ ] Add Drag and Drop functionality to the current Tree View or switch to a better one to view the scripts.
 - [ ] Add Ctrl+Tab/Ctrl+Shift+Tab shortcuts for switching for tabs
 - [ ] Adapt the update methods to work with the new Git-Repo.
 - [ ] Fix poor implementation of menu bar auto-hiding/-showing.
