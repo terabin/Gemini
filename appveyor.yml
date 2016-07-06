@@ -16,7 +16,7 @@ environment:
     secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
 build_script:
 - ps: nuget restore
-- ps: copy-item -path packages -destination src
+- ps: copy-item -path packages -destination src -recurse
 - msbuild "Gemini.sln" /verbosity:minimal /logger:"%programfiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 - cd src\bin\release\
 - 7z a Gemini.zip Gemini.exe
