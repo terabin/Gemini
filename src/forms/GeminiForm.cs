@@ -619,7 +619,7 @@ namespace Gemini
       }
       else if (File.Exists(Settings.ProjectDirectory + "Gemini.config"))
       {
-        DialogResult result = MessageBox.Show("There was found a configuration in the project folder, do you want to load it now?", "Load configuration?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+        DialogResult result = MessageBox.Show("There was found a configuration in the project folder, do you wish to load it?\nIf not loaded now, it will be overwritten on next exit", "Load configuration?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
         if (result == DialogResult.Yes)
           LoadLocalConfiguration();
       }
@@ -1660,8 +1660,7 @@ namespace Gemini
           MessageBox.Show("An error occurred when loading the scripts.\r\nPlease make sure the data is in the correct format.",
             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-      else
-        MessageBox.Show("Cannot locate script file\r\n" + _projectScriptPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      MessageBox.Show("Cannot locate script file\r\n" + _projectScriptPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       _busy = false;
       return false;
     }
@@ -1744,33 +1743,58 @@ namespace Gemini
       return new object[] { data, i };
     }
 
+
     /// <summary>
-    /// Add a new script
+    /// Add a new script at bottom of list
+    /// </summary>
+    /// <param name="parentSection">Parent <see cref="Script"/> Section or <see cref="int"/> -1 if none</param>
+    /// <param name="args">(<see cref="RubyArray"/> rmScript) or (<see cref="string"/> scriptName, <see cref="string"/> textContent)</param>
+    private void AddScript(int parentSection, params object[] args)
+    {
+      InsertScript(parentSection, -1, args);
+    }
+
+    /// <summary>
+    /// Inserts passed script into passed ScriptList.
+    /// If index is provided, inserts at passed index, else adds script at bottom of the list.
     /// </summary>
     /// <param name="parentSection">Parent <see cref="Script"/> Section or <see cref="int"/> -1 if none</param>
     /// <param name="index">Valid index or -1 if none</param>
     /// <param name="args">(<see cref="RubyArray"/> rmScript) or (<see cref="string"/> scriptName, <see cref="string"/> textContent)</param>
-    private void AddScript(int parentSection, int index, params object[] args)
+    private void InsertScript(int parentSection, int index, params object[] args)
     {
-      // bail if section is
+      // throw if invalid section
       if (!_scriptRelations.Exists(delegate (ScriptList l) { return l.Section == parentSection; })) throw new Exception("Invalid section for parent.");
-      //create script if possible
-      Script script;
+          //create script if possible
+          Script script;
+
+      // Accept 1 arg,
       if (args.Length == 1)
         script = new Script((RubyArray)args[0]);
+      // or accept 2 args,
       else if (args.Length == 2)
         script = new Script(GetRandomSection(), (string)args[0], (string)args[1]);
+      // else throw invalid pass
       else throw new Exception("No valid script passed");
-      // bail if section used or script empty
+
+      // throw if section used or script empty
       if (_usedSections.Contains(script.Section)) throw new InvalidCastException("Section already used.");
       if ((string.IsNullOrEmpty(script.Name) && string.IsNullOrEmpty(script.Text.Trim()))) throw new ArgumentNullException("Empty Script passed.");
+
       // trim name
       script.Name.Trim().Replace("▼ ", "");
 
       _usedSections.Add(script.Section);
       _scripts.Add(script);
+
       //add relations and script only if valid section
-      _scriptRelations.Find(delegate (ScriptList l) { return l.Section == parentSection; }).List.Add(script.Section);
+      ScriptList parentRef = GetList(parentSection);
+
+      // If passed index is out of range, add script to bottom.
+      if (index > 0 || index <= parentRef.List.Count )
+        parentRef.List.Add(script.Section);
+      else
+        parentRef.List.Insert(index, script.Section);
     }
 
     private void RemoveScript(int section)
@@ -1813,6 +1837,42 @@ namespace Gemini
     }
 
     /// <summary>
+    /// Get the <see cref="Script"/> by the given <paramref name="section"/>
+    /// </summary>
+    /// <param name="section">Section to locate script from</param>
+    /// <returns>The desired <see cref="Script"/> or <see cref="Nullable"/></returns>
+    private Script GetScript(int section)
+    {
+      return _scripts.Find(delegate (Script s) { return s.Section == section; });
+    }
+
+    private void SetScript(Script s)
+    {
+      if (_scripts.Exists(delegate (Script d) { return d.Section == s.Section; }))
+        _scripts[_scripts.FindIndex(delegate (Script d) { return d.Section == s.Section; })] = s;
+    }
+
+    private void SetScript(int section, string name, string value)
+    {
+      Script script = GetScript(section);
+
+      if (script.Name != name.Trim())
+        script.Name = name.Trim();
+      script.Scintilla.Text = value;
+
+      script.ApplyChanges();
+      if (!script.Opened)
+        script.Dispose();
+    }
+
+    private bool ScriptExists(int section)
+    {
+      if (_scripts.Exists(delegate (Script d) { return d.Section == section; }))
+        return true;
+      return false;
+    }
+
+    /// <summary>
     /// Imports the scripts from the given paths
     /// </summary>
     /// <param name="node">the selected <see cref="TreeNode"/></param>
@@ -1835,7 +1895,7 @@ namespace Gemini
           try
           {
             if (_fileNameRegex.IsMatch(path) && ScriptExists(int.Parse(_fileNameRegex.Match(path).Captures[1].Value)))
-              UpdateScript(int.Parse(_fileNameRegex.Match(path).Captures[1].Value),
+              SetScript(int.Parse(_fileNameRegex.Match(path).Captures[1].Value),
                 _fileNameRegex.Match(path).Captures[0].Value, File.ReadAllText(path));
             else if (_fileNameRegex.IsMatch(path))
               InsertNode(node, _fileNameRegex.Match(path).Captures[0].Value,
@@ -1899,15 +1959,15 @@ namespace Gemini
 
     /// <summary>
     /// Export the desired <see cref="Script"/>,
-    /// and all the underlying <see cref="Script"/>s if bool <paramref name="allScripts"/> is true and an <see cref="ScriptList"/> root <see cref="ScriptList.Section"/> is passed,
+    /// and all the underlying <see cref="Script"/>s if bool <paramref name="alsoChildren"/> is true and an <see cref="ScriptList"/> root <see cref="ScriptList.Section"/> is passed,
     /// to file in the Project Scripts Folder.
     /// </summary>
     /// <param name="section">The <see cref="Script.Section"/> to use</param>
-    /// <param name="allScripts"></param>
+    /// <param name="alsoChildren"></param>
     /// <param name="promt"></param>
     /// <param name="dirPath">Used when reclusivly creating folders</param>
     /// <param name="dirRootPath">To be used if exporting to another folder than default</param>
-    private void ExportScript(int section, bool allScripts, bool promt = false, string dirPath = null, string dirRootPath = null, string extension = ".rb")
+    private void ExportScript(int section, bool alsoChildren, bool promt = false, string dirPath = null, string dirRootPath = null, string extension = ".rb")
     {
       //Return if script do not exist
       if (!ScriptExists(section))
@@ -1939,7 +1999,7 @@ namespace Gemini
       }
 
       // If enabled and script has sub-scripts, create a directory and add sub-scripts reclusivly
-      if (allScripts && ScriptListExists(section))
+      if (alsoChildren && ListExists(section))
       {
         string nxtDirPath = dirPath + name + @"\";
         // Create script-spesified directory
@@ -1952,7 +2012,7 @@ namespace Gemini
               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
           }
 
-        ScriptList list = GetScriptList(section);
+        ScriptList list = GetList(section);
 
         list.List.ForEach(delegate (int s) { ExportScript(s, true, false, nxtDirPath, dirRootPath); }) ;
       }
@@ -1966,60 +2026,40 @@ namespace Gemini
       _scripts.ForEach(delegate (Script s) { ExportScript(s.Section, true, false, null, dirRootPath, extension); } );
     }
 
-    /// <summary>
-    /// Get the <see cref="Script"/> by the given <paramref name="section"/>
-    /// </summary>
-    /// <param name="section">Section to locate script from</param>
-    /// <returns>The desired <see cref="Script"/> or <see cref="Nullable"/></returns>
-    private Script GetScript(int section)
-    {
-      return _scripts.Find(delegate (Script s) { return s.Section == section; });
-    }
+    #endregion Script Methods
+
+
+    /*\
+
+     * ##       ##          ##
+     * ##                   ##
+     * ##       ###  ###### #######
+     * ##       ##  ##      ##
+     * ##       ##  ####### ##
+     * ##       ##       ## ##   ##
+     * ######## ##  ######   #####
+    \*/
+
+    #region List Methods
+
+
 
     /// <summary>
     /// Get the <see cref="ScriptList"/> by the given <paramref name="section"/>
     /// </summary>
     /// <param name="section">Section to locate script from</param>
     /// <returns>The desired <see cref="ScriptList"/> or <see cref="Nullable"/></returns>
-    private ScriptList GetScriptList(int section)
+    private ScriptList GetList(int section)
     {
       return _scriptRelations.Find(delegate (ScriptList s) { return s.Section == section; });
     }
 
-    private void SetScript(Script s)
+    private bool ListExists(int section)
     {
-      if (_scripts.Exists(delegate (Script d) { return d.Section == s.Section; }))
-        _scripts[_scripts.FindIndex(delegate (Script d) { return d.Section == s.Section; })] = s;
+      return !!(_scriptRelations.Exists(delegate (ScriptList d) { return d.Section == section; }));
     }
 
-    private bool ScriptExists(int section)
-    {
-      if (_scripts.Exists(delegate (Script d) { return d.Section == section; }))
-        return true;
-      return false;
-    }
-
-    private bool ScriptListExists(int section)
-    {
-      if (_scriptRelations.Exists(delegate (ScriptList d) { return d.Section == section; }))
-        return true;
-      return false;
-    }
-
-    private void UpdateScript(int section, string name, string value)
-    {
-      Script script = GetScript(section);
-
-      if (script.Name != name.Trim())
-        script.Name = name.Trim();
-      script.Scintilla.Text = value;
-
-      script.ApplyChanges();
-      if (!script.Opened)
-        script.Dispose();
-    }
-
-    #endregion Script Methods
+    #endregion ScriptList Methods
 
     /*\
      * ##    ##               ##
