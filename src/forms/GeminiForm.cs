@@ -1527,7 +1527,9 @@ namespace Gemini
       scriptName.TextChanged -= scriptName_TextChanged;
       scriptsFileWatcher.EnableRaisingEvents = false;
 
+      _busy = false;
       SaveLocalConfiguration();
+      _busy = true;
 
       foreach (Script script in _scripts)
         script.Dispose();
@@ -1650,6 +1652,7 @@ namespace Gemini
           scriptsFileWatcher.Path = Path.GetDirectoryName(_projectScriptPath);
           scriptsFileWatcher.Filter = Path.GetFileName(_projectScriptPath);
           scriptsFileWatcher.EnableRaisingEvents = true;
+          _busy = false;
           return true;
         }
         catch

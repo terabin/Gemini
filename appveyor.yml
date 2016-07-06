@@ -1,4 +1,4 @@
-version: {build}
+version: 0.0.3
 branches:
   only:
     - master
@@ -22,11 +22,12 @@ build_script:
 - 7z a Gemini.zip Gemini.exe
 - cd ..\..\..
 - ps: move-item src\bin\release\Gemini.zip .
+- ps: move-item src\bin\release\Gemini.exe .
 artifacts:
 - path: Gemini.zip
   name: Gemini
 before_deploy:
--
+- echo %APPVEYOR_BUILD_VERSION% >> "VersionInfo.dat"
 deploy:
 - provider: GitHub
   tag: b-$(APPVEYOR_REPO_TAG_NAME)
@@ -41,5 +42,7 @@ on_success:
   - git config credential.helper store
   - echo "https://%access_token%:x-oauth-basic@github.com" > "%userprofile%\.git-credential"
   - git add Gemini.zip
+  - git add Gemini.exe
+  - git add VersionInfo.dat
   - git commit -m "Add latest build from AppVeyor\n[skip ci]"
   - git push --verbose origin %appveyor_repo_branch%
