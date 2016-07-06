@@ -35,6 +35,7 @@ deploy:
   - provider: GitHub
     artifact: /Gemini\.exe|Gemini\.zip|VersionInfo\.dat/
     draft: false
+    auth_token: vYKH/rSJ9uglA2VeIJlyTr9G8aOxg2j0UC/DVmA0iUFw1JQpRBIwWxbRfvKfJlPt
     prerelease: false
 on_success:
   - git config credential.helper store
