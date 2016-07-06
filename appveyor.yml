@@ -30,19 +30,9 @@ before_deploy:
 - echo %APPVEYOR_BUILD_VERSION% >> "VersionInfo.dat"
 deploy:
 - provider: GitHub
-  tag: b-$(APPVEYOR_REPO_TAG_NAME)
-  release: Gemini v$(APPVEYOR_REPO_TAG_NAME)
-  description: Automatic build from Appveyor.
+  release: Gemini v$(APPVEYOR_BUILD_VERSION)
+  description: Automatic build from Appveyor.[skip ci]
   auth_token:
     secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
-  artifact: Gemini.zip
   draft: false
   prerelease: true
-on_success:
-  - git config credential.helper store
-  - echo "https://%access_token%:x-oauth-basic@github.com" > "%userprofile%\.git-credential"
-  - git add Gemini.zip
-  - git add Gemini.exe
-  - git add VersionInfo.dat
-  - git commit -m "Add latest build from AppVeyor\n[skip ci]"
-  - git push --verbose origin %appveyor_repo_branch%
