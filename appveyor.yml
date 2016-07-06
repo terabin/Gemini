@@ -13,26 +13,30 @@ platform: x86
 clone_depth: 5
 environment:
   access_token:
-    secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
-build_script:
+    secure: vYKH/rSJ9uglA2VeIJlyTr9G8aOxg2j0UC/DVmA0iUFw1JQpRBIwWxbRfvKfJlPt
+assembly_info:
+  patch: true
+  assembly_version: '{version}'
+  assembly_file_version: '{version}.{build}'
+  assembly_informational_version: '{version}-rc1'
+before_build:
 - ps: nuget restore
 - ps: copy-item -path packages -destination src -recurse
-- msbuild "Gemini.sln" /verbosity:minimal /logger:"%programfiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+after_build:
 - cd src\bin\release\
 - 7z a Gemini.zip Gemini.exe
 - cd ..\..\..
 - ps: copy-item src\bin\release\Gemini.zip .
 - ps: copy-item src\bin\release\Gemini.exe .
-artifacts:
-- path: Gemini.zip
-  name: Gemini
-before_deploy:
 - echo %APPVEYOR_BUILD_VERSION% >> "VersionInfo.dat"
-deploy:
-- provider: GitHub
-  release: Gemini v$(APPVEYOR_BUILD_VERSION)
-  description: Automatic build from Appveyor.[skip ci]
-  auth_token:
-    secure: kFaS3hFnbZuEAGLC9L5zYcom8fYp6vYmLTjoMJtvP5vffxrHSIZAT1ADp7BWxO7ii7lY0WhuX3+oN592hZbW5q823Jv3wU8ErCZFxAjAmWA=
-  draft: false
-  prerelease: true
+artifacts:
+  - path: Gemini.zip
+  name: Gemini
+on_success:
+  - git config credential.helper store
+  - echo "https://%access_token%:x-oauth-basic@github.com" > "%userprofile%\.git-credential"
+  - git add Gemini.zip
+  - git add Gemini.exe
+  - git add VersionInfo.dat
+  - git commit -m "Add latest build from AppVeyor\n[skip ci]"
+  - git push --verbose origin %appveyor_repo_branch%
