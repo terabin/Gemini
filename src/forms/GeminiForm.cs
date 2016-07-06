@@ -2508,6 +2508,7 @@ namespace Gemini
       bool editorRedo = editor && script.Scintilla.UndoRedo.CanRedo;
       bool editorPaste = editor && script.Scintilla.Clipboard.CanPaste;
       bool viewSelection = project && scriptsView.SelectedNode != null;
+      // TODO: Fix booleans here
       bool viewMoveUp = viewSelection &&
         ((scriptsView.SelectedNode.Level == 1 && scriptsView.SelectedNode.Parent.Index > 0) || scriptsView.SelectedNode.Index > 0);
       bool viewMoveDown = viewSelection &&
@@ -2515,6 +2516,8 @@ namespace Gemini
         scriptsView.Nodes.Count - 1 || scriptsView.SelectedNode.Index <
         scriptsView.Nodes[scriptsView.SelectedNode.Parent.Index].Nodes.Count - 1)) ||
         (scriptsView.SelectedNode.Level == 0 && scriptsView.SelectedNode.Index < scriptsView.Nodes.Count - 1));
+            bool viewMoveIn = viewSelection;
+      bool viewMoveOut = viewSelection;
       bool viewPaste = project && ClipboardContainsScript() != null;
       bool viewCopy = viewSelection && scriptsView.SelectedNode.Level == 1;
 
@@ -2559,8 +2562,8 @@ namespace Gemini
       scriptsEditor_ToolStripMenuItem_AddWordToAutoComplete.Enabled = editor;
 
       scriptName.Enabled = viewSelection;
-      toolsView_itemImport.Enabled = scriptsFolder;
-      toolsView_itemExport.Enabled = scriptsFolder;
+      scriptsView_contextMenu_itemExport.Enabled = scriptsFolder;
+      scriptsView_contextMenu_itemImport.Enabled = scriptsFolder;
       scriptsView_contextMenu_itemOpen.Enabled = viewSelection;
       scriptsView_contextMenu_itemInsert.Enabled = project;
       scriptsView_contextMenu_itemCut.Enabled = viewCopy;
@@ -2569,15 +2572,21 @@ namespace Gemini
       scriptsView_contextMenu_itemDelete.Enabled = viewSelection;
       scriptsView_contextMenu_itemMoveUp.Enabled = viewMoveUp;
       scriptsView_contextMenu_itemMoveDown.Enabled = viewMoveDown;
+      scriptsView_contextMenu_itemMoveIn.Enabled = viewMoveIn;
+      scriptsView_contextMenu_itemMoveOut.Enabled = viewMoveOut;
 
       // below are just duplicates
 
       scriptsView_contextMenu_itemBatchSearch.Enabled = menuMain_dropEdit_itemBatchSearch.Enabled;
 
+      toolsView_itemImport.Enabled = scriptsView_contextMenu_itemImport.Enabled;
+      toolsView_itemExport.Enabled = scriptsView_contextMenu_itemExport.Enabled;
       toolsView_itemInsert.Enabled = scriptsView_contextMenu_itemInsert.Enabled;
       toolsView_itemDelete.Enabled = scriptsView_contextMenu_itemDelete.Enabled;
       toolsView_itemMoveUp.Enabled = scriptsView_contextMenu_itemMoveUp.Enabled;
       toolsView_itemMoveDown.Enabled = scriptsView_contextMenu_itemMoveDown.Enabled;
+      toolsView_itemMoveIn.Enabled = scriptsView_contextMenu_itemMoveIn.Enabled;
+      toolsView_itemMoveOut.Enabled = scriptsView_contextMenu_itemMoveOut.Enabled;
       toolsView_itemBatchSearch.Enabled = menuMain_dropEdit_itemBatchSearch.Enabled;
 
       scriptsEditor_ToolStripMenuItem_Undo.Enabled = menuMain_dropEdit_itemUndo.Enabled;
