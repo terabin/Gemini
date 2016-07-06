@@ -20,18 +20,23 @@ assembly_info:
   assembly_file_version: '{version}.{build}'
   assembly_informational_version: '{version}-rc1'
 before_build:
-- ps: nuget restore
-- ps: copy-item -path packages -destination src -recurse
+  - ps: nuget restore
+  - ps: copy-item -path packages -destination src -recurse
 after_build:
-- cd src\bin\release\
-- 7z a Gemini.zip Gemini.exe
-- cd ..\..\..
-- ps: copy-item src\bin\release\Gemini.zip .
-- ps: copy-item src\bin\release\Gemini.exe .
-- echo %APPVEYOR_BUILD_VERSION% >> "VersionInfo.dat"
+  - cd src\bin\release\
+  - 7z a Gemini.zip Gemini.exe
+  - cd ..\..\..
+  - ps: copy-item src\bin\release\Gemini.zip .
+  - ps: copy-item src\bin\release\Gemini.exe .
+  - echo %APPVEYOR_BUILD_VERSION% >> "VersionInfo.dat"
 artifacts:
   - path: Gemini.zip
-  name: Gemini
+    name: Gemini
+deploy:
+  - provider: GitHub
+    artifact: /Gemini\.exe|Gemini\.zip|VersionInfo\.dat/
+    draft: false
+    prerelease: false
 on_success:
   - git config credential.helper store
   - echo "https://%access_token%:x-oauth-basic@github.com" > "%userprofile%\.git-credential"
