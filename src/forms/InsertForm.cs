@@ -17,23 +17,42 @@ namespace Gemini
   public partial class InsertForm : Form
   {
     private string[] _filePaths;
-    public string Title { get { return (radioGroup.Checked ? "▼ " : "") + titleBox.Text; } }
+    private bool _finished = false;
+    private int _state;
+    public string Title { get { return titleBox.Text; } }
     public string[] Paths { get { return _filePaths; } }
-    public bool AddNew { get { return radioScript.Checked || radioGroup.Checked; } }
+    public int State { get { return _state; } }
 
     private Regex _removeInvalidChars = new Regex(
-      @"[^A-Za-z0-9 +\-_=.,!@#$%^&();'(){}[\]]+",
+      @"[^A-Za-z0-9 ▼+\-_=.,!@#$%^&();'(){}[\]]+",
       RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     public InsertForm()
     {
       InitializeComponent();
       pathsBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+      radioBelow.Checked = true;
       RefreshElements();
     }
 
     private void buttonOK_Click( object sender, EventArgs e )
-    { Close(); }
+    {
+      // Set state, used by GeminiForm to determine what and  where to put our new script(s).
+      _state = 0;
+      if (radioScript.Checked)
+        _state += 1;
+      if (radioPath.Checked)
+        _state += 2;
+      if (radioBelow.Checked)
+        _state += 4;
+      if (radioUnder.Checked)
+        _state += 8;
+
+      // Used with formClosingEvent
+      _finished = true;
+      // Close the form.
+      Close();
+    }
 
     private void buttonBrowse_Click( object sender, EventArgs e )
     {
@@ -41,7 +60,7 @@ namespace Gemini
       {
         dialog.Filter = "Ruby Script|*.rb|Text Files|*.txt|All Documents|*";
         dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        dialog.Title = "Browse for Scripts...";
+        dialog.Title = "Browse for scripts...";
         dialog.Multiselect = true;
         DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
@@ -49,7 +68,7 @@ namespace Gemini
           _filePaths = dialog.FileNames;
           pathsBox.Text = "";
           foreach (string s in _filePaths)
-            pathsBox.Text += s + ", ";
+          pathsBox.Text += s + ", ";
         }
       }
     }
@@ -57,24 +76,16 @@ namespace Gemini
     private void titleBox_TextChanged( object sender, EventArgs e )
     { titleBox.Text = _removeInvalidChars.Replace(titleBox.Text, ""); }
 
-    private void radioUpdate( object sender, EventArgs e )
+    private void radioTopUpdate( object sender, EventArgs e )
     {
       RefreshElements();
     }
 
-    public void RefreshElements()
+    private void RefreshElements()
     {
       if (radioScript.Checked)
       {
-        titleBox.Enabled = true;
-        titleBox.Visible = true;
-        pathsBox.Enabled = false;
-        pathsBox.Visible = false;
-        buttonBrowse.Enabled = false;
-        buttonBrowse.Visible = false;
-      }
-      else if (radioGroup.Checked)
-      {
+        Text = "Insert new script";
         titleBox.Enabled = true;
         titleBox.Visible = true;
         pathsBox.Enabled = false;
@@ -84,6 +95,7 @@ namespace Gemini
       }
       else if (radioPath.Checked)
       {
+        Text = "Insert from path(s)";
         titleBox.Enabled = false;
         titleBox.Visible = false;
         pathsBox.Enabled = true;
@@ -93,8 +105,22 @@ namespace Gemini
       }
       else
       {
-        radioGroup.Checked = true;
+        radioScript.Checked = true;
         RefreshElements();
+      }
+    }
+
+    private void formClosing(object sender, FormClosingEventArgs e)
+    {
+      // Abort if new script name is empty. Because we don't allow empty names.
+      if (_finished && radioScript.Checked && String.IsNullOrEmpty(titleBox.Text.Trim()))
+      {
+        // Cancel closure,
+        e.Cancel = true;
+        // reset switch,
+        _finished = false;
+        // and show message.
+        MessageBox.Show("Script name cannot be empty!", "Invalid script name", MessageBoxButtons.OK);
       }
     }
   }

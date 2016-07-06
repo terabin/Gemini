@@ -1180,7 +1180,7 @@ namespace Gemini
     {
       using (InsertForm dialog = new InsertForm())
         if (dialog.ShowDialog() == DialogResult.OK)
-          if (dialog.AddNew)
+          if ((dialog.State & 1) == 1)
             InsertNode(scriptsView.SelectedNode, true, dialog.Title, "");
           else
             ImportScriptsFrom(scriptsView.SelectedNode, dialog.Paths);
