@@ -31,7 +31,6 @@ after_build:
   - echo %APPVEYOR_BUILD_VERSION% >> "VersionInfo.dat"
 artifacts:
   - path: Gemini.zip
-    name: Gemini
 deploy:
   - provider: GitHub
     artifact: /Gemini\.exe|Gemini\.zip|VersionInfo\.dat/
