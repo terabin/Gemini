@@ -18,13 +18,16 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 ## Newly added features
 
 - Project-based configuration
-- Able to customize game executable and arguments
-- Can restore last opened tabs per projects for faster production rate
+  - Can restore last opened tabs per projects
+  - Debug mode
+  - Able to customize game executable and arguments with debug mode
 
 ## Known bugs of current release
 
 - When you press Alt together with another key with "Auto-hide menu bar" on,
 it toggles menu bar. As it should not.
+- When you open a script (tab), then closes it, and open it again, it won't open,
+  because the editor believes the tab is still open.
 
 ## Features
 
@@ -51,11 +54,12 @@ it toggles menu bar. As it should not.
 
 ## Tasks to do
 
-- [ ] Get Appveyor on master branch to auto-deploy on each update
+- [ ] Fix authorization between Github and Appveyor for deployment.
 - [ ] Switch to ScintillaNet 3.5 (Newer, better, but a hassle to fix the incompatibles between current version)
-- [ ] Add Drag and Drop functionality to the current Tree View or switch to a better one to view the scripts.
+- [ ] Add multi-selection functionality to Tree View.
+- [ ] Add Drag and Drop functionality to Tree View.
 - [ ] Add Ctrl+Tab/Ctrl+Shift+Tab shortcuts for switching for tabs
-- [ ] Adapt the update methods to work with the new Git-Repo.
+- [x] Adapt the update methods to work with the new Git-Repo.
 - [ ] Fix poor implementation of menu bar auto-hiding/-showing.
 
 ## Versioning
@@ -72,5 +76,5 @@ See `CHANGELOG.md` for a list of changes.
 ## Compatibility
 Requires Microsoft [.NET Framework 4 (Web Installer)](http://www.microsoft.com/en-us/download/details.aspx?id=17851).
 
-## Licence
+## License
 This project is licensed according to `LICENSE.md`.
