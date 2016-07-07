@@ -1151,6 +1151,14 @@ namespace Gemini
       UpdateMenusEnabled();
     }
 
+    private void scriptsView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+    {
+    }
+
+    private void scriptsView_AfterCollapse(object sender, TreeViewEventArgs e)
+    {
+    }
+
     /// <summary>
     /// Either opens a new page of the selected script, or selects the appropriate tab if it is already open.
     /// </summary>
@@ -1245,6 +1253,20 @@ namespace Gemini
     private void scriptsView_contextMenu_itemExport_Click(object sender, EventArgs e)
     {
       ExportScript(int.Parse(scriptsView.SelectedNode.Name), true);
+    }
+
+    /// <summary>
+    /// Moves selected scripts under first script's older sibling.
+    /// </summary>
+    private void scriptsView_itemMoveIn_Click(object sender, EventArgs e)
+    {
+    }
+
+    /// <summary>
+    /// Moves selected scripts under first script's older sibling.
+    /// </summary>
+    private void scriptsView_itemMoveOut_Click(object sender, EventArgs e)
+    {
     }
 
     /// <summary>
@@ -2042,8 +2064,6 @@ namespace Gemini
 
     #region List Methods
 
-
-
     /// <summary>
     /// Get the <see cref="ScriptList"/> by the given <paramref name="section"/>
     /// </summary>
@@ -2556,7 +2576,7 @@ namespace Gemini
         scriptsView.Nodes.Count - 1 || scriptsView.SelectedNode.Index <
         scriptsView.Nodes[scriptsView.SelectedNode.Parent.Index].Nodes.Count - 1)) ||
         (scriptsView.SelectedNode.Level == 0 && scriptsView.SelectedNode.Index < scriptsView.Nodes.Count - 1));
-            bool viewMoveIn = viewSelection;
+      bool viewMoveIn = viewSelection;
       bool viewMoveOut = viewSelection;
       bool viewPaste = project && ClipboardContainsScript() != null;
       bool viewCopy = viewSelection && scriptsView.SelectedNode.Level == 1;
@@ -2718,6 +2738,7 @@ namespace Gemini
     {
       Script s;
       scriptsView.BeginUpdate();
+      // TODO: Needs to be reimplemented...
       foreach (TreeNode rootNode in scriptsView.Nodes)
         foreach (TreeNode node in rootNode.Nodes)
           if (node.Text != (s = GetScript(int.Parse(node.Name))).TabName)
