@@ -1582,6 +1582,7 @@
       this.scriptsEditor_statusStrip.Location = new System.Drawing.Point(0, 513);
       this.scriptsEditor_statusStrip.Name = "scriptsEditor_statusStrip";
       this.scriptsEditor_statusStrip.Size = new System.Drawing.Size(546, 22);
+      this.scriptsEditor_statusStrip.Renderer = new Rendering.ToolStripRenderer();
       this.scriptsEditor_statusStrip.SizingGrip = false;
       this.scriptsEditor_statusStrip.TabIndex = 2;
       this.scriptsEditor_statusStrip.Text = "scriptsEditor_StatusStrip";
@@ -1627,6 +1628,7 @@
       this.toolsEditor_toolStrip.Name = "toolsEditor_toolStrip";
       this.toolsEditor_toolStrip.Padding = new System.Windows.Forms.Padding(0);
       this.toolsEditor_toolStrip.Size = new System.Drawing.Size(546, 25);
+      this.toolsEditor_toolStrip.Renderer = new Rendering.ToolStripRenderer();
       this.toolsEditor_toolStrip.TabIndex = 1;
       // 
       // toolsEditor_itemSaveProject
@@ -1921,8 +1923,9 @@
       this.toolsView_toolStrip.Location = new System.Drawing.Point(3, 509);
       this.toolsView_toolStrip.Name = "toolsView_toolStrip";
       this.toolsView_toolStrip.Size = new System.Drawing.Size(226, 25);
+      this.toolsView_toolStrip.Renderer = new Rendering.ToolStripRenderer();
       this.toolsView_toolStrip.TabIndex = 6;
-      this.toolsView_toolStrip.Text = "toolStrip1";
+      this.toolsView_toolStrip.Text = "";
       // 
       // toolsView_itemExport
       // 

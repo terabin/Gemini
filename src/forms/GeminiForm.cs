@@ -2967,15 +2967,13 @@ namespace Gemini
       bool editorPaste = editor && script.Scintilla.Clipboard.CanPaste;
       bool viewSelection = project && scriptsView.SelectedNode != null;
       // TODO: Fix booleans here
-      bool viewMoveUp = viewSelection &&
-        ((scriptsView.SelectedNode.Level == 1 && scriptsView.SelectedNode.Parent.Index > 0) || scriptsView.SelectedNode.Index > 0);
-      bool viewMoveDown = viewSelection &&
-        ((scriptsView.SelectedNode.Level == 1 && (scriptsView.SelectedNode.Parent.Index <
-        scriptsView.Nodes.Count - 1 || scriptsView.SelectedNode.Index <
-        scriptsView.Nodes[scriptsView.SelectedNode.Parent.Index].Nodes.Count - 1)) ||
-        (scriptsView.SelectedNode.Level == 0 && scriptsView.SelectedNode.Index < scriptsView.Nodes.Count - 1));
-      bool viewMoveIn = viewSelection;
-      bool viewMoveOut = viewSelection;
+      bool viewMoveUp = viewSelection && (scriptsView.SelectedNode.Index > 0);
+      bool viewMoveDown = viewSelection && ((scriptsView.SelectedNode.Level == 0 &&
+        scriptsView.SelectedNode.Index < scriptsView.Nodes.Count - 1) ||
+        (scriptsView.SelectedNode.Level > 0 && scriptsView.SelectedNode.Index <
+        scriptsView.SelectedNode.Parent.Nodes.Count - 1));
+      bool viewMoveIn = viewSelection && (scriptsView.SelectedNode.Index > 0);
+      bool viewMoveOut = viewSelection && (scriptsView.SelectedNode.Level != 0);
       bool viewPaste = project && ClipboardContainsScript() != null;
       bool viewCopy = viewSelection && scriptsView.SelectedNode.Level == 1;
 

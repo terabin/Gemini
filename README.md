@@ -27,6 +27,8 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 
 - When you press Alt together with another key with "Auto-hide menu-bar" on,
 it toggles menu bar. As it should not. Workaround: disable "Auto-hide menu-bar."
+- When deleting a script with under-scripts, if you choose not to delete under-scripts,
+it will throw a NullReferenceExeption. Somewhat critical bug.
 
 ## Features
 
