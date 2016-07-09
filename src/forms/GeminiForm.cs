@@ -63,15 +63,13 @@ namespace Gemini
 
     private struct ScriptList
     {
-      public ScriptList(int section, int level, List<int> list)
+      public ScriptList(int section, List<int> list)
       {
         Section = section;
-        Level = level;
         List = list;
       }
 
       public int Section;
-      public int Level;
       public List<int> List;
     }
 
@@ -125,6 +123,8 @@ namespace Gemini
       }
       else if (Settings.AutoOpen && Settings.RecentlyOpened.Count > 0)
         OpenRecentProject(0, false);
+      if (Settings.AutoCheckUpdates)
+        new UpdateForm();
     }
 
     /// <summary>
@@ -312,7 +312,10 @@ namespace Gemini
 
     private void menuMain_dropFile_itemImportScripts_Click(object sender, EventArgs e)
     {
-      ImportScriptsFrom(scriptsView.SelectedNode, Directory.GetFiles(_projectScriptsFolderPath));
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
+      ImportScriptsFrom(parent, scriptsView.SelectedNode.Index + 1, Directory.GetFiles(_projectScriptsFolderPath));
+      RestichList(parent);
     }
 
     /// <summary>
@@ -320,6 +323,8 @@ namespace Gemini
     /// </summary>
     private void menuMain_dropFile_itemImportScriptsFrom_Click(object sender, EventArgs e)
     {
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
       using (OpenFileDialog dialog = new OpenFileDialog())
       {
         dialog.Filter = "Ruby Script|*.rb|Text Document|*.txt|All Documents|*.*";
@@ -328,7 +333,7 @@ namespace Gemini
         dialog.Multiselect = true;
         DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
-          ImportScriptsFrom(scriptsView.SelectedNode, dialog.FileNames);
+          ImportScriptsFrom(parent, scriptsView.SelectedNode.Index + 1, dialog.FileNames);
       }
     }
 
@@ -674,7 +679,7 @@ namespace Gemini
       menuMain_dropSettings_itemAutoOpenOff.Select();
     }
 
-    private void menuMain_dropGame_itemCustomRuntime_Click(object sender, EventArgs e)
+    private void menuMain_dropSettings_itemCustomRuntime_Click(object sender, EventArgs e)
     {
       using (RunVarsForm dialog = new RunVarsForm())
         if (dialog.ShowDialog() == DialogResult.OK)
@@ -881,9 +886,9 @@ namespace Gemini
         s.Section = GetRandomSection();
         _usedSections.Remove(oldsection);
         int i = _scriptRelations.FindIndex(delegate (ScriptList m) { return m.Section == oldsection; });
-        if (i >= 0) _scriptRelations[i] = new ScriptList(s.Section, _scriptRelations[i].Level, _scriptRelations[i].List);
-        i = _scriptRelations.FindIndex(delegate (ScriptList m) { return m.List.Contains(oldsection); });
-        if (i >= 0) _scriptRelations[i].List[_scriptRelations[i].List.IndexOf(oldsection)] = s.Section;
+        if (i >= 0) _scriptRelations[i] = new ScriptList(s.Section, _scriptRelations[i].List);
+        List<int> l; (l = GetParentList(oldsection).List)[l.IndexOf(oldsection)] = s.Section;
+
         //(node = GetNodeBySection(_oldSections[i])).Name = string.Format("{0:00000000}", s.Section);
         //node.ToolTipText = s.Name + " - " + string.Format("{0:00000000}", s.Section);
         //if (folder)
@@ -901,6 +906,7 @@ namespace Gemini
         //  }
         //}
       }
+      BuildFromRoot();
       //SaveScripts();
     }
 
@@ -1117,7 +1123,7 @@ namespace Gemini
       UpdateScriptStatus();
       UpdateMenusEnabled();
       if (GetActiveScript() != null)
-        UpdateName(GetActiveScript());
+        UpdateName(GetActiveScript().Section);
     }
 
     #endregion Script Editor Events
@@ -1183,7 +1189,8 @@ namespace Gemini
     private void scriptsView_KeyDown(object sender, KeyEventArgs e)
     {
       if (e.KeyCode == Keys.Enter) scriptsView_itemOpen_Click(sender, e);
-      else if (e.KeyCode == Keys.Delete) scriptsView_contextMenu_itemDelete_Click(sender, e);
+      else if (e.KeyCode == Keys.Insert) scriptsView_itemInsert_Click(sender, e);
+      else if (e.KeyCode == Keys.Delete) scriptsView_itemDelete_Click(sender, e);
     }
 
     private void scriptsView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -1196,10 +1203,20 @@ namespace Gemini
 
     private void scriptsView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
     {
+      if (e.Node.Nodes.ContainsKey(VIRTUALNODE))
+      {
+        e.Node.Nodes.Clear();
+        RebuildFrom(int.Parse(e.Node.Name));
+      }
     }
 
     private void scriptsView_AfterCollapse(object sender, TreeViewEventArgs e)
     {
+      if (!e.Node.Nodes.ContainsKey(VIRTUALNODE))
+      {
+        e.Node.Nodes.Clear();
+        e.Node.Nodes.Add(CreateVNode());
+      }
     }
 
     /// <summary>
@@ -1208,48 +1225,51 @@ namespace Gemini
     private void scriptsView_itemOpen_Click(object sender, EventArgs e)
     {
       if (scriptsView.SelectedNode == null) return;
-      if (scriptsView.SelectedNode.Level == 0)
-      {
-        if (scriptsView.SelectedNode.Nodes.Count > 5)
-        {
-          DialogResult result = MessageBox.Show("Do you want to open all the scripts in this group? (" +
-            scriptsView.SelectedNode.Nodes.Count + ")", "Warning; Proceed?", MessageBoxButtons.YesNo,
-            MessageBoxIcon.Warning);
-          if (result == DialogResult.No) return;
-        }
-        foreach (TreeNode node in scriptsView.SelectedNode.Nodes)
-          OpenScript(int.Parse(node.Name));
-      }
-      else
-        OpenScript(int.Parse(scriptsView.SelectedNode.Name));
+      OpenScript(int.Parse(scriptsView.SelectedNode.Name));
     }
 
     /// <summary>
     /// Inserts a new Script control at index
     /// </summary>
-    private void scriptsView_contextMenu_itemInsert_Click(object sender, EventArgs e)
+    private void scriptsView_itemInsert_Click(object sender, EventArgs e)
     {
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
       using (InsertForm dialog = new InsertForm())
         if (dialog.ShowDialog() == DialogResult.OK)
-          if ((dialog.State & 1) == 1)
-            InsertNode(scriptsView.SelectedNode, true, dialog.Title, "");
+          // Create new script below current.
+          if (dialog.State == 5)
+            section = InsertScript(parent, scriptsView.SelectedNode.Index + 1, dialog.Title, "");
+          // Import scripts below current.
+          else if (dialog.State == 6)
+            section = ImportScriptsFrom(parent, scriptsView.SelectedNode.Index + 1, dialog.Paths);
+          // Create script under current.
+          else if (dialog.State == 9)
+            InsertScript(section, -1, dialog.Title, "");
+          // Import scripts under current.
+          else if (dialog.State == 10)
+            section = ImportScriptsFrom(section, -1, dialog.Paths);
           else
-            ImportScriptsFrom(scriptsView.SelectedNode, dialog.Paths);
+            MessageBox.Show("Invalid state '" + dialog.State + "' returned.");
+      scriptsView.BeginUpdate();
+      RestichList(parent);
+      scriptsView.SelectedNode = GetNode(section);
+      scriptsView.EndUpdate();
     }
 
     /// <summary>
     /// Removes currently selected script from list, and copies to clipboard
     /// </summary>
-    private void scriptsView_contextMenu_itemCut_Click(object sender, EventArgs e)
+    private void scriptsView_itemCut_Click(object sender, EventArgs e)
     {
-      scriptsView_contextMenu_itemCopy_Click(sender, e);
-      scriptsView_contextMenu_itemDelete_Click(sender, e);
+      scriptsView_itemCopy_Click(sender, e);
+      scriptsView_itemDelete_Click(sender, e);
     }
 
     /// <summary>
     /// Copies selected script to the clipboard
     /// </summary>
-    private void scriptsView_contextMenu_itemCopy_Click(object sender, EventArgs e)
+    private void scriptsView_itemCopy_Click(object sender, EventArgs e)
     {
       int section = int.Parse(scriptsView.SelectedNode.Name);
       if (section >= 0)
@@ -1262,38 +1282,44 @@ namespace Gemini
     /// <summary>
     /// Paste the script from the clipboard to the selected index
     /// </summary>
-    private void scriptsView_contextMenu_itemPaste_Click(object sender, EventArgs e)
+    private void scriptsView_itemPaste_Click(object sender, EventArgs e)
     {
+      if (scriptsView.SelectedNode == null)
+        return;
+
       RubyArray rmScript = GetClipboardScript();
-      if (rmScript != null)
-        InsertNode(scriptsView.SelectedNode, rmScript);
+
+      if (rmScript == null)
+        return;
+
+      scriptsView.BeginUpdate();
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
+
+      InsertScript(parent, scriptsView.SelectedNode.Index, rmScript);
     }
 
     /// <summary>
     /// Deletes the currently selectefd script
     /// </summary>
-    private void scriptsView_contextMenu_itemDelete_Click(object sender, EventArgs e)
+    private void scriptsView_itemDelete_Click(object sender, EventArgs e)
     {
-      TreeNode node = scriptsView.SelectedNode;
-      if (node.Level == 0)
-      {
-        if (node.Nodes.Count > 0)
-        {
-          DialogResult result = MessageBox.Show(
-            "Are you sure you want to delete this Script Group?",
-            "Warning; Prossed?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-          if (result == DialogResult.No) return;
-        }
-        DeleteNodeGroup(node);
-      }
-      else
-        RemoveNode(node.Name);
+      if (scriptsView.SelectedNode == null)
+        return;
+      scriptsView.BeginUpdate();
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
+      RemoveScript(section);
+      RestichList(parent);
+      //scriptsView.SelectedNode = GetNode(section);
+      _projectNeedSave = true;
+      scriptsView.EndUpdate();
     }
 
     /// <summary>
     /// Exports the currently selected script
     /// </summary>
-    private void scriptsView_contextMenu_itemExport_Click(object sender, EventArgs e)
+    private void scriptsView_itemExport_Click(object sender, EventArgs e)
     {
       ExportScript(int.Parse(scriptsView.SelectedNode.Name), true);
     }
@@ -1303,6 +1329,17 @@ namespace Gemini
     /// </summary>
     private void scriptsView_itemMoveIn_Click(object sender, EventArgs e)
     {
+      if (scriptsView.SelectedNode == null || scriptsView.SelectedNode.Index == 0)
+        return;
+      scriptsView.BeginUpdate();
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
+      MoveScriptIn(section);
+      RestichList(parent);
+      scriptsView.SelectedNode = GetNode(section);
+      _projectNeedSave = true;
+      UpdateNames();
+      scriptsView.EndUpdate();
     }
 
     /// <summary>
@@ -1310,75 +1347,56 @@ namespace Gemini
     /// </summary>
     private void scriptsView_itemMoveOut_Click(object sender, EventArgs e)
     {
-    }
-
-    /// <summary>
-    /// Moves selected scripts order up one in the list
-    /// </summary>
-    private void scriptsView_contextMenu_itemMoveUp_Click(object sender, EventArgs e)
-    {
-      TreeNode node = scriptsView.SelectedNode;
-      int index = node.Index;
+      if (scriptsView.SelectedNode == null || scriptsView.SelectedNode.Level == 0)
+        return;
       scriptsView.BeginUpdate();
-      if (node.Level == 0 && index > 0)
-      {
-        scriptsView.Nodes.RemoveAt(index);
-        scriptsView.Nodes.Insert(index - 1, node);
-        scriptsView.SelectedNode = scriptsView.Nodes[index - 1];
-      }
-      else if (node.Level == 1)
-      {
-        int pIndex = node.Parent.Index;
-        if (index == 0 && pIndex > 0)
-        {
-          scriptsView.Nodes[pIndex].Nodes.RemoveAt(index);
-          scriptsView.Nodes[pIndex - 1].Nodes.Add(node);
-          scriptsView.SelectedNode = scriptsView.Nodes[pIndex - 1].LastNode;
-        }
-        else if (index > 0)
-        {
-          scriptsView.Nodes[pIndex].Nodes.RemoveAt(index);
-          scriptsView.Nodes[pIndex].Nodes.Insert(index - 1, node);
-          scriptsView.SelectedNode = scriptsView.Nodes[pIndex].Nodes[index - 1];
-        }
-      }
-      else { scriptsView.EndUpdate(); return; }
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
+      MoveScriptOut(section);
+      RestichList(parent);
+      scriptsView.SelectedNode = GetNode(section);
       _projectNeedSave = true;
       UpdateNames();
       scriptsView.EndUpdate();
     }
 
     /// <summary>
-    /// Moves selected scripts order down one in the list
+    /// Moves selected scripts up
+    /// </summary>
+    private void scriptsView_contextMenu_itemMoveUp_Click(object sender, EventArgs e)
+    {
+      if (scriptsView.SelectedNode == null ||
+        (scriptsView.SelectedNode.Level == 0 && scriptsView.SelectedNode.Index == 0) ||
+        (scriptsView.SelectedNode.Level > 0 && scriptsView.SelectedNode.Index == 0))
+        return;
+      scriptsView.BeginUpdate();
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
+      MoveScriptUp(section);
+      //RebuildFrom(parent);
+      RestichList(parent);
+      scriptsView.SelectedNode = GetNode(section);
+      _projectNeedSave = true;
+      UpdateNames();
+      scriptsView.EndUpdate();
+    }
+
+    /// <summary>
+    /// Moves selected scripts down
     /// </summary>
     private void scriptsView_contextMenu_itemMoveDown_Click(object sender, EventArgs e)
     {
-      TreeNode node = scriptsView.SelectedNode;
-      int index = scriptsView.SelectedNode.Index;
+      if (scriptsView.SelectedNode == null ||
+        (scriptsView.SelectedNode.Level == 0 && scriptsView.SelectedNode.Index == scriptsView.Nodes.Count - 1) ||
+        (scriptsView.SelectedNode.Level > 0 && scriptsView.SelectedNode.Index == scriptsView.SelectedNode.Parent.Nodes.Count - 1))
+        return;
       scriptsView.BeginUpdate();
-      if (node.Level == 0 && index >= 0 && index < scriptsView.Nodes.Count - 1)
-      {
-        scriptsView.Nodes.RemoveAt(index);
-        scriptsView.Nodes.Insert(index + 1, node);
-        scriptsView.SelectedNode = scriptsView.Nodes[index + 1];
-      }
-      else if (node.Level == 1)
-      {
-        int pIndex = scriptsView.SelectedNode.Parent.Index;
-        if (index == scriptsView.Nodes[pIndex].Nodes.Count - 1 && pIndex < scriptsView.Nodes.Count - 1)
-        {
-          scriptsView.Nodes[pIndex].Nodes.RemoveAt(index);
-          scriptsView.Nodes[pIndex + 1].Nodes.Insert(0, node);
-          scriptsView.SelectedNode = scriptsView.Nodes[pIndex + 1].FirstNode;
-        }
-        else if (index >= 0 && index < scriptsView.Nodes[pIndex].Nodes.Count - 1)
-        {
-          scriptsView.Nodes[pIndex].Nodes.RemoveAt(index);
-          scriptsView.Nodes[pIndex].Nodes.Insert(index + 1, node);
-          scriptsView.SelectedNode = scriptsView.Nodes[pIndex].Nodes[index + 1];
-        }
-      }
-      else { scriptsView.EndUpdate(); return; }
+      int section = int.Parse(scriptsView.SelectedNode.Name);
+      int parent = GetParentList(section).Section;
+      MoveScriptDown(section);
+      //RebuildFrom(parent);
+      RestichList(parent);
+      scriptsView.SelectedNode = GetNode(section);
       _projectNeedSave = true;
       UpdateNames();
       scriptsView.EndUpdate();
@@ -1399,19 +1417,12 @@ namespace Gemini
     {
       if (_updatingText) return;
       scriptName.Text = _invalidRegex.Replace(scriptName.Text, "");
-      scriptName.Select(scriptName.Text.Length, 0);
+      scriptName.Select(scriptName.Text.Length - 1, 0);
       int section = int.Parse(scriptsView.SelectedNode.Name);
-      if (section >= 0 && (scriptsView.SelectedNode.Level == 0 ?
-        GetNodeBySection(section).Text : GetScript(section).Name) != scriptName.Text)
+      if (GetScript(section).Name != scriptName.Text)
       {
-        Script s;
-        if (scriptsView.SelectedNode.Level == 0)
-          scriptsView.SelectedNode.Text = scriptName.Text;
-        else if ((s = GetScript(section)) != null)
-        {
-          s.Name = scriptName.Text;
-          UpdateName(s);
-        }
+        GetScript(section).Name = scriptName.Text;
+          UpdateName(section);
         _projectNeedSave = true;
       }
     }
@@ -1712,7 +1723,8 @@ namespace Gemini
       if (File.Exists(_projectScriptPath))
         try
         {
-          LoadScriptsLoop((RubyArray)Ruby.MarshalLoad(_projectLastSave = File.ReadAllBytes(_projectScriptPath)), -1, 0, 0);
+          LoadScriptsLoop((RubyArray)Ruby.MarshalLoad(_projectLastSave = File.ReadAllBytes(_projectScriptPath)), -1, 1);
+          BuildFromRoot();
           _projectNeedSave = false;
           scriptsFileWatcher.Path = Path.GetDirectoryName(_projectScriptPath);
           scriptsFileWatcher.Filter = Path.GetFileName(_projectScriptPath);
@@ -1730,23 +1742,36 @@ namespace Gemini
       return false;
     }
 
-    private int LoadScriptsLoop(RubyArray rmScripts, int section, int i, int level)
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="rmScripts"></param>
+    /// <param name="section">Start section</param>
+    /// <param name="i">Script index.</param>
+    /// <returns></returns>
+    private int LoadScriptsLoop(RubyArray rmScripts, int section, int i)
     {
       List<int> list = new List<int>();
       for (; i < rmScripts.Count; i++)
       {
         Script script = new Script((RubyArray)rmScripts[i]);
-        if (i > 0 && string.IsNullOrEmpty(script.Name.Trim()) && string.IsNullOrEmpty(script.Text.Trim()))
+
+        // If script name is empty, skip script. As we don't allow no-named scripts.
+        if (i > 0 && string.IsNullOrEmpty(script.Name.Trim()))
           break;
+
         if (!_usedSections.Contains(script.Section))
           _usedSections.Add(script.Section);
+
         list.Add(script.Section);
+
         if (script.Name.StartsWith("▼ "))
-          i = LoadScriptsLoop(rmScripts, script.Section, i + 1, level + 1);
-        script.Name.Trim().Replace("▼ ", "");
+          i = LoadScriptsLoop(rmScripts, script.Section, ++i);
+
+        script.Name = script.Name.Trim().Replace("▼ ", "");
         _scripts.Add(script);
       }
-      _scriptRelations.Add(new ScriptList(section, level, list));
+      _scriptRelations.Add(new ScriptList(section, list));
       return i;
     }
 
@@ -1759,8 +1784,14 @@ namespace Gemini
       _busy = true;
       bool saveCopy = path != _projectScriptPath;
       scriptsFileWatcher.EnableRaisingEvents = false;
-      RubyArray data = (RubyArray)SaveScriptLoop(new RubyArray(), 0, -1, saveCopy)[0];
+      // Create a new array and
+      RubyArray data = new RubyArray();
+      // load our scripts.
+      data = SaveScriptLoop(data, -1, saveCopy);
+      // Also append an empty script after.
       data.Insert(0, new Script(GetRandomSection(), "", "").RMScript);
+
+      // Try to save
       byte[] save = Ruby.MarshalDump(data);
       try
       {
@@ -1780,124 +1811,140 @@ namespace Gemini
       _busy = false;
     }
 
-    private object[] SaveScriptLoop(RubyArray data, int i, int section, bool saveCopy)
+    private RubyArray SaveScriptLoop(RubyArray data, int root, bool saveCopy)
     {
-      RubyArray secondData = new RubyArray();
-      ScriptList l = _scriptRelations.Find(delegate (ScriptList m) { return m.Section == section; });
-      for (; i < l.List.Count; i++)
+      // Get our list
+      List<int> list = GetList(root).List;
+      // and browse through it.
+      foreach (int section in list)
       {
+        // Unless we're saving a copy, we save our changes.
         if (!saveCopy)
         {
-          GetScript(l.List[i]).ApplyChanges();
-          GetScript(l.List[i]).NeedSave = false;
+          GetScript(section).ApplyChanges();
+          GetScript(section).NeedSave = false;
         }
-        RubyArray rmScript = GetScript(l.List[i]).RMScript;
-        if (_scriptRelations.Exists(delegate (ScriptList m) { return m.Section == l.List[i]; }))
+        // Get the script.
+        RubyArray rmScript = GetScript(section).RMScript;
+        // If script is assosiated with a list, create a new loop.
+        if (ListExists(section))
         {
-          rmScript[1] = Ruby.ConvertString("▼ " + GetScript(l.List[i]).Name);
-          secondData[secondData.Count] = rmScript;
-          var tmp = SaveScriptLoop(secondData, i, l.List[i], saveCopy);
-          data = (RubyArray)tmp[0];
-          i = (int)tmp[1];
+          // Append '▼' in front of listed script
+          rmScript[1] = Ruby.ConvertString("▼ " + GetScript(section).Name);
+          // before adding it to the list.
+          data[data.Count] = rmScript;
+          // Afterwards run next loop.
+          data = SaveScriptLoop(data, section, saveCopy);
+          // Always add an empty script after a listed script.
           data[data.Count] = new Script(GetRandomSection(), "", "").RMScript;
         }
+        // If not, just add it.
         else
-          secondData[secondData.Count] = rmScript;
+          data[data.Count] = rmScript;
       }
-      data.AddMultiple(0, secondData);
-      return new object[] { data, i };
-    }
 
-
-    /// <summary>
-    /// Add a new script at bottom of list
-    /// </summary>
-    /// <param name="parentSection">Parent <see cref="Script"/> Section or <see cref="int"/> -1 if none</param>
-    /// <param name="args">(<see cref="RubyArray"/> rmScript) or (<see cref="string"/> scriptName, <see cref="string"/> textContent)</param>
-    private void AddScript(int parentSection, params object[] args)
-    {
-      InsertScript(parentSection, -1, args);
+      // Return data, to either previous loop or origin.
+      return data;
     }
 
     /// <summary>
-    /// Inserts passed script into passed ScriptList.
+    /// Inserts passed script into parent list.
     /// If index is provided, inserts at passed index, else adds script at bottom of the list.
     /// </summary>
-    /// <param name="parentSection">Parent <see cref="Script"/> Section or <see cref="int"/> -1 if none</param>
-    /// <param name="index">Valid index or -1 if none</param>
-    /// <param name="args">(<see cref="RubyArray"/> rmScript) or (<see cref="string"/> scriptName, <see cref="string"/> textContent)</param>
-    private void InsertScript(int parentSection, int index, params object[] args)
+    /// <returns>Section of new script</returns>
+    private int InsertScript(int parent, int index, params object[] args)
     {
-      // throw if invalid section
-      if (!_scriptRelations.Exists(delegate (ScriptList l) { return l.Section == parentSection; })) throw new Exception("Invalid section for parent.");
-          //create script if possible
-          Script script;
+      // If parent doesn't exist, we can't use it.
+      if (parent != -1 && !ScriptExists(parent))
+        throw new ArgumentOutOfRangeException("Parent doesn't exist.");
 
-      // Accept 1 arg,
+      Script script;
+      // Accept 1 argument,
       if (args.Length == 1)
         script = new Script((RubyArray)args[0]);
-      // or accept 2 args,
+      // 2 arguments,
       else if (args.Length == 2)
         script = new Script(GetRandomSection(), (string)args[0], (string)args[1]);
-      // else throw invalid pass
+      // or 3 arguments.
+      else if (args.Length == 3)
+        script = new Script(int.Parse((string)args[0]), (string)args[1], (string)args[2]);
+      // For higher number, throw invald.
       else throw new Exception("No valid script passed");
+      
+      // Throw if we not have 2 arguments and section is in use.
+      if (args.Length != 2 && _usedSections.Contains(script.Section))
+        throw new InvalidCastException("Section already used.");
+      // And throw if script is empty.
+      if ((string.IsNullOrEmpty(script.Name) && string.IsNullOrEmpty(script.Text.Trim())))
+        throw new ArgumentNullException("Empty Script passed.");
 
-      // throw if section used or script empty
-      if (_usedSections.Contains(script.Section)) throw new InvalidCastException("Section already used.");
-      if ((string.IsNullOrEmpty(script.Name) && string.IsNullOrEmpty(script.Text.Trim()))) throw new ArgumentNullException("Empty Script passed.");
+      // Trim name if nessecary.
+      script.Name = script.Name.Trim().Replace("▼ ", "");
 
-      // trim name
-      script.Name.Trim().Replace("▼ ", "");
-
-      _usedSections.Add(script.Section);
+      // We may have already added it, but if not add section to list.
+      if (!_usedSections.Contains(script.Section))
+        _usedSections.Add(script.Section);
+      // Add script to collection.
       _scripts.Add(script);
-
-      //add relations and script only if valid section
-      ScriptList parentRef = GetList(parentSection);
-
-      // If passed index is out of range, add script to bottom.
-      if (index > 0 || index <= parentRef.List.Count )
-        parentRef.List.Add(script.Section);
+      
+      // Create list if nessecary and get list.
+      CreateListFor(parent);
+      ScriptList list = GetList(parent);
+      // If index is out of range, add script to bottom.
+      if (index < 0 || index >= list.List.Count)
+        list.List.Add(script.Section);
+      // Else insert script at desired index.
       else
-        parentRef.List.Insert(index, script.Section);
+        list.List.Insert(index, script.Section);
+
+      // Always return section of new script.
+      return script.Section;
     }
 
+    /// <summary>
+    /// Removes script and relations for given section.
+    /// </summary>
+    /// <param name="section"></param>
     private void RemoveScript(int section)
     {
       if (ScriptExists(section))
       {
-        MoveUpRelations(section);
+        // If we got children, ask what to do.
+        if (ListExists(section))
+        {
+          DialogResult result = MessageBox.Show("Do you want to delete all scripts under selected script too?",
+            "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+          
+          if (result == DialogResult.No)
+            MoveOutAllScripts(section);
+          else
+            RemoveList(section);
+        }
+        
+        GetParentList(section).List.Remove(section);
         _scripts.Remove(GetScript(section));
+        _usedSections.Remove(section);
       }
     }
-
-    /// <summary>
-    /// Creates a new tab
-    /// </summary>
-    /// <param name="section">The script that will be loaded into the page</param>
-    private void OpenScript(int section)
-    {
-      OpenScript(section, 0);
-    }
-
+    
     /// <summary>
     /// Creates a new tab
     /// </summary>
     /// <param name="section">The script that will be loaded into the page</param>
     /// <param name="position">The cursor position in the script</param>
-    private void OpenScript(int section, int position)
+    private void OpenScript(int section, int position = 0)
     {
-      int index = _scripts.IndexOf(GetScript(section));
-      if (!_scripts[index].Opened)
+      Script script = GetScript(section);
+      if (!script.Opened)
       {
-        _scripts[index].Scintilla.ContextMenuStrip = scriptsEditor_ContextMenuStrip;
-        _scripts[index].Scintilla.SelectionChanged += new EventHandler(Scintilla_Changed);
-        if (position >= 0 && position < _scripts[index].Scintilla.TextLength)
-          _scripts[index].Scintilla.CurrentPos = position;
-        _scripts[index].Scintilla.TextChanged += new EventHandler<EventArgs>(Scintilla_Changed);
-        scriptsEditor_tabs.TabPages.Add(_scripts[index].TabPage);
+        script.Scintilla.ContextMenuStrip = scriptsEditor_ContextMenuStrip;
+        script.Scintilla.SelectionChanged += new EventHandler(Scintilla_Changed);
+        if (position >= 0 && position < script.Scintilla.TextLength)
+          script.Scintilla.CurrentPos = position;
+        script.Scintilla.TextChanged += new EventHandler<EventArgs>(Scintilla_Changed);
+        scriptsEditor_tabs.TabPages.Add(script.TabPage);
       }
-      scriptsEditor_tabs.SelectedTab = _scripts[index].TabPage;
+      scriptsEditor_tabs.SelectedTab = script.TabPage;
       UpdateMenusEnabled();
     }
 
@@ -1932,51 +1979,150 @@ namespace Gemini
 
     private bool ScriptExists(int section)
     {
-      if (_scripts.Exists(delegate (Script d) { return d.Section == section; }))
-        return true;
-      return false;
+      // If section is used, our script exists.
+      return _usedSections.Contains(section);
+    }
+
+    /// <summary>
+    /// Moves a single script past its older sibling.
+    /// </summary>
+    private bool MoveScriptUp(int section)
+    {
+      ScriptList parent = GetParentList(section);
+
+      // To move up, we need an older sibling.
+      if (parent.List[0] == section)
+        return false;
+
+      int sibling = parent.List[parent.List.IndexOf(section) - 1];
+
+      parent.List.Remove(section);
+
+      parent.List.Insert(parent.List.IndexOf(sibling), section);
+
+      return true;
+    }
+
+    /// <summary>
+    /// Moves a single script past its younger sibling.
+    /// </summary>
+    private bool MoveScriptDown(int section)
+    {
+      ScriptList parent = GetParentList(section);
+
+      // To move down, we need a younger sibling.
+      if (parent.List[parent.List.Count - 1] == section)
+        return false;
+
+      int sibling = parent.List[parent.List.IndexOf(section) + 1];
+
+      parent.List.Remove(section);
+
+      parent.List.Insert(parent.List.IndexOf(sibling) + 1, section);
+
+      return true;
+    }
+
+    /// <summary>
+    /// Moves a single script into its older siblings' list, creating it if nonexistent.
+    /// </summary>
+    private bool MoveScriptIn(int section)
+    {
+      ScriptList parent = GetParentList(section);
+
+      // To move in, we need an older sibling.
+      if (parent.List[0] == section)
+        return false;
+
+      int sibling = parent.List[parent.List.IndexOf(section) - 1];
+
+      parent.List.Remove(section);
+
+      // Create a list for sibling if none exists,
+      CreateListFor(sibling);
+      // and insert section first.
+      GetList(sibling).List.Insert(0, section);
+
+      return true;
+    }
+
+    /// <summary>
+    /// Moves a single script from curent list to its parents list.
+    /// </summary>
+    private bool MoveScriptOut(int section)
+    {
+      ScriptList parent = GetParentList(section);
+
+      // To move out, we need a grandparent.
+      if (parent.Section == -1)
+        return false;
+
+      ScriptList grandParent = GetParentList(parent.Section);
+
+      parent.List.Remove(section);
+
+      grandParent.List.Insert(GetIndexInList(parent.Section) + 1, section);
+
+      return true;
+    }
+
+    /// <summary>
+    ///Moves all scripts from a list to parent list.
+    /// </summary>
+    private bool MoveOutAllScripts(int section)
+    {
+      // If we don't have children, bail.
+      if (!ListExists(section))
+        return false;
+
+      ScriptList parent = GetParentList(section);
+      parent.List.InsertRange(parent.List.IndexOf(section), GetList(section).List);
+      parent.List.Remove(section);
+
+      // Since we just emptied our list, we can safely remove it.
+      RemoveList(section);
+
+      return true;
     }
 
     /// <summary>
     /// Imports the scripts from the given paths
     /// </summary>
-    /// <param name="node">the selected <see cref="TreeNode"/></param>
-    /// <param name="paths">A string-array with paths to import from</param>
-    private void ImportScriptsFrom(TreeNode node, params string[] paths)
+    /// <param name="paths">A string array with paths to import</param>
+    /// <returns>The section of the first imported script.</returns>
+    private int ImportScriptsFrom(int parent, int index, params string[] paths)
     {
-      if (node == null)
-      {
-        if (!NodeExistByName("Materials"))
-        {
-          MessageBox.Show("The project seems to be missing a 'Materials' Script Group.",
-            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          return;
-        }
-        node = GetNodeByName("Materials");
-      }
+      int section = -1;
+
+      // TODO: Reimplement logic...
+
       scriptsView.BeginUpdate();
-      foreach (string path in paths)
+      for (int i = 0; i < paths.Length; i++)
+      {
+        string path = paths[i];
+
         if (File.Exists(path))
           try
           {
-            if (_fileNameRegex.IsMatch(path) && ScriptExists(int.Parse(_fileNameRegex.Match(path).Captures[1].Value)))
-              SetScript(int.Parse(_fileNameRegex.Match(path).Captures[1].Value),
-                _fileNameRegex.Match(path).Captures[0].Value, File.ReadAllText(path));
-            else if (_fileNameRegex.IsMatch(path))
-              InsertNode(node, _fileNameRegex.Match(path).Captures[0].Value,
-                _fileNameRegex.Match(path).Captures[1].Value, File.ReadAllText(path));
-            else
-              InsertNode(node, Path.GetFileNameWithoutExtension(path), File.ReadAllText(path));
-            if (node.Level == 1)
-              node = node.NextNode;
+            // TODO: Reimplement logic...
+
+            // Something like:
+            //if (i == 0)
+            //  section = InsertScript();
+            //else
+            //  InsertScript();
           }
           catch
           {
             MessageBox.Show("There was an error while importing from '" + path + "'.",
               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
           }
+      }
       scriptsView.EndUpdate();
       _projectNeedSave = true;
+
+      // Return the section of the first imported script.
+      return section;
     }
 
     /// <summary>
@@ -2079,7 +2225,7 @@ namespace Gemini
 
         ScriptList list = GetList(section);
 
-        list.List.ForEach(delegate (int s) { ExportScript(s, true, false, nxtDirPath, dirRootPath); }) ;
+        list.List.ForEach(delegate (int s) { ExportScript(s, true, false, nxtDirPath, dirRootPath); });
       }
     }
 
@@ -2088,11 +2234,10 @@ namespace Gemini
     /// </summary>
     private void ExportScripts(string dirRootPath = null, string extension = ".rb")
     {
-      _scripts.ForEach(delegate (Script s) { ExportScript(s.Section, true, false, null, dirRootPath, extension); } );
+      _scripts.ForEach(delegate (Script s) { ExportScript(s.Section, true, false, null, dirRootPath, extension); });
     }
 
     #endregion Script Methods
-
 
     /*\
 
@@ -2100,7 +2245,7 @@ namespace Gemini
      * ##                   ##
      * ##       ###  ###### #######
      * ##       ##  ##      ##
-     * ##       ##  ####### ##
+     * ##       ##   #####  ##
      * ##       ##       ## ##   ##
      * ######## ##  ######   #####
     \*/
@@ -2110,19 +2255,80 @@ namespace Gemini
     /// <summary>
     /// Get the <see cref="ScriptList"/> by the given <paramref name="section"/>
     /// </summary>
-    /// <param name="section">Section to locate script from</param>
+    /// <param name="section">Section to locate list from</param>
     /// <returns>The desired <see cref="ScriptList"/> or <see cref="Nullable"/></returns>
     private ScriptList GetList(int section)
     {
       return _scriptRelations.Find(delegate (ScriptList s) { return s.Section == section; });
     }
 
-    private bool ListExists(int section)
+    /// <summary>
+    /// Get the <see cref="ScriptList"/> by the given <paramref name="section"/>
+    /// </summary>
+    /// <param name="section">Section to locate list from</param>
+    /// <returns>The desired <see cref="ScriptList"/> or <see cref="Nullable"/></returns>
+    private ScriptList GetParentList(int section)
     {
-      return !!(_scriptRelations.Exists(delegate (ScriptList d) { return d.Section == section; }));
+      return _scriptRelations.Find(delegate (ScriptList s) { return s.List.Contains(section); });
     }
 
-    #endregion ScriptList Methods
+    /// <summary>
+    /// Retrives the index of given section in parent list.
+    /// Relies on GetParentList.
+    /// </summary>
+    /// <param name="section">Section to locate list from</param>
+    private int GetIndexInList(int section)
+    {
+      return GetParentList(section).List.IndexOf(section);
+    }
+
+    /// <summary>
+    /// Adds an empty list for given section to collection.
+    /// </summary>
+    /// <param name="section">Section to locate list from</param>
+    private void CreateListFor(int section)
+    {
+      AddListFor(section, new List<int>());
+    }
+
+    /// <summary>
+    /// Adds a list for given section to collection.
+    /// </summary>
+    /// <param name="section">Section to locate list from</param>
+    private void AddListFor(int section, List<int> list)
+    {
+      if (!ListExists(section))
+        _scriptRelations.Add(new ScriptList(section, list));
+    }
+
+    /// <summary>
+    /// Removes a list from collection.
+    /// </summary>
+    /// <param name="section">Section to locate list from</param>
+    private void RemoveList(int section)
+    {
+      _scriptRelations.RemoveAll(delegate (ScriptList l) { return l.Section == section; });
+    }
+
+    /// <summary>
+    /// Determines if the list for given section exsists.
+    /// </summary>
+    /// <param name="section">Section to locate list from</param>
+    private bool ListExists(int section)
+    {
+      return _scriptRelations.Exists(delegate (ScriptList d) { return d.Section == section; });
+    }
+
+    /// <summary>
+    /// Determines if the list for given section is empty.
+    /// </summary>
+    /// <param name="section">Section to locate list from</param>
+    private bool ListEmpty(int section)
+    {
+      return GetList(section).List.Count == 0;
+    }
+
+    #endregion List Methods
 
     /*\
      * ##    ##               ##
@@ -2136,89 +2342,251 @@ namespace Gemini
 
     #region Node Methods
 
-    private void InsertNode(TreeNode currentNode, params object[] args)
+    /// <summary>
+    /// Rebuilds view for section, creating new and discarding unwanted nodes.
+    /// </summary>
+    private void RestichList(int section)
     {
-    }
-
-    private void RemoveNode(string section)
-    { RemoveNode(int.Parse(section)); }
-
-    private void RemoveNode(int section)
-    {
-      TreeNode node = GetNodeBySection(section);
-      if (node == null) return;
-      scriptsView.Nodes[node.Parent.Index].Nodes.Remove(node);
-      RemoveScript(section);
-      _projectNeedSave = true;
+      RestichList(section, new List<int>());
     }
 
     /// <summary>
-    /// Delete all the <see cref="TreeNode"/>s and <see cref="Script"/>s from a Script Group
+    /// Rebuilds view for section, creating new and discarding unwanted nodes.
     /// </summary>
-    /// <param name="rootNode">The given Node. Must be a Group Node.</param>
-    private void DeleteNodeGroup(TreeNode rootNode)
+    private void RestichList(int section, List<int> ran)
     {
-      if (rootNode.Level != 0) return;
-      scriptsView.BeginUpdate();
-      Enabled = false;
-      for (int i = 0; i < rootNode.Nodes.Count; i++)
+      // If we already ran this loop, abort.
+      if (ran.Contains(section))
+        return;
+      // Add current run to list
+      ran.Add(section);
+
+      if (!ListExists(section))
+        return;
+
+
+      TreeNodeCollection parent;
+      // If we're in the root, we don't need a check.
+      if (section == -1)
       {
-        TreeNode node = rootNode.LastNode;
-        RemoveNode(node.Name);
+        parent = scriptsView.Nodes;
+      }
+      // If we're not in the root, we need to check for our parent first.
+      else
+      {
+        // Bail if node doesn't exist. If we haven't made it yet, it can't exist.
+        if (!NodeExists(section))
+          return;
+
+        parent = GetNode(section).Nodes;
+
       }
 
-      scriptsView.Nodes.Remove(rootNode);
-      Enabled = true;
-      scriptsView.EndUpdate();
-    }
+      // Bail if parent has virtual node, because it is not populated yet.
+      if (parent.Count == 1 && parent[0].Name == VIRTUALNODE)
+        return;
 
-    private string GetNameBySection(int section)
-    {
-      return scriptsView.Nodes.Find(string.Format("{0:00000000}", section), true)[0].Text;
-    }
+      List<int> list = GetList(section).List;
+      List<int> missing = new List<int>(list);
+      List<int> overflow = new List<int>();
+      List<TreeNode> nodes = new List<TreeNode>();
 
-    /// <summary>
-    /// Retrives the TreeNode corresponding to the given section number if any, else return null.
-    /// </summary>
-    /// <param name="section">The section number to search for</param>
-    /// <returns></returns>
-    private TreeNode GetNodeBySection(int section)
-    {
-      return scriptsView.Nodes.Find(string.Format("{0:00000000}", section), true)[0];
-    }
+      // Browse through current children of parent
+      foreach (TreeNode child in parent)
+      {
+        // Skip unwanted children.
+        if (child == null) continue;
 
-    /// <summary>
-    /// Retrives the first TreeNode corresponding to the given name if any, else return null. Accepts Regex
-    /// </summary>
-    /// <param name="regexName">The name to search for</param>
-    /// <returns>The TreeNode to use</returns>
-    private TreeNode GetNodeByName(string regexName)
-    {
-      foreach (TreeNode rootNode in scriptsView.Nodes)
-        if (Regex.IsMatch(rootNode.Text, regexName))
-          return rootNode;
+        int childSection = int.Parse(child.Name);
+
+        // If current child is part of list,
+        if (list.Contains(childSection))
+        {
+          // add it to node collection,
+          nodes.Add(child);
+          // and exclude it as missing.
+          missing.Remove(childSection);
+        }
+        // If not part of list, we got an overflow.
         else
-          foreach (TreeNode node in rootNode.Nodes)
-            if (Regex.IsMatch(node.Text, regexName))
-              return node;
-      return null;
+        {
+          // For now add to collection.
+          overflow.Add(childSection);
+        }
+      }
+
+      // Since we may have emptied our list, we check...
+      if (ListEmpty(section))
+        RemoveList(section);
+
+      // Disolve previouse family.
+      parent.Clear();
+
+      // For every lost child, create a replacement.
+      foreach (int lost in missing)
+      {
+        nodes.Add(CreateNode(lost));
+      }
+
+      // Reconstruct the view in order.
+      for (int i = 0; i < list.Count; i++)
+      {
+        // Find our child and extract it from collection.
+        TreeNode child = nodes.Find(delegate (TreeNode c) { return int.Parse(c.Name) == list[i]; });
+
+        parent.Add(child);
+        nodes.Remove(child);
+      }
+      
+      // Restich overflowed parts.
+      foreach (int flow in overflow)
+      {
+        // Only if script still exists do we restich.
+        if (ScriptExists(flow))
+          RestichList(GetParentList(flow).Section, ran);
+      }
     }
 
     /// <summary>
-    /// Search for any TreeNodes correspondig to the given name. Accepts Regex
+    /// Rebuilds view from section to deepest level.
     /// </summary>
-    /// <param name="regexName">The name to search for</param>
-    /// <returns>The TreeNode to use</returns>
-    private bool NodeExistByName(string regexName)
+    /// <param name="section"></param>
+    /// <param name="recurse"></param>
+    private void RebuildFrom(int section)
     {
-      foreach (TreeNode rootNode in scriptsView.Nodes)
-        if (Regex.IsMatch(rootNode.Text, regexName))
-          return true;
-        else
-          foreach (TreeNode node in rootNode.Nodes)
-            if (Regex.IsMatch(node.Text, regexName))
-              return true;
-      return false;
+      // If we're in the root, we do it differently.
+      if (section == -1)
+      {
+        BuildFromRoot();
+        return;
+      }
+
+      // Bail if list doesn't exist.
+      if (!ListExists(section))
+        return;
+
+      // Bail if node doesn't exist.
+      if (!NodeExists(section))
+        return;
+
+      // Get the list,
+      List<int> list = GetList(section).List;
+
+      // get the parent node,
+      TreeNode parent = GetNode(section);
+
+      TreeNode child;
+      // and create each child node for parent.
+      foreach (int sec in list)
+      {
+        child = CreateNode(sec);
+
+        parent.Nodes.Add(child);
+
+        // If child got children, add a placeholder until loaded.
+        if (ListExists(sec))
+          child.Nodes.Add(CreateVNode());
+      }
+    }
+
+    /// <summary>
+    /// Builds view from root.
+    /// </summary>
+    private void BuildFromRoot()
+    {
+      List<int> list = GetList(-1).List;
+
+      TreeNode child;
+      foreach (int section in list)
+      {
+        child = CreateNode(section);
+
+        scriptsView.Nodes.Add(child);
+
+        // If child got children, add a placeholder until loaded.
+        if (ListExists(section))
+          child.Nodes.Add(CreateVNode());
+      }
+    }
+
+    private const string VIRTUALNODE = "VIRT";
+
+    /// <summary>
+    /// Creates and returns a new VIRTUALNODE node. Normally not visible.
+    /// </summary>
+    private TreeNode CreateVNode()
+    {
+      TreeNode node = new TreeNode();
+      node.Text = "Loading...";
+      node.Name = VIRTUALNODE;
+      node.ForeColor = Color.Blue;
+      node.NodeFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Underline);
+      return node;
+    }
+
+    /// <summary>
+    /// Creates a new node for given section.
+    /// As this method will always be fired after a script check, we don't manually check if script exists.
+    /// </summary>
+    /// <param name="section">Section for script</param>
+    private TreeNode CreateNode(int section)
+    {
+      Script script = GetScript(section);
+      TreeNode node = new TreeNode();
+      node.Name = section.ToString();
+      node.Text = script.Name;
+      node.ToolTipText = script.Name + " - " + section.ToString();
+
+      return node;
+    }
+
+    private TreeNode GetNode(int section)
+    {
+      // If we request the root, return top node.
+      if (section == -1)
+        return scriptsView.TopNode;
+
+      ScriptList parentList = GetParentList(section);
+
+      // If we're at the root, we do it differently.
+      if (parentList.Section == -1)
+        return scriptsView.Nodes.Find(section.ToString(), false)[0]; ;
+
+      // Get parent,
+      TreeNode parent = GetNode(parentList.Section);
+      // check if parent has virtual children, and bail if true,
+      if (parent.Nodes.Count == 1 && parent.Nodes[0].Name == VIRTUALNODE)
+        return null;
+      // else return our child.
+      return parent.Nodes.Find(section.ToString(), false)[0];
+    }
+
+    private bool NodeExists(int section)
+    {
+      ScriptList parentList = GetParentList(section);
+
+      TreeNodeCollection parentCollection;
+      // If we're at the root,
+      if (parentList.Section == -1)
+      {
+        // we directly assign our collection.
+        parentCollection = scriptsView.Nodes;
+      }
+      else
+      {
+        // If we don't have a parent, we don't exist.
+        if (!NodeExists(parentList.Section))
+          return false;
+
+        // We found a parent, so retrive its collection.
+        parentCollection = GetNode(parentList.Section).Nodes;
+      }
+
+      // Search for our child.
+      if (!parentCollection.ContainsKey(section.ToString()))
+        return false;
+
+      return true;
     }
 
     #endregion Node Methods
@@ -2500,19 +2868,6 @@ namespace Gemini
       return false;
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="section"></param>
-    private void MoveUpRelations(int section)
-    {
-      if (!_scriptRelations.Exists(delegate (ScriptList l) { return l.Section == section; })) throw new Exception("No valid section for parent!");
-      ScriptList li = _scriptRelations.Find(delegate (ScriptList l) { return l.List.Contains(section); });
-      li.List.InsertRange(li.List.IndexOf(section), _scriptRelations.Find(delegate (ScriptList l) { return l.Section == section; }).List);
-      li.List.Remove(section);
-      _scriptRelations.RemoveAll(delegate (ScriptList l) { return l.Section == section; });
-    }
-
     #endregion Misc Methods
 
     /*\
@@ -2748,6 +3103,7 @@ namespace Gemini
       menuMain_dropSettings_itemAutoOpenOff.Checked = !Settings.AutoOpen;
       menuMain_dropSettings_itemPioritizeRecent.Checked = Settings.RecentPriority;
       menuMain_dropSettings_itemAutoSaveSettings.Checked = Settings.AutoSaveConfig;
+      menuMain_dropSettings_itemAutoUpdate.Checked = Settings.AutoCheckUpdates;
       menuMain_dropSettings_itemAutoC.Checked = Settings.AutoComplete;
       toolsEditor_itemAutoC.Checked = Settings.AutoComplete;
       menuMain_dropSettings_itemAutoIndent.Checked = Settings.AutoIndent;
@@ -2771,22 +3127,15 @@ namespace Gemini
           (script.Scintilla.Selection.Length == 0 ? "" : "(" + script.Scintilla.Selection.Length + ")"));
     }
 
-    private void UpdateName(Script s)
+    private void UpdateName(int section)
     {
-      if (s.TabName != GetNodeBySection(s.Section).Text)
-        GetNodeBySection(s.Section).Text = s.TabName;
+      if (NodeExists(section) && GetScript(section).TabName != GetNode(section).Text)
+        GetNode(section).Text = GetScript(section).TabName;
     }
 
     private void UpdateNames()
     {
-      Script s;
-      scriptsView.BeginUpdate();
-      // TODO: Needs to be reimplemented...
-      foreach (TreeNode rootNode in scriptsView.Nodes)
-        foreach (TreeNode node in rootNode.Nodes)
-          if (node.Text != (s = GetScript(int.Parse(node.Name))).TabName)
-            node.Text = s.TabName;
-      scriptsView.EndUpdate();
+      // TODO: Reimplement logic...
     }
 
     #endregion Update Methods
