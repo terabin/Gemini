@@ -58,7 +58,7 @@ namespace Gemini.Serializable
     }
 
     public string Name;
-    public string Meta;
     public float Size;
+    public string Meta;
   }
 }

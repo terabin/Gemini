@@ -25,8 +25,8 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 
 ## Known bugs of current release
 
-- When you press Alt together with another key with "Auto-hide menu bar" on,
-it toggles menu bar. As it should not.
+- When you press Alt together with another key with "Auto-hide menu-bar" on,
+it toggles menu bar. As it should not. Workaround: disable "Auto-hide menu-bar."
 
 ## Features
 

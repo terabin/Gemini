@@ -44,7 +44,7 @@ namespace Gemini
 
     public static void SetDefaults()
     {
-      AutoHideMenuBar = true;
+      AutoHideMenuBar = false;
       WindowMaximized = false;
       if (Application.OpenForms.Count > 0)
         WindowBounds = Application.OpenForms[0].Bounds;
