@@ -29,15 +29,66 @@
         /// </summary>
         private void InitializeComponent()
         {
+      this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+      this.buttonCancel = new System.Windows.Forms.Button();
+      this.labelInfo = new System.Windows.Forms.Label();
       this.labelCurrentVersion = new System.Windows.Forms.Label();
       this.progressBar = new System.Windows.Forms.ProgressBar();
       this.labelProgress = new System.Windows.Forms.Label();
-      this.buttonCancel = new System.Windows.Forms.Button();
-      this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
       this.buttonDownload = new System.Windows.Forms.Button();
-      this.labelInfo = new System.Windows.Forms.Label();
+      this.labelBranch = new System.Windows.Forms.Label();
       this.tableLayoutPanel.SuspendLayout();
       this.SuspendLayout();
+      // 
+      // tableLayoutPanel
+      // 
+      this.tableLayoutPanel.AutoSize = true;
+      this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+      this.tableLayoutPanel.ColumnCount = 2;
+      this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel.Controls.Add(this.labelCurrentVersion, 0, 0);
+      this.tableLayoutPanel.Controls.Add(this.progressBar, 0, 3);
+      this.tableLayoutPanel.Controls.Add(this.labelProgress, 0, 2);
+      this.tableLayoutPanel.Controls.Add(this.buttonCancel, 0, 4);
+      this.tableLayoutPanel.Controls.Add(this.buttonDownload, 0, 2);
+      this.tableLayoutPanel.Controls.Add(this.labelInfo, 1, 0);
+      this.tableLayoutPanel.Controls.Add(this.labelBranch, 0, 1);
+      this.tableLayoutPanel.Location = new System.Drawing.Point(12, 12);
+      this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(12);
+      this.tableLayoutPanel.MinimumSize = new System.Drawing.Size(306, 0);
+      this.tableLayoutPanel.Name = "tableLayoutPanel";
+      this.tableLayoutPanel.RowCount = 6;
+      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+      this.tableLayoutPanel.Size = new System.Drawing.Size(306, 140);
+      this.tableLayoutPanel.TabIndex = 5;
+      // 
+      // buttonCancel
+      // 
+      this.buttonCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+      this.tableLayoutPanel.SetColumnSpan(this.buttonCancel, 2);
+      this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+      this.buttonCancel.Location = new System.Drawing.Point(228, 114);
+      this.buttonCancel.Name = "buttonCancel";
+      this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+      this.buttonCancel.TabIndex = 4;
+      this.buttonCancel.Text = "Cancel";
+      this.buttonCancel.UseVisualStyleBackColor = true;
+      // 
+      // labelInfo
+      // 
+      this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.labelInfo.AutoSize = true;
+      this.labelInfo.Location = new System.Drawing.Point(183, 0);
+      this.labelInfo.Name = "labelInfo";
+      this.labelInfo.Size = new System.Drawing.Size(120, 13);
+      this.labelInfo.TabIndex = 6;
+      this.labelInfo.Text = "Searching for updates...";
       // 
       // labelCurrentVersion
       // 
@@ -51,7 +102,7 @@
       // progressBar
       // 
       this.tableLayoutPanel.SetColumnSpan(this.progressBar, 2);
-      this.progressBar.Location = new System.Drawing.Point(3, 65);
+      this.progressBar.Location = new System.Drawing.Point(3, 85);
       this.progressBar.Name = "progressBar";
       this.progressBar.Size = new System.Drawing.Size(300, 23);
       this.progressBar.TabIndex = 2;
@@ -61,57 +112,17 @@
       this.labelProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.labelProgress.AutoSize = true;
       this.tableLayoutPanel.SetColumnSpan(this.labelProgress, 2);
-      this.labelProgress.Location = new System.Drawing.Point(282, 49);
+      this.labelProgress.Location = new System.Drawing.Point(282, 69);
       this.labelProgress.Name = "labelProgress";
       this.labelProgress.Size = new System.Drawing.Size(21, 13);
       this.labelProgress.TabIndex = 3;
       this.labelProgress.Text = "0%";
       // 
-      // buttonCancel
-      // 
-      this.buttonCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-      this.tableLayoutPanel.SetColumnSpan(this.buttonCancel, 2);
-      this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.buttonCancel.Location = new System.Drawing.Point(228, 94);
-      this.buttonCancel.Name = "buttonCancel";
-      this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-      this.buttonCancel.TabIndex = 4;
-      this.buttonCancel.Text = "Cancel";
-      this.buttonCancel.UseVisualStyleBackColor = true;
-      // 
-      // tableLayoutPanel
-      // 
-      this.tableLayoutPanel.AutoSize = true;
-      this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-      this.tableLayoutPanel.ColumnCount = 2;
-      this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.tableLayoutPanel.Controls.Add(this.labelCurrentVersion, 0, 0);
-      this.tableLayoutPanel.Controls.Add(this.progressBar, 0, 4);
-      this.tableLayoutPanel.Controls.Add(this.labelProgress, 0, 3);
-      this.tableLayoutPanel.Controls.Add(this.buttonCancel, 0, 5);
-      this.tableLayoutPanel.Controls.Add(this.buttonDownload, 0, 2);
-      this.tableLayoutPanel.Controls.Add(this.labelInfo, 1, 0);
-      this.tableLayoutPanel.Location = new System.Drawing.Point(12, 12);
-      this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(12);
-      this.tableLayoutPanel.MinimumSize = new System.Drawing.Size(306, 0);
-      this.tableLayoutPanel.Name = "tableLayoutPanel";
-      this.tableLayoutPanel.RowCount = 7;
-      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel.Size = new System.Drawing.Size(306, 120);
-      this.tableLayoutPanel.TabIndex = 5;
-      // 
       // buttonDownload
       // 
       this.buttonDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.tableLayoutPanel.SetColumnSpan(this.buttonDownload, 2);
-      this.buttonDownload.Location = new System.Drawing.Point(228, 23);
+      this.buttonDownload.Location = new System.Drawing.Point(228, 43);
       this.buttonDownload.Name = "buttonDownload";
       this.buttonDownload.Size = new System.Drawing.Size(75, 23);
       this.buttonDownload.TabIndex = 5;
@@ -119,15 +130,15 @@
       this.buttonDownload.UseVisualStyleBackColor = true;
       this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_Click);
       // 
-      // labelInfo
+      // labelBranch
       // 
-      this.labelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.labelInfo.AutoSize = true;
-      this.labelInfo.Location = new System.Drawing.Point(183, 0);
-      this.labelInfo.Name = "labelInfo";
-      this.labelInfo.Size = new System.Drawing.Size(120, 13);
-      this.labelInfo.TabIndex = 6;
-      this.labelInfo.Text = "Searching for updates...";
+      this.labelBranch.AutoSize = true;
+      this.tableLayoutPanel.SetColumnSpan(this.labelBranch, 2);
+      this.labelBranch.Location = new System.Drawing.Point(3, 20);
+      this.labelBranch.Name = "labelBranch";
+      this.labelBranch.Size = new System.Drawing.Size(87, 13);
+      this.labelBranch.TabIndex = 1;
+      this.labelBranch.Text = "Current Branch : ";
       // 
       // UpdateForm
       // 
@@ -135,7 +146,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSize = true;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-      this.ClientSize = new System.Drawing.Size(326, 147);
+      this.ClientSize = new System.Drawing.Size(326, 161);
       this.Controls.Add(this.tableLayoutPanel);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.MaximizeBox = false;
@@ -154,14 +165,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelCurrentVersion;
-        private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.Label labelProgress;
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.Button buttonDownload;
-        private System.Windows.Forms.Label labelInfo;
-
-    }
+    private System.Windows.Forms.Label labelCurrentVersion;
+    private System.Windows.Forms.ProgressBar progressBar;
+    private System.Windows.Forms.Label labelProgress;
+    private System.Windows.Forms.Button buttonCancel;
+    private System.Windows.Forms.Button buttonDownload;
+    private System.Windows.Forms.Label labelInfo;
+    private System.Windows.Forms.Label labelBranch;
+  }
 }

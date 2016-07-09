@@ -21,6 +21,7 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
   - Can restore last opened tabs per projects
   - Debug mode
   - Able to customize game executable and arguments with debug mode
+  - Automatic updater built-in so you can make sure you have the latest version
 
 ## Known bugs of current release
 
@@ -45,10 +46,6 @@ it toggles menu bar. As it should not.
 - Simple and intuitive interface
 - Portable, no-install application
 - Much more!
-
-## Temporarily deprecated features
-
-- Automatic updater built-in so you can make sure you have the latest version
 
 ## Tasks to do
 

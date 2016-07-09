@@ -132,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\Rendering.cs" />
+    <Compile Include="forms\UpdateChannelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\UpdateChannelForm.designer.cs">
+      <DependentUpon>UpdateChannelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -333,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\NewProjectForm.resx">
       <DependentUpon>NewProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\UpdateChannelForm.resx">
+      <DependentUpon>UpdateChannelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\UpdateForm.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>

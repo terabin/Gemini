@@ -19,7 +19,7 @@ namespace Gemini.Serializable
   [Serializable]
   public struct Settings
   {
-    public bool AutoCheckUpdates;
+    public Update Update;
     public bool AutoSaveConfig;
     public bool UseProjectConfig;
     public Window Window;
@@ -35,6 +35,21 @@ namespace Gemini.Serializable
     public bool UseCodeFolding;
     public bool RecentPriority;
     public ScriptStyle[] ScriptStyles;
+  }
+
+  [Serializable]
+  public struct Update
+  {
+    public Update(bool update, string current, string[] channels)
+    {
+      AutoCheck = update;
+      Channel = current;
+      Channels = channels;
+    }
+
+    public bool AutoCheck;
+    public string Channel;
+    public string[] Channels;
   }
 
   [Serializable]

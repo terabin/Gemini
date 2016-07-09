@@ -36,6 +36,11 @@ namespace Gemini
     public static string RuntimeExecutable { get; set; }
     public static string RuntimeArguments { get; set; }
     public static bool AutoCheckUpdates { get; set; }
+    public static string UpdateChannel { get; set; }
+    public static List<string> UpdateChannels { get; set; }
+
+    // Used with github api.
+    public const string UserAgent = "Gemini-TextEditor-App";
 
     public static void SetDefaults()
     {
@@ -67,6 +72,8 @@ namespace Gemini
       LineHighLightColor = Color.FromArgb(50, 195, 216, 255);
       CodeFolding = true;
       AutoCheckUpdates = false;
+      UpdateChannel = "master";
+      UpdateChannels = new List<string>();
     }
 
     public static void SetLocalDefaults()
@@ -141,7 +148,7 @@ namespace Gemini
       saveData.UseProjectConfig = ProjectConfig;
       saveData.ScriptStyles = ScriptStyles;
       saveData.AutoComplete = new Serializable.AutoComplete(AutoComplete, AutoCompleteLength, AutoCompleteFlag, AutoCompleteCustomWords);
-      saveData.AutoCheckUpdates = AutoCheckUpdates;
+      saveData.Update = new Serializable.Update(AutoCheckUpdates, UpdateChannel, UpdateChannels.ToArray());
       return saveData;
     }
 
@@ -169,9 +176,7 @@ namespace Gemini
           AutoHideMenuBar = saveData.AutoHideMenuBar;
           DistractionMode = saveData.DistracionMode;
           AutoOpen = saveData.Files.AutoOpenProject;
-          List<string> tmp = new List<string>();
-          foreach (string f in saveData.Files.RecentlyOpenedList) tmp.Add(f);
-          RecentlyOpened = tmp;
+          RecentlyOpened = new List<string>(saveData.Files.RecentlyOpenedList);
           AutoIndent = saveData.UseAutoIndent;
           GuideLines = saveData.UseGuideLines;
           LineHighLight = saveData.UseLineHighLight;
@@ -185,7 +190,9 @@ namespace Gemini
           AutoCompleteLength = saveData.AutoComplete.Length;
           AutoCompleteFlag = saveData.AutoComplete.Flag;
           AutoCompleteCustomWords = saveData.AutoComplete.CustomWords;
-          AutoCheckUpdates = saveData.AutoCheckUpdates;
+          AutoCheckUpdates = saveData.Update.AutoCheck;
+          UpdateChannel = saveData.Update.Channel;
+          UpdateChannels = new List<string>(saveData.Update.Channels);
         }
         catch (Exception)
         {

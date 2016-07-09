@@ -684,6 +684,49 @@ namespace Gemini
         }
     }
 
+    private void menuMain_dropSettings_itemAutoUpdate_Click(object sender, EventArgs e)
+    {
+      Settings.AutoCheckUpdates = !Settings.AutoCheckUpdates;
+      UpdateSettingsState();
+      menuMain_dropSettings.ShowDropDown();
+      menuMain_dropSettings_itemUpdate.ShowDropDown();
+      menuMain_dropSettings_itemAutoUpdate.Select();
+    }
+
+    /// <summary>
+    /// Opens the version update window.
+    /// </summary>
+    private void menuMain_dropSettings_itemUpdateNow_Click(object sender, EventArgs e)
+    {
+      using (UpdateForm dialog = new UpdateForm())
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+          if (NeedSave())
+          {
+            DialogResult result = MessageBox.Show("Save changes before closing?",
+                "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+              SaveScripts();
+          }
+          CloseProject(false);
+          Close();
+          dialog.StartProcess();
+        }
+    }
+
+    /// <summary>
+    /// Opens the channel selection window.
+    /// </summary>
+    private void menuMain_dropSettings_itemUpdateChannel_Click(object sender, EventArgs e)
+    {
+      using (UpdateChannelForm dialog = new UpdateChannelForm())
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+          Settings.UpdateChannel = dialog.Current;
+          Settings.UpdateChannels = dialog.Channels;
+        }
+    }
+
     private void menuMain_dropSettings_itemToggleDistractionMode_Click(object sender, EventArgs e)
     {
       Settings.DistractionMode = new Serializable.DistracionMode(!Settings.DistractionMode.Use, Settings.DistractionMode.HideToolbar);

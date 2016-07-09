@@ -928,7 +928,7 @@
             this.menuMain_dropSettings_itemUpdateNow,
             this.menuMain_dropSettings_seperator8,
             this.menuMain_dropSettings_itemAutoUpdate,
-            this.toolStripMenuItem1});
+            this.menuMain_dropSettings_itemUpdateChannel});
       this.menuMain_dropSettings_itemUpdate.Image = global::Gemini.Properties.Resources.update;
       this.menuMain_dropSettings_itemUpdate.Name = "menuMain_dropSettings_itemUpdate";
       this.menuMain_dropSettings_itemUpdate.Size = new System.Drawing.Size(202, 22);
@@ -952,12 +952,13 @@
       this.menuMain_dropSettings_itemAutoUpdate.Text = "Auto-check for updates";
       this.menuMain_dropSettings_itemAutoUpdate.ToolTipText = "Toggle automaticly check for updates at startup";
       // 
-      // toolStripMenuItem1
+      // menuMain_dropSettings_itemUpdateChannel
       // 
-      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
-      this.toolStripMenuItem1.Text = "Update Channel";
-      this.toolStripMenuItem1.ToolTipText = "Branch tag to use to check for updates";
+      this.menuMain_dropSettings_itemUpdateChannel.Name = "menuMain_dropSettings_itemUpdateChannel";
+      this.menuMain_dropSettings_itemUpdateChannel.Size = new System.Drawing.Size(199, 22);
+      this.menuMain_dropSettings_itemUpdateChannel.Text = "Update Channel";
+      this.menuMain_dropSettings_itemUpdateChannel.ToolTipText = "Branch tag to use to check for updates";
+      this.menuMain_dropSettings_itemUpdateChannel.Click += new System.EventHandler(this.menuMain_dropSettings_itemUpdateChannel_Click);
       // 
       // menuMain_dropSettings_seperator1
       // 
