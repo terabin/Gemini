@@ -21,10 +21,10 @@ namespace Gemini
 
     private const string DEFAULTCHANNEL = "master";
 
-    private string _current = "";
+    private string _current = Settings.UpdateChannel;
     public string Current {  get { return _current; } }
 
-    private List<string> _channels = new List<string>();
+    private List<string> _channels = Settings.UpdateChannels;
     public List<string> Channels { get { return _channels;} }
 
     public UpdateChannelForm()
@@ -57,7 +57,7 @@ namespace Gemini
     private void UpdateList()
     {
       listBox.Items.Clear();
-      foreach (string branch in Settings.UpdateChannels)
+      foreach (string branch in _channels)
       {
         listBox.Items.Add(branch);
       }
@@ -67,8 +67,8 @@ namespace Gemini
         return;
 
       // If our current channel is among the availale channels, select it.
-      if (Settings.UpdateChannels.Contains(Settings.UpdateChannel))
-        listBox.SelectedItem = Settings.UpdateChannel;
+      if (_channels.Contains(_current))
+        listBox.SelectedItem = _current;
       // Otherwise select DEFAULTCHANNEL.
       else
         listBox.SelectedItem = DEFAULTCHANNEL;
