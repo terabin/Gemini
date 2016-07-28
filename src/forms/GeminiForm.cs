@@ -1756,8 +1756,8 @@ namespace Gemini
       {
         Script script = new Script((RubyArray)rmScripts[i]);
 
-        // If script name is empty, skip script. As we don't allow no-named scripts.
-        if (i > 0 && string.IsNullOrEmpty(script.Name.Trim()))
+        // If this script has no name AND is empty, skip it. Since we don't allow empty no-named scripts.
+        if (i > 0 && string.IsNullOrWhiteSpace(script.Name) && string.IsNullOrWhiteSpace(script.Text))
           break;
 
         if (!_usedSections.Contains(script.Section))
@@ -1768,7 +1768,7 @@ namespace Gemini
         if (script.Name.StartsWith("▼ "))
           i = LoadScriptsLoop(rmScripts, script.Section, ++i);
 
-        script.Name = script.Name.Trim().Replace("▼ ", "");
+        script.Name = script.Name.Replace("▼ ", "").Trim();
         _scripts.Add(script);
       }
       _scriptRelations.Add(new ScriptList(section, list));
@@ -1825,7 +1825,15 @@ namespace Gemini
           GetScript(section).NeedSave = false;
         }
         // Get the script.
-        RubyArray rmScript = GetScript(section).RMScript;
+        Script script = GetScript(section);
+
+        // If current script has no name AND is empty, skip it. Since we don't allow empty no-named scripts.
+        if (string.IsNullOrWhiteSpace(script.Name) && string.IsNullOrWhiteSpace(script.Text))
+          continue;
+
+        // Get the array.
+        RubyArray rmScript = script.RMScript;
+        
         // If script is assosiated with a list, create a new loop.
         if (ListExists(section))
         {

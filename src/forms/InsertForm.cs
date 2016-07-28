@@ -109,19 +109,5 @@ namespace Gemini
         RefreshElements();
       }
     }
-
-    private void formClosing(object sender, FormClosingEventArgs e)
-    {
-      // Abort if new script name is empty. Because we don't allow empty names.
-      if (_finished && radioScript.Checked && String.IsNullOrEmpty(titleBox.Text.Trim()))
-      {
-        // Cancel closure,
-        e.Cancel = true;
-        // reset switch,
-        _finished = false;
-        // and show message.
-        MessageBox.Show("Script name cannot be empty!", "Invalid script name", MessageBoxButtons.OK);
-      }
-    }
   }
 }

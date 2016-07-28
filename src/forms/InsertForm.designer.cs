@@ -189,7 +189,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Insert...";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formClosing);
             this.groupInsert.ResumeLayout(false);
             this.groupInsert.PerformLayout();
             this.groupScript.ResumeLayout(false);
