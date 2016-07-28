@@ -52,7 +52,6 @@ namespace Gemini
       RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     private bool _projectNeedSave = false;
-    private bool _busy = false;
     private byte[] _projectLastSave;
     private List<Script> _scripts = new List<Script>();
 
@@ -1588,8 +1587,6 @@ namespace Gemini
 
     private bool CloseProject(bool showSaveMessage)
     {
-      if (_busy) return false;
-      _busy = true;
       if (showSaveMessage && NeedSave())
       {
         DialogResult result = MessageBox.Show("Save changes before closing?",
@@ -1603,9 +1600,7 @@ namespace Gemini
       scriptName.TextChanged -= scriptName_TextChanged;
       scriptsFileWatcher.EnableRaisingEvents = false;
 
-      _busy = false;
       SaveLocalConfiguration();
-      _busy = true;
 
       foreach (Script script in _scripts)
         script.Dispose();
@@ -1619,7 +1614,6 @@ namespace Gemini
       _projectLastSave = null;
       UpdateTitle();
       UpdateMenusEnabled();
-      _busy = false;
       return true;
     }
 
@@ -1654,8 +1648,6 @@ namespace Gemini
 
     private void SaveLocalConfiguration()
     {
-      if (_busy) return;
-      _busy = true;
       if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectScriptsFolderPath))
       {
         Script s;
@@ -1667,13 +1659,10 @@ namespace Gemini
             s.Scintilla.CurrentPos));
         Settings.SaveLocalConfiguration();
       }
-      _busy = false;
     }
 
     private void LoadLocalConfiguration()
     {
-      if (_busy) return;
-      _busy = true;
       if (Settings.ProjectConfig && !string.IsNullOrEmpty(_projectScriptsFolderPath))
       {
         Settings.SetLocalDefaults();
@@ -1686,7 +1675,6 @@ namespace Gemini
           scriptsEditor_tabs.SelectedTab = GetScript(Settings.ActiveScript.Section).TabPage;
         Settings.OpenScripts.Clear();
       }
-      _busy = false;
     }
 
     #endregion Project Methods
@@ -1718,8 +1706,6 @@ namespace Gemini
     /// </summary>
     private bool LoadScripts()
     {
-      if (_busy) return false;
-      _busy = true;
       if (File.Exists(_projectScriptPath))
         try
         {
@@ -1729,7 +1715,6 @@ namespace Gemini
           scriptsFileWatcher.Path = Path.GetDirectoryName(_projectScriptPath);
           scriptsFileWatcher.Filter = Path.GetFileName(_projectScriptPath);
           scriptsFileWatcher.EnableRaisingEvents = true;
-          _busy = false;
           return true;
         }
         catch
@@ -1738,7 +1723,6 @@ namespace Gemini
             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
       MessageBox.Show("Cannot locate script file\r\n" + _projectScriptPath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-      _busy = false;
       return false;
     }
 
@@ -1790,8 +1774,7 @@ namespace Gemini
 
     private void SaveScripts(string path)
     {
-      if (_busy || string.IsNullOrEmpty(path)) return;
-      _busy = true;
+      if (string.IsNullOrEmpty(path)) return;
       bool saveCopy = path != _projectScriptPath;
       scriptsFileWatcher.EnableRaisingEvents = false;
       // Create a new array and
@@ -1818,7 +1801,6 @@ namespace Gemini
         _projectLastSave = save;
         _projectNeedSave = false;
       }
-      _busy = false;
     }
 
     private RubyArray SaveScriptLoop(RubyArray data, int root, bool saveCopy)
