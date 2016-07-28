@@ -2,13 +2,19 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/id45425lg618yc22?svg=true)](https://ci.appveyor.com/project/revam/gemini)
 
-Original source code by ForeverZer0 and Zeus81 found at http://www.gdunlimited.net/forums/topic/7724-gemini-script-editor/.
+Original source code by ForeverZer0 and Zeus81 found at
+http://www.gdunlimited.net/forums/topic/7724-gemini-script-editor/,
+or in the way-back machine if link above do not work:
+http://web.archive.org/web/20130827030905/http://www.gdunlimited.net/forums/topic/7724-gemini-script-editor
+
 Terms of use set by ForeverZer0 (found under Download at link above)
 
 > Do to a lack of time to fix bugs, and for the benefit of others, I am open-sourcing Gemini, and I welcome anyone with knowledge of .NET to fix/add anything they wish, under the following conditions, which I respectfully ask be followed:
 > - Gemini is to remain non-commercial
 > - Original credit is to be given, although feel free to add yourself for any changes that are made
 > - Please notify me if you decide to host it anywhere other than where I already have
+
+**Between every new version of Gemini, the settings may be invalidated.**
 
 ## Introduction
 
@@ -21,7 +27,7 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
   - Can restore last opened tabs per projects
   - Debug mode
   - Able to customize game executable and arguments with debug mode
-  - Automatic updater built-in so you can make sure you have the latest version
+- Automatic updater built-in so you can make sure you have the latest version
 
 ## Known bugs of current release
 
