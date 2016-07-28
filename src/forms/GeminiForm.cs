@@ -1743,7 +1743,7 @@ namespace Gemini
         // Retrive script from array.
         Script script = new Script((RubyArray)rmScripts[i]);
 
-        // If this script has no name AND is empty, skip it. Since we don't allow empty no-named scripts.
+        // If this script is unnamd AND empty, skip it. Since we don't allow unnamed empty scripts.
         if (i > 0 && string.IsNullOrWhiteSpace(script.Name) && string.IsNullOrWhiteSpace(script.Text))
           break;
 
@@ -1819,8 +1819,9 @@ namespace Gemini
         // Get the script.
         Script script = GetScript(section);
 
-        // If current script has no name AND is empty, skip it. Since we don't allow empty no-named scripts.
-        if (string.IsNullOrWhiteSpace(script.Name) && string.IsNullOrWhiteSpace(script.Text))
+        // If current script is unnamed, empty and has no list assosiated with it then skip it,
+        // since we don't allow unnamed empty scripts.
+        if (string.IsNullOrWhiteSpace(script.Name) && string.IsNullOrWhiteSpace(script.Text) && !ListExists(section))
           continue;
 
         // Get the array.
