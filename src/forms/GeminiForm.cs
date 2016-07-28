@@ -1751,27 +1751,37 @@ namespace Gemini
     /// <returns></returns>
     private int LoadScriptsLoop(RubyArray rmScripts, int section, int i)
     {
+      // Create a local sections list
       List<int> list = new List<int>();
+      // For every script in the array, we process it.
       for (; i < rmScripts.Count; i++)
       {
+        // Retrive script from array.
         Script script = new Script((RubyArray)rmScripts[i]);
 
         // If this script has no name AND is empty, skip it. Since we don't allow empty no-named scripts.
         if (i > 0 && string.IsNullOrWhiteSpace(script.Name) && string.IsNullOrWhiteSpace(script.Text))
           break;
 
+        // If the section is NOT in use, add section to the used sections list
         if (!_usedSections.Contains(script.Section))
           _usedSections.Add(script.Section);
 
+        // Add section to local list.
         list.Add(script.Section);
 
+        // If the script name starts with a '▼', we have scripts under it. So load them too.
         if (script.Name.StartsWith("▼ "))
           i = LoadScriptsLoop(rmScripts, script.Section, ++i);
 
+        // Remove the '▼' and all white spaces from script name.
         script.Name = script.Name.Replace("▼ ", "").Trim();
+        // Add script to collection.
         _scripts.Add(script);
       }
+      // Add section with local list to relation list
       _scriptRelations.Add(new ScriptList(section, list));
+      // Return current index in array.
       return i;
     }
 
@@ -1813,7 +1823,7 @@ namespace Gemini
 
     private RubyArray SaveScriptLoop(RubyArray data, int root, bool saveCopy)
     {
-      // Get our list
+      // Get our list,
       List<int> list = GetList(root).List;
       // and browse through it.
       foreach (int section in list)
