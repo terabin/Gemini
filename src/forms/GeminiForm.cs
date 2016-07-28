@@ -1875,9 +1875,6 @@ namespace Gemini
       // Throw if we not have 2 arguments and section is in use.
       if (args.Length != 2 && _usedSections.Contains(script.Section))
         throw new InvalidCastException("Section already used.");
-      // And throw if script is empty.
-      if ((string.IsNullOrEmpty(script.Name) && string.IsNullOrEmpty(script.Text.Trim())))
-        throw new ArgumentNullException("Empty Script passed.");
 
       // Trim name if nessecary.
       script.Name = script.Name.Trim().Replace("▼ ", "");
