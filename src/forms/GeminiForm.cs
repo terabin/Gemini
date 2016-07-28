@@ -59,7 +59,7 @@ namespace Gemini
     private bool _updatingText = false;
 
     private List<int> _usedSections = new List<int>();
-    private List<ScriptList> _scriptRelations = new List<ScriptList>();
+    private List<ScriptList> _relations = new List<ScriptList>();
 
     private struct ScriptList
     {
@@ -885,8 +885,8 @@ namespace Gemini
         int oldsection = s.Section;
         s.Section = GetRandomSection();
         _usedSections.Remove(oldsection);
-        int i = _scriptRelations.FindIndex(delegate (ScriptList m) { return m.Section == oldsection; });
-        if (i >= 0) _scriptRelations[i] = new ScriptList(s.Section, _scriptRelations[i].List);
+        int i = _relations.FindIndex(delegate (ScriptList m) { return m.Section == oldsection; });
+        if (i >= 0) _relations[i] = new ScriptList(s.Section, _relations[i].List);
         List<int> l; (l = GetParentList(oldsection).List)[l.IndexOf(oldsection)] = s.Section;
 
         //(node = GetNodeBySection(_oldSections[i])).Name = string.Format("{0:00000000}", s.Section);
@@ -1780,7 +1780,7 @@ namespace Gemini
         _scripts.Add(script);
       }
       // Add section with local list to relation list
-      _scriptRelations.Add(new ScriptList(section, list));
+      _relations.Add(new ScriptList(section, list));
       // Return current index in array.
       return i;
     }
@@ -2277,7 +2277,7 @@ namespace Gemini
     /// <returns>The desired <see cref="ScriptList"/> or <see cref="Nullable"/></returns>
     private ScriptList GetList(int section)
     {
-      return _scriptRelations.Find(delegate (ScriptList s) { return s.Section == section; });
+      return _relations.Find(delegate (ScriptList s) { return s.Section == section; });
     }
 
     /// <summary>
@@ -2287,7 +2287,7 @@ namespace Gemini
     /// <returns>The desired <see cref="ScriptList"/> or <see cref="Nullable"/></returns>
     private ScriptList GetParentList(int section)
     {
-      return _scriptRelations.Find(delegate (ScriptList s) { return s.List.Contains(section); });
+      return _relations.Find(delegate (ScriptList s) { return s.List.Contains(section); });
     }
 
     /// <summary>
@@ -2316,7 +2316,7 @@ namespace Gemini
     private void AddListFor(int section, List<int> list)
     {
       if (!ListExists(section))
-        _scriptRelations.Add(new ScriptList(section, list));
+        _relations.Add(new ScriptList(section, list));
     }
 
     /// <summary>
@@ -2325,7 +2325,7 @@ namespace Gemini
     /// <param name="section">Section to locate list from</param>
     private void RemoveList(int section)
     {
-      _scriptRelations.RemoveAll(delegate (ScriptList l) { return l.Section == section; });
+      _relations.RemoveAll(delegate (ScriptList l) { return l.Section == section; });
     }
 
     /// <summary>
@@ -2334,7 +2334,7 @@ namespace Gemini
     /// <param name="section">Section to locate list from</param>
     private bool ListExists(int section)
     {
-      return _scriptRelations.Exists(delegate (ScriptList d) { return d.Section == section; });
+      return _relations.Exists(delegate (ScriptList d) { return d.Section == section; });
     }
 
     /// <summary>
