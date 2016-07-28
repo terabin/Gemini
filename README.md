@@ -35,6 +35,7 @@ Gemini, named after the Zodiac Twins (used in the RPG Maker series), is a featur
 it toggles menu bar. As it should not. Workaround: disable "Auto-hide menu-bar."
 - When deleting a script with under-scripts, if you choose not to delete under-scripts,
 it will throw a NullReferenceExeption. Somewhat critical bug.
+- When moving a script with scripts under itself, under another script, you must hide and show the other script to see all the scripts...
 
 ## Features
 
@@ -55,15 +56,17 @@ it will throw a NullReferenceExeption. Somewhat critical bug.
 - Portable, no-install application
 - Much more!
 
-## Tasks to do
+## Tasks to do, in priority order
 
+- [ ] Correct bugs in view implementation...
 - [ ] Fix authorization between Github and Appveyor for deployment.
-- [ ] Switch to ScintillaNet 3.5 (Newer, better, but a hassle to fix the incompatibles between current version)
-- [ ] Add multi-selection functionality to Tree View.
 - [ ] Add Drag and Drop functionality to Tree View.
 - [ ] Add Ctrl+Tab/Ctrl+Shift+Tab shortcuts for switching for tabs
-- [x] Adapt the update methods to work with the new Git-Repo.
+- [ ] Maybe add multi-selection functionality to Tree View.
 - [ ] Fix poor implementation of menu bar auto-hiding/-showing.
+- [ ] Switch to ScintillaNet 3.5 (Newer, better, but a hassle to fix the incompatibles between current version)
+
+- [x] Adapt self-updater to work with Github.
 
 ## Versioning
 Version is defined as `MAJOR.MINOR.PATCH`, where:
